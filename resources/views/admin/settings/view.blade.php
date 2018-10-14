@@ -16,7 +16,7 @@
 
                         <!-- Post Page Field -->
                         <div class="form-group col-sm-6">
-                            {!! Form::label('post_page', '每页显示文章数量:') !!}
+                            {!! Form::label('post_page', '每页显示故事数量:') !!}
                             {!! Form::number('post_page', null, ['class' => 'form-control']) !!}
                         </div>
 

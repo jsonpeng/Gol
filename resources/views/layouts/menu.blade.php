@@ -20,11 +20,17 @@
         <a href="{!! route('menus.index') !!}"><i class="fa fa-cog"></i><span>网站菜单</span></a>
     </li>
 
+
+<li class="header">小屋管理</li>
+<li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
+    <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>
+</li>
+
 <li class="header">内容管理</li>
 <li class="treeview @if(Request::is('zcjy/categories*') || Request::is('zcjy/posts*') || Request::is('zcjy/customPostTypes') || Request::is('zcjy/*/customPostTypeItems*')) active @endif " >
     <a href="#">
         <i class="fa fa-pie-chart"></i>
-        <span>文章管理</span>
+        <span>故事管理</span>
         <i class="fa fa-angle-left pull-right"></i>
     </a>
     <ul class="treeview-menu">
@@ -33,11 +39,11 @@
         </li>
 
         <li class="{{ Request::is('zcjy/posts*') ? 'active' : '' }}">
-            <a href="{!! route('posts.index') !!}"><i class="fa fa-newspaper-o"></i><span>文章</span></a>
+            <a href="{!! route('posts.index') !!}"><i class="fa fa-newspaper-o"></i><span>故事</span></a>
         </li>
         @if(!$online)
         </li><li class="{{ Request::is('zcjy/customPostTypes*') || Request::is('zcjy/*/customPostTypeItems*') ? 'active' : '' }}">
-            <a href="{!! route('customPostTypes.index') !!}"><i class="fa fa-calendar-plus-o"></i><span>自定义文章类型</span></a>
+            <a href="{!! route('customPostTypes.index') !!}"><i class="fa fa-calendar-plus-o"></i><span>自定义故事类型</span></a>
         </li>
         @endif
     </ul>
@@ -60,9 +66,9 @@
         @endif
     </ul>
 </li>
-<li class="{{ Request::is('zcjy/messageBoards*') ? 'active' : '' }}">
+<!-- <li class="{{ Request::is('zcjy/messageBoards*') ? 'active' : '' }}">
     <a href="{!! route('messageBoards.index') !!}"><i class="fa fa-edit"></i><span>留言板</span></a>
-</li>
+</li> -->
 {{-- <li class="{{ Request::is('zcjy/messages*') ? 'active' : '' }}">
     <a href="{!! route('messages.index') !!}"><i class="fa fa-edit"></i><span>客户提交记录</span></a>
 </li> --}}
@@ -93,4 +99,6 @@
 <li class="{{ Request::is('attachMessageBoards*') ? 'active' : '' }}">
     <a href="{!! route('attachMessageBoards.index') !!}"><i class="fa fa-edit"></i><span>Attach Message Boards</span></a>
 </li> --}}
+
+
 

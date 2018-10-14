@@ -15,7 +15,7 @@
 
 <!-- Des Field -->
 <div class="form-group col-sm-12">
-    {!! Form::label('des', '自定义文章类型描述:') !!}
+    {!! Form::label('des', '自定义故事类型描述:') !!}
     {!! Form::text('des', null, ['class' => 'form-control']) !!}
 </div>
 

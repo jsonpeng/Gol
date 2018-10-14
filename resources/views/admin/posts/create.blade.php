@@ -12,7 +12,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            创建文章
+            创建故事
         </h1>
     </section>
     <div class="content">

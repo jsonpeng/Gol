@@ -18,7 +18,34 @@
     
 
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <style type="text/css">
+    .skin-blue .main-header .logo,.skin-blue .main-header .navbar , .btn-primary , .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover , .skin-blue .main-header .logo , .skin-blue .main-header .navbar .sidebar-toggle:hover{
+        background-color: #FF5511 !important;
+        border-color: white;
+    }
 
+    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+        background-color: #fff;
+    }
+
+    .skin-blue .sidebar-menu>li.header {
+        color: #4b646f;
+        background: #fff;
+    }
+
+    .skin-blue .sidebar a {
+        color: black;
+    }
+
+    .skin-blue .sidebar-menu>li>.treeview-menu {
+        margin: 0 1px;
+        background: black;
+    }
+
+    .box.box-info,.nav-tabs-custom>.nav-tabs>li.active{
+        border-top-color: orange;
+    }
+    </style>
     @yield('css')
 </head>
 
@@ -97,7 +124,7 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright 2016 <a href="http://www.yunlike.cn" target="_blank">GOL</a>.</strong> All rights reserved.
+            <strong>Copyright 2018 <a href="/" target="_blank">GOL</a>.</strong> All rights reserved.
         </footer>
 
     </div>
@@ -188,7 +215,7 @@
                layer.open({
                       type: 1,
                       area: ['680px', '450px'], 
-                      content: '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h4 class="modal-title">请选择一种类型进行添加</h4></div><div class="modal-body"><a href="/zcjy/posts/create" class="btn btn-default">文章</a>'+html+'</div>'
+                      content: '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button><h4 class="modal-title">请选择一种类型进行添加</h4></div><div class="modal-body"><a href="/zcjy/posts/create" class="btn btn-default">故事</a>'+html+'</div>'
                     });
 
             }else{

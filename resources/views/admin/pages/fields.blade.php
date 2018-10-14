@@ -82,7 +82,7 @@
             </div>
             @else
             <?php $a=1;?>
-            <!--添加文章时字段默认为空-->
+            <!--添加故事时字段默认为空-->
             @foreach($items as $attachs)
             <div class="form-group">
                 {!! Form::label($attachs->key, $attachs->name) !!}

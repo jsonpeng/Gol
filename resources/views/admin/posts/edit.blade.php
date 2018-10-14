@@ -12,7 +12,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            编辑文章
+            编辑故事
         </h1>
    </section>
    <div class="content">

@@ -1,8 +1,8 @@
 <table class="table table-responsive" id="customPostTypes-table">
     <thead>
         <tr>
-        <th>自定义文章类型名称</th>
-        <th>自定义文章类型别名</th>
+        <th>自定义故事类型名称</th>
+        <th>自定义故事类型别名</th>
      
             <th colspan="3">操作</th>
         </tr>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            编辑自定义故事类型
+            House
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($customPostType, ['route' => ['customPostTypes.update', $customPostType->id], 'method' => 'patch']) !!}
+                   {!! Form::model($house, ['route' => ['houses.update', $house->id], 'method' => 'patch']) !!}
 
-                        @include('admin.custom_post_types.fields')
+                        @include('houses.fields')
 
                    {!! Form::close() !!}
                </div>

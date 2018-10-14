@@ -147,6 +147,8 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
     
     Route::post('reportMany', 'MessageController@reportMany')->name('messages.report');
     Route::post('allDel','MessageController@allDel')->name('messages.alldel');
+    //小屋管理
+    Route::resource('houses', 'HouseController');
 });
 
 
@@ -166,3 +168,4 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 
 // Route::resource('attachMessageBoards', 'AttachMessageBoardController');
+

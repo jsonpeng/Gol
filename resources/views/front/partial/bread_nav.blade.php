@@ -11,7 +11,7 @@
 			  		<li><a href="/cat/{!! $parent_cat->id !!}"> > {!! $parent_cat->name !!}</a></li>
 			  		@endif
 			  		<li><a href="/cat/{!! $category->id !!}"> > {!! $category->name !!}</a></li>
-			  	{{-- 文章 --}}
+			  	{{-- 故事 --}}
 		  		@elseif(Request::is('post*'))
 		  			<?php $post_cat = $post->cats()->first();?>
 		  			@if($post_cat)

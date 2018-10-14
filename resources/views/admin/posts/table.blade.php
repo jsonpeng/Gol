@@ -29,7 +29,7 @@
                 {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! $baseurl !!}/post/{!! $post->id !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    @if($post->LeiXing=="文章")
+                    @if($post->LeiXing=="故事")
                     <a href="{!! route('posts.edit', [$post->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     @else
                      <a href="{!! route('posts.edit', [$post->id]) !!}?post_type={!! $post->type !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>

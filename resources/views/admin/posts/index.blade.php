@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content-header">
-        <h1 class="pull-left">文章列表</h1>
+        <h1 class="pull-left">故事列表</h1>
         <h1 class="pull-right">
            <a class="btn btn-primary pull-right" href="{!! route('posts.create') !!}" >添加</a>
         </h1>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-group col-md-2">
-                        <label>文章分类</label>
+                        <label>故事分类</label>
                         <select class="form-control" name="cat">
                             <option value="全部" @if (!array_key_exists('cat', $input)) selected="selected" @endif>全部</option>
                             @foreach($categories as $category)

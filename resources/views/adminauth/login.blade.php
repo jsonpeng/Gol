@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>芸来管理后台</title>
+    <title>GOL管理后台</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -47,7 +47,7 @@
         <div class="login-box-body">
             @include('admin.partials.error')
             @include('admin.partials.message')
-            <p class="login-box-msg">芸来管理后台</p>
+            <p class="login-box-msg">GOL管理后台</p>
             <form action="/zcjy/login" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">

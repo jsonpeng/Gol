@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            创建自定义故事类型
+            House
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'customPostTypes.store']) !!}
+                    {!! Form::open(['route' => 'houses.store']) !!}
 
-                        @include('admin.custom_post_types.fields',['customPostType'=>''])
+                        @include('houses.fields')
 
                     {!! Form::close() !!}
                 </div>

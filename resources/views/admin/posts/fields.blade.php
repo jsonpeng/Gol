@@ -2,7 +2,7 @@
 <div class="form-group col-sm-8">
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">文章正文</h3>
+            <h3 class="box-title">故事正文</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
             <div class="form-group">
@@ -166,7 +166,7 @@
             </div>
             @else
             <?php $a=1+$o;?>
-            <!--添加文章时字段默认为空-->
+            <!--添加故事时字段默认为空-->
             @foreach($items as $attachs)
             <div class="form-group">
                 {!! Form::label($attachs->name, $attachs->des) !!}
@@ -206,7 +206,7 @@
     </div>
     @endif
     @endforeach
-<!--添加文章时-->
+<!--添加故事时-->
     @else
 
      <?php $o=1;?>
@@ -230,7 +230,7 @@
           
             @else
             <?php $a=1+$o;?>
-            <!--添加文章时字段默认为空-->
+            <!--添加故事时字段默认为空-->
             @foreach($items as $attachs)
             <div class="form-group">
                 {!! Form::label($attachs->name, $attachs->des) !!}
