@@ -1,0 +1,270 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/12/21
+ * Time: 15:06
+ */
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
+use Carbon\Carbon;
+//use Intervention\Image\Facades\Image;
+use App\Models\Category;
+
+
+function varifyMenusName($name,$menus){
+  $childMenus = [
+    ['name'=>'公司概况','link'=>'/cat/2'],
+    ['name'=>'新闻资讯','link'=>'/cat/7'],
+    ['name'=>'精品案例','link'=>'/cat/9'],
+    ['name'=>'联系我们','link'=>'/page/1'],
+  ];
+  if(count($menus)){
+       foreach ($menus as $key => $val) {
+          if($val->name == $name){
+              $childMenus = $val['children'];
+          }
+          else{
+            if(count($val['children'])){
+              foreach ($val['children'] as $key => $childval) {
+                if($childval->name == $name){
+                    $childMenus = $val['children'];
+                }
+              }
+            }
+          }
+        }
+  }
+  return $childMenus;
+}
+ 
+
+function time_parse($time){
+  return Carbon::parse($time);
+}
+
+function parent_cat($category){
+  return Category::find($category->parent_id);
+}
+
+function is_online()
+{
+  return env('APP_ENV') == 'local' ? false : true;
+}
+
+
+function word_en($word){
+  $en_arr = [
+    '首页'=>'HOME',
+    '公司概况'=>'ABOUT US',
+    '新闻资讯'=>'NEWS',
+    '精品案例'=>'CASES',
+    '政策标准'=>'POLICY',
+    '影像长廊'=>'IMAGE',
+    '下载中心'=>'DOWNLOAD',
+    '留言板'  =>'MESSAGE',
+    '联系我们'=>'CONTACT US',
+    '关于我们' => 'about'
+  ];
+  return isset($en_arr[$word]) ? $en_arr[$word] : '';
+}
+
+
+/**
+ * [上传文件]
+ * @param  [type] $file     [description]
+ * @param  string $api_type [description]
+ * @param  [type] $user     [description]
+ * @return [type]           [description]
+ */
+function uploadFiles($file , $api_type = 'web' , $user = null){
+        if(empty($file)){
+            return zcjy_callback_data('文件不能为空',1,$api_type);
+        }
+        #文件类型
+        $file_type = 'file';
+        #文件实际后缀
+        $file_suffix = $file->getClientOriginalExtension();
+        if(!empty($file)) {
+              $img_extensions = ["png", "jpg", "gif","jpeg"];
+              $sound_extensions = ["PCM","WAVE","MP3","OGG","MPC","mp3PRo","WMA","wma","RA","rm","APE","AAC","VQF","LPCM","M4A","cda","wav","mid","flac","au","aiff","ape","mod","mp3"];
+              $excel_extensions = ["xls","xlsx","xlsm"];
+              if ($file_suffix && !in_array($file_suffix , $img_extensions) && !in_array($file_suffix , $sound_extensions) && !in_array($file_suffix,$excel_extensions)) {
+                 // return zcjy_callback_data('上传文件格式不正确',1,$api_type);
+              }
+              if(in_array($file_suffix, $img_extensions)){
+                  $file_type = 'image';
+              }
+              if(in_array($file_suffix, $sound_extensions)){
+                $file_type = 'sound';
+              }
+              if(in_array($file_suffix,$excel_extensions)){
+                $file_type = 'excel';
+              }
+          }
+
+        #文件夹
+        $destinationPath = empty($user) ? "uploads/admin/" : "uploads/user/".$user->id.'/';
+        #加上类型
+        $destinationPath = $destinationPath.$file_type.'/';
+
+        if (!file_exists($destinationPath)){
+            mkdir($destinationPath,0777,true);
+        }
+       
+        $extension = $file_suffix;
+        $fileName = str_random(10).'.'.$extension;
+        $file->move($destinationPath, $fileName);
+
+        #对于图片文件处理
+        if($file_type == 'image'){
+          $image_path=public_path().'/'.$destinationPath.$fileName;
+          // $img = Image::make($image_path);
+          // $img->resize(640, 640);
+          // $img->save($image_path,70);
+        }
+
+        $host='http://'.$_SERVER["HTTP_HOST"];
+
+        if(env('online_version') == 'https'){
+             $host='https://'.$_SERVER["HTTP_HOST"];
+        }
+
+        #路径
+        $path=$host.'/'.$destinationPath.$fileName;
+
+        return zcjy_callback_data([
+                'src'=>$path,
+                'current_time' => Carbon::now()->format('Y-m-d H:i:s'),
+                'type' => $file_type,
+                'current_src' => public_path().'/'.$destinationPath.$fileName
+            ],0,$api_type);
+}
+
+
+
+/**
+ * [默认直接通过数组的值 否则通过数组的键]
+ * @param  [type] $input      [description]
+ * @param  array  $attr       [description]
+ * @param  string $valueOrKey [description]
+ * @return [type]             [description]
+ */
+function varifyInputParam($input,$attr=[],$valueOrKey='value'){
+    $status = false;
+    #第一种带键值但值为空的情况
+    foreach ($input as $key => $val) {
+        if(array_key_exists($key,$input)){
+            if(empty($input[$key]) && $input[$key]!=0){
+                $status = '参数不完整';
+            }
+        }
+    }
+    #第二种是针对提交的指定键值
+    if(count($attr)){
+        foreach ($attr as $key => $val) {
+            if($valueOrKey == 'value'){
+                if(!array_key_exists($val,$input) || array_key_exists($val,$input) && empty($input[$val]) && $input[$val] != 0){
+                    $status = '参数不完整';
+                }
+            }
+            else{
+                 if(!array_key_exists($key,$input) || array_key_exists($key,$input) && empty($input[$key]) && $input[$key] != 0){
+                    $status = '参数不完整';
+                }
+            }
+        }
+    }
+    return $status;
+}
+
+/**
+ * [接口请求回转数据格式]
+ * @param  type    $data     [成功/失败提示]
+ * @param  integer $code     [0成功 1失败]
+ * @param  string  $api      [默认不传是api格式 传web是web格式]
+ * @return [type]            [description]
+ */
+function zcjy_callback_data($data=null,$code=0,$api='web'){
+    return $api === 'api'
+        ? api_result_data_tem($data,$code)
+        : web_result_data_tem($data,$code);
+}
+
+
+/**
+ * [api接口请求回转数据]
+ * @param  [type]  $message  [成功/失败提示]
+ * @param  integer $code     [0成功 1失败]
+ * @return [type]            [description]
+ */
+function api_result_data_tem($data=null,$status_code=0){
+     return response()->json(['status_code'=>$status_code,'data'=>$data]);
+}
+
+/**
+ * [web程序请求回转数据]
+ * @param  [type]  $message  [成功/失败提示]
+ * @param  integer $code     [0成功 1失败]
+ * @return [type]            [description]
+ */
+function web_result_data_tem($message=null,$code=0){
+    return response()->json(['code'=>$code,'message'=>$message]);
+}
+
+
+/**
+ * 获取设置信息
+ * @param  [type] $key [description]
+ * @return [type]      [description]
+ */
+function getSettingValueByKey($key){
+    return app('setting')->valueOfKey($key);
+}
+
+function getSettingValueByKeyCache($key){
+    return Cache::remember('getSettingValueByKey'.$key, Config::get('web.cachetime'), function() use ($key){
+        return getSettingValueByKey($key);
+    });
+}
+
+
+function get_page_custom_value_by_key($page,$key){
+    return Cache::remember('zcjy_custom_page_'.$key.'_'.$page->id, Config::get('web.shrottimecache'), function() use ($page,$key) {
+        $pageItems = $page->pageItems();
+        if (empty($pageItems->get())) {
+            return '';
+        } else {
+            if (empty($pageItems->where('key', $key)->first())) {
+                return '';
+            } else {
+                return $pageItems->where('key', $key)->first()->value;
+            }
+        }
+    });
+}
+
+function get_post_custom_value_by_key($post,$key){
+    return Cache::remember('zcjy_custom_post_'.$key.'_'.$post->id, Config::get('web.shrottimecache'), function() use ($post,$key) {
+        $postItems = $post->items();
+        if (empty($postItems->get())) {
+            return '';
+        } else {
+            if (empty($postItems->where('key', $key)->first())) {
+                return '';
+            } else {
+                return $postItems->where('key', $key)->first()->value;
+            }
+        }
+    });
+}
+
+/**
+ * 所有性格
+ */
+function settingList($attr){
+  $list= preg_replace("/\n|\r\n/", "_",getSettingValueByKey($attr));
+  $list_arr = explode('_',$list);
+  return $list_arr;
+}
+
