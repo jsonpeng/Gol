@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            House
+            添加
         </h1>
     </section>
     <div class="content">

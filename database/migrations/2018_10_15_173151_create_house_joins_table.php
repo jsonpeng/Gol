@@ -19,9 +19,9 @@ class CreateHouseJoinsTable extends Migration
             $table->float('price')->comment('支持金额');
             $table->string('number')->nullable()->comment('支付订单号');
 
-            $table->string('pay_status')->nullable()->default('未支付')->comment('支付状态 未支付|已支付');
+            $table->string('pay_status')->nullable()->default('未支付')->comment('支付状态 未支付|已支付|退款中|已退款');
 
-            $table->string('pay_platform')->nullable()->default('支付宝')->comment('支付平台 支付宝|微信');
+            $table->string('pay_platform')->nullable()->comment('支付平台 支付宝|微信');
 
             $table->integer('house_id')->unsigned();
             $table->foreign('house_id')->references('id')->on('houses');
