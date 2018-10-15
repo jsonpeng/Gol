@@ -18,7 +18,8 @@ class CreateHousesTable extends Migration
 
             $table->string('name')->comment('小屋名称');
             $table->string('address')->comment('小屋地址');
-
+            $table->string('image')->nullable()->comment('小屋主图');
+            
             $table->string('content')->comment('小屋详情内容');
             $table->integer('view')->nullable()->default(0)->comment('浏览量');
             $table->float('gear')->comment('档位金额');

@@ -33,6 +33,7 @@ class House extends Model
     public $fillable = [
         'name',
         'address',
+        'image',
         'content',
         'view',
         'gear',

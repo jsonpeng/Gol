@@ -26,6 +26,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('last_login')->nullable()->comment('最后登录日期');
             $table->string('last_ip')->nullable()->comment('最后登录IP');
 
+            $table->string('des')->nullable()->comment('个人简介');
+            $table->string('type')->nullable()->default('用户')->comment('用户 小屋新主 商户');
+
             $table->rememberToken();
             $table->timestamps();
         });

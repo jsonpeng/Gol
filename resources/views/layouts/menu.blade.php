@@ -25,7 +25,9 @@
 <li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
     <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>
 </li>
-
+<li class="{{ Request::is('zcjy/houseJoins*') ? 'active' : '' }}">
+    <a href="{!! route('houseJoins.index') !!}"><i class="fa fa-edit"></i><span>小屋支持记录</span></a>
+</li>
 <li class="header">内容管理</li>
 <li class="treeview @if(Request::is('zcjy/categories*') || Request::is('zcjy/posts*') || Request::is('zcjy/customPostTypes') || Request::is('zcjy/*/customPostTypeItems*')) active @endif " >
     <a href="#">
@@ -100,5 +102,11 @@
     <a href="{!! route('attachMessageBoards.index') !!}"><i class="fa fa-edit"></i><span>Attach Message Boards</span></a>
 </li> --}}
 
+
+
+{{-- <li class="{{ Request::is('attachHouses*') ? 'active' : '' }}">
+    <a href="{!! route('attachHouses.index') !!}"><i class="fa fa-edit"></i><span>Attach Houses</span></a>
+</li>
+ --}}
 
 
