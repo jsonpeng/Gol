@@ -39,6 +39,96 @@ function varifyMenusName($name,$menus){
 }
  
 
+/**
+ * [地图地址详细信息]
+ * @param  [type] $address [description]
+ * @return [type]          [description]
+ */
+function getAddressDetail($address){
+     return Cache::remember('zcjy_get_address_detail'.$address, Config::get('web.longtimecache'), function() use ($address) {
+            $client = new Client(['base_uri' => 'http://api.map.baidu.com']);
+            $response = $client->request('GET', '/place/v2/suggestion?query='.mb_substr($address , 0 , 10 , 'utf-8').'&region='.mb_substr($address , 0 , 6 , 'utf-8').'city_limit=true&output=json&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5');
+            $address_obj = $response->getBody();
+            $address_obj = json_decode($address_obj,true);
+            return $address_obj['result'][0];
+     }); 
+}
+
+
+function getDetailBylt($jindu,$weidu)
+{
+     return Cache::remember('zcjy_get_address_by_location_lt'.$jindu.'_'.$weidu, Config::get('web.longtimecache'), function() use ($jindu,$weidu) {
+            $client = new Client(['base_uri' => 'http://api.map.baidu.com']);
+            $response = $client->request('GET', '/geocoder/v2/?ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&location='.$weidu.','.$jindu.'&output=json&pois=1');
+            $obj = $response->getBody();
+            $obj = json_decode($obj,true);
+            return ($obj['result']['addressComponent']);
+
+     }
+    );
+}
+
+/**
+ * [地图逆解析 根据经纬度获取地址详情]
+ * @param  [type] $jindu [description]
+ * @param  [type] $weidu [description]
+ * @return [type]        [description]
+ */
+function getAddressLocation($jindu,$weidu){
+  return Cache::remember('zcjy_get_address_by_location_'.$jindu.'_'.$weidu, Config::get('web.longtimecache'), function() use ($jindu,$weidu) {
+            $address = file_get_contents('http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='.$weidu.','.$jindu.'&output=json&pois=1&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5');
+
+            $address = explode(',',$address); 
+
+            $sub_address = address_str_sub($address,3,21);
+            $province = address_str_sub($address,9,12);
+            $city = address_str_sub($address,10,8);
+            $district = address_str_sub($address,12,12);
+
+         
+            $client = new Client(['base_uri' => 'http://api.map.baidu.com']);
+            $response = $client->request('GET', '/place/v2/search?query=大学&location='.$weidu.','.$jindu.'&radius=5000&output=json&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5');
+            $school_obj = $response->getBody();
+            $school_obj = json_decode($school_obj,true);
+            //return ($school_obj['results']);
+            return (object)['address'=>$sub_address,'province'=>$province,'city'=>$city,'district'=>$district,'school'=>$school_obj['results']];
+    });
+} 
+
+/**
+ * [address_str_sub description]
+ * @param  [type]  $str [description]
+ * @param  integer $len [3,21地址 9,12省份]
+ * @return [type]       [description]
+ */
+function address_str_sub($address,$len1=3,$len2=21){
+    $str = substr($address[$len1],$len2);
+    $str =substr($str,0,strlen($str)-1);
+    return $str;
+}
+
+function varifyPidToBackByPid($pid){
+    $parent_cities=Cities::find($pid);
+    if($parent_cities->level==1){
+        return route('cities.index');
+    }else{
+        $back_cities=Cities::find($pid)->ParentCitiesObj;
+        if(!empty($back_cities)) {
+            return route('cities.child.index', [$back_cities->id]);
+        }
+    }
+}
+
+function getCitiesNameById($cities_id)
+{
+    $city=Cities::find($cities_id);
+    if(!empty($city)) {
+        return $city->name;
+    }else{
+        return null;
+    }
+}
+
 function time_parse($time){
   return Carbon::parse($time);
 }

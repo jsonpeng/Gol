@@ -45,67 +45,24 @@
 		.gol_post_bg1 span,.gol_post_bg2 span{
 			display: inline-block;
 		}
-		/**
-		 * [全局]
-		 * @type {[type]}
-		 */
-		.p_relative{position: relative;}
-		a:hover { color: #FF5511; text-decoration: underline; }
-		.h60{height:60px;}
-		.mr20{margin-right:20px;}
-		.mt15{margin-top:15px;}
-		.mb25{margin-bottom: 25px;}
-		.pt15{padding-top: 15px;}
-		.pt30{padding-top:30px;}
-		.pt50{padding-top:50px;}
-		.pb50{padding-bottom: 50px;}
-		.pb15{padding-bottom: 15px;}
-		.pl50{padding-left: 50px;}
-		.pl80{padding-left: 80px;}
-		.ml20b{margin-left: 20%;}
-		.w50{width:50%;}
-		.f24{font-size:24px;}
-		.h163{height:163px;}
-		.img_auto{width:100%;height:auto;}
-		.form-control:focus{
-			border-color:#FF5511;
-			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #FF5511;
+		.gol_corver{
+			transition: height 0.6s;
+		    position: absolute;
+		    bottom: 0;
+		    width: 100%;
+		    background: rgba(53, 47, 40, .7);
 		}
-		/**
-		 * [菜单导航]
-		 * @type {Number}
-		 */
-		.gol_logo{
-			width: 100px;
-    		height: auto;
-    	}
-    	.gol_footer{
-    		background: #ddd;
-    	}
-    	.gol_footer_menus{
-    		padding-top: 8px;
-    		border-top: 1.5px solid #666;
-    		margin-left: 10%;
-    		margin-right:10%;
-    		padding-bottom: 40px;
-    	}
-    	.gol_footer_menus a{
-    		font-size:16px;
-    		color: black;
-    		padding-right: 35px;
-    		display: inline-block;
-    	}
-    	.gol_footer_beian{
-    		padding-left: 10%;
-    	}
-		.nav>li>a{padding-left: 0; padding-right: 0;color:black;font-size:16px;}
-		.nav>li{margin: 0 25px;}
-		.nav>li>a:focus, .nav>li>a:hover {
-		    text-decoration: none;
-		    background-color: transparent;
-		    color:#FF5511; 
+		.gol_corver_text{
+			position: absolute;
+		    bottom: 0;
+		    width: 100%;
+		    background: rgba(53, 47, 40, .7);
+		    color:white;
+		    opacity: 0;
 		}
-
+		.gol_corver_text a{
+			color: black;
+		}
 </style>
 @endsection
 
@@ -116,84 +73,6 @@
 @endsection
 
 @section('content')
-
-<!-- 右侧顶部 -->
-<div class="gol_top">
-	<div class="container"> 
-		<div class="pull-right">
-			<a class="gol_top_text">请登录</a>
-			<a class="gol_top_text">注册</a>
-			<a class="gol_top_text">设计</a>
-			<a class="gol_top_text">案例</a>
-			<a class="gol_top_text">消息通知</a>
-		</div>
-	</div>
-</div>
-
-<!-- 网站菜单 -->
-<div class="gol_header pt15">
-	<nav class="navbar " id="header-nav">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand mr20 " href="/"><img  class="gol_logo" src="/images/gol/logo.jpeg"></a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse pt15 " id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav ">
-					<li><a href="http://www.bonsignsoft.com">首页</a></li>
-				    <li><a href="http://www.bonsignsoft.com/cat/zhuanye">很多人</a></li>
-					<li><a href="http://www.bonsignsoft.com/cat/news">酷旅行</a></li>
-					<li><a href="http://www.bonsignsoft.com/page/contact">Freelance</a></li>
-					<li><a href="http://www.bonsignsoft.com/page/contact">小屋云区</a></li>
-					<li class="pl80"><form class="form-inline">
-						  <div class="form-group">
-						    <div class="input-group">
-						      <input type="text" class="form-control" name="search_all" placeholder="全站搜索">
-						      <div class="input-group-addon"><img src="/images/gol/search_gray.png" /></div>
-						    </div>
-						  </div>
-						</form>
-					</li>
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
-	</nav>
-</div>
-
-<!--滚动banner-->
-@if(count($banners))
-<div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
-  	<!-- Indicators -->
-{{--   	<ol class="carousel-indicators">
-	    <li data-target="#carousel-example-generic" data-slide-to="0" ></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	</ol> --}}
-	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
-		<?php $num = 0;?>
-		@foreach ($banners as $banner)
-		<?php $num++; ?>
-			@if($num==1)
-			<div class="item active">
-				<img src="{{ $banner->image }}" alt="">
-			</div>
-			@else
-			<div class="item">
-				<img src="{{ $banner->image }}" alt="">
-			</div>
-			@endif
-		@endforeach
-  	</div>
-</div>
-@endif
 
 <!-- 搜索框 -->
 <div class="">
@@ -209,22 +88,64 @@
 	<div class="container">
 		<div class="text-center f24">———&nbsp;&nbsp;小屋推荐&nbsp;&nbsp;———</div>
 		<div class="pt30">
-			<div class="gol_four_img">
+			<div class="gol_four_img p_relative gol_xilie">
+				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
+				 <div class="gol_corver_text">
+				 	<p>GOL.青旅</p>
+				 	<p>自由 青春 活力</p>
+				 	<p>旅游爱好者的圣地</p>
+				 	<a >READ MORE</a>
+				 </div>
 				<img src="/images/gol/青旅.jpeg" />
 			</div>
-			<div class="gol_four_img">
+			<div class="gol_four_img p_relative gol_xilie">
+				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
+				 <div class="gol_corver_text">
+				 	<p>GOL.客栈</p>
+				 	<p>自由 青春 活力</p>
+				 	<p>旅游爱好者的圣地</p>
+				 	<a >READ MORE</a>
+				 </div>
 				<img src="/images/gol/客栈.jpeg" />
 			</div>
-			<div class="gol_four_img">
+			<div class="gol_four_img p_relative gol_xilie">
+				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
+				 <div class="gol_corver_text">
+				 	<p>GOL.民宿</p>
+				 	<p>自由 青春 活力</p>
+				 	<p>旅游爱好者的圣地</p>
+				 	<a >READ MORE</a>
+				 </div>
 				<img src="/images/gol/民宿.jpeg" />
 			</div>
-			<div class="gol_four_img">
+			<div class="gol_four_img p_relative gol_xilie">
+				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
+				 <div class="gol_corver_text">
+				 	<p>GOL.空间</p>
+				 	<p>自由 青春 活力</p>
+				 	<p>旅游爱好者的圣地</p>
+				 	<a >READ MORE</a>
+				 </div>
 				<img src="/images/gol/空间.jpeg" />
 			</div>
 		</div>
 	</div>
 </div>
 
+{{-- <div class="response">
+                <a href="">
+                    <img src="http://model010.yunlike.cn/uploads/d2.jpg" alt="" class="img-responsive" style="width:100%;">
+                </a>
+                <div class="cover hidden-sm hidden-xs" style="height: 100%;"></div>
+                <div class="address hidden-sm hidden-xs" style="opacity: 0;">
+                    <h4>重庆分店</h4>
+                    <div>   服务：致力于为富有远见，追求卓越的客户。提供行之有效的互联网一站式建设与运营</div>
+                </div>
+                <div class="address visible-sm visible-xs" style="opacity: 0;">
+                    <h4>重庆分店</h4>
+                    <div>   服务：致力于为富有远见，追求卓越的客户。提供行之有效的互联网一站式建设与运营</div>
+                </div>
+</div> --}}
 
 <!-- 小屋故事  -->
 <div class="pt30 container">
@@ -306,28 +227,22 @@
 </div>
 
 
-<!--底部菜单-->
-<div class="gol_footer  pb15">
 
-	<div class="pt15">
-		<div class="gol_footer_menus">
-			<a>关于小屋</a>
-			<a>合作服务</a>
-			<a>小屋APP</a>
-			<a>小屋微信</a>
-		</div>
-	</div>
-
-	<div class="gol_footer_beian">
-		<p>公安备案|Copyright 索尔科技(上海)有限公司ICP备案号</p>
-	</div>
-</div>
 
 @endsection
 
 
 @section('js')
 	<script>
-
+		$(function(){
+			$('.gol_xilie').mouseover(function(){
+				$(this).find('.gol_corver').css('height',0);
+				$(this).find('.gol_corver_text').css('opacity',1);
+			});
+			$('.gol_xilie').mouseout(function(){
+				$(this).find('.gol_corver').css('height','100%');
+				$(this).find('.gol_corver_text').css('opacity',0);
+			});
+		});	
 	</script>
 @endsection

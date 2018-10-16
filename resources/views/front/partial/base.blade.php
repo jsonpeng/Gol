@@ -10,7 +10,69 @@
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/main.css') }}"> -->
+    <style type="text/css">
+        /**
+         * [全局]
+         * @type {[type]}
+         */
+        .p_relative{position: relative;}
+        a:hover { color: #FF5511; text-decoration: underline; }
+        .h60{height:60px;}
+        .mr20{margin-right:20px;}
+        .mt15{margin-top:15px;}
+        .mb25{margin-bottom: 25px;}
+        .pt15{padding-top: 15px;}
+        .pt30{padding-top:30px;}
+        .pt50{padding-top:50px;}
+        .pb50{padding-bottom: 50px;}
+        .pb15{padding-bottom: 15px;}
+        .pl50{padding-left: 50px;}
+        .pl80{padding-left: 80px;}
+        .ml20b{margin-left: 20%;}
+        .w50{width:50%;}
+        .f24{font-size:24px;}
+        .h163{height:163px;}
+        .img_auto{width:100%;height:auto;}
+        .form-control:focus{
+            border-color:#FF5511;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #FF5511;
+        }
+        /**
+         * [菜单导航]
+         * @type {Number}
+         */
+        .gol_logo{
+            width: 100px;
+            height: auto;
+        }
+        .gol_footer{
+            background: #ddd;
+            text-align: center;
+        }
+        .gol_footer_menus{
+            padding-top: 18px;
+            border-top: 1.5px solid #666;
+            margin-left: 10%;
+            margin-right:10%;
+            padding-bottom: 20px;
+        }
+        .gol_footer_menus a{
+            font-size:16px;
+            color: black;
+            padding-right: 35px;
+            display: inline-block;
+        }
+        .gol_footer_beian{
+            /*padding-left: 10%;*/
+        }
+        .nav>li>a{padding-left: 0; padding-right: 0;color:black;font-size:16px;}
+        .nav>li{margin: 0 25px;}
+        .nav>li>a:focus, .nav>li>a:hover {
+            text-decoration: none;
+            background-color: transparent;
+            color:#FF5511; 
+        }
+    </style>
         @yield('css')
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -30,7 +92,7 @@
         <!-- Add your site or application content here -->
         @include('front.partial.nav')
         @yield('content')
-        <!-- @include('front.partial.footer') -->
+        @include('front.partial.footer')
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
         <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
         <script src="{{ asset('js/plugins.js') }}"></script>

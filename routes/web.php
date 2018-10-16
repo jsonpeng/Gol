@@ -83,6 +83,16 @@ Route::group([ 'prefix' => 'zcjy', 'namespace' => 'Admin'], function () {
 	Route::get('logout', 'LoginController@logout');
 });
 
+/**
+ * ajax接口
+ */
+Route::group(['prefix' => 'ajax'], function () {
+	 //直接根据id返回市区县地区列表
+	Route::post('cities/getAjaxSelect/{id}','CitiesController@CitiesAjaxSelect');
+	//根据地域返回对应的城市列表
+	Route::post('diyu/getAjaxSelect/{diyu}','CitiesController@DiyuCitiesAjaxSelect');
+});
+
 
 //后台管理系统
 Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], function () {
@@ -147,10 +157,25 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
     
     Route::post('reportMany', 'MessageController@reportMany')->name('messages.report');
     Route::post('allDel','MessageController@allDel')->name('messages.alldel');
+
+    //地区设置
+    Route::resource('cities','CitiesController');
+
+    //根据pid查看到地区列表
+    Route::get('cities/pid/{pid}','CitiesController@ChildList')->name('cities.child.index');
+    //为指定父级城市添加地区页面
+    Route::get('cities/pid/{pid}/add','CitiesController@ChildCreate')->name('cities.child.create');
+    //省市区三级选择
+    Route::get('cities/frame/select','CitiesController@CitiesSelectFrame')->name('cities.select.frame');
+
+
+
     //小屋管理
     Route::resource('houses', 'HouseController');
     //小屋支持人管理
     Route::resource('houseJoins', 'HouseJoinController');
+
+
 });
 
 

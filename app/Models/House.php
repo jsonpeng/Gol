@@ -41,7 +41,12 @@ class House extends Model
         'target',
         'status',
         'endtime',
-        'user_id'
+        'user_id',
+        'province',
+        'city',
+        'district',
+        'lat',
+        'lon'
     ];
 
     /**

@@ -17,6 +17,15 @@ class CreateHousesTable extends Migration
             $table->increments('id');
 
             $table->string('name')->comment('小屋名称');
+
+            $table->string('province')->nullable()->default(0)->comment('省');
+            $table->string('city')->nullable()->default(0)->comment('市');
+            $table->string('district')->nullable()->default(0)->comment('区');
+
+         
+            $table->float('lon')->nullable()->comment('经度');
+            $table->float('lat')->nullable()->comment('纬度');
+
             $table->string('address')->comment('小屋地址');
             $table->string('image')->nullable()->comment('小屋主图');
             
