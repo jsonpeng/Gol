@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('.carousel').carousel({
-        interval: 3000
+        interval: 1500
     })
     $("#carousel-example-generic").swipe({
         swipeLeft: function() { $(this).carousel('next'); },

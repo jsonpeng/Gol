@@ -60,18 +60,19 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
-                        <div class="checkbox icheck">
+                       {{--  <div class="checkbox icheck">
                         <label>
                             <input type="checkbox"> 记住我
                         </label>
-                        </div>
-                    </div><!-- /.col -->
+                        </div> --}}
+                    </div>
+                    <!-- /.col -->
                     <div class="col-xs-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
                     </div><!-- /.col -->
                 </div>
             </form>
-            <a href="/zcjy/password/reset">忘记密码</a>
+          {{--   <a href="/zcjy/password/reset">忘记密码</a> --}}
         </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 <!-- /.login-box -->

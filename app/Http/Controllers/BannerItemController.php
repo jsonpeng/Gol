@@ -66,7 +66,7 @@ class BannerItemController extends AppBaseController
      *
      * @return Response
      */
-    public function store(Request $request, $banner_id)
+    public function store(CreateBannerItemRequest $request, $banner_id)
     {
 
         $input = $request->all();
@@ -116,7 +116,7 @@ class BannerItemController extends AppBaseController
      *
      * @return Response
      */
-    public function update($banner_id, $id, Request $request)
+    public function update($banner_id, $id, UpdateBannerItemRequest $request)
     {
 
         $bannerItem = $this->bannerItemRepository->findWithoutFail($id);

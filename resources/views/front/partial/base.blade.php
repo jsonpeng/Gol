@@ -37,9 +37,18 @@
         <script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="{{asset('js/touch.js')}}"></script>
         <script src="{{ asset('vendor/layer/layer.js') }}"></script>
-        <script src="{{ asset('js/main.js') }}"></script>
+{{--         <script src="{{ asset('js/main.js') }}"></script> --}}
         <script src="{{asset('js/zcjy.js')}}"></script>
         <script src="{{asset('js/banner.js')}}"></script>
+        <script type="text/javascript">
+        $('.carousel').carousel({
+            interval: 1500
+        })
+        $("#carousel-example-generic").swipe({
+            swipeLeft: function() { $(this).carousel('next'); },
+            swipeRight: function() { $(this).carousel('prev'); },
+        });
+        </script>
         <!-- <script>
           var _hmt = _hmt || [];
           (function() {

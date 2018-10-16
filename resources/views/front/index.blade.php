@@ -2,12 +2,54 @@
 
 @section('css')
 <style type="text/css">
+		/**
+		 * [首页]
+		 * @type {[type]}
+		 */
 		.gol_top_text{padding-top:5px;padding-right: 20px;color:black;font-size:14px;display: inline-block;}
+		.gol_search_button{
+			position: absolute;
+		    right: 20px;
+		    padding: 8px;
+		    top: 27px;
+		    color: white;
+		    background: rgb(242, 18, 18);
+		}
+		.gol_search_img{
+			position: absolute;
+		    top: 36px;
+		    left: 15px;
+		}
+		/**
+		 * [全局]
+		 * @type {[type]}
+		 */
+		.p_relative{position: relative;}
+		a:hover { color: #FF5511; text-decoration: underline; }
+		.h60{height:60px;}
 		.mr20{margin-right:20px;}
+		.mt15{margin-top:15px;}
+		.mb25{margin-bottom: 25px;}
 		.pt15{padding-top: 15px;}
+		.pl50{padding-left: 50px;}
+		.pl80{padding-left: 80px;}
 		.ml20b{margin-left: 20%;}
+		/**
+		 * [菜单导航]
+		 * @type {Number}
+		 */
+		.gol_logo{
+			width: 100px;
+    		height: auto;
+    	}
 		.nav>li>a{padding-left: 0; padding-right: 0;color:black;font-size:16px;}
 		.nav>li{margin: 0 25px;}
+		.nav>li>a:focus, .nav>li>a:hover {
+		    text-decoration: none;
+		    background-color: transparent;
+		    color:#FF5511; 
+		}
+
 </style>
 @endsection
 
@@ -19,6 +61,7 @@
 
 @section('content')
 
+<!-- 右侧顶部 -->
 <div class="gol_top">
 	<div class="container"> 
 		<div class="pull-right">
@@ -31,6 +74,7 @@
 	</div>
 </div>
 
+<!-- 网站菜单 -->
 <div class="gol_header pt15">
 	<nav class="navbar " id="header-nav">
 		<div class="container">
@@ -42,7 +86,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand mr20" href="/"><img src="/images/gol/logo.jpg"></a>
+				<a class="navbar-brand mr20 " href="/"><img  class="gol_logo" src="/images/gol/logo.jpeg"></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -53,11 +97,11 @@
 					<li><a href="http://www.bonsignsoft.com/cat/news">酷旅行</a></li>
 					<li><a href="http://www.bonsignsoft.com/page/contact">Freelance</a></li>
 					<li><a href="http://www.bonsignsoft.com/page/contact">小屋云区</a></li>
-					<li><form class="form-inline">
+					<li class="pl80"><form class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
 						      <input type="text" class="form-control" name="search_all" placeholder="全站搜索">
-						      <div class="input-group-addon"><img src="/images/gol/search.png" /></div>
+						      <div class="input-group-addon"><img src="/images/gol/search_gray.png" /></div>
 						    </div>
 						  </div>
 						</form>
@@ -68,16 +112,15 @@
 	</nav>
 </div>
 
-
-
+<!--滚动banner-->
 @if(count($banners))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
   	<!-- Indicators -->
-  	<ol class="carousel-indicators">
+{{--   	<ol class="carousel-indicators">
 	    <li data-target="#carousel-example-generic" data-slide-to="0" ></li>
-	    <li data-target="#carousel-example-generic" data-slide-to="1" class="active"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="1" ></li>
 	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	</ol>
+	</ol> --}}
 	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 		<?php $num = 0;?>
 		@foreach ($banners as $banner)
@@ -96,8 +139,12 @@
 </div>
 @endif
 
+<!-- 搜索框 -->
+<div class="container">
 
+	<div class="pt15 p_relative" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_other" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
 
+</div>
 
 
 @endsection
