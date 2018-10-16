@@ -67,6 +67,10 @@
 		.f24{font-size:24px;}
 		.h163{height:163px;}
 		.img_auto{width:100%;height:auto;}
+		.form-control:focus{
+			border-color:#FF5511;
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #FF5511;
+		}
 		/**
 		 * [菜单导航]
 		 * @type {Number}
