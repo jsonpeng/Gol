@@ -103,7 +103,7 @@
 				 	<p>GOL.客栈</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/青旅">READ MORE</a>
+				 	<a href="/series/客栈">READ MORE</a>
 				 </div>
 				<img src="/images/gol/客栈.jpeg" />
 			</div>
@@ -113,7 +113,7 @@
 				 	<p>GOL.民宿</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/青旅">READ MORE</a>
+				 	<a href="/series/民宿">READ MORE</a>
 				 </div>
 				<img src="/images/gol/民宿.jpeg" />
 			</div>
@@ -123,7 +123,7 @@
 				 	<p>GOL.空间</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/青旅">READ MORE</a>
+				 	<a href="/series/空间">READ MORE</a>
 				 </div>
 				<img src="/images/gol/空间.jpeg" />
 			</div>

@@ -208,12 +208,14 @@
 @endif
 
 <!-- gol系列导航 -->
+@if(Request::is('series*'))
 <div class="container">
 	<a class="gol_many_top_a @if($type=='青旅') active @endif" href="/series/青旅">GOL.青旅</a>
 	<a class="gol_many_top_a @if($type=='客栈') active @endif" href="/series/客栈">GOL.客栈</a>
 	<a class="gol_many_top_a @if($type=='民宿') active @endif" href="/series/民宿">GOL.民宿</a>
 	<a class="gol_many_top_a @if($type=='空间') active @endif" href="/series/空间">GOL.空间</a>
 </div>
+@endif
 
 
 <!--滚动banner-->
