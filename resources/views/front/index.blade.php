@@ -6,7 +6,6 @@
 		 * [首页]
 		 * @type {[type]}
 		 */
-		.gol_top_text{padding-top:5px;padding-right: 20px;color:black;font-size:14px;display: inline-block;}
 		.gol_search_button{
 			position: absolute;
 		    right: 20px;
@@ -94,7 +93,7 @@
 				 	<p>GOL.青旅</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a >READ MORE</a>
+				 	<a href="/series/青旅">READ MORE</a>
 				 </div>
 				<img src="/images/gol/青旅.jpeg" />
 			</div>
@@ -104,7 +103,7 @@
 				 	<p>GOL.客栈</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a >READ MORE</a>
+				 	<a href="/series/青旅">READ MORE</a>
 				 </div>
 				<img src="/images/gol/客栈.jpeg" />
 			</div>
@@ -114,7 +113,7 @@
 				 	<p>GOL.民宿</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a >READ MORE</a>
+				 	<a href="/series/青旅">READ MORE</a>
 				 </div>
 				<img src="/images/gol/民宿.jpeg" />
 			</div>
@@ -124,7 +123,7 @@
 				 	<p>GOL.空间</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a >READ MORE</a>
+				 	<a href="/series/青旅">READ MORE</a>
 				 </div>
 				<img src="/images/gol/空间.jpeg" />
 			</div>

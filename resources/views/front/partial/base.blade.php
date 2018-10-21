@@ -15,10 +15,14 @@
          * [全局]
          * @type {[type]}
          */
+         p{
+            word-wrap:break-word;
+         }
         .p_relative{position: relative;}
         a:hover { color: #FF5511; text-decoration: underline; }
         .h60{height:60px;}
         .mr20{margin-right:20px;}
+        .mt30{margin-top: 30px;}
         .mt15{margin-top:15px;}
         .mb25{margin-bottom: 25px;}
         .pt15{padding-top: 15px;}
@@ -37,6 +41,13 @@
             border-color:#FF5511;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #FF5511;
         }
+        .backgroud_red{
+            background: red;
+        }
+        /**
+         *顶部文字
+         */
+        .gol_top_text{padding-top:5px;padding-right: 20px;color:black;font-size:14px;display: inline-block;}
         /**
          * [菜单导航]
          * @type {Number}
@@ -64,6 +75,18 @@
         }
         .gol_footer_beian{
             /*padding-left: 10%;*/
+        }
+        .gol_many_post_item{
+            max-width: 300px;
+        }
+        .gol_many_top_a{
+            color: black;
+            display: inline-block;
+            padding-right: 15px;
+            padding-bottom: 25px;
+        }
+        .gol_many_top_a.active{
+            color:#FF5511;
         }
         .nav>li>a{padding-left: 0; padding-right: 0;color:black;font-size:16px;}
         .nav>li{margin: 0 25px;}

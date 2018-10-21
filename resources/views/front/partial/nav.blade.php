@@ -180,11 +180,11 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse pt15 " id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav ">
-					<li><a href="http://www.bonsignsoft.com">首页</a></li>
-				    <li><a href="http://www.bonsignsoft.com/cat/zhuanye">很多人</a></li>
-					<li><a href="http://www.bonsignsoft.com/cat/news">酷旅行</a></li>
-					<li><a href="http://www.bonsignsoft.com/page/contact">Freelance</a></li>
-					<li><a href="http://www.bonsignsoft.com/page/contact">小屋云区</a></li>
+					<li><a href="/">首页</a></li>
+				    <li><a href="/manyMan">很多人</a></li>
+					<li><a href="/">酷旅行</a></li>
+					<li><a href="/">Freelance</a></li>
+					<li><a href="/">小屋云区</a></li>
 					<li class="pl80"><form class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
@@ -199,6 +199,22 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 </div>
+
+<!-- 很多人导航 -->
+@if(Request::is('manyMan*'))
+<div class="container">
+<a class="gol_many_top_a @if($type == '小屋') active @endif">很多人小屋</a> <a class="gol_many_top_a">很多人社区</a> 
+</div>
+@endif
+
+<!-- gol系列导航 -->
+<div class="container">
+	<a class="gol_many_top_a @if($type=='青旅') active @endif" href="/series/青旅">GOL.青旅</a>
+	<a class="gol_many_top_a @if($type=='客栈') active @endif" href="/series/客栈">GOL.客栈</a>
+	<a class="gol_many_top_a @if($type=='民宿') active @endif" href="/series/民宿">GOL.民宿</a>
+	<a class="gol_many_top_a @if($type=='空间') active @endif" href="/series/空间">GOL.空间</a>
+</div>
+
 
 <!--滚动banner-->
 @if(count($banners))

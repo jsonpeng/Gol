@@ -21,6 +21,13 @@ Auth::routes();
 Route::group(['middleware'=>['web', 'auth.user']],function(){
 	//前端路由
 	Route::get('/', 'FrontController@index')->name('index');
+
+	//很多人
+	Route::get('/manyMan/{type?}','GolController@manyMan');
+
+	//gol系列
+	Route::get('/series/{type?}','GolController@series');
+
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');
 	Route::get('page/{id}', 'FrontController@page')->name('page');
