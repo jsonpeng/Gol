@@ -12,21 +12,27 @@
 		font-size: 14px;
 		border-radius: 5px;
 	}
-	.gol_m_detail_user_box{
-		padding-left:22px;
-		padding-right:22px;
-		padding-top:20px;
-		padding-bottom: 35px;
-		width: 360px;
-		height: 270px;
-		line-height: 20px;
-		border: 1px solid rgba(187, 187, 187, 1);
+	.detail_color{
+		color:white;
+		background: red;
+	}
+	.gol_series_title{
+		padding: 15px 65px;
+		color: black;
+		background: #ddd;
+		text-align: center;
+		font-size: 24px;
+	}
+	.gol_series_give_discourse{
+		border:1px dashed rgba(187,187,187,1);
+		border-radius: 10px;
+		text-align: center;
 	}
 </style>
 @endsection
 
 @section('seo')
-	<title>{!! getSettingValueByKeyCache('name') !!} </title>
+	<title>{!! getSettingValueByKeyCache('name') !!}</title>
     <meta name="keywords" content="{!! getSettingValueByKeyCache('seo_keywords') !!}">
     <meta name="description" content="{!! getSettingValueByKeyCache('seo_des') !!}">
 @endsection
@@ -34,74 +40,94 @@
 @section('content')
 
 	<div class="container">
-		<!--小屋新主上传的主图-->
-		<div class="row pt30">
+
+		<!-- 标题 -->
+		<div class="row ml0">
+			<div class="col-sm-4 gol_series_title">标题</div>
+		</div>
+
+		<!--多张图-->
+		<div class="row pt15">
 			<div class="col-sm-7">
 				<img src="/images/gol/xiaowu_main.png"  class="img_auto" />
 			</div>
 			<div class="col-sm-5">
-				<p class="pb15">小屋名称+类别</p>
-				<p class="pb15">这是新主第二件小屋,第一间盈利中,经营经验颇丰,为了结识更多小伙伴,特此发出召集令。</p>
-				<p class="f24 fw700">￥50000</p>
+				<p class="pb15">服务/设施</p>
 
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
+				<div class="row"> 
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+							<div class="col-sm-3">
+								<i class="fa fa-edit f16"></i>
+							</div>
+						</div>
+				 	</div>
 				</div>
 
-				<div >
-					<span class="pull-left">当前进度:60%</span><span class="pull-right">5353名支持者</span> 
+				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
+					
 				</div>
 
-				<div class="row pt30">
-						<a class="col-sm-2"></a>
-						<a class="col-sm-3 gol_m_detail_button">关注(535)</a>
-						<a class="col-sm-3 gol_m_detail_button">加入很多人</a>
-						<a class="col-sm-2"></a>
+				<p>租期/证件</p>
+				<p>整租5年可续约 | 无许可证/有许可证</p>
+				<p>安全许可</p>
+
+				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
+					
 				</div>
+
+				<p>小屋描述</p>
+				<p>建筑面积:290平方米</p>
+				<p>房屋状态:闲置状态</p>
+				<p>改造程度:中等/轻微</p> 
+
+				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
+					
+				</div> 
 
 			</div>
 		</div>
 
-		<!--小屋详情-->
-		<div class="row pt30 pb50">
-			<div class="col-sm-7">
-				<div>
-					<a href="" class="gol_top_text f16">小屋介绍</a>
-					<a href="" class="gol_top_text f16">小屋计划</a>
-					<a href="" class="gol_top_text f16">小屋话题</a>
+		<!--留给小屋新主的话-->
+		<div class="row  pb30" style="border-bottom: 1px solid #ddd;">
+			<div class="pt30 col-sm-7">
+				<div class="row">
+					<div class="col-sm-3 f16">留给小屋新主的话</div>
+					<div class="col-sm-6 f12 gol_series_give_discourse">想知道是不是TA寻找的有缘人,看看什么时间见面吧</div>
+					<div class="col-sm-3 f16" style="color: red;">查看相关费用</div>
 				</div>
-				<!--详情内容-->
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto pt15 pb15" />
-				<p>相关介绍内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto pt15" />
 			</div>
 			<div class="col-sm-5">
-				<div class="gol_m_detail_user_box">
-					<p class="f24 " > 小屋新主 </p>
-					<div style="border-bottom: 1px solid rgba(187,187,187,1);" class="pt15"></div>
-
-					<div class="row pt30">
-						<div class="col-sm-3">
-							<img src="/images/gol/xiaowu_main.png" class="img_auto">
-						</div>
-						<div class="col-sm-9">
-							<p>frank</p>
-							<p>个人简介</p>
-							<p>小屋&nbsp;&nbsp;5 &nbsp;&nbsp;&nbsp; 支持 5</p>
-						</div>
-					</div>
-
-					<div class="row pt15">
-						<a class="col-sm-2"></a>
-						<a class="col-sm-3 gol_m_detail_button">私信</a>
-						<a class="col-sm-3 gol_m_detail_button">咨询</a>
-						<a class="col-sm-2"></a>
-					</div>
-
-				</div>
+				<a class="gol_m_detail_button detail_color">加入计划</a>
+				<a class="gol_m_detail_button detail_color">立即预定</a>
 			</div>
 		</div>
+
+		<!--地理周边-->
+
+		<!--很多人喜欢-->
+		
 	</div>
 
 @endsection

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/normalize.css')}}">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <style type="text/css">
         /**
          * [全局]
@@ -24,16 +25,20 @@
         .mr20{margin-right:20px;}
         .mt30{margin-top: 30px;}
         .mt15{margin-top:15px;}
+        .ml0{margin-left: 0px;}
         .mb25{margin-bottom: 25px;}
         .pt15{padding-top: 15px;}
         .pt30{padding-top:30px;}
         .pt50{padding-top:50px;}
         .pb50{padding-bottom: 50px;}
+        .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}
         .pl50{padding-left: 50px;}
         .pl80{padding-left: 80px;}
         .ml20b{margin-left: 20%;}
         .w50{width:50%;}
+        .f12{font-size: 12px;}
+        .f14{font-size: 14px;}
         .f16{font-size: 16px !important;}
         .f24{font-size:24px;}
         .fw700{font-weight: 700;}
@@ -137,19 +142,7 @@
             swipeRight: function() { $(this).carousel('prev'); },
         });
         </script>
-        <!-- <script>
-          var _hmt = _hmt || [];
-          (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?7efffafa578ff4e986f1ac345c6fb753";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-          })();
-        </script> -->
-        <!-- <script type="text/javascript">
-            var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-            document.write(unescape("%3Cspan style='display:none' id='cnzz_stat_icon_1258944175'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1258944175' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
+
         @yield('js')
         
         <!-- JS统计代码 -->

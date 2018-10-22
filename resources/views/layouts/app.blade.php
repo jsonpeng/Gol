@@ -197,10 +197,10 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-     $.ajax({
-                    url: '/zcjy/getCustomType',
-                    type: 'POST',
-                    success: function(data) {
+      $.ajax({
+                url: '/zcjy/getCustomType',
+                type: 'POST',
+                success: function(data) {
 
                  var status=data.status;
                  var alltype=data.msg;
