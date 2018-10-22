@@ -32,7 +32,7 @@
 	<div class="pt30 pb50">
 		<div class="row">
 			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
+			<a class="col-sm-3 gol_many_post_item" href="/golDetail/1">
 				<img src="/images/gol/many_post.jpg" class="img_auto" />
 				<h4>小屋名称</h4>
 				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
@@ -48,7 +48,7 @@
 					</div>
 					
 				</div>
-			</div>
+			</a>
 
 			<!-- 单个结构 -->
 			<div class="col-sm-3 gol_many_post_item">

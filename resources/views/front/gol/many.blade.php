@@ -63,7 +63,7 @@
 	<div class="pt30 pb50">
 		<div class="row">
 			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
+			<a class="col-sm-3 gol_many_post_item" href="/manyDetail/1">
 				<img src="/images/gol/many_post.jpg" class="img_auto" />
 				<h4>项目名称</h4>
 				<h5>类别+地点</h5>
@@ -86,7 +86,7 @@
 						<p class="text-center">已筹</p>
 					</div>
 				</div>
-			</div>
+			</a>
 
 			<div class="col-sm-3 gol_many_post_item">
 				<img src="/images/gol/many_post.jpg" class="img_auto" />

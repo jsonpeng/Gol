@@ -24,9 +24,13 @@ Route::group(['middleware'=>['web', 'auth.user']],function(){
 
 	//很多人
 	Route::get('/manyMan/{type?}','GolController@manyMan');
+	//很多人详情
+	Route::get('/manyDetail/{id}','GolController@manyManDetail');
 
 	//gol系列
 	Route::get('/series/{type?}','GolController@series');
+	//gol详情
+	Route::get('/golDetail/{id}','GolController@golDetail');
 
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');

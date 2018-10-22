@@ -219,7 +219,7 @@
 
 
 <!--滚动banner-->
-@if(count($banners))
+@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*'))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 		<?php $num = 0;?>

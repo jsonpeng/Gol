@@ -34,7 +34,9 @@
         .pl80{padding-left: 80px;}
         .ml20b{margin-left: 20%;}
         .w50{width:50%;}
+        .f16{font-size: 16px !important;}
         .f24{font-size:24px;}
+        .fw700{font-weight: 700;}
         .h163{height:163px;}
         .img_auto{width:100%;height:auto;}
         .form-control:focus{
@@ -78,6 +80,7 @@
         }
         .gol_many_post_item{
             max-width: 300px;
+            color: black;
         }
         .gol_many_top_a{
             color: black;
