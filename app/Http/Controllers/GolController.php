@@ -49,6 +49,9 @@ class GolController extends Controller
 	}
 
 	//个人手机号快速注册
-
+	public function authMobileReg(Request $request)
+	{
+		return view('front.auth.mobile_reg');
+	}
 
 }

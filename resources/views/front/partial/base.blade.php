@@ -37,6 +37,7 @@
         .pl80{padding-left: 80px;}
         .ml20b{margin-left: 20%;}
         .w50{width:50%;}
+        .w85{width: 85% !important;}
         .f12{font-size: 12px;}
         .f14{font-size: 14px;}
         .f16{font-size: 16px !important;}

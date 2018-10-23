@@ -180,8 +180,21 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse pt15 " id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav ">
-					@if(Request::is('user*'))
+					@if(Request::is('user/login'))
 					<li><a href="javascript:;">欢迎登陆</a></li>
+					@elseif(Request::is('user/reg*'))
+					<li><a href="javascript:;">欢迎注册</a></li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li> </li>
+					<li class="pull-right"><span>已有账号?<a href="/user/login" style="color: #E51C23;">请登录></a></span></li>
 					@else
 					<li><a href="/">首页</a></li>
 				    <li><a href="/manyMan">很多人</a></li>

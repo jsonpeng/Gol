@@ -38,14 +38,14 @@
                 密码登录
               </p>
               <form action="" method="post" class="pt30">
-                <div class="form-group has-feedback">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                    <input type="email" name="email" value="" class="form-control" placeholder="邮箱/用户名/已验证手机号">
+                <div class="form-group form-inline">
+                    <span class="glyphicon glyphicon-envelope "></span>
+                    <input type="email" name="email" value="" class="form-control w85" placeholder="邮箱/用户名/已验证手机号">
                    
                 </div>
-                <div class="form-group has-feedback">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                    <input type="password" name="password" class="form-control" placeholder="密码">
+                <div class="form-group form-inline">
+                    <span class="glyphicon glyphicon-envelope "></span>
+                    <input type="password" name="password" class="form-control w85" placeholder="密码">
                  
                 </div>
 

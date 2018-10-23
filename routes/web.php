@@ -36,6 +36,7 @@ Route::group(['middleware'=>['web', 'auth.user']],function(){
 		//用户登录
 		Route::get('login','GolController@authLogin');
 		//用户注册
+		Route::get('reg/mobile','GolController@authMobileReg');
 		
 	});
 
