@@ -180,6 +180,9 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse pt15 " id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav ">
+					@if(Request::is('user*'))
+					<li><a href="javascript:;">欢迎登陆</a></li>
+					@else
 					<li><a href="/">首页</a></li>
 				    <li><a href="/manyMan">很多人</a></li>
 					<li><a href="/">酷旅行</a></li>
@@ -194,8 +197,11 @@
 						  </div>
 						</form>
 					</li>
+					@endif
+
 				</ul>
 			</div><!-- /.navbar-collapse -->
+
 		</div><!-- /.container-fluid -->
 	</nav>
 </div>
@@ -219,7 +225,7 @@
 
 
 <!--滚动banner-->
-@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*'))
+@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*'))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 		<?php $num = 0;?>

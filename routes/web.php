@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::group(['middleware'=>['web', 'auth.user']],function(){
 	//前端路由
-	Route::get('/', 'FrontController@index')->name('index');
+	Route::get('/', 'GolController@index')->name('index');
 
 	//很多人
 	Route::get('/manyMan/{type?}','GolController@manyMan');
@@ -32,12 +32,23 @@ Route::group(['middleware'=>['web', 'auth.user']],function(){
 	//gol详情
 	Route::get('/golDetail/{id}','GolController@golDetail');
 
+
+	/**
+	 * 个人中心
+	 */
+	Route::group(['prefix'=>'user'],function(){
+		//authLogin
+		Route::get('login','GolController@authLogin');
+	});
+
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');
 	Route::get('page/{id}', 'FrontController@page')->name('page');
 
+
+
 	//留言板
-	Route::get('message_board','FrontController@messageBoard');
+	//Route::get('message_board','FrontController@messageBoard');
 	//搜索页面
 	Route::get('search','FrontController@searchPage');
 	/**

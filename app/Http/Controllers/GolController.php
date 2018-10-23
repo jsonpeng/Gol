@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 class GolController extends Controller
 {
 
+	//首页
+    public function index(Request $request)
+    {
+       
+        return view('front.index');
+    }
+
 	//很多人
 	public function manyMan(Request $request,$type='小屋')
 	{
@@ -32,4 +39,12 @@ class GolController extends Controller
 		return view('front.gol.series_detail');
 	}
 
+	/**
+	 * 个人中心
+	 */
+	//个人登录
+	public function authLogin(Request $request)
+	{
+		return view('front.auth.login');
+	}
 }
