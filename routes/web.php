@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 
 Auth::routes();
 
@@ -37,8 +33,10 @@ Route::group(['middleware'=>['web', 'auth.user']],function(){
 	 * 个人中心
 	 */
 	Route::group(['prefix'=>'user'],function(){
-		//authLogin
+		//用户登录
 		Route::get('login','GolController@authLogin');
+		//用户注册
+		
 	});
 
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');

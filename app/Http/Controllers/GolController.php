@@ -47,4 +47,8 @@ class GolController extends Controller
 	{
 		return view('front.auth.login');
 	}
+
+	//个人手机号快速注册
+
+
 }
