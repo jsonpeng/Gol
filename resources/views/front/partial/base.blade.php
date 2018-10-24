@@ -21,23 +21,28 @@
          }
         .p_relative{position: relative;}
         a:hover { color: #FF5511; text-decoration: underline; }
+        .border_b{border-bottom: 1px solid #bbb;}
+        .gol_hidden{display: none;}
         .h60{height:60px;}
         .mr20{margin-right:20px;}
-        .mt30{margin-top: 30px;}
+        .mt30{margin-top: 30px !important;}
         .mt15{margin-top:15px;}
         .ml0{margin-left: 0px;}
         .mb25{margin-bottom: 25px;}
         .pt15{padding-top: 15px;}
         .pt30{padding-top:30px;}
         .pt50{padding-top:50px;}
+        .pb120{padding-bottom: 120px;}
         .pb50{padding-bottom: 50px;}
         .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}
         .pl50{padding-left: 50px;}
         .pl80{padding-left: 80px;}
+        .pl120{padding-left: 120px;}
         .ml20b{margin-left: 20%;}
         .w50{width:50%;}
         .w85{width: 85% !important;}
+        .w154{width: 154px !important;}
         .f12{font-size: 12px;}
         .f14{font-size: 14px;}
         .f16{font-size: 16px !important;}

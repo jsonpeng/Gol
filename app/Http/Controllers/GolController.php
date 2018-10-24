@@ -54,4 +54,10 @@ class GolController extends Controller
 		return view('front.auth.mobile_reg');
 	}
 
+	//个人中心
+	public function authCenter(Request $request)
+	{
+		return view('front.auth.usercenter');
+	}
+
 }

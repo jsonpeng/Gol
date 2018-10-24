@@ -153,17 +153,17 @@
 <div class="gol_top">
 	<div class="container"> 
 		<div class="pull-right">
-			<a class="gol_top_text">请登录</a>
-			<a class="gol_top_text">注册</a>
+			<a class="gol_top_text" href="/user/login">请登录</a>
+			<a class="gol_top_text" href="/user/reg/mobile">注册</a>
 			<a class="gol_top_text">设计</a>
 			<a class="gol_top_text">案例</a>
-			<a class="gol_top_text">消息通知</a>
+			<a class="gol_top_text">消息通知(<span style="color:red;">1</span>)</a>
 		</div>
 	</div>
 </div>
 
 <!-- 网站菜单 -->
-<div class="gol_header pt15">
+<div class="gol_header pt15 @if(!Request::is('/')) border_b @endif">
 	<nav class="navbar " id="header-nav">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -221,9 +221,9 @@
 
 <!-- 很多人导航 -->
 @if(Request::is('manyMan*'))
-<div class="container">
+<!-- <div class="container">
 <a class="gol_many_top_a @if($type == '小屋') active @endif">很多人小屋</a> <a class="gol_many_top_a">很多人社区</a> 
-</div>
+</div> -->
 @endif
 
 <!-- gol系列导航 -->
