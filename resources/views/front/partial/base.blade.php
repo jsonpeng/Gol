@@ -25,6 +25,7 @@
         .gol_hidden{display: none;}
         .h60{height:60px;}
         .mr20{margin-right:20px;}
+        .mt120{margin-top: 120px;}
         .mt30{margin-top: 30px !important;}
         .mt15{margin-top:15px;}
         .ml0{margin-left: 0px;}
@@ -32,7 +33,9 @@
         .pt15{padding-top: 15px;}
         .pt30{padding-top:30px;}
         .pt50{padding-top:50px;}
+        .pt120{padding-top: 120px;}
         .pb120{padding-bottom: 120px;}
+        .pb220{padding-bottom: 220px;}
         .pb50{padding-bottom: 50px;}
         .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}

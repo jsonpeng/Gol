@@ -21,13 +21,17 @@
     </li>
 
 
-<li class="header">小屋管理</li>
+<li class="header">GOL小屋管理</li>
 <li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
     <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>
 </li>
 <li class="{{ Request::is('zcjy/houseJoins*') ? 'active' : '' }}">
     <a href="{!! route('houseJoins.index') !!}"><i class="fa fa-edit"></i><span>小屋支持记录</span></a>
 </li>
+<li class="{{ Request::is('zcjy/gols*') ? 'active' : '' }}">
+    <a href="{!! route('gols.index') !!}"><i class="fa fa-edit"></i><span>GOL系列</span></a>
+</li>
+
 <li class="header">内容管理</li>
 <li class="treeview @if(Request::is('zcjy/categories*') || Request::is('zcjy/posts*') || Request::is('zcjy/customPostTypes') || Request::is('zcjy/*/customPostTypeItems*')) active @endif " >
     <a href="#">
@@ -82,35 +86,4 @@
 
 
 
-
-
-{{-- <li class="{{ Request::is('postComments*') ? 'active' : '' }}">
-    <a href="{!! route('postComments.index') !!}"><i class="fa fa-edit"></i><span>Post Comments</span></a>
-</li>
-
-<li class="{{ Request::is('attachPostComments*') ? 'active' : '' }}">
-    <a href="{!! route('attachPostComments.index') !!}"><i class="fa fa-edit"></i><span>Attach Post Comments</span></a>
-</li> --}}
-
-{{-- <li class="{{ Request::is('notices*') ? 'active' : '' }}">
-    <a href="{!! route('notices.index') !!}"><i class="fa fa-edit"></i><span>Notices</span></a>
-</li> --}}
-
-
-{{-- 
-<li class="{{ Request::is('attachMessageBoards*') ? 'active' : '' }}">
-    <a href="{!! route('attachMessageBoards.index') !!}"><i class="fa fa-edit"></i><span>Attach Message Boards</span></a>
-</li> --}}
-
-
-
-{{-- <li class="{{ Request::is('attachHouses*') ? 'active' : '' }}">
-    <a href="{!! route('attachHouses.index') !!}"><i class="fa fa-edit"></i><span>Attach Houses</span></a>
-</li>
- --}}
-
-
-<li class="{{ Request::is('gols*') ? 'active' : '' }}">
-    <a href="{!! route('gols.index') !!}"><i class="fa fa-edit"></i><span>Gols</span></a>
-</li>
 

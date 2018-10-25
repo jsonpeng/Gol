@@ -14,7 +14,7 @@
 
 Auth::routes();
 
-Route::group(['middleware'=>['web', 'auth.user']],function(){
+Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	//前端路由
 	Route::get('/', 'GolController@index')->name('index');
 
@@ -37,11 +37,11 @@ Route::group(['middleware'=>['web', 'auth.user']],function(){
 		Route::get('login','GolController@authLogin');
 		//用户注册
 		Route::get('reg/mobile','GolController@authMobileReg');
+
 		//个人中心
 		Route::get('center/index','GolController@authCenter');
 		//消息通知
-
-		
+		Route::get('center/notice','GolController@authNotices');
 	});
 
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');
@@ -200,7 +200,8 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
     //小屋支持人管理
     Route::resource('houseJoins', 'HouseJoinController');
 
-
+    //GOL系列管理
+    Route::resource('gols', 'GolController');
 });
 
 
@@ -225,4 +226,3 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 
 
-Route::resource('gols', 'GolController');

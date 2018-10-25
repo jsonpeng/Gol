@@ -47,7 +47,14 @@ class Gol extends Model
         'gaizao_status',
         'publish_status',
         'price',
-        'give_word'
+        'give_word',
+        'type',
+        'user_id',
+        'province',
+        'city',
+        'district',
+        'lat',
+        'lon'
     ];
 
     /**

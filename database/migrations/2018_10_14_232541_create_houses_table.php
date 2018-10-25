@@ -43,6 +43,8 @@ class CreateHousesTable extends Migration
             $table->index(['id','created_at']);
             $table->index('user_id');
 
+            
+
             $table->timestamps();
             $table->softDeletes();
         });
