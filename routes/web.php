@@ -223,3 +223,6 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 // Route::resource('attachHouses', 'AttachHouseController');
 
+
+
+Route::resource('gols', 'GolController');

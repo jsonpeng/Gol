@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Message Board
+            Gol
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'messageBoards.store']) !!}
+                    {!! Form::open(['route' => 'gols.store']) !!}
 
-                        @include('message_boards.fields')
+                        @include('gols.fields')
 
                     {!! Form::close() !!}
                 </div>

@@ -2,62 +2,154 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateGolRequest;
+use App\Http\Requests\UpdateGolRequest;
+use App\Repositories\GolRepository;
+use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Flash;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Response;
 
-class GolController extends Controller
+class GolController extends AppBaseController
 {
+    /** @var  GolRepository */
+    private $golRepository;
 
-	//首页
-    public function index(Request $request)
+    public function __construct(GolRepository $golRepo)
     {
-       
-        return view('front.index');
+        $this->golRepository = $golRepo;
     }
 
-	//很多人
-	public function manyMan(Request $request,$type='小屋')
-	{
-		return view('front.gol.many',compact('type'));
-	}
+    /**
+     * Display a listing of the Gol.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $this->golRepository->pushCriteria(new RequestCriteria($request));
+        $gols = $this->golRepository->all();
 
+        return view('gols.index')
+            ->with('gols', $gols);
+    }
 
-	//很多人详情
-	public function manyManDetail(Request $request,$id)
-	{
-		return view('front.gol.many_detail');
-	}
+    /**
+     * Show the form for creating a new Gol.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        return view('gols.create');
+    }
 
-	//gol系列
-	public function series(Request $request,$type='青旅')
-	{
-		return view('front.gol.series',compact('type'));
-	}
+    /**
+     * Store a newly created Gol in storage.
+     *
+     * @param CreateGolRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateGolRequest $request)
+    {
+        $input = $request->all();
 
-	//gol详情
-	public function golDetail(Request $request,$id)
-	{
-		return view('front.gol.series_detail');
-	}
+        $gol = $this->golRepository->create($input);
 
-	/**
-	 * 个人中心
-	 */
-	//个人登录
-	public function authLogin(Request $request)
-	{
-		return view('front.auth.login');
-	}
+        Flash::success('Gol saved successfully.');
 
-	//个人手机号快速注册
-	public function authMobileReg(Request $request)
-	{
-		return view('front.auth.mobile_reg');
-	}
+        return redirect(route('gols.index'));
+    }
 
-	//个人中心
-	public function authCenter(Request $request)
-	{
-		return view('front.auth.usercenter');
-	}
+    /**
+     * Display the specified Gol.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        $gol = $this->golRepository->findWithoutFail($id);
 
+        if (empty($gol)) {
+            Flash::error('Gol not found');
+
+            return redirect(route('gols.index'));
+        }
+
+        return view('gols.show')->with('gol', $gol);
+    }
+
+    /**
+     * Show the form for editing the specified Gol.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $gol = $this->golRepository->findWithoutFail($id);
+
+        if (empty($gol)) {
+            Flash::error('Gol not found');
+
+            return redirect(route('gols.index'));
+        }
+
+        return view('gols.edit')->with('gol', $gol);
+    }
+
+    /**
+     * Update the specified Gol in storage.
+     *
+     * @param  int              $id
+     * @param UpdateGolRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateGolRequest $request)
+    {
+        $gol = $this->golRepository->findWithoutFail($id);
+
+        if (empty($gol)) {
+            Flash::error('Gol not found');
+
+            return redirect(route('gols.index'));
+        }
+
+        $gol = $this->golRepository->update($request->all(), $id);
+
+        Flash::success('Gol updated successfully.');
+
+        return redirect(route('gols.index'));
+    }
+
+    /**
+     * Remove the specified Gol from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $gol = $this->golRepository->findWithoutFail($id);
+
+        if (empty($gol)) {
+            Flash::error('Gol not found');
+
+            return redirect(route('gols.index'));
+        }
+
+        $this->golRepository->delete($id);
+
+        Flash::success('Gol deleted successfully.');
+
+        return redirect(route('gols.index'));
+    }
 }

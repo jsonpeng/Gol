@@ -197,7 +197,7 @@
 					<li class="pull-right"><span>已有账号?<a href="/user/login" style="color: #E51C23;">请登录></a></span></li>
 					@else
 					<li><a href="/">首页</a></li>
-				    <li><a href="/manyMan">很多人</a></li>
+				    <li><a href="/manyMan">小屋家</a></li>
 					<li><a href="/">酷旅行</a></li>
 					<li><a href="/">Freelance</a></li>
 					<li><a href="/">小屋云区</a></li>

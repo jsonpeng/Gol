@@ -110,3 +110,7 @@
  --}}
 
 
+<li class="{{ Request::is('gols*') ? 'active' : '' }}">
+    <a href="{!! route('gols.index') !!}"><i class="fa fa-edit"></i><span>Gols</span></a>
+</li>
+

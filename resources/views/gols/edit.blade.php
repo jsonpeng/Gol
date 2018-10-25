@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            编辑
+            Gol
         </h1>
    </section>
    <div class="content">
@@ -11,14 +11,13 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($loans, ['route' => ['loans.update', $loans->id], 'method' => 'patch']) !!}
+                   {!! Form::model($gol, ['route' => ['gols.update', $gol->id], 'method' => 'patch']) !!}
 
-                        @include('loans.fields')
+                        @include('gols.fields')
 
                    {!! Form::close() !!}
                </div>
            </div>
        </div>
    </div>
-        @include('admin.partial.imagemodel')
 @endsection
