@@ -38,4 +38,18 @@ class HouseRepository extends BaseRepository
     {
         return House::class;
     }
+
+
+    public function getHouses($type=null,$skip=0,$take=20)
+    {
+        return House::where('status','<>','审核中')
+               ->orderBy('created_at','desc')
+               ->skip($skip)
+               ->take($take)
+               ->get();
+    }
+
+
+
+
 }

@@ -75,5 +75,10 @@ class House extends Model
         
     ];
 
+    //支持的人
+    public function join(){
+        return $this->hasMany('App\Models\HouseJoin','house_id','id');
+    }
+
     
 }

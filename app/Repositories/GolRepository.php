@@ -42,4 +42,22 @@ class GolRepository extends BaseRepository
     {
         return Gol::class;
     }
+
+    /**
+     * [获取不同类型的gols]
+     * @param  [type] $type [description]
+     * @return [type]       [description]
+     */
+    public function getTypeGols($type,$skip=0,$take=20){
+        return Gol::where('type',$type)
+            ->where('publish_status',1)
+            ->orderBy('created_at','desc')
+            ->skip($skip)
+            ->take($take)
+            ->get();
+    }
+
+
+
+
 }

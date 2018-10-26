@@ -57,5 +57,9 @@ class HouseJoin extends Model
         
     ];
 
+    public function house(){
+        return $this->belongsTo('App\Models\House');
+    }
+
     
 }
