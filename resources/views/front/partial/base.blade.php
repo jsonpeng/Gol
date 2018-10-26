@@ -33,12 +33,14 @@
         .pt15{padding-top: 15px;}
         .pt30{padding-top:30px;}
         .pt50{padding-top:50px;}
+        .pt100{padding-top: 100px;}
         .pt120{padding-top: 120px;}
         .pb120{padding-bottom: 120px;}
         .pb220{padding-bottom: 220px;}
         .pb50{padding-bottom: 50px;}
         .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}
+        .pl15{padding-left: 15px;}
         .pl50{padding-left: 50px;}
         .pl80{padding-left: 80px;}
         .pl120{padding-left: 120px;}

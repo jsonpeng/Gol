@@ -54,4 +54,9 @@ class GolController extends Controller
         $notices = [];
         return view('front.auth.notice',compact('notices'));
     }
+    //平台协议
+    public function protocol(Request $request)
+    {
+        return view('front.protocol');
+    }
 }

@@ -195,6 +195,9 @@
 					<li> </li>
 					<li> </li>
 					<li class="pull-right"><span>已有账号?<a href="/user/login" style="color: #E51C23;">请登录></a></span></li>
+					@elseif(Request::is('protocol'))
+					<li><a href="/">首页</a></li>
+					<li><a href="">在线客服</a></li>
 					@else
 					<li><a href="/">首页</a></li>
 				    <li><a href="/manyMan">小屋家</a></li>
@@ -238,7 +241,7 @@
 
 
 <!--滚动banner-->
-@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*'))
+@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol'))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 		<?php $num = 0;?>

@@ -44,6 +44,9 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 		Route::get('center/notice','GolController@authNotices');
 	});
 
+	//平台协议
+	Route::get('/protocol','GolController@protocol');
+
 	Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');
 	Route::get('page/{id}', 'FrontController@page')->name('page');
