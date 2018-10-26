@@ -32,20 +32,29 @@ class GolController extends Controller
     {
 
         $hourse = app('common')->houseRepo()->getHouseDetail($id);
-
-        return view('front.gol.many_detail',compact('hourse'));
+        $error = null;
+        if(!isset($hourse->hourse)){
+            $error = $hourse;
+        }
+        return view('front.gol.many_detail',compact('hourse','error'));
     }
 
     //gol系列
     public function series(Request $request,$type='青旅')
     {
-        return view('front.gol.series',compact('type'));
+        $gols = app('common')->golRepo()->getTypeGols($type);
+        return view('front.gol.series',compact('type','gols'));
     }
 
     //gol详情
     public function golDetail(Request $request,$id)
     {
-        return view('front.gol.series_detail');
+        $gol = app('common')->golRepo()->getGolDetail($id);
+        $error = null;
+        if(!isset($gol->detail)){
+             $error = $gol;
+        }
+        return view('front.gol.series_detail',compact('gol','error'));
     }
 
     /**
@@ -66,16 +75,19 @@ class GolController extends Controller
     //个人中心
     public function authCenter(Request $request)
     {
+        $user = auth('web')->user();
         return view('front.auth.usercenter');
     }
 
     //通知中心
     public function authNotices(Request $request)
     {
-        $notices = [];
+        $user = auth('web')->user();
+        $notices = $this->noticesRepository->authNotices($user,true);
+        //$this->noticesRepository->setNoticeReaded($user);
         return view('front.auth.notice',compact('notices'));
     }
-    
+
     //平台协议
     public function protocol(Request $request)
     {

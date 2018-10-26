@@ -153,8 +153,15 @@
 <div class="gol_top">
 	<div class="container"> 
 		<div class="pull-right">
+			<?php $user = auth('web')->user();?>
+			@if(empty($user))
 			<a class="gol_top_text" href="/user/login">请登录</a>
 			<a class="gol_top_text" href="/user/reg/mobile">注册</a>
+			@else
+			<a class="gol_top_text" ><span class="gol_color">{!! $user->name !!}</span>,你好</a>
+			<a class="gol_top_text" href="/user/center/index">我的个人中心</a>
+			<a class="gol_top_text gol_logout" href="javascript:;">安全退出</a>
+			@endif
 			<a class="gol_top_text">设计</a>
 			<a class="gol_top_text">案例</a>
 			<a class="gol_top_text">消息通知(<span style="color:red;">1</span>)</a>

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0"> -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{!! getSettingValueByKeyCache('name') !!}</title>
     <link rel="icon" href="{!!  getSettingValueByKeyCache('logo') !!}" type="image/x-icon" />
@@ -12,6 +12,20 @@
     <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <style type="text/css">
+        /**
+         *去除响应式
+         */
+         .container{ 
+            width: 1170px; 
+            max-width: none !important; 
+          }
+
+          @media screen and (max-width: 1400px) { 
+            body{ 
+            width: 1400px; 
+            } 
+         }
+
         /**
          * [全局]
          * @type {[type]}
@@ -40,6 +54,7 @@
         .pb50{padding-bottom: 50px;}
         .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}
+        .pr15{padding-right: 15px;}
         .pl15{padding-left: 15px;}
         .pl50{padding-left: 50px;}
         .pl80{padding-left: 80px;}
@@ -55,6 +70,9 @@
         .fw700{font-weight: 700;}
         .h163{height:163px;}
         .img_auto{width:100%;height:auto;}
+        .gol_color{
+            color:#FF5511;
+        }
         .form-control:focus{
             border-color:#FF5511;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px #FF5511;
@@ -151,6 +169,15 @@
         $("#carousel-example-generic").swipe({
             swipeLeft: function() { $(this).carousel('next'); },
             swipeRight: function() { $(this).carousel('prev'); },
+        });
+        //退出登录
+        $('.gol_logout').click(function(){
+            $.zcjyRequest('/ajax/logout_user',function(res){
+                if(res){
+                    $.alert('退出成功');
+                    location.reload();
+                }
+            },{},'POST');
         });
         </script>
 

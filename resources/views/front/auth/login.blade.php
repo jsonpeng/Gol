@@ -39,12 +39,12 @@
               </p>
               <form action="" method="post" class="pt30">
                 <div class="form-group form-inline">
-                    <span class="glyphicon glyphicon-envelope "></span>
-                    <input type="email" name="email" value="" class="form-control w85" placeholder="邮箱/用户名/已验证手机号">
+                    <span class="glyphicon glyphicon-user pr15"></span>
+                    <input type="text" name="name" value="" class="form-control w85" placeholder="邮箱/用户名/已验证手机号">
                    
                 </div>
                 <div class="form-group form-inline">
-                    <span class="glyphicon glyphicon-envelope "></span>
+                    <span class="glyphicon glyphicon-lock pr15"></span>
                     <input type="password" name="password" class="form-control w85" placeholder="密码">
                  
                 </div>
@@ -52,7 +52,7 @@
                 <div class="row pt15">
                     
                     <div class="col-sm-12">
-                        <button type="submit" class="btn  btn-block" style="background: #FF1E11;color: white;">登录</button>
+                        <button type="button" class="btn  btn-block gol_login_btn" style="background: #FF1E11;color: white;">登录</button>
                     </div>
                     
                 </div>
@@ -61,13 +61,13 @@
                     <div class="col-sm-3">
                     </div>
                     <div class="col-sm-3">
-                      <a href="" style="color: black;">忘记密码</a>
+                      <a href="javascript:;" style="color: black;">忘记密码</a>
                     </div>
                     <div class="col-sm-3">
-                      <a href="" style="color: black;">其他登录</a>
+                      <a href="javascript:;" style="color: black;">其他登录</a>
                     </div>
                     <div class="col-sm-3">
-                      <a style="color: #E51C23;">立即注册</a>
+                      <a style="color: #E51C23;" href="/user/reg/mobile">立即注册</a>
                     </div>
                 </div>
 
@@ -77,4 +77,19 @@
       </div>
 
 	</div>
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+  //登录逻辑
+  $('.gol_login_btn').click(function(){
+      $.zcjyRequest('/ajax/login_user',function(res){
+          if(res){
+            layer.msg('登录成功', {icon: 1});
+            location.href="/user/center/index";
+          }
+      },$('form').serialize(),'POST');
+  });
+</script>
 @endsection

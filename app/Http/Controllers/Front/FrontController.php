@@ -322,42 +322,6 @@ class FrontController extends Controller
         return zcjy_callback_data('提交成功');
     }
 
-    //上传文件
-    public function uploadFile(Request $request)
-    {
-        $file =  Input::file('file');
-        return uploadFiles($file);
-    }
-
-   /**
-     *发送邮箱验证码
-     */
-    public function sendEmailCode(Request $request,$type='reg'){
-            $email=$request->input('email');
-            $code=rand(1000,9999);
-            $name = '广西南宁裕博林业科技有限公司';
-            if(!empty($email)){
-                 if($type == 'reg'){
-                      if(User::where('email',$email)->count()){
-                        return zcjy_callback_data('该用邮箱已被注册,请重新换个邮箱',1);
-                      }
-                    //保存验证码到session中去
-                    session()->put('email_code_'.$request->ip(),$code);
-                  }
-                  else{
-                    session()->put('email_code_'.$type.'_'.$request->ip(),$code);
-                  }
-                
-                  Mail::send('emails.index',['name'=>$name,'code'=>$code],function($message) use ($email,$name){ 
-                    $to = $email;
-                    $message ->to($to)->subject('【'.$name.'】邮箱验证码');
-                  });
-                return zcjy_callback_data('发送成功');
-            }else{
-            return zcjy_callback_data('请输入邮箱',1);
-          }
-    }
-
 
     //修改用户数据
     public function changeUserData(Request $request)
@@ -425,78 +389,11 @@ class FrontController extends Controller
         return zcjy_callback_data('修改成功');
     }
 
-    //用户注册
-    public function regUser(Request $request)
-    {
-        $input = $request->all();
-        $varify = varifyInputParam($input,['name','email','password','code']);
-        if($varify){
-            return zcjy_callback_data($varify,1);
-        }
-        if(User::where('email',$input['email'])->count()){
-            return zcjy_callback_data('该用邮箱已被注册,请重新换个邮箱',1);
-        }
-        if(User::where('name',$input['name'])->count()){
-            return zcjy_callback_data('该用户名已被注册,请重新取个用户名',1);
-        }
-        if(session('email_code_'.$request->ip()) != $input['code']){
-            return zcjy_callback_data('邮箱验证码错误,请重新输入',1);
-        }
-        $input['password'] = Hash::make($input['password']);
-        $user=User::create($input);
-        auth('web')->login($user);
-        return zcjy_callback_data('注册用户成功');
-    }
-
-
-    //用户登陆
-    public function loginUser(Request $request)
-    {
-        $input = $request->all();
-        $varify = varifyInputParam($input,['name','password']);
-        if($varify){
-            return zcjy_callback_data($varify,1);
-        }
-        $name_user = User::where('name',$input['name'])->first();
-        /**
-         * 通过用户名或者邮箱都可以登陆
-         */
-        #用户名
-        if(!empty($name_user)){
-            if(!Hash::check($input['password'],$name_user->password)){
-                return zcjy_callback_data('密码输入错误',1);
-            }
-            auth('web')->login($name_user);
-            return zcjy_callback_data('登陆成功');
-        }
-        #邮箱
-        $email_user = User::where('email',$input['name'])->first();
-        if(!empty($email_user)){
-            if(!Hash::check($input['password'],$email_user->password)){
-                return zcjy_callback_data('密码输入错误',1);
-            }
-            auth('web')->login($email_user);
-            return zcjy_callback_data('登陆成功');
-        }
-
-        if(empty($name_user) || empty($email_user)){
-            return zcjy_callback_data('账号或者密码错误',1);
-        }
-    }
-
-    //退出当前用户
-    public function logoutUser(Request $request)
-    {
-        auth('web')->logout();
-        $request->session()->invalidate();
-        return zcjy_callback_data('退出成功');
-    }
-
- 
 
     //发起评论点赞
     public function publishZan(Request $request)
     {
+        /*
         $input = $request->all();
         $user = auth('web')->user();
         $type = null;
@@ -524,6 +421,7 @@ class FrontController extends Controller
                     $message = $this->messageBoardRepository->model()::find($input['comment_id']);  
                 }
             }
+
             if($message){
                     #重复的话减
                     if(array_key_exists('repeat',$input)){
@@ -544,6 +442,7 @@ class FrontController extends Controller
             return zcjy_callback_data('参数不完整',1);
         }
         return zcjy_callback_data('点赞成功');
+        */
     }
 
     //搜索页面
@@ -560,91 +459,6 @@ class FrontController extends Controller
             return redirect('/');
         }
         return view('front.search',compact('messages','input','count'));
-    }
-
-    //发起留言
-    public function publishReply(Request $request)
-    {
-         $input = $request->all();
-         $user = auth('web')->user();
-         if(empty($user)){
-            return zcjy_callback_data('请登陆后使用',1);
-         }
-         if(!array_key_exists('content',$input) || array_key_exists('content',$input) && empty($input['content'])){
-            return zcjy_callback_data('请输入留言内容',1);
-         }
-         $input['user_id'] = $user->id;
-         #普通留言
-         if(!array_key_exists('reply_user_id',$input)){
-            #普通文章
-             if(array_key_exists('post_id',$input)){
-                 $comment = $this->postCommentRepository->model()::create($input);
-                 $link = '/post/'.$input['post_id'].'?comment_id='.$comment->id;
-             }#留言板
-             else{
-                 $comment = $this->messageBoardRepository->model()::create($input);
-                 $link = '/message_board?comment_id='.$comment->id;
-             }
-         }
-         #待回复的留言
-         else{
-             #普通文章
-             if(array_key_exists('post_id',$input)){
-                $comment = $this->attachPostCommentRepository->model()::create($input);
-                #给回复人通知
-                $this->noticesRepository->sendUserNotice($input['reply_user_id'],$input['user_id'],$input['post_id'],'回复',['type'=>1,'comment_id'=>$comment->id]);
-                $link = '/post/'.$input['post_id'].'?comment_id='.$comment->id.'&more=1';
-             }#留言板
-             else{
-                $comment = $this->attachMessageBoardRepository->model()::create($input);
-                #给回复人通知
-                $this->noticesRepository->sendUserNotice($input['reply_user_id'],$input['user_id'],'board','回复',['type'=>1,'comment_id'=>$comment->id]);
-                $link = '/message_board?comment_id='.$comment->id.'&more=1';
-             }
-
-        }
-        return zcjy_callback_data($link);
-    }
-
-
-    //获取更多留言
-    public function getMoreMessages(Request $request,$type=null)
-    {   
-        $input = $request->all();
-        $messages = [];
-        if(isset($input['skip'])){
-              if($type == 'board' ){
-                    $messages = $this->messageBoardRepository->getMessages($input['skip']);
-              }
-              elseif ($type == 'post') {
-                if(isset($input['post_id'])){
-                    $messages = $this->postCommentRepository->getPostComments($input['post_id'],$input['skip']);
-                }
-             }
-        }
-        return zcjy_callback_data($messages);
-    }
-
-    //个人通知消息
-    public function userNotices(Request $request)
-    {
-        $user = auth('web')->user();
-        if(empty($user)){
-            return redirect('/');
-        }
-        $notices = $this->noticesRepository->authNotices($user,true);
-        //$this->noticesRepository->setNoticeReaded($user);
-        return view('front.auth.notice',compact('notices'));
-    }
-
-    //个人账号设置
-    public function userAccountSet(Request $request)
-    {
-        $user = auth('web')->user();
-        if(empty($user)){
-            return redirect('/');
-        }
-        return view('front.auth.account',compact('user'));
     }
 
 

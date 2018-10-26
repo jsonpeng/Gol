@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-// use App\User;
+use App\User;
 use App\Models\Admin;
 
 class UsersTableSeeder extends Seeder
@@ -15,17 +15,17 @@ class UsersTableSeeder extends Seeder
     {
        // DB::table('users')->delete();
 
-        // $user = User::create([
-        //     'name' => '管理员',
-        //     'email' => 'admin@foxmail.com',
-        //     'password'=>Hash::make('zcjyadmin'),
-        // ]);
+        $user = User::create([
+            'name' => 'gol测试用户',
+            'email' => 'gol@foxmail.com',
+            'password'=>Hash::make('gol123456'),
+        ]);
         
         $super_admin_user = Admin::create([
-            'name' => '超级管理员',
-            'email' => 'admin@foxmail.com',
-            'password'=>Hash::make('zcjyadmin'),
-            'type' => '超级管理员',
+            'name' => 'gol超级管理员',
+            'email' => 'gol@foxmail.com',
+            'password'=>Hash::make('gol123456'),
+            'type' => 'gol超级管理员',
             'system_tag'=>1
         ]);
         

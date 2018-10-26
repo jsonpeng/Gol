@@ -22,9 +22,8 @@ class AuthMiddleware
     public function handle($request, Closure $next)
     {
         if (!Auth::guard('web')->check()) {
-            //return redirect('/user/login');
+            return redirect('/user/login');
         }
-
         return $next($request);
     }
 }

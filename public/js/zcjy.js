@@ -1,4 +1,7 @@
 $.extend({
+    alert:function(word){
+        layer.msg(word, {icon: 1});
+    },
     empty:function(data) {
        return data == '' || data == null  || data == false || data == 'false' || data == 'null' || data == {} || data == '{}' || data == [] ||  JSON.stringify(data) == '{}';
     },

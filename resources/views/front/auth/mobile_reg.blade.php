@@ -57,7 +57,7 @@
 				<div class="form-inline ">
 					<select name="mobile_type" class="form-control w154 h60">
 						<option>中国+86</option>
-						<option>中国+0712</option>
+					<!-- 	<option>中国+0712</option> -->
 					</select>
 					<input name="mobile" class="form-control h60" value="" placeholder="建议使用手机号注册" style="min-width: 300px;" />
 				</div>

@@ -22,87 +22,63 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	Route::get('/manyMan/{type?}','GolController@manyMan');
 	//很多人详情
 	Route::get('/manyDetail/{id}','GolController@manyManDetail');
-
 	//gol系列
 	Route::get('/series/{type?}','GolController@series');
 	//gol详情
 	Route::get('/golDetail/{id}','GolController@golDetail');
 
 
-	/**
-	 * 个人中心
-	 */
 	Route::group(['prefix'=>'user'],function(){
 		//用户登录
 		Route::get('login','GolController@authLogin');
 		//用户注册
 		Route::get('reg/mobile','GolController@authMobileReg');
-
-		//个人中心
-		Route::get('center/index','GolController@authCenter');
-		//消息通知
-		Route::get('center/notice','GolController@authNotices');
+		/**
+ 		* 个人中心
+ 		*/
+		Route::group(['middleware'=>'auth.user'],function(){
+			//个人中心
+			Route::get('center/index','GolController@authCenter');
+			//消息通知
+			Route::get('center/notice','GolController@authNotices');
+		});
 	});
 
 	//平台协议
 	Route::get('/protocol','GolController@protocol');
-
-	Route::get('cat/{id}', 'FrontController@cat')->name('category');
+	//Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');
 	Route::get('page/{id}', 'FrontController@page')->name('page');
 
-
-
-	//留言板
-	//Route::get('message_board','FrontController@messageBoard');
-	//搜索页面
+	//搜索结果页面
 	Route::get('search','FrontController@searchPage');
-	/**
-	 * 账户
-	 */
-	Route::group(['prefix'=>'auth'],function(){
-		#注册用户
-		Route::get('reg','FrontController@regUser');
-		#用户登陆
-		Route::get('login','FrontController@loginUser');
-		#退出登陆
-		Route::get('logout','FrontController@logoutUser');
-		#通知消息
-		Route::get('notices','FrontController@userNotices');
-		#账号设置
-		Route::get('setting','FrontController@userAccountSet');
-	});
+
 });
 
-
-//api接口
-
-//刷新缓存
-Route::post('/clearCache','CommonApiController@clearCache');
-
 //ajax请求
-Route::group(['prefix'=>'ajax'],function(){
-	#提交表单数据
-	Route::post('submit_data', 'FrontController@submitInfo');
+Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
+	#登录
+	Route::post('login_user','AjaxController@loginUser');
+	#安全退出
+	Route::post('logout_user','AjaxController@logoutUser');
+	#手机号注册
+	Route::post('reg_mobile','AjaxController@regMobile');
+	#完整注册
+	Route::post('reg_user','AjaxController@regUser');
 	#上传文件
 	Route::post('upload_file','FrontController@uploadFile');
 	#发送邮箱验证码
-	Route::get('send_mail_code/{type?}','FrontController@sendEmailCode');
-	#修改用户账号设置
-	Route::get('change_account','FrontController@changeUserData');
-	#留言板/文章详情页 发布留言/回复留言  
-	Route::get('publish_reply','FrontController@publishReply');
-	#获取更多留言
-	Route::get('get_more_messages/{type?}','FrontController@getMoreMessages');
-	#发起留言点赞
-	Route::get('publish_zan','FrontController@publishZan');
+	Route::post('send_mail_code/{type?}','FrontController@sendEmailCode');
+
 });
 
 
-
+/**
+ *后台
+ */
+//刷新缓存
+Route::post('/clearCache','CommonApiController@clearCache');
 Route::get('/getRootSlug/{cat_id}','FrontController@getCatRootSlug');
-
-
 //在页面中的URL尽量试用ACTION来避免前缀的干扰
 Route::group([ 'prefix' => 'zcjy', 'namespace' => 'Admin'], function () {
 	//登录
