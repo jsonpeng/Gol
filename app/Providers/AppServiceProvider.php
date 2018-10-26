@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         );
         //绑定setting
        $this->app->singleton('setting', 'App\Repositories\SettingRepository');
-       //$this->app->singleton('loan', 'App\Repositories\LoansRepository');
+       $this->app->singleton('common', 'App\Repositories\CommonRepository');
        $this->app->singleton('banner', 'App\Repositories\BannerRepository');
        $this->app->singleton('notice','App\Repositories\NoticesRepository');
         
