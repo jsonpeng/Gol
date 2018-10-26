@@ -29,7 +29,7 @@ class CreateGolsTable extends Migration
 
             $table->string('hourse_status')->nullable()->default('闲置')->comment('房屋状态 闲置|已出租|已出售|已转让');
             $table->string('gaizao_status')->nullable()->default('轻微')->comment('轻微/中等');
-            $table->integer('publish_status')->nullable()->default(0)->comment('0审核中1已发布');
+            $table->integer('publish_status')->nullable()->default(0)->comment('0审核中1已发布2下架');
 
             $table->float('price')->comment('房子价格');
             $table->string('give_word')->nullable()->comment('留给小屋新主的话');

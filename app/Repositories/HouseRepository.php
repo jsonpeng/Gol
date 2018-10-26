@@ -50,6 +50,18 @@ class HouseRepository extends BaseRepository
     }
 
 
+    public function getHouseDetail($id)
+    {
+        $hourse = $this->findWithoutFail($id);
+
+        if(empty($hourse)){
+            return '没有找到该小屋';
+        }
+
+        return (object)['hourse'=>$hourse];
+    }
+
+
 
 
 }

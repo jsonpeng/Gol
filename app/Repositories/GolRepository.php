@@ -57,6 +57,29 @@ class GolRepository extends BaseRepository
             ->get();
     }
 
+    /**
+     * [获取小屋详情]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function getGolDetail($id)
+    {
+        $gol = Gol::find($id);
+
+        if(empty($gol)){
+            return '没有找到该小屋';
+        }
+
+        if($gol->publish_status != '1'){
+            return '该小屋已下架或者审核中';
+        }
+
+        return (object)['detail'=>$gol];
+    }
+
+
+
+
 
 
 
