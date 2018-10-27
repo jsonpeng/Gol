@@ -14,6 +14,38 @@
 
 Auth::routes();
 
+//支付宝支付
+Route::group(['prefix' => 'alipay','namespace'=>'Front'], function () {
+	Route::any('notify','PayController@notify');
+	Route::any('return','PayController@return');
+	Route::get('pay/{id}','PayController@index');
+});
+
+//微信支付
+Route::group(['prefix' => 'wechat','namespace'=>'Front'], function () {
+	Route::get('pay_web/{id}','PayController@weixinWeb');
+	Route::any('notify','PayController@weixinNotify');
+	Route::get('pay/{id}','PayController@weixinIndex');
+});
+
+//ajax请求
+Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
+	#登录
+	Route::post('login_user','AjaxController@loginUser');
+	#安全退出
+	Route::post('logout_user','AjaxController@logoutUser');
+	#发送手机验证码
+	#手机号注册
+	Route::post('reg_mobile','AjaxController@regMobile');
+	#完整注册
+	Route::post('reg_user','AjaxController@regUser');
+	#上传文件
+	Route::post('upload_file','FrontController@uploadFile');
+	#发送邮箱验证码
+	Route::post('send_mail_code/{type?}','FrontController@sendEmailCode');
+});
+
+
 Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	//前端路由
 	Route::get('/', 'GolController@index')->name('index');
@@ -54,24 +86,6 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	Route::get('search','FrontController@searchPage');
 
 });
-
-//ajax请求
-Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
-	#登录
-	Route::post('login_user','AjaxController@loginUser');
-	#安全退出
-	Route::post('logout_user','AjaxController@logoutUser');
-	#手机号注册
-	Route::post('reg_mobile','AjaxController@regMobile');
-	#完整注册
-	Route::post('reg_user','AjaxController@regUser');
-	#上传文件
-	Route::post('upload_file','FrontController@uploadFile');
-	#发送邮箱验证码
-	Route::post('send_mail_code/{type?}','FrontController@sendEmailCode');
-
-});
-
 
 /**
  *后台
