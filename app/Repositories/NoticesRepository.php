@@ -33,6 +33,30 @@ class NoticesRepository extends BaseRepository
         return Notices::class;
     }
 
+    /**
+     * [给用户发通知消息]
+     */
+    public function sendNoticeToUser($user_id,$content){
+        $content = '[系统消息]'.$content;
+        $notice = Notices::create([
+            'content' => $content,
+            'user_id' => $user_id
+        ]);
+    }
+
+
+    /**
+     * [给用户发通知消息]
+     */
+    public function sendNoticeToAllUser($content){
+        $users = User::all();
+        if(count($users)){
+            foreach ($users as $key => $user) {
+               $this->sendNoticeToUser($user->id,$content);
+            }
+        }
+    }
+
 
     /**
      * [获取未读或者所有的消息]
@@ -100,6 +124,12 @@ class NoticesRepository extends BaseRepository
      */
     public function setNoticeReaded($user){
         Notices::where('user_id',$user->id)->update(['read'=>1]);
+    }
+
+    //最后一条通知消息
+    public function lastNotice($user_id)
+    {
+       return Notices::where('user_id',$user_id)->orderBy('created_at','desc')->first();
     }
 
 }

@@ -5,6 +5,10 @@ namespace App\Repositories;
 use App\Repositories\HouseRepository;
 use App\Repositories\GolRepository;
 
+use Config;
+use Log;
+use Overtrue\EasySms\EasySms;
+
 /**
  * Class ClientRepository
  * @package App\Repositories
@@ -70,12 +74,13 @@ class CommonRepository
 
         $easySms->send($mobile, [
             'content'  => '短信验证码:'.$code,
-            'template' => $sms_tem, Config::get('web.SMS_TEMPLATE_VERIFY')
+            'template' => Config::get('web.SMS_TEMPLATE_VERIFY'),
             'data' => [
                 'code'=>$code
             ],
         ]); 
-        session(['mobile_code'.$mobile=>$code]);   
+        session(['mobile_code_reg'.$mobile=>$code]);
+        return $code;   
     }
 
 

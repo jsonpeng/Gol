@@ -20,7 +20,14 @@
         <a href="{!! route('menus.index') !!}"><i class="fa fa-cog"></i><span>网站菜单</span></a>
     </li>
 
+    <li class="{{ Request::is('zcjy/messages*') ? 'active' : '' }}">
+        <a href="{!! route('messages.index') !!}"><i class="fa fa-commenting"></i><span>系统公告</span></a>
+    </li>
 
+<li class="header">用户/小屋新主/商户管理</li>
+<li class="{{ Request::is('zcjy/users*') ? 'active' : '' }}">
+    <a href="{!! route('users.index') !!}"><i class="fa fa-user"></i><span>账户管理</span></a>
+</li>
 <li class="header">GOL小屋管理</li>
 <li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
     <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>

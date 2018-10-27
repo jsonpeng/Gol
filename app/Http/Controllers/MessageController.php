@@ -106,7 +106,7 @@ class MessageController extends AppBaseController
 
         $message = $this->messageRepository->create($input);
 
-        Flash::success('Message saved successfully.');
+        Flash::success('消息添加成功.');
 
         return redirect(route('messages.index'));
     }

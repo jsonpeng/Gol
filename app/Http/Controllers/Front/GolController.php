@@ -79,11 +79,30 @@ class GolController extends Controller
         return view('front.auth.usercenter');
     }
 
+    //个人中心 -> 项目中心
+    public function authProject(Request $request)
+    {
+        return view('front.auth.project');
+    }
+
+    //个人中心 -> 我的交易单
+    public function authOrder(Request $request)
+    {
+        return view('front.auth.order');
+    }
+
+
+    //个人中心 -> 我的关注
+    public function authAttention(Request $request)
+    {
+        return view('front.auth.attention');
+    }
+
     //通知中心
     public function authNotices(Request $request)
     {
         $user = auth('web')->user();
-        $notices = $this->noticesRepository->authNotices($user,true);
+        $notices = app('notice')->authNotices($user,true);
         //$this->noticesRepository->setNoticeReaded($user);
         return view('front.auth.notice',compact('notices'));
     }

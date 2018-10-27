@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Gol
+            编辑
         </h1>
    </section>
    <div class="content">

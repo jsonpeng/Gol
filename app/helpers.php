@@ -1,16 +1,14 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/12/21
- * Time: 15:06
+
  */
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
-//use Intervention\Image\Facades\Image;
+
 use App\Models\Category;
 
+use Intervention\Image\ImageManagerStatic as Image;
 
 function varifyMenusName($name,$menus){
   $childMenus = [
@@ -36,6 +34,22 @@ function varifyMenusName($name,$menus){
         }
   }
   return $childMenus;
+}
+
+
+//时间倒序带分页
+function descAndPaginateToShow($obj,$attr,$desc='desc'){
+       if(!empty($obj)){
+            return $obj->orderBy($attr,$desc)->paginate(15);
+        }else{
+            return [];
+        }
+}
+
+
+function generateMobileUserName($mobile)
+{
+  return '手机号'.$mobile.'用户';
 }
  
 
@@ -209,9 +223,12 @@ function uploadFiles($file , $api_type = 'web' , $user = null){
         #对于图片文件处理
         if($file_type == 'image'){
           $image_path=public_path().'/'.$destinationPath.$fileName;
-          // $img = Image::make($image_path);
-          // $img->resize(640, 640);
-          // $img->save($image_path,70);
+          $img = Image::make($image_path);
+         // 插入水印, 水印位置在原图片的右下角, 距离下边距 10 像素, 距离右边距 15 像素
+          $img->insert(public_path().'/images/gol/logo.jpeg', 'bottom-right', 15, 10);
+          $img->resize(640, 640);
+          $img->save($image_path,70);
+
         }
 
         $host='http://'.$_SERVER["HTTP_HOST"];

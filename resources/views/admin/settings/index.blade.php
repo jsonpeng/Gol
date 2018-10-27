@@ -57,7 +57,7 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="seo_keywords" maxlength="60" placeholder="网站关键字" value="{{ getSettingValueByKey('seo_keywords') }}"></div>
                             </div>
-                            <div class="form-group">
+                       <!--      <div class="form-group">
                                 <label for="service_tel" class="col-sm-3 control-label">服务电话</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="service_tel" maxlength="60" placeholder="服务电话" value="{{ getSettingValueByKey('service_tel') }}"></div>
@@ -66,7 +66,7 @@
                                 <label for="tel" class="col-sm-3 control-label">手机号</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="tel" maxlength="60" placeholder="请输入手机号" value="{{ getSettingValueByKey('tel') }}"></div>
-                            </div>
+                            </div> -->
                        {{--      <div class="form-group">
                                 <label for="chuanzhen" class="col-sm-3 control-label">传真</label>
                                 <div class="col-sm-9">
@@ -78,7 +78,7 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="mobile" maxlength="60" placeholder="手机号" value="{{ getSettingValueByKey('mobile') }}"></div>
                             </div> --}}
-
+<!-- 
                            <div class="form-group">
                                 <label for="weixin_erweima" class="col-sm-3 control-label">二维码</label>
                                 <div class="col-sm-9">
@@ -87,7 +87,7 @@
                                         <a data-toggle="modal" href="javascript:;" data-target="#myModal" class="btn" type="button" onclick="changeImageId('image2')">选择图片</a>
                                         <img src="@if(getSettingValueByKey('weixin_erweima')) {{ getSettingValueByKey('weixin_erweima') }} @endif" style="max-width: 100%; max-height: 150px; display: block;"></div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="company_name" class="col-sm-3 control-label">公司名称</label>
@@ -95,7 +95,7 @@
                                     <input type="text" class="form-control" name="company_name" maxlength="60" placeholder="公司名称" value="{{ getSettingValueByKey('company_name') }}"></div>
                             </div>
 
-                            <div class="form-group">
+            <!--                 <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">邮箱</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="email" maxlength="60" placeholder="邮箱" value="{{ getSettingValueByKey('email') }}"></div>
@@ -111,18 +111,18 @@
                                 <label for="head_man" class="col-sm-3 control-label">负责人</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="head_man" maxlength="60" placeholder="负责人" value="{{ getSettingValueByKey('head_man') }}"></div>
-                            </div>
+                            </div> -->
 
-                               <div class="form-group">
+                       <!--         <div class="form-group">
                                 <label for="beian" class="col-sm-3 control-label">底部备案信息</label>
                                 <div class="col-sm-9">
                                     <textarea name="beian" class="form-control" rows="3">{{ getSettingValueByKey('beian') }}</textarea>
                                 </div>
-                            </div>
+                            </div> -->
 
                             
                             <div class="form-group">
-                                <label for="weixin" class="col-sm-3 control-label">微信客服</label>
+                                <label for="weixin" class="col-sm-3 control-label">小屋微信</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="image5" name="weixin" placeholder="微信客服二维码" value="{{ getSettingValueByKey('weixin') }}">
                                     <div class="input-append">
@@ -138,12 +138,12 @@
                             
 
                             <div class="form-group">
-                                <label for="address" class="col-sm-3 control-label">QQ客服1</label>
+                                <label for="address" class="col-sm-3 control-label">在线QQ客服</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control"  name="qq1" placeholder="QQ客服1" value="{{ getSettingValueByKey('qq1') }}"></div>
+                                    <input type="text" class="form-control"  name="qq1" placeholder="在线QQ客服" value="{{ getSettingValueByKey('qq1') }}"></div>
                             </div>
 
-                              <div class="form-group">
+                 <!--              <div class="form-group">
                                 <label for="address" class="col-sm-3 control-label">QQ客服2</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control"  name="qq2" placeholder="QQ客服2" value="{{ getSettingValueByKey('qq2') }}"></div>
@@ -153,7 +153,7 @@
                                 <label for="address" class="col-sm-3 control-label">QQ客服3</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control"  name="qq3" placeholder="QQ客服3" value="{{ getSettingValueByKey('qq3') }}"></div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="address" class="col-sm-3 control-label">地址</label>

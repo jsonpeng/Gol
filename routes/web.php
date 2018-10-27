@@ -35,14 +35,27 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	#安全退出
 	Route::post('logout_user','AjaxController@logoutUser');
 	#发送手机验证码
+	Route::post('send_mobile_code','AjaxController@sendMobileCode');
 	#手机号注册
 	Route::post('reg_mobile','AjaxController@regMobile');
 	#完整注册
 	Route::post('reg_user','AjaxController@regUser');
 	#上传文件
-	Route::post('upload_file','FrontController@uploadFile');
+	Route::post('upload_file','AjaxController@uploadFile');
 	#发送邮箱验证码
-	Route::post('send_mail_code/{type?}','FrontController@sendEmailCode');
+	Route::post('send_mail_code/{type?}','AjaxController@sendEmailCode');
+	#给用户发通知消息
+	Route::post('send_notice/{user_id}','AjaxController@sendOneUserNotice');
+	#给所有用户发通知消息
+	Route::post('send_group_notice','AjaxController@sendAllUserNotice');
+	#设置单条通知消息为已读
+	Route::get('set_notice_readed/{id}','AjaxController@setNoticeReaded');
+	/**
+	 *需要用户登录后才可以操作
+	 */
+	##更新用户信息
+	Route::post('update_user','AjaxController@updateUserApi');
+	
 });
 
 
@@ -71,6 +84,12 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 		Route::group(['middleware'=>'auth.user'],function(){
 			//个人中心
 			Route::get('center/index','GolController@authCenter');
+			//项目中心
+			Route::get('center/project','GolController@authProject');
+			//我的交易单
+			Route::get('center/order','GolController@authOrder');
+			//我的关注
+			Route::get('center/attention','GolController@authAttention');
 			//消息通知
 			Route::get('center/notice','GolController@authNotices');
 		});
@@ -187,7 +206,8 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
     Route::get('cities/frame/select','CitiesController@CitiesSelectFrame')->name('cities.select.frame');
 
 
-
+	//会员管理
+	Route::resource('users', 'UserController'); 
     //小屋管理
     Route::resource('houses', 'HouseController');
     //小屋支持人管理

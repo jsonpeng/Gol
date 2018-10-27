@@ -38,6 +38,7 @@
         .border_b{border-bottom: 1px solid #bbb;}
         .gol_hidden{display: none;}
         .h60{height:60px;}
+        .h45{height: 45px;}
         .mr20{margin-right:20px;}
         .mt120{margin-top: 120px;}
         .mt30{margin-top: 30px !important;}
@@ -132,6 +133,34 @@
             background-color: transparent;
             color:#FF5511; 
         }
+        /**
+         *个人中心
+         */
+           .gol_usercenter_headimg{
+            max-width: 100px;
+          }
+          .gol_usercenter_leftnav{
+            background-color: #F4F2F2;
+            padding-top: 15px;
+            padding-bottom: 220px;
+            padding-right: 10px;
+            text-align: center;
+          }
+          .gol_usercenter_li{
+            padding-top: 50px;
+            /*text-align: center;*/
+            font-size: 16px;
+            list-style:none;
+          }
+          .gol_usercenter_li > a{
+            color: black;
+          }
+          .gol_usercenter_li.active > a{
+            color: #FF5511;
+          }
+          #user-table > thead > tr > th{
+            text-align: center;
+          }
     </style>
         @yield('css')
         

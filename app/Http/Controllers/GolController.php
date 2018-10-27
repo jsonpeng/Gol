@@ -124,7 +124,7 @@ class GolController extends AppBaseController
 
         $gol = $this->golRepository->update($request->all(), $id);
 
-        Flash::success('Gol updated successfully.');
+        Flash::success('更新成功.');
 
         return redirect(route('gols.index'));
     }
@@ -148,7 +148,7 @@ class GolController extends AppBaseController
 
         $this->golRepository->delete($id);
 
-        Flash::success('Gol deleted successfully.');
+        Flash::success('删除成功.');
 
         return redirect(route('gols.index'));
     }

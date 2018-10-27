@@ -153,7 +153,9 @@
 <div class="gol_top">
 	<div class="container"> 
 		<div class="pull-right">
-			<?php $user = auth('web')->user();?>
+			<?php $user = auth('web')->user();
+			$unreads = count(app('notice')->authNotices($user)); 
+			?>
 			@if(empty($user))
 			<a class="gol_top_text" href="/user/login">请登录</a>
 			<a class="gol_top_text" href="/user/reg/mobile">注册</a>
@@ -164,7 +166,7 @@
 			@endif
 			<a class="gol_top_text">设计</a>
 			<a class="gol_top_text">案例</a>
-			<a class="gol_top_text">消息通知(<span style="color:red;">1</span>)</a>
+			<a class="gol_top_text gol_notice_menu" href="/user/center/notice">消息通知@if($unreads > 0)(<span style="color:red;" class="gol_notice_num">{!! $unreads !!}</span>)@endif</a>
 		</div>
 	</div>
 </div>

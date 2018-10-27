@@ -9,6 +9,7 @@
         <th>目标</th>
         <th>状态</th>
         <th>截止时间</th>
+        <th>发布时间</th>
             <th colspan="3">操作</th>
         </tr>
     </thead>
@@ -23,6 +24,7 @@
             <td>{!! $house->target !!}</td>
             <td>{!! $house->status !!}</td>
             <td>{!! $house->endtime !!}</td>
+            <td>{!! $house->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['houses.destroy', $house->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

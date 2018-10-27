@@ -1,6 +1,7 @@
 $.extend({
-    alert:function(word){
-        layer.msg(word, {icon: 1});
+    alert:function(word,type="success"){
+        type == "success" ? 1 : 5;
+        layer.msg(word, {icon: type});
     },
     empty:function(data) {
        return data == '' || data == null  || data == false || data == 'false' || data == 'null' || data == {} || data == '{}' || data == [] ||  JSON.stringify(data) == '{}';

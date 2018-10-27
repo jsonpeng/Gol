@@ -85,7 +85,7 @@
 <!-- 小屋推荐 -->
 <div class="pt30">
 	<div class="container">
-		<div class="text-center f24">———&nbsp;&nbsp;小屋推荐&nbsp;&nbsp;———</div>
+		<div class="text-center f24">———&nbsp;&nbsp;GOL+&nbsp;&nbsp;———</div>
 		<div class="pt30">
 			<div class="gol_four_img p_relative gol_xilie">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
@@ -148,7 +148,7 @@
 
 <!-- 小屋故事  -->
 <div class="pt30 container">
-	<div class="text-center f24">———&nbsp;&nbsp;小屋故事&nbsp;&nbsp;———</div>
+	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
 	<div class="pt30 ">
 
 		<div class="gol_four_img p_relative">
@@ -190,16 +190,35 @@
 					<h4 class="pt30">小屋新主</h4>
 				</div>
 
-				<div class="col-sm-6">
-					<p>坐落于新郑的*****完成交接</p>
-					<p>坐落于新郑的*****完成交接</p>
-					<p>坐落于新郑的*****完成交接</p>
+				<div class="col-sm-9 txtMarquee-top bd">
+					<div class="bd">
+						<ul>
+        	     			
+		                    <li class="ii h60" style="list-style: none;">
+		                    	坐落于新郑的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年10月28日
+		                    </li>
+		                     <li class="ii h60" style="list-style: none;">
+		                    	坐落于上海的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年9月1日
+		                    </li>  
+		                    <li class="ii h60" style="list-style: none;">
+		                    	坐落于北京的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年10月10日
+		                    </li>
+		                    <li class="ii h60" style="list-style: none;">
+		                    	坐落于武汉的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年10月1日
+		                    </li>
+		                    <li class="ii h60" style="list-style: none;">
+		                    	坐落于云南的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年10月1日
+		                    </li>
+		                    <li class="ii h60" style="list-style: none;">
+		                    	坐落于大理的*****完成交接&nbsp;&nbsp;&nbsp;&nbsp;2018年10月1日
+		                    </li>
+							
+						</ul>
+					</div>
 				</div>
 
 				<div class="col-sm-3">
-					<p>2018年9月1日</p>
-					<p>2018年9月1日</p>
-					<p>2018年9月1日</p>
+					
 				</div>
 
 			</div>
@@ -208,14 +227,29 @@
 		<div class="col-sm-6">
 			<div class="row pt30">
 
-				<div class="col-sm-6 ">
-					<p>消息:</p>
-					<p>麦克白和威尼斯商人</p>
-				</div>
-
-				<div class="col-sm-6">
-					<p>公告:</p>
-					<p>麦克白和威尼斯商人</p>
+				@if(auth('web')->check())
+					<?php $notice = app('notice')->lastNotice(auth('web')->user()->id);?>
+					@if($notice)
+						<div class="col-sm-6 gol_location_notice">
+							<p>消息:</p>
+							<p>{!! $notice->content !!}</p>
+						</div>
+					@endif
+				@endif
+				<div class="col-sm-6 txtMarquee-top">
+						<div class="bd">
+						<ul>
+        	     			
+		                    <li class="ii h60" style="list-style: none;">
+		                    	系统公告:坐落于新郑的*****完成交接
+		                    </li>
+		                     <li class="ii h60" style="list-style: none;">
+		                    	系统公告:坐落于上海的*****完成交接
+		                    </li>  
+		                   
+							
+						</ul>
+					</div>
 				</div>
 
 			</div>
@@ -232,6 +266,7 @@
 
 
 @section('js')
+	<script type="text/javascript" src="{{  asset('js/jquery.SuperSlide.2.1.1.js') }}"></script>
 	<script>
 		$(function(){
 			$('.gol_xilie').mouseover(function(){
@@ -242,6 +277,13 @@
 				$(this).find('.gol_corver').css('height','100%');
 				$(this).find('.gol_corver_text').css('opacity',0);
 			});
+
+			jQuery(".txtMarquee-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",interTime:50,trigger:"click"});
+
+			$('.gol_location_notice').click(function(){
+				location.href="/user/center/notice";
+			});
+			
 		});	
 	</script>
 @endsection

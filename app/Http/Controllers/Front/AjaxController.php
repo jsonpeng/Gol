@@ -5,7 +5,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
 use Hash;
-
+use Mail;
+use Illuminate\Support\Facades\Input;
 
 class AjaxController extends Controller
 {
@@ -47,9 +48,51 @@ class AjaxController extends Controller
           }
     }
 
+    //发送手机验证码
+    public function sendMobileCode(Request $request)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,['mobile']);
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        $code = app('common')->sendVerifyCode($input['mobile']);
+        return zcjy_callback_data($code);
+    }
+
     //手机号注册
     public function regMobile(Request $request)
     {
+        $input = $request->all();
+        $varify = varifyInputParam($input,['mobile','mobile_code']);
+
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+
+        #如果已经有用户注册过该手机号
+        if(User::where('mobile',$input['mobile'])->count())
+        {
+            return zcjy_callback_data('该手机号已经被注册过',1);
+        }   
+
+        #验证session
+        if(session('mobile_code_reg'.$input['mobile']) != $input['mobile_code'])
+        {
+            return zcjy_callback_data('手机验证码错误',1);
+        }
+
+        #新建一个用户
+        $user = User::create([
+            'name'=>generateMobileUserName($input['mobile']),
+            'mobile'=>$input['mobile'],
+            'password'=>Hash::make($input['mobile'])
+        ]);
+
+        #并且把用户对象存到session中去
+        session(['mobile_reg_user'.$request->ip()=>$user]);
+
+        return zcjy_callback_data('注册成功,请继续完善更多信息使用');
 
     }
 
@@ -70,10 +113,24 @@ class AjaxController extends Controller
         if(session('email_code_'.$request->ip()) != $input['code']){
             return zcjy_callback_data('邮箱验证码错误,请重新输入',1);
         }
+
         $input['password'] = Hash::make($input['password']);
-        $user=User::create($input);
+        #从session中取出用户
+        $user=session('mobile_reg_user'.$request->ip());
+        #更新用户
+        $user->update($input);
+        #登录下
         auth('web')->login($user);
         return zcjy_callback_data('注册用户成功');
+    }
+
+    //更新用户接口
+    public function updateUserApi(Request $request)
+    {
+        $input = $request->all();
+        $user = auth('web')->user();
+        $user->update($input);
+        return zcjy_callback_data('更新成功');
     }
 
     //用户登陆
@@ -138,6 +195,37 @@ class AjaxController extends Controller
         auth('web')->logout();
         $request->session()->invalidate();
         return zcjy_callback_data('退出成功');
+    }
+
+    //给单个用户发通知消息
+    public function sendOneUserNotice(Request $request,$user_id)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,['content']);
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        app('notice')->sendNoticeToUser($user_id,$input['content']);
+        return zcjy_callback_data('发送成功');
+    }
+
+    //给所有用户发通知消息
+    public function sendAllUserNotice(Request $request)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,['content']);
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        app('notice')->sendNoticeToAllUser($input['content']);
+        return zcjy_callback_data('发送成功');
+    }
+
+    //设置单条通知消息为已读
+    public function setNoticeReaded(Request $request,$id)
+    {
+        app('notice')->setNoticeReadById($id);
+        return zcjy_callback_data('已读成功');
     }
 
 

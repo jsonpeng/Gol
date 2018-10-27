@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Message
+            添加系统公告
         </h1>
     </section>
     <div class="content">
