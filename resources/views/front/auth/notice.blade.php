@@ -95,7 +95,7 @@
   $('.gol_notice_unread').click(function(){
     var that = this;
     var notice_num = parseInt($('.gol_notice_num').text());
-    $.zcjyFrameOpen($(this).html(),'查看消息详情');
+    $.zcjyFrameOpen($(this).html(),'查看消息详情',['60%', '180px']);
     $.zcjyRequest('/ajax/set_notice_readed/'+$(this).data('id'),function(res){
       if(res){
         $(that).children('.notice-msg').removeClass('notice-msg');

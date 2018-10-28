@@ -39,6 +39,13 @@ class HouseRepository extends BaseRepository
         return House::class;
     }
 
+    //我的小屋
+    public function myHourses($user_id)
+    {
+        return House::where('user_id',$user_id)
+                ->orderBy('created_at','desc')
+                ->paginate(15);
+    }
 
     //正在参与中的小屋
     public function nowJoinHouses($skip=0,$take=20)

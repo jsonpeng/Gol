@@ -55,6 +55,9 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	 */
 	##更新用户信息
 	Route::post('update_user','AjaxController@updateUserApi');
+
+	##用户发布小屋
+	Route::post('auth_house_publish','AjaxController@authHousePublish');
 	
 });
 
@@ -79,8 +82,8 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 		//用户注册
 		Route::get('reg/mobile','GolController@authMobileReg');
 		/**
- 		* 个人中心
- 		*/
+ 		 * 个人中心
+ 		 */
 		Route::group(['middleware'=>'auth.user'],function(){
 			//个人中心
 			Route::get('center/index','GolController@authCenter');
@@ -92,6 +95,11 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 			Route::get('center/attention','GolController@authAttention');
 			//消息通知
 			Route::get('center/notice','GolController@authNotices');
+			//我的小屋 主页
+			Route::get('center/project/hourse_index','GolController@authHouseIndex');
+			//我的小屋 添加页
+			Route::get('center/project/hourse_create','GolController@authHouseCreate');
+
 		});
 	});
 

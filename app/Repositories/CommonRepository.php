@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Repositories\HouseRepository;
 use App\Repositories\GolRepository;
-
+use App\Repositories\CityRepository;
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
@@ -23,10 +23,11 @@ class CommonRepository
  
      private $houseRepository;
      private $golRepository;
-     public function __construct(HouseRepository $houseRepo,GolRepository $golRepo){
+     private $cityRepository;
+     public function __construct(HouseRepository $houseRepo,GolRepository $golRepo,CityRepository $cityRepo){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
-
+        $this->cityRepository = $cityRepo;
      }
 
      public function houseRepo(){
@@ -35,6 +36,10 @@ class CommonRepository
 
      public function golRepo(){
         return $this->golRepository;
+     }
+
+     public function cityRepo(){
+        return $this->cityRepository;
      }
 
 

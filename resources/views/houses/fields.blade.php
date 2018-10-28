@@ -13,7 +13,7 @@
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', '小屋详情:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control intro']) !!}
 </div>
 
 <!-- View Field -->
@@ -31,7 +31,12 @@
 <!-- Type Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('type', '小屋类型:') !!}
-    {!! Form::text('type', null, ['class' => 'form-control']) !!}
+         <select class="form-control" id="type" name="type">
+                <option value="青旅" @if(isset($house) && $house->type == '青旅') selected="selected" @endif>青旅</option>
+                <option value="客栈" @if(isset($house) && $house->type == '客栈') selected="selected" @endif>客栈</option>
+                <option value="民宿" @if(isset($house) && $house->type == '民宿') selected="selected" @endif>民宿</option>
+                <option value="空间" @if(isset($house) && $house->type == '空间') selected="selected" @endif>空间</option>
+        </select>
 </div>
 
 <!-- Target Field -->
@@ -43,7 +48,13 @@
 <!-- Status Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('status', '状态:') !!}
-    {!! Form::text('status', null, ['class' => 'form-control']) !!}
+    <select name="status" class="form-control">
+        <option value="审核中" @if(isset($house) && $house->status == '审核中') selected="selected" @endif>审核中</option>
+        <option value="已发布" @if(isset($house) && $house->status == '已发布') selected="selected" @endif>已发布</option>
+        <option value="已完成" @if(isset($house) && $house->status == '已完成') selected="selected" @endif>已完成</option>
+        <option value="已下架" @if(isset($house) && $house->status == '已下架') selected="selected" @endif>已下架</option>
+    </select>
+ 
 </div>
 
 <!-- Endtime Field -->

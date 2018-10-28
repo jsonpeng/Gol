@@ -1,4 +1,41 @@
 $.extend({
+    //汉化查询
+    chParamFind:function(name){
+        var words = $.chParam();
+        var word = '参数不完整';
+        for (var i in words) {
+            if(typeof words[i][name] !== 'undefined'){
+                word = '请输入'+words[i][name];
+            }
+        }
+        return word;
+    },
+    //汉化参数
+    chParam:function(){
+        return [
+            {'name':'名称'},
+            {'endtime':'结束时间'},
+            {'content':'内容'},
+            {'address':'地址'},
+            {'gear':'档位金额'},
+            {'target':'目标金额'},  
+        ];
+    },
+    //表单检测
+    varifyInput:function(attr){
+        var status = 0;
+        if(!$.is_array(attr)){
+            attr = attr.split(',');
+        }
+        for (var i = 0; i < attr.length; i++) {
+            if($.empty($.inputAttr(attr[i]).val())){
+                status = $.chParamFind(attr[i]);
+                $.alert(status,'error');
+                break;
+            }
+        }
+        return status;
+    },
     alert:function(word,type="success"){
         type == "success" ? 1 : 5;
         layer.msg(word, {icon: type});

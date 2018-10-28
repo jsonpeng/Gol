@@ -30,7 +30,7 @@ class HouseController extends AppBaseController
     public function index(Request $request)
     {
         $this->houseRepository->pushCriteria(new RequestCriteria($request));
-        $houses = $this->houseRepository->all();
+        $houses = descAndPaginateToShow($this->houseRepository);
 
         return view('houses.index')
             ->with('houses', $houses);
@@ -115,6 +115,7 @@ class HouseController extends AppBaseController
     public function update($id, UpdateHouseRequest $request)
     {
         $house = $this->houseRepository->findWithoutFail($id);
+        $input = $request->all();
 
         if (empty($house)) {
             Flash::error('House not found');
@@ -122,9 +123,11 @@ class HouseController extends AppBaseController
             return redirect(route('houses.index'));
         }
 
-        $house = $this->houseRepository->update($request->all(), $id);
+        $this->houseRepository->update($input, $id);
 
-        Flash::success('House updated successfully.');
+        Flash::success('更新小屋成功.');
+
+        app('notice')->sendNoticeToUser($house->user_id,'gol管理员已将您的小屋'.tag($input['name'],'orange').'状态更新为'.tag($house->status));
 
         return redirect(route('houses.index'));
     }
@@ -148,7 +151,7 @@ class HouseController extends AppBaseController
 
         $this->houseRepository->delete($id);
 
-        Flash::success('House deleted successfully.');
+        Flash::success('删除成功.');
 
         return redirect(route('houses.index'));
     }

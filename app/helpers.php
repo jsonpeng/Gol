@@ -7,8 +7,43 @@ use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
 
 use App\Models\Category;
-
+use App\Models\Cities;
 use Intervention\Image\ImageManagerStatic as Image;
+
+
+//gol 类型
+function gol_types(){
+  return [
+      '青旅',
+      '客栈',
+      '民宿',
+      '空间'
+  ];
+}
+
+
+/**
+ * [把文字加粗并且变色]
+ * @param  [type] $string [文字]
+ * @param  string $color  [颜色 默认红色]
+ * @return [type]         [description]
+ */
+function tag($string,$color='red'){
+    return '&nbsp;&nbsp;<strong style=color:'.$color.'>'.$string.'</strong>&nbsp;&nbsp;';
+}
+
+/**
+ * [把文字变成链接 并且带上颜色]
+ * @param  [type]  $string [文字]
+ * @param  [type]  $link   [链接]
+ * @param  string  $color  [颜色 默认橙色]
+ * @param  boolean $nbsp   [是否加左右间隔]
+ * @return [type]          [description]
+ */
+function a_link($string,$link,$color='orange',$nbsp=true){
+     return $nbsp ? '&nbsp;&nbsp;<a target=_blank href='.$link.' style=color:'.$color.'>'.$string.'</a>&nbsp;&nbsp;' : '<a target=_blank href='.$link.' style=color:'.$color.'>'.$string.'</a>';
+}
+
 
 function varifyMenusName($name,$menus){
   $childMenus = [
@@ -38,7 +73,7 @@ function varifyMenusName($name,$menus){
 
 
 //时间倒序带分页
-function descAndPaginateToShow($obj,$attr,$desc='desc'){
+function descAndPaginateToShow($obj,$attr='created_at',$desc='desc'){
        if(!empty($obj)){
             return $obj->orderBy($attr,$desc)->paginate(15);
         }else{

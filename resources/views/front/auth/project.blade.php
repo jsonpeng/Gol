@@ -43,4 +43,24 @@
           </div>
         </div>
     </div>
+
+    <div class="gol_choose_role" style="display: none;">
+        <div class="row mt30">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-4">
+            <a class="f16" href="/user/center/project/hourse_index">我要开小屋</a>
+          </div>
+          <div class="col-sm-4">
+            <a class="f16">我是商户</a>
+          </div>
+        </div>
+    </div>
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+  $.zcjyFrameOpen($('.gol_choose_role').html(),'请选择');
+</script>
 @endsection

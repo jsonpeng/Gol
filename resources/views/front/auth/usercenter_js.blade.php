@@ -1,4 +1,4 @@
-@section('js')
+
 <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript">
     //上传头像
@@ -43,6 +43,7 @@
                 console.log('上传成功:'+data.message.src);
                 if(data.message.type == 'image'){
                     click_dom.find('input').val(data.message.src);
+                    click_dom.find('img').attr('src',data.message.src);
                     head_image = data.message.src;
                 }
                 else if(data.message.type == 'sound'){
@@ -68,7 +69,7 @@
     var click_dom;
     $(document).on('click','.type_files',function(){
         click_dom = $(this);
-        $('input[type=file]').trigger('click');
+        // $('input[type=file]').trigger('click');
     });
 
 
@@ -82,4 +83,3 @@
         },$($(obj).parent()).serialize(),'POST');
     }
 </script>
-@endsection

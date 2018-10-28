@@ -3,7 +3,7 @@
           <img @if(empty($user->head_image)) src="/images/add.png @else src="{!! $user->head_image !!}" @endif" class="img_auto gol_usercenter_headimg" style="" />
           <ul>
             <li class="gol_usercenter_li @if(Request::is('user/center/index')) active @endif"><a href="/user/center/index">资产总览</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
-            <li class="gol_usercenter_li @if(Request::is('user/center/project')) active @endif"><a href="/user/center/project">项目中心</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
+            <li class="gol_usercenter_li @if(Request::is('user/center/project*')) active @endif"><a href="/user/center/project">项目中心</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/order')) active @endif"><a href="/user/center/order">我的交易单</a>&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/attention')) active @endif"><a href="/user/center/attention">我的关注</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/notice')) active @endif"><a href="/user/center/notice">消息中心</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>

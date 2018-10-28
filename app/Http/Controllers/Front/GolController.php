@@ -85,6 +85,38 @@ class GolController extends Controller
         return view('front.auth.project');
     }
 
+    //我的小屋 主页
+    public function authHouseIndex(Request $request)
+    {
+        $user = auth('web')->user();
+        $houses = app('common')->houseRepo()->myHourses($user->id);
+        return view('front.auth.myhourse.index',compact('houses'));
+    }
+
+    //我的小屋 添加页
+    public function authHouseCreate(Request $request)
+    {
+        $all_types = gol_types();
+        $projects = null;
+        $cities_level1 = app('common')->cityRepo()->getLevelNumCities(1);
+        $cities_level2 = [];
+        $cities_level3 = [];
+        return view('front.auth.myhourse.create',compact('all_types','projects','cities_level1','cities_level2','cities_level3'));
+    }
+
+    //我的gol 商户主页
+    public function authGolIndex(Request $request)
+    {
+
+    }
+
+    //我的gol 商户添加页
+    public function authGolCreate(Request $request)
+    {
+
+    }
+
+
     //个人中心 -> 我的交易单
     public function authOrder(Request $request)
     {
@@ -103,9 +135,11 @@ class GolController extends Controller
     {
         $user = auth('web')->user();
         $notices = app('notice')->authNotices($user,true);
-        //$this->noticesRepository->setNoticeReaded($user);
         return view('front.auth.notice',compact('notices'));
     }
+
+
+
 
     //平台协议
     public function protocol(Request $request)

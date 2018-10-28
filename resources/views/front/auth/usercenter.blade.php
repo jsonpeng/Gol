@@ -101,4 +101,6 @@
   </div>
 @endsection
 
-@include('front.auth.usercenter_js')
+@section('js')
+  @include('front.auth.usercenter_js')
+@endsection

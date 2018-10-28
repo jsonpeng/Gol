@@ -12,9 +12,6 @@
  {{--    <li class="{{ Request::is('zcjy/notices*') ? 'active' : '' }}">
         <a href="{!! route('notices.index') !!}"><i class="fa fa-edit"></i><span>通知消息管理</span></a>
     </li> --}}
-{{--     <li class="{{ Request::is('zcjy/loans*') ? 'active' : '' }}">
-        <a href="{!! route('loans.index') !!}"><i class="fa fa-edit"></i><span>第三方信贷管理</span></a>
-    </li> --}}
 
     <li class="{{ Request::is('zcjy/menus*') ? 'active' : '' }}">
         <a href="{!! route('menus.index') !!}"><i class="fa fa-cog"></i><span>网站菜单</span></a>
@@ -22,6 +19,10 @@
 
     <li class="{{ Request::is('zcjy/messages*') ? 'active' : '' }}">
         <a href="{!! route('messages.index') !!}"><i class="fa fa-commenting"></i><span>系统公告</span></a>
+    </li>
+
+    <li class="{{ Request::is('zcjy/cities*') ? 'active' : '' }}">
+            <a href="{!! route('cities.index') !!}"><i class="fa fa-arrows"></i><span>城市设置</span></a>
     </li>
 
 <li class="header">用户/小屋新主/商户管理</li>

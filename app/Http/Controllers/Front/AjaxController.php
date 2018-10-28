@@ -56,6 +56,11 @@ class AjaxController extends Controller
         if($varify){
             return zcjy_callback_data($varify,1);
         }
+        #如果已经有用户注册过该手机号
+        if(User::where('mobile',$input['mobile'])->count())
+        {
+            return zcjy_callback_data('该手机号已经被注册过',1);
+        }
         $code = app('common')->sendVerifyCode($input['mobile']);
         return zcjy_callback_data($code);
     }
@@ -105,7 +110,7 @@ class AjaxController extends Controller
             return zcjy_callback_data($varify,1);
         }
         if(User::where('email',$input['email'])->count()){
-            return zcjy_callback_data('该用邮箱已被注册,请重新换个邮箱',1);
+            return zcjy_callback_data('该邮箱已被注册,请重新换个邮箱',1);
         }
         if(User::where('name',$input['name'])->count()){
             return zcjy_callback_data('该用户名已被注册,请重新取个用户名',1);
@@ -129,6 +134,11 @@ class AjaxController extends Controller
     {
         $input = $request->all();
         $user = auth('web')->user();
+        if(array_key_exists('head_image', $input)){
+            if(empty($input['head_image'])){
+                return zcjy_callback_data('请先上传选择图片',1);
+            }
+        }
         $user->update($input);
         return zcjy_callback_data('更新成功');
     }
@@ -226,6 +236,16 @@ class AjaxController extends Controller
     {
         app('notice')->setNoticeReadById($id);
         return zcjy_callback_data('已读成功');
+    }
+
+    //发布我的小屋
+    public function authHousePublish(Request $request)
+    {
+        $user = auth('web')->user();
+        $input = $request->all();
+        $input['user_id'] = $user->id;
+        app('common')->houseRepo()->model()::create($input);  
+        return zcjy_callback_data('发布成功'); 
     }
 
 

@@ -72,7 +72,10 @@ class House extends Model
      * @var array
      */
     public static $rules = [
-        
+        'name' => 'required',
+        'type' => 'required',
+        'target' => 'required',
+        'endtime' => 'required'
     ];
 
     //支持的人
