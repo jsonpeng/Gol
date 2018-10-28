@@ -107,13 +107,18 @@ class GolController extends Controller
     //我的gol 商户主页
     public function authGolIndex(Request $request)
     {
-
+        $user = auth('web')->user();
+        $gols = app('common')->golRepo()->myGols($user->id);
+        return view('front.auth.mygol.index',compact('gols'));
     }
 
     //我的gol 商户添加页
     public function authGolCreate(Request $request)
     {
-
+        $cities_level1 = app('common')->cityRepo()->getLevelNumCities(1);
+        $cities_level2 = [];
+        $cities_level3 = [];
+        return view('front.auth.mygol.create',compact('cities_level1','cities_level2','cities_level3'));
     }
 
 

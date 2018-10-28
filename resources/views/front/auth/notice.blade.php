@@ -71,6 +71,7 @@
                       </li>
                       @endforeach
                   	</ul>
+                    <div class="text-center">{!! $notices->appends('')->links() !!}</div>
                   </div>
                   @else
                

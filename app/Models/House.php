@@ -83,5 +83,6 @@ class House extends Model
         return $this->hasMany('App\Models\HouseJoin','house_id','id');
     }
 
+
     
 }

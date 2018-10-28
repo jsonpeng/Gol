@@ -19,7 +19,7 @@ class CreateGolsTable extends Migration
             $table->string('name')->comment('小屋名称');
             $table->string('image')->nullable()->comment('主图');
             $table->string('brief')->nullable()->comment('简介');
-            $table->string('content')->comment('详情描述');
+            $table->string('content')->nullable()->comment('详情描述');
             $table->string('xukezheng')->nullable()->comment('有无许可证 有的话给许可证的地址');
             $table->float('zuqi')->nullable()->comment('租期 整租*年可续约');
             $table->float('area')->comment('建筑面积');

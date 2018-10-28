@@ -67,9 +67,9 @@ class NoticesRepository extends BaseRepository
     public function authNotices($user,$read=false)
     {
             $read = $read ? 1 : 0;
-            $notices = Notices::where('user_id',$user->id);
             if(!empty($user)){
-                return $read ?  $notices->orderBy('created_at','desc')->get() : $notices->where('read',$read)->get();
+                $notices = Notices::where('user_id',$user->id);
+                return $read ?  $notices->orderBy('created_at','desc')->paginate(15) : $notices->where('read',$read)->get();
             }
             else{
                 return [];

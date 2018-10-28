@@ -161,6 +161,13 @@
           #user-table > thead > tr > th{
             text-align: center;
           }
+          .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+                z-index: 3;
+                color: #fff;
+                cursor: default;
+                background-color: #FF5511;
+                border-color: #FF5511;
+            }
     </style>
         @yield('css')
         

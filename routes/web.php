@@ -53,11 +53,15 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	/**
 	 *需要用户登录后才可以操作
 	 */
+
 	##更新用户信息
 	Route::post('update_user','AjaxController@updateUserApi');
 
 	##用户发布小屋
 	Route::post('auth_house_publish','AjaxController@authHousePublish');
+
+	##用户发布gol
+	Route::post('auth_gol_publish','AjaxController@authGolPublish');
 	
 });
 
@@ -65,7 +69,6 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	//前端路由
 	Route::get('/', 'GolController@index')->name('index');
-
 	//很多人
 	Route::get('/manyMan/{type?}','GolController@manyMan');
 	//很多人详情
@@ -74,8 +77,9 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	Route::get('/series/{type?}','GolController@series');
 	//gol详情
 	Route::get('/golDetail/{id}','GolController@golDetail');
-
-
+	/**
+	 *需要用户登录后才可以操作
+	 */
 	Route::group(['prefix'=>'user'],function(){
 		//用户登录
 		Route::get('login','GolController@authLogin');
@@ -99,6 +103,10 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 			Route::get('center/project/hourse_index','GolController@authHouseIndex');
 			//我的小屋 添加页
 			Route::get('center/project/hourse_create','GolController@authHouseCreate');
+			//我的gol 主页
+			Route::get('center/project/gol_index','GolController@authGolIndex');
+			//我的gol 添加页
+			Route::get('center/project/gol_create','GolController@authGolCreate');
 
 		});
 	});

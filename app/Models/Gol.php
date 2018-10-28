@@ -87,5 +87,18 @@ class Gol extends Model
         
     ];
 
-    
+    //发布状态
+    public function getfabuStatusAttribute(){
+         //0审核中1已发布2下架
+        if($this->publish_status == 0){
+            return '审核中';
+        }
+        elseif($this->publish_status == 1){
+            return '已发布';
+        }
+        elseif($this->publish_status == 2){
+            return '下架';
+        }
+    }
+
 }

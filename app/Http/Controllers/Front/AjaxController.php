@@ -248,5 +248,15 @@ class AjaxController extends Controller
         return zcjy_callback_data('发布成功'); 
     }
 
+    //发布gol
+    public function authGolPublish(Request $request)
+    {
+        $user = auth('web')->user();
+        $input = $request->all();
+        $input['user_id'] = $user->id;
+        app('common')->golRepo()->model()::create($input);  
+        return zcjy_callback_data('发布成功');
+    }
+
 
 }

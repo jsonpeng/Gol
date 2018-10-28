@@ -57,8 +57,16 @@ class GolRepository extends BaseRepository
             ->get();
     }
 
+    //我发布的gol
+    public function myGols($user_id){
+        return Gol::where('user_id',$user_id)
+            ->orderBy('created_at','desc')
+            ->paginate(15);
+    }
+
+
     /**
-     * [获取小屋详情]
+     * [获取gol详情]
      * @param  [type] $id [description]
      * @return [type]     [description]
      */

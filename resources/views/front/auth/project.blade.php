@@ -11,8 +11,6 @@
 @endsection
 
 @section('content')
-
-
   <div class="container pt30 pb120">
      <div class="row">
         <!--左侧导航-->
@@ -52,7 +50,7 @@
             <a class="f16" href="/user/center/project/hourse_index">我要开小屋</a>
           </div>
           <div class="col-sm-4">
-            <a class="f16">我是商户</a>
+            <a class="f16" href="/user/center/project/gol_index">我是商户</a>
           </div>
         </div>
     </div>
@@ -61,6 +59,6 @@
 
 @section('js')
 <script type="text/javascript">
-  $.zcjyFrameOpen($('.gol_choose_role').html(),'请选择');
+  $.zcjyFrameOpen($('.gol_choose_role').html(),'请选择',['60%', '380px']);
 </script>
 @endsection

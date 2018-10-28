@@ -30,7 +30,7 @@
           			<div class="short-line"></div>
           		</div>
 
-                <div class="content pb220">
+                <div class="content pb120">
                     <div class="row">
                             <form >
                               <!-- Name Field -->
@@ -55,7 +55,6 @@
                               </div>
 
                               <div class="form-group group col-sm-4">
-
                                   <select name="province" id="province" class="form-control">
                                       <option value="0" @if(empty($project)) selected="selected" @endif>请选择省份</option>
                                       @foreach($cities_level1 as $item)
@@ -173,6 +172,5 @@
           }
       },$('form').serialize(),'POST');
   });
-  
   </script>
 @endsection

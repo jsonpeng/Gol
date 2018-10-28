@@ -18,7 +18,10 @@ $.extend({
             {'content':'内容'},
             {'address':'地址'},
             {'gear':'档位金额'},
-            {'target':'目标金额'},  
+            {'target':'目标金额'},
+            {'zuqi':'租期'},
+            {'area':'面积'},
+            {'price':'价格'},
         ];
     },
     //表单检测
@@ -36,10 +39,12 @@ $.extend({
         }
         return status;
     },
+    //弹出
     alert:function(word,type="success"){
         type == "success" ? 1 : 5;
         layer.msg(word, {icon: type});
     },
+    //检测数据是否为空
     empty:function(data) {
        return data == '' || data == null  || data == false || data == 'false' || data == 'null' || data == {} || data == '{}' || data == [] ||  JSON.stringify(data) == '{}';
     },
