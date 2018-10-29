@@ -32,6 +32,7 @@
          */
          p{
             word-wrap:break-word;
+            font-size: 16px;
          }
         .p_relative{position: relative;}
         a:hover { color: #FF5511; text-decoration: underline; }
