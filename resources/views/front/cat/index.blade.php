@@ -2,6 +2,36 @@
 
 @section('css')
 	<style type="text/css">
+	.main-box {
+	  padding-bottom: 30px;
+	}
+	.main {
+	  width: 81.6%;
+	  float: left;
+	  padding-left: 40px;
+	}
+	.main .content .info-list {
+	  padding: 10px 0;
+	}
+	.main .content .info-list li {
+	  border-bottom: 1px dotted #e5e5e5;
+	}
+	.main .content .info-list li a {
+	  color: #4d4c4c;
+	  display: block;
+	  padding: 20px 0;
+	}
+	.main .content .info-list li a .info-name {
+	  font-size: 18px;
+	  padding-left: 24px;
+	  background: url('/images/disc.png') no-repeat left center;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  overflow: hidden;
+	}
+	.main .content .info-list li a .info-date {
+	  text-align: right;
+	}
 	</style>
 @endsection
 
