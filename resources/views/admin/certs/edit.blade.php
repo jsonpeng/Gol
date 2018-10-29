@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <section class="content-header">
         <h1>
-            Attach House
+            编辑该认证信息
         </h1>
    </section>
    <div class="content">
@@ -11,9 +11,9 @@
        <div class="box box-primary">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($attachHouse, ['route' => ['attachHouses.update', $attachHouse->id], 'method' => 'patch']) !!}
+                   {!! Form::model($certs, ['route' => ['certs.update', $certs->id], 'method' => 'patch']) !!}
 
-                        @include('attach_houses.fields')
+                        @include('admin.certs.fields')
 
                    {!! Form::close() !!}
                </div>

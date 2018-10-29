@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Attach House
+            Certs
         </h1>
     </section>
     <div class="content">
@@ -12,9 +12,9 @@
 
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'attachHouses.store']) !!}
+                    {!! Form::open(['route' => 'certs.store']) !!}
 
-                        @include('attach_houses.fields')
+                        @include('admin.certs.fields')
 
                     {!! Form::close() !!}
                 </div>

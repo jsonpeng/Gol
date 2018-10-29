@@ -31,16 +31,23 @@
         },
         totaluploadprogress:function(progress){
             progress=Math.round(progress);
-            click_dom.find('a').text(progress+"%");
+            // click_dom.find('a').text(progress+"%");
 
         },
         queuecomplete:function(progress){
             console.log(progress);
+            if($.empty(click_dom)){
+                click_dom = $('.type_files');
+            }
             click_dom.find('a').text('上传完毕√');
         },
         success:function(file,data){
             if(data.code == 0){
                 console.log('上传成功:'+data.message.src);
+                if($.empty(click_dom)){
+                    click_dom = $('.type_files');
+                }
+                console.log(click_dom);
                 if(data.message.type == 'image'){
                     click_dom.find('input').val(data.message.src);
                     click_dom.find('img').attr('src',data.message.src);
@@ -53,8 +60,6 @@
                  
                   
                 }
-            
-          
             }
             else{
                 click_dom.find('a').text('上传失败╳ ');
@@ -66,7 +71,7 @@
       }
     });
 
-    var click_dom;
+    var click_dom=null;
     $(document).on('click','.type_files',function(){
         click_dom = $(this);
         // $('input[type=file]').trigger('click');

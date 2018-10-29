@@ -87,7 +87,29 @@ class CommonRepository
         session(['mobile_code_reg'.$mobile=>$code]);
         return $code;   
     }
+    
+    /**
+     * [检查认证]
+     * @param  [type] $user        [description]
+     * @param  string $attach_word [description]
+     * @param  string $api_type    [description]
+     * @return [type]              [description]
+     */
+    public function varifyCert($user,$attach_word='您当前',$api_type="web"){
+        if(empty($user)){
+            return zcjy_callback_data('未知错误',1,$api_type);
+        }
+        $status = false;
+        $cert = $user->cert()->first();
+        if(empty($cert)){
+            return zcjy_callback_data($attach_word.'未认证',1,$api_type);
+        }
 
+        if($cert->status == '审核中' || $cert->status =='未通过'){
+            return zcjy_callback_data($attach_word.'认证审核中或未通过审核',1,$api_type);
+        }
+        return $status;
+    }
 
   
 }

@@ -231,6 +231,9 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
     //GOL系列管理
     Route::resource('gols', 'GolController');
+
+    //实名认证管理
+	Route::resource('certs', 'CertsController');
 });
 
 
@@ -255,3 +258,6 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 
 
+
+
+Route::resource('attentionHouses', 'AttentionHouseController');

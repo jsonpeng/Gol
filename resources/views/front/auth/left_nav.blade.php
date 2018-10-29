@@ -19,12 +19,12 @@
                  <div class="input-append type_files" style="">
                       <a href="javascript:;"  class="btn upload_file" type="button" >请把要上传的文件拖动到这</a>
                       <input type="hidden" name="head_image" value="" />
+                      <img src="" style="max-width: 100px;height: auto;">
                  </div>
 
             </div>
           
             <button style='margin-top:5%;width:80%;margin:0 auto;margin-bottom:5%;' type='button' class='btn btn-block btn-primary ' onclick='enterImport(this)'>确定</button>
-         
         </form>
     </div>
 </div>
