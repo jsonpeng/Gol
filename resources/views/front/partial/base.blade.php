@@ -199,7 +199,17 @@
 {{--         <script src="{{ asset('js/main.js') }}"></script> --}}
         <script src="{{asset('js/zcjy.js')}}"></script>
         <script src="{{asset('js/banner.js')}}"></script>
+        <script src="{{asset('js/jq_goup.js')}}"></script>
         <script type="text/javascript">
+        //自动加载返回顶部插件
+        $(document).ready(function () {
+            $.goup({
+                trigger: 100,
+                bottomOffset: 150,
+                locationOffset: 100,
+                titleAsText: true
+            });
+        });
         $('.carousel').carousel({
             interval: 1500
         })
