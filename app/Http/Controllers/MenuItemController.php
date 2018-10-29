@@ -56,7 +56,7 @@ class MenuItemController extends AppBaseController
         $input = $request->all();
         if (array_key_exists('link', $input) && $input['link'] != '') {
             if(!preg_match("/^(http:\/\/|https:\/\/).*$/", $input['link'])){
-                $input['link'] = 'http://'.$input['link'];
+                $input['link'] = $this->http_set().$input['link'];
             }
         }
         $menu_item = MenuItem::create($input);
@@ -78,6 +78,11 @@ class MenuItemController extends AppBaseController
         return $result;
     }
 
+
+    private function http_set(){
+        return env('online_version') == 'https' ? 'https' : 'http';
+    }
+
     //保存菜单（单个）
     private function setMenu($menus, $parent_id){
         foreach ($menus as $index => $menu) {
@@ -89,7 +94,7 @@ class MenuItemController extends AppBaseController
             if (!empty($menuitem)) {
                 if (array_key_exists('link', $menu) && $menu['link'] != '') {
                     if(!preg_match("/^(http:\/\/|https:\/\/).*$/", $menu['link'])){
-                        $menu['link'] = 'http://'.$menu['link'];
+                        $menu['link'] = $this->http_set().$menu['link'];
                     }
                 }
                 $menuitem->update(['sort' => $index, 'name' => $menu['name'], 'link' => $menu['link'], 'parent_id' => $parent_id]);
