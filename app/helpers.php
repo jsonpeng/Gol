@@ -11,6 +11,50 @@ use App\Models\Cities;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
+
+
+function des($str, $num){
+        global $Briefing_Length;
+        mb_regex_encoding("UTF-8");
+        $Foremost = mb_substr($str, 0, $num);
+        $re = "<(\/?) 
+    (P|DIV|H1|H2|H3|H4|H5|H6|ADDRESS|PRE|TABLE|TR|TD|TH|INPUT|SELECT|TEXTAREA|OBJECT|A|UL|OL|LI| 
+    BASE|META|LINK|HR|BR|PARAM|IMG|AREA|INPUT|SPAN)[^>]*(>?)";
+        $Single = "/BASE|META|LINK|HR|BR|PARAM|IMG|AREA|INPUT|BR/i";
+
+        $Stack = array(); $posStack = array();
+
+        mb_ereg_search_init($Foremost, $re, 'i');
+
+        while($pos = mb_ereg_search_pos()){
+            $match = mb_ereg_search_getregs();
+
+            if($match[1]==""){
+                $Elem = $match[2];
+                if(mb_eregi($Single, $Elem) && $match[3] !=""){
+                    continue;
+                }
+                array_push($Stack, mb_strtoupper($Elem));
+                array_push($posStack, $pos[0]);
+            }else{
+                $StackTop = $Stack[count($Stack)-1];
+                $End = mb_strtoupper($match[2]);
+                if(strcasecmp($StackTop,$End)==0){
+                    array_pop($Stack);
+                    array_pop($posStack);
+                    if($match[3] ==""){
+                        $Foremost = $Foremost.">";
+                    }
+                }
+            }
+        }
+
+        $cutpos = array_shift($posStack) - 1;
+        $Foremost =  mb_substr($Foremost,0,$cutpos,"UTF-8");
+        return strip_tags($Foremost);
+
+    }
+
 //gol 类型
 function gol_types(){
   return [
