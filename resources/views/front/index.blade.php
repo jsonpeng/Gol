@@ -156,7 +156,7 @@
 				<div class="w50 h163 gol_post_bg1">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
-					<p>{!! des($post->brief,100) !!}</p>
+					<p>{!! des($post->brief,35) !!}</p>
 					<span class="pt15 pb50">READ MORE</span>
 				</div>
 				<div class="w50 gol_post_img">
