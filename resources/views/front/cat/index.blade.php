@@ -15,6 +15,7 @@
 	}
 	.main .content .info-list li {
 	  border-bottom: 1px dotted #e5e5e5;
+	  list-style: none;
 	}
 	.main .content .info-list li a {
 	  color: #4d4c4c;
