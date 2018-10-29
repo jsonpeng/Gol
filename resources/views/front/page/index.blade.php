@@ -12,8 +12,8 @@
 			<div class="content">
 				<div class="detail-title text-center">
 					<h4>{!! $page->name !!}</h4>
-					<p>
-						<span>发布者 : admin</span>
+					<p class="mt15 mb25">
+						<span>发布者 : Gol</span>
 						<span class="news-date">{!! time_parse($page->created_at)->format('Y/m/d') !!}</span>
 					</p>
 				</div>
