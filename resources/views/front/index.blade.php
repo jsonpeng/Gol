@@ -154,7 +154,7 @@
 		<?php $i=0; ?>
 		@foreach($travels as $post)
 		<?php $i++;?>
-			<a class="gol_four_img p_relative" href="/post/{!! $post->id !!}" style="color: black;">
+			<a class="gol_four_img p_relative mb25" href="/post/{!! $post->id !!}" style="color: black;">
 				<div class="w50 h163 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
