@@ -93,6 +93,7 @@
 
         <!--编辑文本时-->
           @if(array_key_exists('post_type', $input))
+            <?php $attach = optional($attach);?>
             <div class="box box-solid" id="{!! $attach->slug !!}">
             <div class="box-header with-border">
               <span class="tools pull-right"><a href="javascript:;" class="fa fa-chevron-down" data-function="switch-table" data-type="team-table"></a>

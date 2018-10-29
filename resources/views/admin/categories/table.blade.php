@@ -23,7 +23,7 @@
             <td>
                 {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! $baseurl !!}/cat/{!! $category->id !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                 <!--    <a href="{!! $baseurl !!}/cat/{!! $category->id !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> -->
                     <a href="{!! route('categories.edit', [$category->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     @if(!$online){!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('确定删除吗?')"]) !!}@endif
                 </div>
