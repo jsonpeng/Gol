@@ -1,6 +1,6 @@
 
 @if(count($menus))
-	<header>
+<!-- 	<header>
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
@@ -76,7 +76,7 @@
 			    </div>
 		    </div>
 		</nav>
-	</header>
+	</header> -->
 @endif
 
 
@@ -213,11 +213,11 @@
 					<li><a href="/">首页</a></li>
 					<li><a href="">在线客服</a></li>
 					@else
-					<li><a href="/">首页</a></li>
-				    <li><a href="/manyMan">小屋家</a></li>
-					<li><a href="/">酷旅行</a></li>
-					<li><a href="/">Freelance</a></li>
-					<li><a href="/">小屋云区</a></li>
+					@if(count($menus))
+						@foreach($menus as $menu)
+							<li><a href="{!! $menu->link !!}">{!! $menu->name !!}</a></li>
+						@endforeach
+					@endif
 					<li class="pl80"><form class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
