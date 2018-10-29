@@ -9,7 +9,14 @@ class GolController extends Controller
     //首页
     public function index(Request $request)
     { 
-        return view('front.index');
+
+        #爱旅行
+        $travels = app('common')->categoryRepo()->getCachePostOfCat('travel',6);
+
+        #系统公告
+        $notifies = app('common')->messageRepo()->messages();
+        
+        return view('front.index',compact('travels','notifies'));
     }
 
     //很多人

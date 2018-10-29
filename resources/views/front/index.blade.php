@@ -146,37 +146,27 @@
                 </div>
 </div> --}}
 
+@if(count($travels))
 <!-- 小屋故事  -->
 <div class="pt30 container">
 	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
 	<div class="pt30 ">
-
-		<div class="gol_four_img p_relative">
-			<div class="w50 h163 gol_post_bg1">
-				<h4 class="pt30">麦克白和威尼斯商人</h4>
-				<span>2018-09-01</span>
-				<p>公告/故事简介</p>
-				<span class="pt15 pb50">READ MORE</span>
-			</div>
-			<div class="w50 gol_post_img">
-				<img src="/images/gol/post.jpeg" class="img_auto" />
-			</div>
-		</div>
-
-		<div class="gol_four_img p_relative">
-			<div class="w50 h163 gol_post_bg2">
-				<h4 class="pt30">麦克白和威尼斯商人</h4>
-				<span>2018-09-01</span>
-				<p>公告/故事简介</p>
-				<span class="pt15 pb50">READ MORE</span>
-			</div>
-			<div class="w50 gol_post_img">
-				<img src="/images/gol/post.jpeg" class="img_auto" />
-			</div>
-		</div>
-
+		@foreach($travels as $post)
+			<a class="gol_four_img p_relative" href="/post/{!! $post->id !!}">
+				<div class="w50 h163 gol_post_bg1">
+					<h4 class="pt30">{!! $post->name !!}</h4>
+					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
+					<p>{!! $post->brief !!}</p>
+					<span class="pt15 pb50">READ MORE</span>
+				</div>
+				<div class="w50 gol_post_img">
+					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" />
+				</div>
+			</a>
+		@endforeach
 	</div>
 </div>
+@endif
 
 
 <!-- 小屋新主成交记录 最新消息 公告 -->
@@ -236,21 +226,22 @@
 						</div>
 					@endif
 				@endif
-				<div class="col-sm-6 txtMarquee-top">
-						<div class="bd">
-						<ul>
-        	     			
-		                    <li class="ii h60" style="list-style: none;">
-		                    	系统公告:坐落于新郑的*****完成交接
-		                    </li>
-		                     <li class="ii h60" style="list-style: none;">
-		                    	系统公告:坐落于上海的*****完成交接
-		                    </li>  
-		                   
-							
-						</ul>
+
+				<!--系统公告-->
+				@if(count($notifies))
+					<div class="col-sm-6 txtMarquee-top">
+							<div class="bd">
+							<ul>
+	        	     			@foreach($notifies as $notify)
+				                    <li class="ii h60" style="list-style: none;">
+				                    	{!! $notify->info !!}
+				                    </li> 
+			                   	@endforeach
+							</ul>
+						</div>
 					</div>
-				</div>
+				@endif
+
 
 			</div>
 		</div>

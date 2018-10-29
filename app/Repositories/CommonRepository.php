@@ -5,6 +5,10 @@ namespace App\Repositories;
 use App\Repositories\HouseRepository;
 use App\Repositories\GolRepository;
 use App\Repositories\CityRepository;
+use App\Repositories\PostRepository;
+use App\Repositories\CategoryRepository;
+use App\Repositories\MessageRepository;
+
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
@@ -24,10 +28,35 @@ class CommonRepository
      private $houseRepository;
      private $golRepository;
      private $cityRepository;
-     public function __construct(HouseRepository $houseRepo,GolRepository $golRepo,CityRepository $cityRepo){
+     private $postRepository;
+     private $categoryRepository;
+     private $messageRepository;
+     public function __construct(
+        HouseRepository $houseRepo,
+        GolRepository $golRepo,
+        CityRepository $cityRepo,
+        PostRepository $postRepo,
+        CategoryRepository $categoryRepo,
+        MessageRepository $messageRepo
+    ){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
         $this->cityRepository = $cityRepo;
+        $this->postRepository = $postRepo;
+        $this->categoryRepository = $categoryRepo;
+        $this->messageRepository = $messageRepo;
+     }
+
+     public function messageRepo(){
+        return $this->messageRepository;
+     }
+
+     public function categoryRepo(){
+        return $this->categoryRepository;
+     }
+
+     public function postRepo(){
+        return $this->postRepository;
      }
 
      public function houseRepo(){

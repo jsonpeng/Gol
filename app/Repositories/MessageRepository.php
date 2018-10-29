@@ -33,4 +33,12 @@ class MessageRepository extends BaseRepository
     {
         return Message::class;
     }
+
+    public function messages($skip=0,$take=12){
+        return Message::orderBy('created_at','desc')
+                ->skip($skip)
+                ->take($take)
+                ->get();
+    }
+
 }
