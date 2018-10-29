@@ -27,11 +27,11 @@
 
 
 @section('content')
-	<div class="container main-box">
+	<div class="container main-box mt30">
 		<div class="main ">
 			<div class="content">
 				<div class="detail-title text-center">
-					<h5>{!! $post->name !!}</h5>
+					<h4>{!! $post->name !!}</h4>
 					<p>
 						<span>发布者 : admin</span>
 						<span class="news-date">{!! time_parse($post->created_at)->format('Y/m/d') !!}</span>
