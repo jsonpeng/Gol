@@ -7,7 +7,23 @@
 {{-- @include('front.page.seo') --}}
 
 @section('content')
-<h1>单页</h1>
+<div class="container main-box mt30">
+		<div class="main ">
+			<div class="content">
+				<div class="detail-title text-center">
+					<h4>{!! $page->name !!}</h4>
+					<p>
+						<span>发布者 : admin</span>
+						<span class="news-date">{!! time_parse($page->created_at)->format('Y/m/d') !!}</span>
+					</p>
+				</div>
+				<div class="detail-content">
+					<p>{!! $page->content !!}</p>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 @endsection
 
 

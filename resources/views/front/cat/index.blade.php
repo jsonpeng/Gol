@@ -9,9 +9,7 @@
 
 @section('content')
 	<div class="container main-box">
-		@include('front.partial.leftnav')
 		<div class="main ">
-			@include('front.partial.bread_nav')
 			<div class="content">
 				@if(count($posts))
 					<ul class="info-list">
@@ -31,7 +29,6 @@
 				<div style="text-align:center;">{!! $posts->appends('')->links() !!}</div>
 			</div>
 		</div>
-		@include('front.partial.share')
 		<div class="clearfix"></div>
 	</div>
 @endsection

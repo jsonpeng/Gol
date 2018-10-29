@@ -53,7 +53,6 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	/**
 	 *需要用户登录后才可以操作
 	 */
-
 	##更新用户信息
 	Route::post('update_user','AjaxController@updateUserApi');
 
@@ -113,7 +112,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 
 	//平台协议
 	Route::get('/protocol','GolController@protocol');
-	//Route::get('cat/{id}', 'FrontController@cat')->name('category');
+	Route::get('cat/{id}', 'FrontController@cat')->name('category');
 	Route::get('post/{id}', 'FrontController@post')->name('post');
 	Route::get('page/{id}', 'FrontController@page')->name('page');
 
