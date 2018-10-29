@@ -148,19 +148,21 @@
 
 @if(count($travels))
 <!-- 小屋故事  -->
-<div class="pt30 container">
+<div class="pt30 container pb120">
 	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
 	<div class="pt30 ">
+		<?php $i=0; ?>
 		@foreach($travels as $post)
+		<?php $i++;?>
 			<a class="gol_four_img p_relative" href="/post/{!! $post->id !!}" style="color: black;">
-				<div class="w50 h163 gol_post_bg1">
+				<div class="w50 h163 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
-					<p>{!! des($post->brief,35) !!}</p>
+					<p class="mt15">{!! des($post->brief,35) !!}</p>
 					<span class="pt15 pb50">READ MORE</span>
 				</div>
 				<div class="w50 gol_post_img">
-					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" style="max-width: 220px;" />
+					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" style="max-width: 220px;height: 100%;" />
 				</div>
 			</a>
 		@endforeach
@@ -177,7 +179,7 @@
 			<div class="row">
 
 				<div class="col-sm-3">
-					<h4 class="pt30">小屋新主</h4>
+					<h4 class="pt30">Gol消息</h4>
 				</div>
 
 				<div class="col-sm-9 txtMarquee-top bd">
