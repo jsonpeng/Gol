@@ -80,7 +80,7 @@ class MenuItemController extends AppBaseController
 
 
     private function http_set(){
-        return env('online_version') == 'https' ? 'https' : 'http';
+        return env('online_version') == 'https' ? 'https://' : 'http://';
     }
 
     //保存菜单（单个）
