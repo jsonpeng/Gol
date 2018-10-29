@@ -17,7 +17,7 @@ use App\Repositories\MessageBoardRepository;
 use App\Repositories\PostCommentRepository;
 use App\Repositories\AttachMessageBoardRepository;
 use App\Repositories\AttachPostCommentRepository;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
 use Mail;

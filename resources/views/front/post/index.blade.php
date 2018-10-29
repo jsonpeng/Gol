@@ -24,13 +24,11 @@
 	</style>
 @endsection
 
-{{-- @include('front.post.seo') --}}
+
 
 @section('content')
 	<div class="container main-box">
-		@include('front.partial.leftnav')
 		<div class="main ">
-			@include('front.partial.bread_nav')
 			<div class="content">
 				<div class="detail-title text-center">
 					<h5>{!! $post->name !!}</h5>
@@ -43,10 +41,8 @@
 					<p>{!! $post->content !!}</p>
 				</div>
 			</div>
-			@include('front.comment.tem')
 		</div>
 		<div class="clearfix"></div>
 	</div>
 @endsection
 
-@include('front.comment.js')

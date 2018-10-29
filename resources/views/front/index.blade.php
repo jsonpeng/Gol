@@ -152,7 +152,7 @@
 	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
 	<div class="pt30 ">
 		@foreach($travels as $post)
-			<a class="gol_four_img p_relative" href="/post/{!! $post->id !!}">
+			<a class="gol_four_img p_relative" href="/post/{!! $post->id !!}" style="color: black;">
 				<div class="w50 h163 gol_post_bg1">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
@@ -160,7 +160,7 @@
 					<span class="pt15 pb50">READ MORE</span>
 				</div>
 				<div class="w50 gol_post_img">
-					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" />
+					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" style="max-width: 220px;" />
 				</div>
 			</a>
 		@endforeach
