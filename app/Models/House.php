@@ -48,7 +48,8 @@ class House extends Model
         'lat',
         'lon',
         'plan_address',
-        'index_show'
+        'index_show',
+        'put_time'
     ];
 
     /**
@@ -82,6 +83,11 @@ class House extends Model
     //支持的人
     public function join(){
         return $this->hasMany('App\Models\HouseJoin','house_id','id');
+    }
+
+    //发布小屋的人
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 
 

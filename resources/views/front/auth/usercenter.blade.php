@@ -26,7 +26,7 @@
 
                 <div class="col-sm-3">
                   <h4 class="text-center">我的资产</h4>
-                  <h4 class="text-center">---</h4>
+                  <h4 class="text-center">{!! $user->zichan !!}</h4>
                 </div>
 
                 <div class="col-sm-4">
@@ -34,7 +34,7 @@
 
                 <div class="col-sm-3">
                   <h4 class="text-center">我的负债</h4>
-                  <h4 class="text-center">---</h4>
+                  <h4 class="text-center">{!! $user->fuzhai !!}</h4>
                 </div>
 
             </div>

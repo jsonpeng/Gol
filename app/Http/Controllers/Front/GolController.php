@@ -9,6 +9,8 @@ class GolController extends Controller
     //首页
     public function index(Request $request)
     { 
+        #首页展示小屋
+        $houses = app('common')->houseRepo()->indexShowHouses();
 
         #爱旅行
         $travels = app('common')->categoryRepo()->getCachePostOfCat('travel',6);
@@ -16,7 +18,7 @@ class GolController extends Controller
         #系统公告
         $notifies = app('common')->messageRepo()->messages();
         
-        return view('front.index',compact('travels','notifies'));
+        return view('front.index',compact('houses','travels','notifies'));
     }
 
     //很多人
@@ -60,7 +62,19 @@ class GolController extends Controller
         if(!isset($hourse->hourse)){
             $error = $hourse;
         }
-        return view('front.gol.many_detail',compact('hourse','error'));
+        #取出小屋
+        $hourse = $hourse->hourse;
+        #关注人数
+        $hourse_attention_num = app('common')->houseRepo()->attentionPeopleNum($hourse->id);
+        #小屋新主
+        $hourse_user = $hourse->user;
+        #小屋新主的小屋
+        $hourse_user_hourses = app('common')->houseRepo()->myHourses($hourse_user->id,false);
+        #小屋新主的小屋数
+        $hourse_user_has_num = count($hourse_user_hourses);
+        #小屋新主的支持人数
+        $hourse_user_support_num = app('common')->houseRepo()->hourseAllPeoples($hourse_user_hourses);
+        return view('front.gol.many_detail',compact('error','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num'));
     }
 
     //gol系列
@@ -100,7 +114,7 @@ class GolController extends Controller
     public function authCenter(Request $request)
     {
         $user = auth('web')->user();
-        return view('front.auth.usercenter');
+        return view('front.auth.usercenter',compact('user'));
     }
 
     //个人中心 -> 项目中心

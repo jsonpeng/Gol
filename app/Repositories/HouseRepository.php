@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\Models\House;
 use InfyOm\Generator\Common\BaseRepository;
 use App\Models\HouseJoin;
-
+use App\Models\AttentionHouse;
 
 /**
  * Class HouseRepository
@@ -40,6 +40,29 @@ class HouseRepository extends BaseRepository
     {
         return House::class;
     }
+
+    /**
+     * [首页展示小屋]
+     * @return [type] [description]
+     */
+    public function indexShowHouses($take=12)
+    {
+        return House::where('index_show','>',0)
+                ->orderBy('index_show','desc')
+                ->take($take)
+                ->get();
+    }
+
+    /**
+     * 关注人数
+     * @param  [type] $house_id [description]
+     * @return [type]           [description]
+     */
+    public function attentionPeopleNum($house_id)
+    {
+        return AttentionHouse::where('house_id',$house_id)->count();
+    }
+
 
 
     /**
@@ -88,15 +111,36 @@ class HouseRepository extends BaseRepository
      * @param  [type] $user_id [description]
      * @return [type]          [description]
      */
-    public function myHourses($user_id)
+    public function myHourses($user_id,$paginate=true)
     {
         $hourses = House::where('user_id',$user_id)
                 ->with('join')
-                ->orderBy('created_at','desc')
-                ->paginate(15);
+                ->orderBy('created_at','desc');
+
+        $hourses = $paginate ? $hourses->paginate(15) : $hourses->get();  
+
         $hourses = $this->dealHoursesPrice($hourses);
         return $hourses;
     }
+
+
+   /**
+    * [小屋总共支持人数]
+    * @param  [type] $hourses [description]
+    * @return [type]          [description]
+    */
+   public function hourseAllPeoples($hourses)
+   {
+        $num = 0;
+        if(count($hourses))
+        {
+            foreach ($hourses as $key => $val) {
+                $num += $val->support_people;
+            }
+        }
+        return $num;
+
+   }
 
     /**
      * 正在参与中的小屋
@@ -143,6 +187,7 @@ class HouseRepository extends BaseRepository
     public function forSaleHouses($skip=0,$take=20)
     {
         $hourses = House::where('status','已完成')
+               ->whereNotNull('put_time')
                ->with('join')
                ->orderBy('created_at','asc')
                ->skip($skip)
@@ -228,6 +273,7 @@ class HouseRepository extends BaseRepository
         if(empty($hourse)){
             return '没有找到该小屋';
         }
+
         $hourse = $this->dealJoins($hourse);
         return (object)['hourse'=>$hourse];
     }

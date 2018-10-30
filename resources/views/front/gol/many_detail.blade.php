@@ -22,6 +22,14 @@
 		line-height: 20px;
 		border: 1px solid rgba(187, 187, 187, 1);
 	}
+	.nav>li>a {
+    	padding: 15px;
+	}
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+		color: white;
+		background: #FF5511;
+		border: 1px solid #FF5511;
+	}
 </style>
 @endsection
 
@@ -34,28 +42,31 @@
 @section('content')
 
 	<div class="container">
+		@if($error)
+		<h1 class="text-center">{!! $error !!}</h1>
+		@else
 		<!--小屋新主上传的主图-->
 		<div class="row pt30">
 			<div class="col-sm-7">
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto" />
+				<img onerror="javascript:this.src='/images/gol/xiaowu_main.png';" src="{!! $hourse->image !!}"  class="img_auto" style="max-height: 300px;" />
 			</div>
 			<div class="col-sm-5">
-				<p class="pb15">小屋名称+类别</p>
-				<p class="pb15">这是新主第二件小屋,第一间盈利中,经营经验颇丰,为了结识更多小伙伴,特此发出召集令。</p>
-				<p class="f24 fw700">￥50000</p>
+				<p class="pb15">{!! $hourse->name !!}+{!! $hourse->type !!}</p>
+				<p class="pb15">{!! des($hourse->content,20) !!}</p>
+				<p class="f24 fw700">￥{!! $hourse->target !!}万</p>
 
 				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
+					<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $hourse->progress !!}%;">
 					</div>
 				</div>
 
 				<div >
-					<span class="pull-left">当前进度:60%</span><span class="pull-right">5353名支持者</span> 
+					<span class="pull-left">当前进度:{!! $hourse->progress !!}%</span><span class="pull-right">{!! $hourse->support_people !!}名支持者</span> 
 				</div>
 
 				<div class="row pt30">
 						<a class="col-sm-2"></a>
-						<a class="col-sm-3 gol_m_detail_button">关注(535)</a>
+						<a class="col-sm-3 gol_m_detail_button">关注({!! $hourse_attention_num !!})</a>
 						<a class="col-sm-3 gol_m_detail_button">加入很多人</a>
 						<a class="col-sm-2"></a>
 				</div>
@@ -66,16 +77,42 @@
 		<!--小屋详情-->
 		<div class="row pt30 pb50">
 			<div class="col-sm-7">
-				<div>
+			{{-- 	<div>
 					<a href="" class="gol_top_text f16">小屋介绍</a>
 					<a href="" class="gol_top_text f16">小屋计划</a>
 					<a href="" class="gol_top_text f16">小屋话题</a>
-				</div>
-				<!--详情内容-->
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto pt15 pb15" />
-				<p>相关介绍内容xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto pt15" />
+				</div> --}}
+				<ul id="myTab" class="nav nav-tabs mb25">
+					<li class="active">
+						<a href="#home" data-toggle="tab">
+							 小屋介绍
+						</a>
+					</li>
+					<li><a href="#plan" data-toggle="tab">小屋计划</a></li>
+					<li><a href="#topic" data-toggle="tab">小屋话题</a></li>
+				</ul>
+
+			<div id="myTabContent" class="tab-content">
+
+					<div class="tab-pane fade in active" id="home">
+							<!--详情内容-->
+							{!! $hourse->content !!}
+					</div>
+
+					<div class="tab-pane fade" id="plan">
+							<!--小屋计划-->
+							<a href="{!! $hourse->plan_address !!}" target="_blank" >小屋计划书附件下载查看</a>
+					</div>
+
+					<div class="tab-pane fade" id="topic">
+							<!--小屋话题-->
+							小屋话题
+					</div>
+
+			
 			</div>
+			</div>
+
 			<div class="col-sm-5">
 				<div class="gol_m_detail_user_box">
 					<p class="f24 " > 小屋新主 </p>
@@ -83,12 +120,12 @@
 
 					<div class="row pt30">
 						<div class="col-sm-3">
-							<img src="/images/gol/xiaowu_main.png" class="img_auto">
+							<img onerror="javascript:this.src='/images/gol/xiaowu_main.png';" src="{!! $hourse_user->head_image !!}" class="img_auto">
 						</div>
 						<div class="col-sm-9">
-							<p>frank</p>
-							<p>个人简介</p>
-							<p>小屋&nbsp;&nbsp;5 &nbsp;&nbsp;&nbsp; 支持 5</p>
+							<p>{!! $hourse_user->name !!}</p>
+							<p>{!! $hourse_user->brief !!}</p>
+							<p>小屋&nbsp;&nbsp;{!! $hourse_user_has_num !!} &nbsp;&nbsp;&nbsp; 支持 {!! $hourse_user_support_num !!}</p>
 						</div>
 					</div>
 
@@ -102,6 +139,7 @@
 				</div>
 			</div>
 		</div>
+		@endif
 	</div>
 
 @endsection
