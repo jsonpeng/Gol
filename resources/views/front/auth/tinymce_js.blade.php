@@ -135,7 +135,7 @@ tinymce.init({
 
 </script>
 
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
 <!--根据地址索引地图标点-->
 <script type="text/javascript">
     $('input[name=address]').keyup(function(){
