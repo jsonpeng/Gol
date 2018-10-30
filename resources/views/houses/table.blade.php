@@ -6,7 +6,7 @@
         <th>浏览量</th>
         <th>档位</th>
         <th>小屋类型</th>
-        <th>目标</th>
+        <th>目标(万)</th>
         <th>状态</th>
         <th>截止时间</th>
         <th>发布时间</th>
@@ -28,7 +28,7 @@
             <td>
                 {!! Form::open(['route' => ['houses.destroy', $house->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                  {{--   <a href="{!! route('houses.show', [$house->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> --}}
+                   <a href="/manyDetail/{!! $house->id !!}"  target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('houses.edit', [$house->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
           {{--           {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('确定删除吗?')"]) !!} --}}
                 </div>

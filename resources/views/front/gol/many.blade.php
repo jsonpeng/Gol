@@ -48,7 +48,7 @@
 @section('content')
 
 <!-- 数据显示 -->
-<div class="text-center">
+<div class="text-center reveal1">
 	<div class="gol_many_des"><p>1000<span>万</span></p><p style="color: red;">￥<span>累计支持金额</span></p><div class="gol_many_xiexian"> </div></div>
 	<div class="gol_many_des"><p>200<span>万</span></p><p style="color: red;">￥<span>单项最高支持金额</span></p><div class="gol_many_xiexian"> </div></div>
 	<div class="gol_many_des"><p>30<span>万</span></p><p style="color: red;">￥<span>累计支持人数</span></p><div class="gol_many_xiexian"> </div></div>
@@ -65,14 +65,14 @@
 
 	@if(count($hourses_now_join))
 		<!-- 正在参与 -->
-		<div class="text-center f24">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
+		<div class="text-center f24 reveal2">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
 
 		<div class="pt30 pb50">
 			<div class="row">
 				@foreach ($hourses_now_join as $item)
 					<?php $item=optional($item);?>
 					<!-- 单个结构 -->
-					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+					<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
@@ -83,8 +83,8 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<p class="text-center">￥{!! $item->gear !!}</p>
-								<p class="text-center">档位</p>
+								<p class="text-center">￥{!! $item->min_gears !!}起</p>
+								<p class="text-center">最低档位</p>
 		 					</div>
 							<div class="col-sm-4">
 								<p class="text-center">￥{!! $item->target !!}万</p>
@@ -105,14 +105,14 @@
 
 	@if(count($hourses_near_end))
 		<!-- 即将结束 -->
-		<div class="text-center f24">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</div>
+		<div class="text-center f24 reveal3">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</div>
 
 		<div class="pt30 pb50">
 			<div class="row">
 				@foreach ($hourses_near_end as $item)
 					<?php $item=optional($item);?>
 					<!-- 单个结构 -->
-					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+					<a class="col-sm-3 gol_many_post_item reveal3" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
@@ -123,7 +123,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<p class="text-center">￥{!! $item->gear !!}</p>
+								<p class="text-center">￥{!! $item->min_gears !!}</p>
 								<p class="text-center">档位</p>
 		 					</div>
 							<div class="col-sm-4">
@@ -143,14 +143,14 @@
 
 	@if(count($hourses_for_sale))
 		<!-- 即将上架 -->
-		<div class="text-center f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</div>
+		<div class="text-center f24 reveal4">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</div>
 		
 		<div class="pt30 pb50">
 			<div class="row">
 				@foreach ($hourses_for_sale as $item)
 					<?php $item=optional($item);?>
 					<!-- 单个结构 -->
-					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+					<a class="col-sm-3 gol_many_post_item reveal4" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
@@ -161,7 +161,7 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<p class="text-center">￥{!! $item->gear !!}</p>
+								<p class="text-center">￥{!! $item->min_gears !!}</p>
 								<p class="text-center">档位</p>
 		 					</div>
 							<div class="col-sm-4">

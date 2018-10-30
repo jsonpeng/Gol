@@ -77,7 +77,7 @@
 <div class="">
 	<div class="container">
 
-		<div class="pt15 p_relative" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_other" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
+		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_other" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
 
 	</div>
 </div>
@@ -87,7 +87,7 @@
 	<div class="container">
 		<div class="text-center f24">———&nbsp;&nbsp;GOL+&nbsp;&nbsp;———</div>
 		<div class="pt30">
-			<div class="gol_four_img p_relative gol_xilie">
+			<div class="gol_four_img p_relative gol_xilie reveal1">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.青旅</p>
@@ -97,7 +97,7 @@
 				 </div>
 				<img src="/images/gol/青旅.jpeg" />
 			</div>
-			<div class="gol_four_img p_relative gol_xilie">
+			<div class="gol_four_img p_relative gol_xilie reveal1">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.客栈</p>
@@ -107,7 +107,7 @@
 				 </div>
 				<img src="/images/gol/客栈.jpeg" />
 			</div>
-			<div class="gol_four_img p_relative gol_xilie">
+			<div class="gol_four_img p_relative gol_xilie reveal1">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.民宿</p>
@@ -117,7 +117,7 @@
 				 </div>
 				<img src="/images/gol/民宿.jpeg" />
 			</div>
-			<div class="gol_four_img p_relative gol_xilie">
+			<div class="gol_four_img p_relative gol_xilie reveal1">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.空间</p>
@@ -154,7 +154,7 @@
 		<?php $i=0; ?>
 		@foreach($travels as $post)
 		<?php $i++;?>
-			<a class="gol_four_img p_relative mb25" href="/post/{!! $post->id !!}" style="color: black;">
+			<a class="gol_four_img p_relative mb25 reveal2" href="/post/{!! $post->id !!}" style="color: black;">
 				<div class="w50 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif" style="min-height: 255px;">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
@@ -172,7 +172,7 @@
 
 
 <!-- 小屋新主成交记录 最新消息 公告 -->
-<div class="pt50 pb50 container">
+<div class="pt50 pb50 container reveal3">
 	<div class="row">
 
 		<div class="col-sm-6">

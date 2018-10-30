@@ -133,6 +133,7 @@ class AjaxController extends Controller
     public function updateUserApi(Request $request)
     {
         $input = $request->all();
+
         $user = auth('web')->user();
         if(array_key_exists('head_image', $input)){
             if(empty($input['head_image'])){
@@ -207,8 +208,8 @@ class AjaxController extends Controller
         return zcjy_callback_data('退出成功');
     }
 
-    //给单个用户发通知消息
-    public function sendOneUserNotice(Request $request,$user_id)
+    //管理员给单个用户发通知消息
+    public function sendOneUserNoticeAdmin(Request $request,$user_id)
     {
         $input = $request->all();
         $varify = varifyInputParam($input,['content']);
@@ -218,6 +219,20 @@ class AjaxController extends Controller
         app('notice')->sendNoticeToUser($user_id,$input['content']);
         return zcjy_callback_data('发送成功');
     }
+
+    //用户给单个用户发私信
+    public function sendOneUserNoticeSiXin(Request $request,$user_id)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,['content']);
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        app('notice')->sendNoticeToUser($user_id,$input['content'],auth('web')->user());
+        return zcjy_callback_data('发送成功');
+    }
+
+
 
     //给所有用户发通知消息
     public function sendAllUserNotice(Request $request)
@@ -326,6 +341,15 @@ class AjaxController extends Controller
         #添加认证记录
         app('common')->certsRepo()->create($input);
         return zcjy_callback_data('我们已收到您的实名认证记录,请等待审核通过',0,'web');
+    }
+
+    // 发起关注/取消关注
+    public function attentionHouses(Request $request,$house_id)
+    {
+        $user = auth('web')->user();
+
+        return app('common')->attentionHouses($user->id,$house_id);
+
     }
 
 

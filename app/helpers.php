@@ -466,3 +466,12 @@ function settingList($attr){
   return $list_arr;
 }
 
+
+//空格列表处理
+function spaceList($attr)
+{
+  $list= preg_replace("/\n|\r\n/", "_",$attr);
+  
+  return explode('_',$list);;
+}
+

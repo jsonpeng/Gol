@@ -58,6 +58,7 @@
 
 
 @section('js')
+ @include('front.auth.usercenter_js')
 <script type="text/javascript">
   $.zcjyFrameOpen($('.gol_choose_role').html(),'请选择',['60%', '380px']);
 </script>

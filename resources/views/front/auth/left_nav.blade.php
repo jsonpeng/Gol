@@ -16,12 +16,27 @@
 <div id="import_user_image_box" style="display: none;">
     <div style='width:350px; padding: 0 15px;height: 100%;'>
         <form id="import_form" class="import_class">
+
+            <div style='width:320px;padding: 0px 0px 0px 0px;' class='form-group has-feedback' style="">
+                 <label>个人简介:</label>
+                 <div class="input-append " style="">
+                    
+                    <textarea class="form-control brief" rows="3" name="brief">{!! $user->brief !!}</textarea>
+
+                 </div>
+
+            </div>
+
             <div style='width:320px;padding: 0px 0px 0px 0px;' class='form-group has-feedback attach' style="">
-                 <label>上传文件:</label>
-                 <div class="input-append type_files" style="">
-                      <a href="javascript:;"  class="btn upload_file" type="button" >请把要上传的文件拖动到这</a>
-                      <input type="hidden" name="head_image" value="" />
-                      <img src="" style="max-width: 100px;height: auto;">
+                 <label>个人头像:</label>
+                 <div class="input-append type_files" style="border: 1px solid #ccc; padding: 15px;">
+                      @if(empty($user->head_image))
+                      <a href="javascript:;"  class="btn upload_file" type="button" >请把要上传的头像拖动到这</a>
+                      @else
+                      <a href="javascript:;"  class="btn upload_file" type="button" >把图片拖动到这可更换头像</a>
+                      @endif
+                      <input type="hidden" name="head_image" value="{!! $user->head_image !!}" />
+                      <img src="{!! $user->head_image !!}" style="max-width: 100px;height: auto;">
                  </div>
 
             </div>

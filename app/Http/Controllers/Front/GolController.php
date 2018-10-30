@@ -61,6 +61,7 @@ class GolController extends Controller
         $error = null;
         if(!isset($hourse->hourse)){
             $error = $hourse;
+             return view('front.gol.many_detail',compact('error'));
         }
         #取出小屋
         $hourse = $hourse->hourse;
@@ -74,7 +75,14 @@ class GolController extends Controller
         $hourse_user_has_num = count($hourse_user_hourses);
         #小屋新主的支持人数
         $hourse_user_support_num = app('common')->houseRepo()->hourseAllPeoples($hourse_user_hourses);
-        return view('front.gol.many_detail',compact('error','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num'));
+        $user = auth('web')->user();
+        #关注状态
+        $attention_status = false;
+        if(!empty($user)){
+              $attention_status = app('common')->varifyHouseAttentionStatus($user->id,$id);
+        }
+      
+        return view('front.gol.many_detail',compact('error','id','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num','user','attention_status'));
     }
 
     //gol系列

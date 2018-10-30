@@ -197,11 +197,20 @@
         <script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="{{asset('js/touch.js')}}"></script>
         <script src="{{ asset('vendor/layer/layer.js') }}"></script>
+        <script  src="{{ asset('vendor/scrollreveal.min.js') }}"></script>
 {{--         <script src="{{ asset('js/main.js') }}"></script> --}}
         <script src="{{asset('js/zcjy.js')}}"></script>
         <script src="{{asset('js/banner.js')}}"></script>
         <script src="{{asset('js/jq_goup.js')}}"></script>
         <script type="text/javascript">
+        window.sr = ScrollReveal({ reset: true });
+
+        sr.reveal('.reveal', { duration: 2000 }, 50);
+        sr.reveal('.reveal1', { duration: 2000 }, 50);
+        sr.reveal('.reveal2', { duration: 2000 }, 50);
+        sr.reveal('.reveal3', { duration: 2000 }, 50);
+        sr.reveal('.reveal4', { duration: 2000 }, 50);
+        sr.reveal('.reveal5', { duration: 2000 }, 50);
         //自动加载返回顶部插件
         $(document).ready(function () {
             $.goup({

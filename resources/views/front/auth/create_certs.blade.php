@@ -63,7 +63,7 @@
                              <input type="hidden" class="current_src form-control" name="current_image_src[]" value="" />
                             <div class="type_files attach">
                               <input type="hidden" name="face_image" value="" />
-                              <img src="{{ asset('images/trade/front.jpg') }}"  class="img_auto"  alt="">
+                              <img src="{{ asset('images/trade/front.jpg') }}"  class="img_auto" style="max-height: 200px;"  alt="">
                             </div>
                           </div>
 
@@ -71,7 +71,7 @@
                             <input type="hidden" class="current_src form-control" name="current_image_src[]" value="" />
                           <div class=" type_files ">
                             <input type="hidden" name="back_image" value="" />
-                            <img src="{{ asset('images/trade/back.jpg') }}"  class="img_auto" alt="">
+                            <img src="{{ asset('images/trade/back.jpg') }}"  class="img_auto" style="max-height: 200px;" alt="">
                           </div>
                           </div>
 
@@ -79,7 +79,7 @@
                                 <input type="hidden" class="current_src" name="current_image_src[]" value="" />
                                 <div class="col-sm-4 cardImgItem handImage type_files">
                                   <input type="hidden" name="hand_image" value="" />
-                                  <img src="{{ asset('images/trade/hold.jpg') }}"  class="img_auto" alt="">
+                                  <img src="{{ asset('images/trade/hold.jpg') }}"  class="img_auto" style="max-height: 200px;" alt="">
                                 </div>
                               {{--   <div class="col-sm-6 cardImgItem tackphoto type_files">
                                   <img src="{{ asset('images/trade/camare.jpg') }}" alt="">

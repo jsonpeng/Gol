@@ -92,6 +92,7 @@
 
 
 @section('js')
+ @include('front.auth.usercenter_js')
 <script type="text/javascript">
   $('.gol_notice_unread').click(function(){
     var that = this;

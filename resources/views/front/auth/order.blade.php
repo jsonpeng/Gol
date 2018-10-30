@@ -44,3 +44,7 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+ @include('front.auth.usercenter_js')
+@endsection

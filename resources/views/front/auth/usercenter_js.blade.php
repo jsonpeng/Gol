@@ -8,7 +8,7 @@
             closeBtn: false,
             shift: 7,
             shadeClose: true,
-            title:'请把要上传的头像拖动到这',
+            title:'修改个人信息',
             content: $('#import_user_image_box').html()
         });
     });
@@ -77,14 +77,18 @@
         click_dom = $(this);
         // $('input[type=file]').trigger('click');
     });
-
+    var brief;
+    $(document).on('keyup change','.brief',function(){
+        brief = $('.brief:eq(1)').text();
+        console.log(brief);
+    });
 
     function enterImport(obj){
         $.zcjyRequest('/ajax/update_user',function(res){
             if(res){
                 $.alert('上传更新成功');
                 layer.closeAll();
-                $('.gol_usercenter_headimg').attr('src',head_image);
+                location.reload();
             }
         },$($(obj).parent()).serialize(),'POST');
     }

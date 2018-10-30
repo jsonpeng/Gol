@@ -109,7 +109,7 @@ class CommonRepository
      public function varifyHouseAttentionStatus($user_id,$house_id)
      {
         $user_house = AttentionHouse::where('user_id',$user_id)->where('house_id',$house_id)->first();
-        return $user_house ? true : false;
+        return $user_house ? $user_house : false;
      }
 
      /**

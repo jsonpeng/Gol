@@ -7,7 +7,7 @@ use Overtrue\Socialite\User as SocialiteUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Config;
 
-class ZCJYWebCertMiddleware
+class WebCertMiddleware
 {
     /**
      * Handle an incoming request.

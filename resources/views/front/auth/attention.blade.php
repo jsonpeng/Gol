@@ -1,7 +1,19 @@
 @extends('front.partial.base')
 
 @section('css')
-
+<style type="text/css">
+    /**
+  *tab
+  */
+  .nav>li>a {
+      padding: 15px;
+  }
+  .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: white;
+    background: #FF5511;
+    border: 1px solid #FF5511;
+  }
+</style>
 @endsection
 
 @section('seo')
@@ -31,7 +43,32 @@
           		</div>
 
                 <div class="content pb220">
-              
+
+                  <ul id="myTab" class="nav nav-tabs mb25">
+                    <li class="active">
+                      <a href="#home" data-toggle="tab">
+                         我关注的小屋
+                      </a>
+                    </li>
+                    <li><a href="#gol" data-toggle="tab">我关注的Gol</a></li>
+                  </ul>
+
+                  <div id="myTabContent" class="tab-content ">
+
+                      <div class="tab-pane fade in active " id="home">
+                              
+                      </div>
+
+                      <div class="tab-pane fade" id="gol">
+                          
+                      </div>
+
+                    
+                
+                    </div>
+
+
+
                 </div>
                   
                
@@ -43,4 +80,8 @@
           </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+ @include('front.auth.usercenter_js')
 @endsection

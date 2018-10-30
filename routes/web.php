@@ -45,25 +45,34 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	#发送邮箱验证码
 	Route::post('send_mail_code/{type?}','AjaxController@sendEmailCode');
 	#给用户发通知消息
-	Route::post('send_notice/{user_id}','AjaxController@sendOneUserNotice');
+	Route::post('send_notice/{user_id}','AjaxController@sendOneUserNoticeAdmin');
 	#给所有用户发通知消息
 	Route::post('send_group_notice','AjaxController@sendAllUserNotice');
 	#设置单条通知消息为已读
 	Route::get('set_notice_readed/{id}','AjaxController@setNoticeReaded');
+
 	/**
 	 *需要用户登录后才可以操作
 	 */
-	##更新用户信息
-	Route::post('update_user','AjaxController@updateUserApi');
+	Route::group(['middleware'=>['webAuth']],function(){
+		##更新用户信息
+		Route::post('update_user','AjaxController@updateUserApi');
 
-	##用户发布小屋
-	Route::post('auth_house_publish','AjaxController@authHousePublish');
+		##用户发布小屋
+		Route::post('auth_house_publish','AjaxController@authHousePublish');
 
-	##用户发布gol
-	Route::post('auth_gol_publish','AjaxController@authGolPublish');
+		##用户发布gol
+		Route::post('auth_gol_publish','AjaxController@authGolPublish');
 
-	##发起实名认证
-	Route::post('certs/publish','AjaxController@certsPublish');
+		##发起实名认证
+		Route::post('certs/publish','AjaxController@certsPublish');
+
+		##用户给用户发私信
+		Route::post('send_sixin/{user_id}','AjaxController@sendOneUserNoticeSiXin');
+
+		##发起关注
+		Route::post('attention_house/{house_id}','AjaxController@attentionHouses');
+	});
 	
 });
 

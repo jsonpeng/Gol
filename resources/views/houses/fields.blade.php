@@ -11,6 +11,17 @@
 </div>
 
 <div class="form-group col-sm-8">
+        {!! Form::label('image', '小屋主图:') !!}
+
+        <div class="input-append">
+            {!! Form::text('image', null, ['class' => 'form-control', 'id' => 'image']) !!}
+            <a data-toggle="modal" href="javascript:;" data-target="#myModal" class="btn" type="button" onclick="changeImageId('image')">选择图片</a>
+            <img src="@if($house) {{$house->image}} @endif" style="max-width: 100%; max-height: 150px; display: block;">
+        </div>
+
+</div>
+
+<div class="form-group col-sm-8">
                     {!! Form::label('plan_address', '小屋计划书:') !!}
 
                     <div class="input-append type_files">
@@ -34,7 +45,7 @@
 <!-- Gear Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('gear', '档位:') !!}
-    {!! Form::text('gear', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('gear', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Type Field -->
@@ -50,7 +61,7 @@
 
 <!-- Target Field -->
 <div class="form-group col-sm-8">
-    {!! Form::label('target', '目标金额:') !!}
+    {!! Form::label('target', '目标金额:(万)') !!}
     {!! Form::text('target', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -67,10 +78,21 @@
 </div>
 
 <!-- Endtime Field -->
-<div class="form-group col-sm-8">
+<div class="form-group col-sm-6">
     {!! Form::label('endtime', '结束时间:') !!}
     {!! Form::text('endtime', null, ['class' => 'form-control']) !!}
 </div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('put_time', '上架时间:') !!}
+    {!! Form::text('put_time', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-8">
+    {!! Form::label('index_show', '权重比例:(比例越高首页显示越靠前)') !!}
+    {!! Form::number('index_show', null, ['class' => 'form-control']) !!}
+</div>
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

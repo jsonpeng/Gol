@@ -235,13 +235,17 @@ class HouseRepository extends BaseRepository
         }
 
         #进度
-        $progress = $price/$hourse->target > 1 ? 100 : round($price/$hourse->target*100);
+        $progress = $price/$hourse->target > 1 ? 100 : round($price/($hourse->target*10000)*100);
         #总共支持金额
         $hourse['all_price'] =  $price;
         #累计支持人数
         $hourse['support_people'] =  $support_people;
         #进度
         $hourse['progress'] =  $progress;
+        #所有档位
+        $hourse['all_gears'] = spaceList($hourse->gear);
+        #最低档位
+        $hourse['min_gears'] = isset($hourse['all_gears'][0]) ? $hourse['all_gears'][0] : 0;
         return $hourse;
     }
 
@@ -272,6 +276,10 @@ class HouseRepository extends BaseRepository
 
         if(empty($hourse)){
             return '没有找到该小屋';
+        }
+
+        if($hourse->status != '已发布' && $hourse->status != '已完成'){
+            return '该小屋'.$hourse->status;
         }
 
         $hourse = $this->dealJoins($hourse);

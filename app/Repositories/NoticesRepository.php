@@ -36,8 +36,13 @@ class NoticesRepository extends BaseRepository
     /**
      * [给用户发通知消息]
      */
-    public function sendNoticeToUser($user_id,$content){
-        $content = '[系统消息]'.$content;
+    public function sendNoticeToUser($user_id,$content,$send_user=null){
+        if(empty($send_user)){
+            $content = '[系统消息]'.$content;
+        }
+        else{
+            $content = '['.tag($send_user->name).'的私信]'.$content;
+        }
         $notice = Notices::create([
             'content' => $content,
             'user_id' => $user_id
