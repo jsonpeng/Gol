@@ -155,14 +155,14 @@
 		@foreach($travels as $post)
 		<?php $i++;?>
 			<a class="gol_four_img p_relative mb25" href="/post/{!! $post->id !!}" style="color: black;">
-				<div class="w50 h163 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif">
+				<div class="w50 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
 					<p class="mt15">{!! des($post->brief,35) !!}</p>
 					<span class="pt15 pb50">READ MORE</span>
 				</div>
 				<div class="w50 gol_post_img">
-					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto" style="max-width: 220px;height: 100%;" />
+					<img src="{!! $post->image !!}" onerror="javascript:this.src='/images/gol/post.jpeg';" class="img_auto"  />
 				</div>
 			</a>
 		@endforeach
