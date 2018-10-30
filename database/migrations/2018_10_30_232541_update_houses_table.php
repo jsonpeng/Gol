@@ -17,7 +17,7 @@ class UpdateHousesTable extends Migration
             
             $table->string('plan_address')->nullable()->comment('小屋计划书地址');
 
-            $table->integer('index_show')->nullable()->default(0)->comment('首页展示 权数越高排序越靠前')
+            $table->integer('index_show')->nullable()->default(0)->comment('首页展示 权数越高排序越靠前');
       
         });
     }
