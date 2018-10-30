@@ -29,7 +29,7 @@ class CreateHousesTable extends Migration
             $table->string('address')->comment('小屋地址');
             $table->string('image')->nullable()->comment('小屋主图');
             
-            $table->string('content')->nullable()->comment('小屋详情内容');
+            $table->longtext('content')->nullable()->comment('小屋详情内容');
             $table->integer('view')->nullable()->default(0)->comment('浏览量');
             $table->string('gear')->nullable()->comment('档位金额 多个用空格换行');
             $table->string('type')->comment('类型 青旅|客栈|民宿|空间');

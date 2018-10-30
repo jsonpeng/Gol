@@ -10,6 +10,15 @@
     {!! Form::text('address', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-8">
+                    {!! Form::label('plan_address', '小屋计划书:') !!}
+
+                    <div class="input-append type_files">
+                        {!! Form::text('plan_address', null, ['class' => 'form-control', 'id' => 'plan_address']) !!}
+                        @if(isset($house))<a  href="{!! $house->plan_address !!}" class="btn" target="_blank" type="button">预览查看</a>@endif
+                    </div>
+</div>
+
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', '小屋详情:') !!}

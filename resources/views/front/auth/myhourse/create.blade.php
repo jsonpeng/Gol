@@ -121,13 +121,13 @@
 
                               <!-- Gear Field -->
                               <div class="form-group col-sm-6">
-                                  {!! Form::label('gear', '档位:') !!}
-                                  {!! Form::number('gear', null, ['class' => 'form-control']) !!}
+                                  {!! Form::label('gear', '档位:(多个用空格分隔)') !!}
+                                  {!! Form::textarea('gear', null, ['class' => 'form-control']) !!}
                               </div>
 
                               <!-- Target Field -->
                               <div class="form-group col-sm-6">
-                                  {!! Form::label('target', '目标金额:') !!}
+                                  {!! Form::label('target', '目标金额:(万)') !!}
                                   {!! Form::number('target', null, ['class' => 'form-control']) !!}
                               </div>
 
