@@ -192,7 +192,10 @@ class GolController extends Controller
     //个人中心 -> 我的关注
     public function authAttention(Request $request)
     {
-        return view('front.auth.attention');
+        $user = auth('web')->user();
+        #关注的小屋
+        $houses = app('common')->userAttentionHouses($user->id);
+        return view('front.auth.attention',compact('houses'));
     }
 
     //通知中心

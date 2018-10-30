@@ -56,7 +56,33 @@
                   <div id="myTabContent" class="tab-content ">
 
                       <div class="tab-pane fade in active " id="home">
-                              
+                              <table class="table table-responsive" id="houses-table">
+                                  <thead>
+                                      <tr>
+                                      <th>小屋主图</th>
+                                      <th>小屋名称</th>
+                                      <th>小屋地址</th>
+                                      <th>浏览量</th>
+                                      <th>小屋类型</th>
+                                      <th>目标(万)</th>
+                                      <th>状态</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                  @foreach($houses as $house)
+                                      <tr>
+                                          <td><img src="{!! $house->image !!}" style="max-width: 120px;height: auto;"></td>
+                                          <td>{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
+                                          <td>{!! $house->address !!}</td>
+                                          <td>{!! $house->view !!}</td>
+                                          <td>{!! $house->type !!}</td>
+                                          <td>{!! $house->target !!}</td>
+                                          <td>{!! $house->status !!}</td>
+                                      </tr>
+                                  @endforeach
+                                  </tbody>
+                              </table>
+                              {!! $houses->appends('')->links() !!}
                       </div>
 
                       <div class="tab-pane fade" id="gol">
