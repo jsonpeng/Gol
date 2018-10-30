@@ -47,7 +47,8 @@ class House extends Model
         'district',
         'lat',
         'lon',
-        'plan_address'
+        'plan_address',
+        'index_show'
     ];
 
     /**

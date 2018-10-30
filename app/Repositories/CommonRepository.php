@@ -98,7 +98,6 @@ class CommonRepository
         return $this->houseRepo()->model()::whereIn('id',$house_arr)
         ->where('status','<>','审核中')
         ->paginate(15);
-
      }
 
      /**
