@@ -74,7 +74,7 @@ class NoticesRepository extends BaseRepository
             $read = $read ? 1 : 0;
             if(!empty($user)){
                 $notices = Notices::where('user_id',$user->id);
-                return $read ?  $notices->orderBy('created_at','desc')->paginate(15) : $notices->where('read',$read)->get();
+                return $read ?  $notices->orderBy('created_at','desc')->paginate(10) : $notices->where('read',$read)->get();
             }
             else{
                 return [];

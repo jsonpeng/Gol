@@ -41,10 +41,8 @@
 		line-height: 20px;
 		border: 1px solid rgba(187, 187, 187, 1);
 	}
-	/**
-	*tab
-	*/
-	.nav>li>a {
+
+	#myTab>li>a {
     	padding: 15px;
 	}
 	.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
@@ -133,7 +131,6 @@
 
 			
 			</div>
-			
 			</div>
 
 			<div class="col-sm-5 reveal2">

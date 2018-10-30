@@ -449,16 +449,22 @@ class FrontController extends Controller
     public function searchPage(Request $request)
     {
         $input = $request->all();
+        //文章
         $messages = [];
+        //小屋
+        $houses = [];
+        //gol
+        $gols = [];
         $count = 0;
         if(isset($input['word']) && !empty($input['word'])){
-            $messages = $this->postRepository->searchPosts($input['word'],1);
-            $count = count($this->postRepository->searchPosts($input['word']));
+            $messages = $this->postRepository->searchPosts($input['word']);
+            $houses = app('common')->houseRepo()->queryHourses($input['word'],false);
+            $count = count($messages)+count($houses);
         }
         else{
             return redirect('/');
         }
-        return view('front.search',compact('messages','input','count'));
+        return view('front.search',compact('houses','messages','input','count'));
     }
 
 

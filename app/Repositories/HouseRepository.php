@@ -53,6 +53,7 @@ class HouseRepository extends BaseRepository
                 ->get();
     }
 
+
     /**
      * 关注人数
      * @param  [type] $house_id [description]
@@ -102,7 +103,8 @@ class HouseRepository extends BaseRepository
                 ->orWhere('target','like','%'.$word.'%')
                 ->orderBy('created_at','desc')
                 ->with('join');
-            $houses = $paginate ? $houses->paginate(15) : $houses->get();     
+        $houses = $paginate ? $houses->paginate(15) : $houses->get();  
+        $houses = $this->dealHoursesPrice($houses);   
         return $houses;
     }
 

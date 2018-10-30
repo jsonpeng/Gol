@@ -134,7 +134,7 @@
                               <div class="form-group col-sm-8" >
                                       {!! Form::label('endtime', '结束时间:') !!}
                                       <div class='input-group date' id='time_end'>
-                                          {!! Form::text('endtime', null, ['class' => 'form-control', 'maxlength' => '10']) !!}
+                                          {!! Form::text('endtime', $endtime, ['class' => 'form-control', 'maxlength' => '10']) !!}
                                           <span class="input-group-addon">
                                               <span class="glyphicon glyphicon-calendar"></span>
                                           </span>

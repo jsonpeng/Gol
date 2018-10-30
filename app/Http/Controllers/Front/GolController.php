@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Front;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class GolController extends Controller
 {
@@ -9,6 +10,7 @@ class GolController extends Controller
     //首页
     public function index(Request $request)
     { 
+    
         #首页展示小屋
         $houses = app('common')->houseRepo()->indexShowHouses();
 
@@ -27,7 +29,7 @@ class GolController extends Controller
         $input = $request->all();
 
         $hourses = [];
-
+        $hourses_count = 0;
          //正在参与
         $hourses_now_join =  [];
 
@@ -39,6 +41,7 @@ class GolController extends Controller
 
         if(array_key_exists('word',$input) && !empty($input['word'])){
             $hourses = app('common')->houseRepo()->queryHourses($input['word']);
+            $hourses_count = count(app('common')->houseRepo()->queryHourses($input['word'],false));
         }
         else{
             //正在参与
@@ -51,7 +54,7 @@ class GolController extends Controller
             $hourses_for_sale =  app('common')->houseRepo()->forSaleHouses(); 
         }
 
-        return view('front.gol.many',compact('input','type','hourses','hourses_now_join','hourses_near_end','hourses_for_sale'));
+        return view('front.gol.many',compact('input','type','hourses','hourses_count','hourses_now_join','hourses_near_end','hourses_for_sale'));
     }
 
     //很多人详情
@@ -147,7 +150,8 @@ class GolController extends Controller
         $cities_level1 = app('common')->cityRepo()->getLevelNumCities(1);
         $cities_level2 = [];
         $cities_level3 = [];
-        return view('front.auth.myhourse.create',compact('all_types','projects','cities_level1','cities_level2','cities_level3'));
+        $endtime = Carbon::now()->addDays(7)->format('Y-m-d');
+        return view('front.auth.myhourse.create',compact('all_types','projects','cities_level1','cities_level2','cities_level3','endtime'));
     }
 
     //我的gol 商户主页

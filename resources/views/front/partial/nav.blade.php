@@ -141,7 +141,7 @@
 						  <div class="form-group">
 						    <div class="input-group">
 						      <input type="text" class="form-control" name="search_all" placeholder="全站搜索">
-						      <div class="input-group-addon"><img src="/images/gol/search_gray.png" /></div>
+						      <div class="input-group-addon site_search_all"><img src="/images/gol/search_gray.png" /></div>
 						    </div>
 						  </div>
 						</form>
@@ -181,13 +181,13 @@
 		@foreach ($banners as $banner)
 		<?php $num++; ?>
 			@if($num==1)
-			<div class="item active reveal">
+			<a class="item active ">
 				<img src="{{ $banner->image }}" alt="">
-			</div>
+			</a>
 			@else
-			<div class="item reveal">
+			<a class="item ">
 				<img src="{{ $banner->image }}" alt="">
-			</div>
+			</a>
 			@endif
 		@endforeach
   	</div>

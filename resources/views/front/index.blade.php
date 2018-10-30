@@ -77,10 +77,44 @@
 <div class="">
 	<div class="container">
 
-		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_other" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
+		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_hourse" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
 
 	</div>
 </div>
+
+@if(count($houses))
+	<!-- 小屋家 -->
+	<div class="pt30">
+		<div class="container">
+			<div class="text-center  f24">———&nbsp;&nbsp;小屋家&nbsp;&nbsp;———</div>
+					<div class="gol_house_show mt30">
+						<div id="carousel-example-generic-hourse" class="carousel-hourse slide banner-slide" data-ride="carousel">
+							<div class="carousel-inner" role="listbox" style="max-height: 540px;">
+								<?php $num = 0;?>
+								@foreach ($houses as $house)
+								<?php $num++; ?>
+									@if($num==1)
+									<a class="item in-block active " href="/manyDetail/{!! $house->id !!}">
+										<img src="{{ $house->image }}" alt="">
+									</a>
+									@else
+									<a class="item in-block " href="/manyDetail/{!! $house->id !!}">
+										<img src="{{ $house->image }}" alt="">
+									</a>
+									@endif
+								@endforeach
+						  	</div>
+						</div>
+					<!-- 	@foreach ($houses as $house)
+							<div class="item text-center mt30 bd" href="/manyDetail/{!! $house->id !!}">
+								<img src="{{ $house->image }}" class="" style="width: 880px;height: auto;" alt="">
+							</div>
+						@endforeach -->
+					</div>
+		</div>
+	</div>
+@endif
+
 
 <!-- 小屋推荐 -->
 <div class="pt30">
@@ -262,19 +296,32 @@
 	<script type="text/javascript" src="{{  asset('js/jquery.SuperSlide.2.1.1.js') }}"></script>
 	<script>
 		$(function(){
+
 			$('.gol_xilie').mouseover(function(){
 				$(this).find('.gol_corver').css('height',0);
 				$(this).find('.gol_corver_text').css('opacity',1);
 			});
+			
 			$('.gol_xilie').mouseout(function(){
 				$(this).find('.gol_corver').css('height','100%');
 				$(this).find('.gol_corver_text').css('opacity',0);
 			});
 
+			//消息滚动
 			jQuery(".txtMarquee-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",interTime:50,trigger:"click"});
 
+			//通知消息跳转
 			$('.gol_location_notice').click(function(){
 				location.href="/user/center/notice";
+			});
+
+			//搜索小屋
+			$('.gol_search_button').click(function(){
+				if($.empty($('input[name=search_hourse]').val())){
+					$.alert('请输入搜索关键字');
+					return ;
+				}
+				location.href="/manyMan?word="+$('input[name=search_hourse]').val();
 			});
 			
 		});	

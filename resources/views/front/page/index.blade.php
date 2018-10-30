@@ -10,14 +10,14 @@
 <div class="container main-box mt30">
 		<div class="main ">
 			<div class="content">
-				<div class="detail-title text-center">
+				<div class="detail-title text-center reveal1">
 					<h4>{!! $page->name !!}</h4>
 					<p class="mt15 mb25">
 						<span>发布者 : Gol</span>
-						<span class="news-date">{!! time_parse($page->created_at)->format('Y/m/d') !!}</span>
+						<span class="news-date ml25">{!! time_parse($page->created_at)->format('Y/m/d') !!}</span>
 					</p>
 				</div>
-				<div class="detail-content">
+				<div class="detail-content reveal2">
 					<p>{!! $page->content !!}</p>
 				</div>
 			</div>

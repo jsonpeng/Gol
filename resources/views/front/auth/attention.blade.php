@@ -5,7 +5,7 @@
     /**
   *tab
   */
-  .nav>li>a {
+  #myTab>li>a {
       padding: 15px;
   }
   .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{

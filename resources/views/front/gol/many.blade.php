@@ -36,6 +36,11 @@
 	border-bottom: none;
 }
 
+.gol_many_post_item > img{
+	height: 200px;
+}
+
+
 </style>
 @endsection
 
@@ -47,20 +52,61 @@
 
 @section('content')
 
-<!-- 数据显示 -->
-<div class="text-center reveal1">
-	<div class="gol_many_des"><p>1000<span>万</span></p><p style="color: red;">￥<span>累计支持金额</span></p><div class="gol_many_xiexian"> </div></div>
-	<div class="gol_many_des"><p>200<span>万</span></p><p style="color: red;">￥<span>单项最高支持金额</span></p><div class="gol_many_xiexian"> </div></div>
-	<div class="gol_many_des"><p>30<span>万</span></p><p style="color: red;">￥<span>累计支持人数</span></p><div class="gol_many_xiexian"> </div></div>
-	<div class="gol_many_des"><p>0.4<span>万</span></p><p style="color: red;">￥<span>单项最高支持人数</span></p></div>
-</div>
-
+@if(!array_key_exists('word',$input))
+	<!-- 数据显示 -->
+	<div class="text-center reveal1">
+		<div class="gol_many_des"><p>1000<span>万</span></p><p style="color: red;">￥<span>累计支持金额</span></p><div class="gol_many_xiexian"> </div></div>
+		<div class="gol_many_des"><p>200<span>万</span></p><p style="color: red;">￥<span>单项最高支持金额</span></p><div class="gol_many_xiexian"> </div></div>
+		<div class="gol_many_des"><p>30<span>万</span></p><p style="color: red;">￥<span>累计支持人数</span></p><div class="gol_many_xiexian"> </div></div>
+		<div class="gol_many_des"><p>0.4<span>万</span></p><p style="color: red;">￥<span>单项最高支持人数</span></p></div>
+	</div>
+@endif
 
 
 <div class="container ">
 	@if(array_key_exists('word',$input) && !empty($input['word']))
 	<!-- 搜索小屋 -->
+		<div class="text-center f24 reveal2 mt30">搜索关键字{!! tag($input['word']) !!},为你搜索到以下{!! tag($hourses_count) !!}个小屋</div>
+		@if(count($hourses))
+			<div class="pt30 pb50">
+				<div class="row">
+					@foreach ($hourses as $item)
+						<?php $item=optional($item);?>
+						<!-- 单个结构 -->
+						<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item->id !!}">
+							<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
+							<h4>{!! $item->name !!}</h4>
+							<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+							<p>{!! des($item->content,30)!!}</p>
+							<div class="progress">
+								<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4">
+									<p class="text-center">￥{!! $item->min_gears !!}起</p>
+									<p class="text-center">最低档位</p>
+			 					</div>
+								<div class="col-sm-4">
+									<p class="text-center">￥{!! $item->target !!}万</p>
+									<p class="text-center">目标</p>
+								</div>
+								<div class="col-sm-4">
+									<p class="text-center">￥{!! $item->all_price !!}</p>
+									<p class="text-center">已筹</p>
+								</div>
+							</div>
+						</a>
+					@endforeach
 
+				</div>
+				<div class="text-center">
+					{!! $hourses->appends($input)->links() !!}
+				</div>
+			</div>
+		@else
+		<h4 class="text-center mt30 pb120">暂时没有其他的小屋</h4>
+		@endif
 	@else
 
 	@if(count($hourses_now_join))

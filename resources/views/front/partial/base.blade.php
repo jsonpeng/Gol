@@ -34,6 +34,7 @@
             word-wrap:break-word;
             font-size: 16px;
          }
+         .in-block{display: inline-block;}
         .p_relative{position: relative;}
         a:hover { color: #FF5511; text-decoration: underline; }
         .border_b{border-bottom: 1px solid #bbb;}
@@ -222,8 +223,11 @@
         });
         $('.carousel').carousel({
             interval: 1500
-        })
-        $("#carousel-example-generic").swipe({
+        });
+        $('.carousel-hourse').carousel({
+            interval: 2000
+        });
+        $("#carousel-example-generic,#carousel-example-generic-hourse").swipe({
             swipeLeft: function() { $(this).carousel('next'); },
             swipeRight: function() { $(this).carousel('prev'); },
         });
