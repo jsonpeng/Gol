@@ -49,17 +49,18 @@
                 }
                 console.log(click_dom);
                 if(data.message.type == 'image'){
-                    click_dom.find('input').val(data.message.src);
+                 
                     click_dom.find('img').attr('src',data.message.src);
                     head_image = data.message.src;
                 }
-                else if(data.message.type == 'sound'){
+                else if(data.message.type == 'word'){
                    
                 }
                 else if(data.message.type == 'excel'){
                  
                   
                 }
+                click_dom.find('input').val(data.message.src);
             }
             else{
                 click_dom.find('a').text('上传失败╳ ');

@@ -269,9 +269,14 @@ function uploadFiles($file , $api_type = 'web' , $user = null,$insert_shuiyin=fa
         #文件实际后缀
         $file_suffix = $file->getClientOriginalExtension();
         if(!empty($file)) {
+              #图片
               $img_extensions = ["png", "jpg", "gif","jpeg"];
+              #音频
               $sound_extensions = ["PCM","WAVE","MP3","OGG","MPC","mp3PRo","WMA","wma","RA","rm","APE","AAC","VQF","LPCM","M4A","cda","wav","mid","flac","au","aiff","ape","mod","mp3"];
+              #excel
               $excel_extensions = ["xls","xlsx","xlsm"];
+              #word pdf ppt
+              $word_extensions = ["PDF","pdf","doc","docx","ppt","pptx","pps","ppsx","pot","ppa"];
               if ($file_suffix && !in_array($file_suffix , $img_extensions) && !in_array($file_suffix , $sound_extensions) && !in_array($file_suffix,$excel_extensions)) {
                  // return zcjy_callback_data('上传文件格式不正确',1,$api_type);
               }
@@ -284,6 +289,10 @@ function uploadFiles($file , $api_type = 'web' , $user = null,$insert_shuiyin=fa
               if(in_array($file_suffix,$excel_extensions)){
                 $file_type = 'excel';
               }
+              if(in_array($file_suffix,$word_extensions)){
+                $file_type = 'word';
+              }
+
           }
 
         #文件夹
