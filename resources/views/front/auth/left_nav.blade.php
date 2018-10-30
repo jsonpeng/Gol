@@ -7,6 +7,8 @@
             <li class="gol_usercenter_li @if(Request::is('user/center/order')) active @endif"><a href="/user/center/order">我的交易单</a>&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/attention')) active @endif"><a href="/user/center/attention">我的关注</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/notice')) active @endif"><a href="/user/center/notice">消息中心</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
+            <li class="gol_usercenter_li @if(Request::is('user/center/certs*')) active @endif"><a href="/user/center/certs">实名认证</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
+        
           </ul>
 </div>
 

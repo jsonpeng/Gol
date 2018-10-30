@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\House;
 use InfyOm\Generator\Common\BaseRepository;
+use App\Models\HouseJoin;
+
 
 /**
  * Class HouseRepository
@@ -39,15 +41,69 @@ class HouseRepository extends BaseRepository
         return House::class;
     }
 
-    //我的小屋
-    public function myHourses($user_id)
+
+    /**
+     * [加入小屋家]
+     * @param  [type] $user_id  [description]
+     * @param  [type] $house_id [description]
+     * @param  [type] $platform [description]
+     * @param  [type] $price    [description]
+     * @return [type]           [description]
+     */
+    public function joinHouse($user_id,$house_id,$platform,$price)
     {
-        return House::where('user_id',$user_id)
-                ->orderBy('created_at','desc')
-                ->paginate(15);
+        $house_join = HouseJoin::create([
+            'house_id' => 'integer',
+            'user_id' => 'integer',
+            'price' => 'float',
+            'pay_platform'=> $platform
+        ]);
+        $house_join->update([
+            'number'=>time().'_'.$house_join->id
+        ]);
+        return $house_join;
     }
 
-    //正在参与中的小屋
+    /**
+     * [搜索小屋]
+     * @param  [type] $word [description]
+     * @return [type]       [description]
+     */
+    public function queryHourses($word,$paginate=true)
+    {
+         $houses = House::where('status','已发布')
+                ->where('name','like','%'.$word.'%')
+                ->orWhere('content','like','%'.$word.'%')
+                ->orWhere('address','like','%'.$word.'%')
+                ->orWhere('gear','like','%'.$word.'%')
+                ->orWhere('target','like','%'.$word.'%')
+                ->orderBy('created_at','desc')
+                ->with('join');
+            $houses = $paginate ? $houses->paginate(15) : $houses->get();     
+        return $houses;
+    }
+
+    /**
+     * 我的小屋
+     * @param  [type] $user_id [description]
+     * @return [type]          [description]
+     */
+    public function myHourses($user_id)
+    {
+        $hourses = House::where('user_id',$user_id)
+                ->with('join')
+                ->orderBy('created_at','desc')
+                ->paginate(15);
+        $hourses = $this->dealHoursesPrice($hourses);
+        return $hourses;
+    }
+
+    /**
+     * 正在参与中的小屋
+     * @param  integer $skip [description]
+     * @param  integer $take [description]
+     * @return [type]        [description]
+     */
     public function nowJoinHouses($skip=0,$take=20)
     {
         $hourses = House::where('status','已发布')
@@ -60,7 +116,12 @@ class HouseRepository extends BaseRepository
         return $hourses;
     }
 
-    //即将结束的小屋
+    /**
+     * 即将结束的小屋
+     * @param  integer $skip [description]
+     * @param  integer $take [description]
+     * @return boolean       [description]
+     */
     public function isEndHouses($skip=0,$take=20)
     {
         $hourses = House::where('status','已发布')
@@ -73,7 +134,12 @@ class HouseRepository extends BaseRepository
         return $hourses;
     }
 
-    //即将上架的
+    /**
+     * 即将上架的
+     * @param  integer $skip [description]
+     * @param  integer $take [description]
+     * @return [type]        [description]
+     */
     public function forSaleHouses($skip=0,$take=20)
     {
         $hourses = House::where('status','已完成')
@@ -87,7 +153,11 @@ class HouseRepository extends BaseRepository
     }
 
 
-    //处理多个房子的价格
+    /**
+     * 处理多个房子的价格
+     * @param  [type] $hourses [description]
+     * @return [type]          [description]
+     */
     private function dealHoursesPrice($hourses)
     {
         if(count($hourses))
@@ -99,7 +169,11 @@ class HouseRepository extends BaseRepository
         return $hourses;
     }
 
-    //处理单个房子的进度
+    /**
+     * 处理单个房子的进度
+     * @param  [type] $hourse [description]
+     * @return [type]         [description]
+     */
     private function dealJoins($hourse)
     {
         #总金额
@@ -116,13 +190,23 @@ class HouseRepository extends BaseRepository
         }
 
         #进度
-        $progress = $price/$hourse->target > 1 ? 100 : $price/$hourse->target*100;
+        $progress = $price/$hourse->target > 1 ? 100 : round($price/$hourse->target*100);
+        #总共支持金额
         $hourse['all_price'] =  $price;
+        #累计支持人数
         $hourse['support_people'] =  $support_people;
+        #进度
         $hourse['progress'] =  $progress;
         return $hourse;
     }
 
+    /**
+     * [getHouses description]
+     * @param  [type]  $type [description]
+     * @param  integer $skip [description]
+     * @param  integer $take [description]
+     * @return [type]        [description]
+     */
     public function getHouses($type=null,$skip=0,$take=20)
     {
         return House::where('status','<>','审核中')
@@ -132,7 +216,11 @@ class HouseRepository extends BaseRepository
                ->get();
     }
 
-    //获取小屋详情
+    /**
+     * 获取小屋详情
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function getHouseDetail($id)
     {
         $hourse = $this->findWithoutFail($id);

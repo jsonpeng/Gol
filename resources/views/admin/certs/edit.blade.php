@@ -1,9 +1,9 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('content')
     <section class="content-header">
         <h1>
-            编辑该认证信息
+            编辑认证信息
         </h1>
    </section>
    <div class="content">

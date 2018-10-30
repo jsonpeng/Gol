@@ -46,7 +46,8 @@ class House extends Model
         'city',
         'district',
         'lat',
-        'lon'
+        'lon',
+        'plan_address'
     ];
 
     /**
@@ -59,7 +60,6 @@ class House extends Model
         'address' => 'string',
         'content' => 'string',
         'view' => 'integer',
-        'gear' => 'float',
         'type' => 'string',
         'target' => 'float',
         'status' => 'string',

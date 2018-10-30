@@ -88,6 +88,10 @@
                             {!! Form::text('address', null, ['class' => 'form-control']) !!}
                         </div>
 
+                        <div class="form-group col-sm-12 map" style="margin: 0 auto;display: none;">
+                                <div id="allmap" style="height: 300px;"></div>
+                        </div>
+
                         <div class="form-group col-sm-8">
                                     {!! Form::label('image', '项目主图:') !!}
 

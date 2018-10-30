@@ -114,6 +114,7 @@ class CertsController extends AppBaseController
      */
     public function update($id, UpdateCertsRequest $request)
     {
+        $input = $request->all();
         $certs = $this->certsRepository->findWithoutFail($id);
 
         if (empty($certs)) {
@@ -122,9 +123,11 @@ class CertsController extends AppBaseController
             return redirect(route('certs.index'));
         }
 
-        $certs = $this->certsRepository->update($request->all(), $id);
+        $this->certsRepository->update($input, $id);
 
         Flash::success('更新成功.');
+
+        app('notice')->sendNoticeToUser($certs->user_id,'gol管理员已将您的实名认证提交记录状态更新为'.tag($input['status']));
 
         return redirect(route('certs.index'));
     }

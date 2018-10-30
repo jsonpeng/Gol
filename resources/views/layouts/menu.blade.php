@@ -93,4 +93,8 @@
     <a href="javascript:;" id="refresh"><i class="fa fa-refresh"></i><span>刷新缓存</span></a>
 </li>
 
-
+{{-- 
+<li class="{{ Request::is('attentionGols*') ? 'active' : '' }}">
+    <a href="{!! route('attentionGols.index') !!}"><i class="fa fa-edit"></i><span>Attention Gols</span></a>
+</li>
+ --}}

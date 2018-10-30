@@ -338,6 +338,9 @@ function uploadFiles($file , $api_type = 'web' , $user = null,$insert_shuiyin=fa
  */
 function varifyInputParam($input,$attr=[],$valueOrKey='value'){
     $status = false;
+    if(!is_array($attr)){
+            $attr = explode(',',$attr);
+    }
     #第一种带键值但值为空的情况
     foreach ($input as $key => $val) {
         if(array_key_exists($key,$input)){

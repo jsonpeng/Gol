@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="messages-table">
     <thead>
         <tr>
-            <th>消息内容</th>
+            <th>公告内容</th>
 {{--             <th>邮箱</th> --}}
     <!--         <th>手机号</th>
             <th>预约课程名称</th>
@@ -20,6 +20,7 @@
             <td>
                 {!! Form::open(['route' => ['messages.destroy', $message->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
+                    <a href="{!! route('messages.edit', [$message->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                     {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('确认删除?')"]) !!}
                 </div>
                 {!! Form::close() !!}

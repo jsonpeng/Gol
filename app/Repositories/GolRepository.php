@@ -44,6 +44,20 @@ class GolRepository extends BaseRepository
     }
 
     /**
+     * [搜索gol]
+     * @param  [type] $word [description]
+     * @return [type]       [description]
+     */
+    public function queryGols($word)
+    {
+        return Gol::where('name','like','%'.$word.'%')
+                ->orWhere('content','like','%'.$word.'%')
+                ->orWhere('address','like','%'.$word.'%')
+                ->orWhere('price','like','%'.$word.'%')
+                ->get();
+    }
+
+    /**
      * [获取不同类型的gols]
      * @param  [type] $type [description]
      * @return [type]       [description]

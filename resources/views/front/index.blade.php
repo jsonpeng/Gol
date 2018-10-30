@@ -236,7 +236,7 @@
 							<ul>
 	        	     			@foreach($notifies as $notify)
 				                    <li class="ii h60" style="list-style: none;">
-				                    	{!! $notify->info !!}
+				                    	系统公告:{!! $notify->info !!}
 				                    </li> 
 			                   	@endforeach
 							</ul>

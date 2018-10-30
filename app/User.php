@@ -26,4 +26,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //认证信息
+    public function cert(){
+        return $this->hasOne('App\Models\Certs','user_id','id');
+    }
+
+    //收货地址列表
+    public function addresses()
+    {
+        return $this->hasMany('App\Models\Address', 'user_id', 'id');
+    }
 }

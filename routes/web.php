@@ -61,6 +61,9 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 
 	##用户发布gol
 	Route::post('auth_gol_publish','AjaxController@authGolPublish');
+
+	##发起实名认证
+	Route::post('certs/publish','AjaxController@certsPublish');
 	
 });
 
@@ -106,6 +109,10 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 			Route::get('center/project/gol_index','GolController@authGolIndex');
 			//我的gol 添加页
 			Route::get('center/project/gol_create','GolController@authGolCreate');
+			//实名认证管理
+			Route::get('center/certs','GolController@authCerts');
+			//发起实名认证
+			Route::get('center/certs/publish','GolController@publishCerts');
 
 		});
 	});
@@ -152,7 +159,7 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 	Route::get('/', 'SettingController@setting');
 	//通知消息
 	Route::resource('notices', 'NoticesController');
-	// //贷款管理
+	//贷款管理
 	// Route::resource('loans', 'LoansController');
 	//留言板
 	Route::resource('messageBoards', 'MessageBoardController');
@@ -191,7 +198,6 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 	Route::resource('{banner_id}/bannerItems', 'BannerItemController');
 	
-    
 	//菜单
 	Route::resource('menus', 'MenuController');
 	//合作伙伴
@@ -259,4 +265,6 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 
 
-Route::resource('attentionHouses', 'AttentionHouseController');
+// Route::resource('attentionHouses', 'AttentionHouseController');
+
+// Route::resource('attentionGols', 'AttentionGolController');

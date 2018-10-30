@@ -87,7 +87,11 @@
                                   {!! Form::text('address', null, ['class' => 'form-control']) !!}
                               </div>
 
-                                <div class="form-group col-sm-8">
+                              <div class="form-group col-sm-12 map" style="margin: 0 auto;display: none;">
+                                  <div id="allmap" style="height: 300px;"></div>
+                              </div>
+
+                               <div class="form-group col-sm-8">
                                     {!! Form::label('image', '项目主图:') !!}
 
                                     <div class="input-append type_files">
@@ -96,7 +100,7 @@
                                         <img src="" style="max-width: 100%; max-height: 150px; display: block;">
                                     </div>
 
-                                </div>
+                              </div>
 
                               <!-- Content Field -->
                               <div class="form-group col-sm-12 col-lg-12">

@@ -14,24 +14,27 @@
 <div class="form-group col-sm-12">
     {!! Form::label('face_image', '人脸照:') !!}
     {!! Form::text('face_image', null, ['class' => 'form-control']) !!}
+    <img src="{!! $certs->face_image !!}" style="max-width: 300px;height: auto;">
 </div>
 
 <!-- Back Image Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('back_image', '背面国徽照:') !!}
     {!! Form::text('back_image', null, ['class' => 'form-control']) !!}
+     <img src="{!! $certs->back_image !!}" style="max-width: 300px;height: auto;">
 </div>
 
 <!-- Hand Image Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('hand_image', '手持身份证照:') !!}
     {!! Form::text('hand_image', null, ['class' => 'form-control']) !!}
+     <img src="{!! $certs->hand_image !!}" style="max-width: 300px;height: auto;">
 </div>
 
 <!-- User Id Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('user_id', '发布人:') !!}
-    {!! Form::text('user_name', optional($certs->user()->first())->nickname, ['class' => 'form-control','readonly'=>'readonly']) !!}
+    {!! Form::text('user_name', optional($certs->user()->first())->name, ['class' => 'form-control','readonly'=>'readonly']) !!}
     {!! Form::hidden('user_id', null, ['class' => 'form-control']) !!}
 
 </div>

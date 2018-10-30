@@ -32,7 +32,11 @@ class HouseJoin extends Model
         'price',
         'number',
         'pay_status',
-        'pay_platform'
+        'pay_platform',
+        'hetong',
+        'receive_man',
+        'receive_mobile',
+        'receive_address'
     ];
 
     /**

@@ -8,10 +8,12 @@ use App\Repositories\CityRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MessageRepository;
-
+use App\Repositories\CertsRepository;
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
+
+use App\Models\AttentionHouse;
 
 /**
  * Class ClientRepository
@@ -31,13 +33,15 @@ class CommonRepository
      private $postRepository;
      private $categoryRepository;
      private $messageRepository;
+     private $certsRepository;
      public function __construct(
         HouseRepository $houseRepo,
         GolRepository $golRepo,
         CityRepository $cityRepo,
         PostRepository $postRepo,
         CategoryRepository $categoryRepo,
-        MessageRepository $messageRepo
+        MessageRepository $messageRepo,
+        CertsRepository $certsRepo
     ){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
@@ -45,6 +49,11 @@ class CommonRepository
         $this->postRepository = $postRepo;
         $this->categoryRepository = $categoryRepo;
         $this->messageRepository = $messageRepo;
+        $this->certsRepository = $certsRepo;
+     }
+
+     public function certsRepo(){
+        return $this->certsRepository;
      }
 
      public function messageRepo(){
@@ -71,6 +80,63 @@ class CommonRepository
         return $this->cityRepository;
      }
 
+
+     /**
+      * [用户关注的小屋]
+      * @param  [type] $user_id [description]
+      * @return [type]          [description]
+      */
+     public function userAttentionHouses($user_id)
+     {
+        $user_houses = AttentionHouse::where('user_id',$user_id)->orderBy('created_at','desc')->get();
+        $house_arr = []; 
+        if(count($user_houses)){
+            foreach ($user_houses as $key => $val) {
+               $house_arr[] = $val->house_id;
+            }
+        }
+        return $this->houseRepo()->model()::whereIn('id',$house_arr)
+        ->where('status','<>','审核中')
+        ->paginate(15);
+
+     }
+
+     /**
+      * [检查一下用户对小屋的关注状态]
+      * @param  [type] $user_id  [description]
+      * @param  [type] $house_id [description]
+      * @return [type]           [description]
+      */
+     public function varifyHouseAttentionStatus($user_id,$house_id)
+     {
+        $user_house = AttentionHouse::where('user_id',$user_id)->where('house_id',$house_id)->first();
+        return $user_house ? true : false;
+     }
+
+     /**
+      * [关注/取消关注 小屋]
+      * @param  [type] $user_id  [description]
+      * @param  [type] $house_id [description]
+      * @return [type]           [description]
+      */
+     public function attentionHouses($user_id,$house_id)
+     {
+        if(empty($this->houseRepo()->findWithoutFail($house_id))){
+              return zcjy_callback_data('该小屋已删除或不存在',1);
+        }
+        $user_house = $this->varifyHouseAttentionStatus($user_id,$house_id);
+        if(!empty($user_house)){
+            $user_house->delete();
+            return zcjy_callback_data('取消关注成功');
+        }
+        else{
+            AttentionHouse::create([
+                'user_id'=>$user_id,
+                'house_id'=>$house_id
+            ]);
+            return zcjy_callback_data('关注小屋成功');
+        }
+     }
 
     //发送短信验证码
     public function sendVerifyCode($mobile)
@@ -118,6 +184,16 @@ class CommonRepository
     }
     
     /**
+     * [用户的认证状态]
+     * @param  [type] $user [description]
+     * @return [type]       [description]
+     */
+    public function authCert($user)
+    {
+        return $user->cert()->orderBy('created_at','desc')->first();
+    }
+
+    /**
      * [检查认证]
      * @param  [type] $user        [description]
      * @param  string $attach_word [description]
@@ -129,7 +205,7 @@ class CommonRepository
             return zcjy_callback_data('未知错误',1,$api_type);
         }
         $status = false;
-        $cert = $user->cert()->first();
+        $cert = $this->authCert($user);
         if(empty($cert)){
             return zcjy_callback_data($attach_word.'未认证',1,$api_type);
         }

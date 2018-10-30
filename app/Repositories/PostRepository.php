@@ -49,7 +49,7 @@ class PostRepository extends BaseRepository
                     $query->where('name','like','%'.$word.'%')->orWhere('content','like','%'.$word.'%');
             });
          //return Cache::remember('zcjy_post_search'.$word, Config::get('web.shrottimecache'), function() use ($word) {
-            return $paginate ? $posts->paginate(10) : $posts->get();
+            return $paginate ? $posts->paginate(15) : $posts->get();
          //});
     }
 

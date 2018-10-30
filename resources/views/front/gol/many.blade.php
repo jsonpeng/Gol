@@ -58,338 +58,129 @@
 
 
 <div class="container ">
-	<!-- 正在参与 -->
-	<div class="text-center f24">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
-	<div class="pt30 pb50">
-		<div class="row">
-			<!-- 单个结构 -->
-			<a class="col-sm-3 gol_many_post_item" href="/manyDetail/1">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</a>
+	@if(array_key_exists('word',$input) && !empty($input['word']))
+	<!-- 搜索小屋 -->
 
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
+	@else
+
+	@if(count($hourses_now_join))
+		<!-- 正在参与 -->
+		<div class="text-center f24">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
+
+		<div class="pt30 pb50">
+			<div class="row">
+				@foreach ($hourses_now_join as $item)
+					<?php $item=optional($item);?>
+					<!-- 单个结构 -->
+					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+						<img src="/images/gol/many_post.jpg" class="img_auto" />
+						<h4>{!! $item->name !!}</h4>
+						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<p>{!! des($item->content,30)!!}</p>
+						<div class="progress">
+							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->gear !!}</p>
+								<p class="text-center">档位</p>
+		 					</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->target !!}万</p>
+								<p class="text-center">目标</p>
+							</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->all_price !!}</p>
+								<p class="text-center">已筹</p>
+							</div>
+						</div>
+					</a>
+				@endforeach
+
 			</div>
-
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
 		</div>
-	</div>
 
-	<!-- 即将结束 -->
-	<div class="text-center f24">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</div>
-	<div class="pt30 pb50">
-		<div class="row">
-			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
+	@endif
+
+	@if(count($hourses_near_end))
+		<!-- 即将结束 -->
+		<div class="text-center f24">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</div>
+
+		<div class="pt30 pb50">
+			<div class="row">
+				@foreach ($hourses_near_end as $item)
+					<?php $item=optional($item);?>
+					<!-- 单个结构 -->
+					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+						<img src="/images/gol/many_post.jpg" class="img_auto" />
+						<h4>{!! $item->name !!}</h4>
+						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<p>{!! des($item->content,30)!!}</p>
+						<div class="progress">
+							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->gear !!}</p>
+								<p class="text-center">档位</p>
+		 					</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->target !!}万</p>
+								<p class="text-center">目标</p>
+							</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->all_price !!}</p>
+								<p class="text-center">已筹</p>
+							</div>
+						</div>
+					</a>
+				@endforeach
 			</div>
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
 		</div>
-	</div>
+	@endif
 
-	<!-- 即将上架 -->
-	<div class="text-center f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</div>
-	<div class="pt30 pb50">
-		<div class="row">
-			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
+	@if(count($hourses_for_sale))
+		<!-- 即将上架 -->
+		<div class="text-center f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</div>
+		
+		<div class="pt30 pb50">
+			<div class="row">
+				@foreach ($hourses_for_sale as $item)
+					<?php $item=optional($item);?>
+					<!-- 单个结构 -->
+					<a class="col-sm-3 gol_many_post_item" href="/manyDetail/{!! $item->id !!}">
+						<img src="/images/gol/many_post.jpg" class="img_auto" />
+						<h4>{!! $item->name !!}</h4>
+						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<p>{!! des($item->content,30)!!}</p>
+						<div class="progress">
+							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->gear !!}</p>
+								<p class="text-center">档位</p>
+		 					</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->target !!}万</p>
+								<p class="text-center">目标</p>
+							</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item->all_price !!}</p>
+								<p class="text-center">已筹</p>
+							</div>
+						</div>
+					</a>
+				@endforeach
 			</div>
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>项目名称</h4>
-				<h5>类别+地点</h5>
-				<p>内容简介xxxxxxxxxxxxxxx</p>
-				<div class="progress">
-					<div class="progress-bar backgroud_red" role="progressbar"  style="width: 60%;">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<p class="text-center">￥500</p>
-						<p class="text-center">档位</p>
- 					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥10万</p>
-						<p class="text-center">目标</p>
-					</div>
-					<div class="col-sm-4">
-						<p class="text-center">￥15000</p>
-						<p class="text-center">已筹</p>
-					</div>
-				</div>
-			</div>
-
 		</div>
-	</div>
+	@endif
+	
+
+	@endif
 
  </div>
 

@@ -19,7 +19,7 @@
             <td><img src="{!! $certs->face_image !!}" style="max-width: 100%; max-height: 100px;"></td>
             <td><img src="{!! $certs->back_image !!}" style="max-width: 100%; max-height: 100px;"></td>
             <td><img src="{!! $certs->hand_image !!}" style="max-width: 100%; max-height: 100px;"></td>
-            <td>{!! optional($certs->user()->first())->nickname !!}</td>
+            <td>{!! optional($certs->user()->first())->name !!}</td>
             <td>{!! $certs->status !!}</td>
             <td>
                 {!! Form::open(['route' => ['certs.destroy', $certs->id], 'method' => 'delete']) !!}

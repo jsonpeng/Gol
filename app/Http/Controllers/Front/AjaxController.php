@@ -259,4 +259,75 @@ class AjaxController extends Controller
     }
 
 
+    //参与小屋
+    public function joinHousePay(Request $request,$house_id)
+    {
+        $input = $request->all();
+        #验证字段
+        $varify = varifyInputParam($input,'price,platform');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        $user = auth('web')->user();
+
+        $join_house = app('common')->houseRepo()->joinHouse($user_id,$house_id,$input['platform'],$input['price']);
+
+
+    }
+
+  
+    /**
+     * 发起实名认证
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function certsPublish(Request $request){
+        $input = $request->all();
+        #验证字段
+        $varify = varifyInputParam($input,'name,id_card,mobile,code,face_image,back_image,hand_image,current_image_src');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        #当前用户
+        $user = auth('web')->user();
+        #检查验证码
+        if(session('mobile_code_reg'.$input['mobile']) != $input['code'] ){
+            return zcjy_callback_data('验证码输入错误',1,'web');
+        }
+        #处理数据类型
+        if(!is_array($input['current_image_src'])){
+            $input['current_image_src'] = explode(',',$input['current_image_src']);
+        }
+        /*
+        #身份证正面
+        $face_image_varify = app('commonRepo')->dealCardImage($input['current_image_src'][0]);
+        #身份证反面
+        $back_image = app('commonRepo')->dealCardImage($input['current_image_src'][1],2);
+        #手持身份证
+        $hand_image_varify = app('commonRepo')->dealCardImage($input['current_image_src'][2]);
+        if($face_image_varify['msg'] == 'success' && $back_image['msg'] && $hand_image_varify['msg'] == 'success'){
+            #检查身份证正反面和名字对不对得上
+            if($face_image_varify['data']['number'] != $input['id_card'] || $face_image_varify['data']['name'] != $input['name'] || $hand_image_varify['data']['number'] != $input['id_card'] || $hand_image_varify['data']['name'] != $input['name']){
+                return zcjy_callback_data('身份信息验证失败,请重新上传认证',1,'web');
+            }
+            #检查身份证有效期
+            if(\Carbon\Carbon::parse($back_image['data']['end_date'])->lt(\Carbon\Carbon::now())){
+                return zcjy_callback_data('身份证件已过期,请重新上传认证',1,'web');
+            }
+        }   
+        else{
+             return zcjy_callback_data('身份信息验证失败,请重新上传认证',1,'web');
+        }
+        #更新信息
+        
+        $input['status'] = '已通过';
+        */
+        $input['user_id'] = $user->id;
+        #添加认证记录
+        app('common')->certsRepo()->create($input);
+        return zcjy_callback_data('我们已收到您的实名认证记录,请等待审核通过',0,'web');
+    }
+
+
+
 }

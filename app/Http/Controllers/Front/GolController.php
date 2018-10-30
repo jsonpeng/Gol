@@ -22,22 +22,39 @@ class GolController extends Controller
     //很多人
     public function manyMan(Request $request,$type='小屋')
     {
-        //正在参与
-        $hourses_now_join =  app('common')->houseRepo()->nowJoinHouses();
+        $input = $request->all();
+
+        $hourses = [];
+
+         //正在参与
+        $hourses_now_join =  [];
 
         //即将结束
-        $hourses_near_end = app('common')->houseRepo()->isEndHouses();
+        $hourses_near_end = [];
 
         //即将上架
-        $hourses_for_sale =  app('common')->houseRepo()->forSaleHouses();
+        $hourses_for_sale = []; 
 
-        return view('front.gol.many',compact('type','hourses_now_join','hourses_near_end','hourses_for_sale'));
+        if(array_key_exists('word',$input) && !empty($input['word'])){
+            $hourses = app('common')->houseRepo()->queryHourses($input['word']);
+        }
+        else{
+            //正在参与
+            $hourses_now_join =  app('common')->houseRepo()->nowJoinHouses();
+
+            //即将结束
+            $hourses_near_end = app('common')->houseRepo()->isEndHouses();
+
+            //即将上架
+            $hourses_for_sale =  app('common')->houseRepo()->forSaleHouses(); 
+        }
+
+        return view('front.gol.many',compact('input','type','hourses','hourses_now_join','hourses_near_end','hourses_for_sale'));
     }
 
     //很多人详情
     public function manyManDetail(Request $request,$id)
     {
-
         $hourse = app('common')->houseRepo()->getHouseDetail($id);
         $error = null;
         if(!isset($hourse->hourse)){
@@ -126,6 +143,20 @@ class GolController extends Controller
         $cities_level2 = [];
         $cities_level3 = [];
         return view('front.auth.mygol.create',compact('cities_level1','cities_level2','cities_level3'));
+    }
+
+    //实名认证管理
+    public function authCerts(Request $request)
+    {
+        $user = auth('web')->user();
+        $cert = app('common')->authCert($user);
+        return view('front.auth.certs',compact('cert'));   
+    }
+
+    //发起实名认证
+    public function publishCerts(Request $request)
+    {
+        return view('front.auth.create_certs');
     }
 
 
