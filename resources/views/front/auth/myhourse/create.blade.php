@@ -91,7 +91,7 @@
                                   <div id="allmap" style="height: 300px;"></div>
                               </div>
 
-                               <div class="form-group col-sm-8">
+                              <div class="form-group col-sm-8">
                                     {!! Form::label('image', '项目主图:') !!}
 
                                     <div class="input-append type_files">
@@ -101,6 +101,17 @@
                                     </div>
 
                               </div>
+
+
+                              <div class="form-group col-sm-8">
+                                    {!! Form::label('plan_address', '小屋计划书:') !!}
+
+                                    <div class="input-append type_files">
+                                        {!! Form::text('plan_address', null, ['class' => 'form-control', 'id' => 'plan_address']) !!}
+                                        <a  href="javascript:;" class="btn  upload_file" type="button">选择文件</a>
+                                    </div>
+                              </div>
+
 
                               <!-- Content Field -->
                               <div class="form-group col-sm-12 col-lg-12">
