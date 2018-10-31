@@ -42,6 +42,7 @@
                                   {!! Form::label('id_card', '身份证号码:') !!}
                                   {!! Form::text('id_card', null, ['class' => 'form-control','placeholder'=>'请输入身份证号码']) !!}
                 </div>
+
            
           
                 <div class="form-group col-sm-12 postImg ">
@@ -119,7 +120,7 @@
         //表单提交验证
     function formVarified(){
       $('.btn_bottom').removeClass('disabled').removeAttr('disabled');
-      $.inputAttr('name,id_card,face_image,back_image,hand_image').each(function(){
+      $.inputAttr('name,id_card').each(function(){
           if($.empty($(this).val())){
             //console.log($(this));
             $('.btn_bottom').addClass('disabled').attr('disabled','true');
