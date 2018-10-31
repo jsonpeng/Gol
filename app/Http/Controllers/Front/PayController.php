@@ -53,8 +53,8 @@ class PayController extends Controller
                 'subject' => '购买小屋权益',
             ];
             $config = $this->alipay_config;
-            $config['notify_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
-            $config['return_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['return_url'];
+            $config['notify_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
+            $config['return_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['return_url'];
             $alipay = Pay::alipay($config)->web($order);
             return ($alipay);
         }
