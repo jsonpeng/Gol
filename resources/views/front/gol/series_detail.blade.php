@@ -41,15 +41,18 @@
 
 	<div class="container">
 
+		@if(!empty($error))
+			<h1 class="text-center mt30">{!! $error !!}</h1>
+		@else
 		<!-- 标题 -->
-		<div class="row ml0">
-			<div class="col-sm-4 gol_series_title">标题</div>
+		<div class="row ml0 mb10">
+			<div class="col-sm-4 gol_series_title">{!! $gol->name !!}+{!! $gol->type !!}</div>
 		</div>
 
 		<!--多张图-->
 		<div class="row pt15">
 			<div class="col-sm-7">
-				<img src="/images/gol/xiaowu_main.png"  class="img_auto" />
+				<img src="{!! $gol->iamge !!}" onerror="javascript:this.src='/images/gol/xiaowu_main.png';" class="img_auto" />
 			</div>
 			<div class="col-sm-5">
 				<p class="pb15">服务/设施</p>
@@ -90,7 +93,7 @@
 				</div>
 
 				<p>租期/证件</p>
-				<p>整租5年可续约 | 无许可证/有许可证</p>
+				<p>整租{!! $gol->zuqi !!}年可续约 | 无许可证/有许可证</p>
 				<p>安全许可</p>
 
 				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
@@ -127,6 +130,7 @@
 		<!--地理周边-->
 
 		<!--很多人喜欢-->
+		@endif
 		
 	</div>
 

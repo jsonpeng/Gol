@@ -116,7 +116,9 @@ class GolController extends Controller
         $error = null;
         if(!isset($gol->detail)){
              $error = $gol;
+             return view('front.gol.series_detail',compact('error'));
         }
+        $gol = $gol->detail;
         return view('front.gol.series_detail',compact('gol','error'));
     }
 

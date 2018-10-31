@@ -50,6 +50,7 @@
         .mt15{margin-top:15px;}
         .ml0{margin-left: 0px;}
         .ml25{margin-left: 25px;}
+        .mb10{margin-bottom: 10px;}
         .mb25{margin-bottom: 25px;}
         .pt15{padding-top: 15px;}
         .pt30{padding-top:30px;}
