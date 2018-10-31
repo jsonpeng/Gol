@@ -119,7 +119,7 @@
         //表单提交验证
     function formVarified(){
       $('.btn_bottom').removeClass('disabled').removeAttr('disabled');
-      $.inputAttr('name,id_card,mobile,code,face_image,back_image,hand_image').each(function(){
+      $.inputAttr('name,id_card,face_image,back_image,hand_image').each(function(){
           if($.empty($(this).val())){
             //console.log($(this));
             $('.btn_bottom').addClass('disabled').attr('disabled','true');
@@ -128,7 +128,7 @@
     }
     formVarified();
     //输入姓名身份证号
-    $.inputAttr('name,id_card,mobile,code').keyup(function(){
+    $.inputAttr('name,id_card').keyup(function(){
           formVarified();
 
     });
