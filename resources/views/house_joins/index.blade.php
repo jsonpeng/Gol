@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+            {!! $houseJoins->appends('')->links() !!}
         </div>
     </div>
 @endsection

@@ -2,7 +2,9 @@
 
 @section('css')
 <style type="text/css">
-
+  tr>td{
+    text-align: center;
+  }
 </style>
 @endsection
 
@@ -66,12 +68,12 @@
                   </div>
 
                   <div class="col-sm-2">
-                    <h4 class="text-center">查看全部></h4>
+                    <a class="text-center f16" href="/manyMan">查看全部></a>
                   </div>
 
             </div>
 
-            <div class="row mt30">
+            <div class=" mt30">
                 <table class="table table-responsive" id="user-table">
                   <thead>
                       <tr style="background-color: rgb(244, 242, 242);">    
@@ -82,14 +84,17 @@
                       </tr>
                   </thead>
                   <tbody>
-               
-                      <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                      </tr>
-               
+                      @if(count($joins))
+                         @foreach($joins as $join)
+                           <?php $house =optional($join->house); ?>
+                            <tr>
+                                <td>--</td>
+                                <td>--</td>
+                                <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
+                                <td>{!! a_link('查看','/manyDetail/'.$house->id) !!}</td>
+                            </tr>
+                          @endforeach
+                      @endif
                   </tbody>
               </table>
             </div>

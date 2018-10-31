@@ -12,7 +12,22 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 
 
+//加密
+function zcjy_base64_en($str){
+    $str = str_replace('/','@',str_replace('+','-',base64_encode($str)));
+    return $str;
+}
 
+//解密
+function zcjy_base64_de($str){
+    $encode_arr = array('UTF-8','ASCII','GBK','GB2312','BIG5','JIS','eucjp-win','sjis-win','EUC-JP');
+    $str = base64_decode(str_replace('@','/',str_replace('-','+',$str)));
+    $encoded = mb_detect_encoding($str, $encode_arr);
+    $str = iconv($encoded,"utf-8",$str);
+    return $str;
+}
+
+//截取指定字符串前多少位
 function des($str, $num){
         global $Briefing_Length;
         mb_regex_encoding("UTF-8");

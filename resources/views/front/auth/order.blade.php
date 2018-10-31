@@ -31,7 +31,48 @@
           		</div>
 
                 <div class="content pb220">
-              
+
+                    <table class="table table-responsive" id="houseJoins-table">
+                        <thead>
+                            <tr>
+                     
+                            <th>支持小屋</th>
+                      
+                            <th>购买档位</th>
+                            <th>购买数量</th>
+                            <th>订单描述</th>
+
+                            <th>合计支持金额</th>
+                            <th>支付平台</th>
+                            <th>支付状态</th>
+                            <th>是否需要合同</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($orders as $houseJoin)
+                          <?php $house =optional($houseJoin->house); ?>
+                            <tr>
+                  
+                                <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
+                      
+
+                                <td>{!! $houseJoin->gear !!}</td>
+                                <td>{!! $houseJoin->gear_num !!}</td>
+                                <td>{!! $houseJoin->body !!}</td>
+
+                                <td>{!! $houseJoin->price !!}</td>
+                                <td>{!! $houseJoin->pay_platform !!}</td>
+                                <td>{!! $houseJoin->pay_status !!}</td>
+                                <td>{!! $houseJoin->hetong !!}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="text-center">
+                      {!! $orders->appends('')->links() !!}
+                    </div>
+
                 </div>
                   
                

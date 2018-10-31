@@ -46,7 +46,7 @@ class PayController extends Controller
         $user = auth('web')->user();
         $input = session('gol_house_pay_'.$user->id);
         if(!empty($input)){
-            $join_house = app('common')->houseRepo()->joinHouse($user->id,$input['house_id'],$input['pay_platform'],$input['price']);;
+            $join_house = app('common')->houseRepo()->joinHouse($user->id,$input);
             $order = [
                 'out_trade_no' => $join_house->number,
                 'total_amount' => $input['price'],

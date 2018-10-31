@@ -34,4 +34,20 @@ class HouseJoinRepository extends BaseRepository
     {
         return HouseJoin::class;
     }
+
+    /**
+     * [用户参与支持的小屋记录]
+     * @param  [type] $user_id    [description]
+     * @param  [type] $pay_status [description]
+     * @return [type]             [description]
+     */
+    public function userHouseJoins($user_id,$pay_status = null){
+        $joins =  HouseJoin::where('user_id',$user_id);
+        if(!empty($pay_status)){
+             $joins =  $joins->where('pay_status',$pay_status);
+        }
+        return $joins
+            ->orderBy('created_at','desc')
+            ->paginate(10);
+    }
 }

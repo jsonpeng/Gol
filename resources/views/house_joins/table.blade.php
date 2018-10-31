@@ -4,7 +4,12 @@
         <th>订单号</th>
         <th>支持小屋</th>
         <th>支持人</th>
-        <th>支持金额</th>
+
+        <th>购买档位</th>
+        <th>购买数量</th>
+        <th>订单描述</th>
+
+        <th>合计支持金额</th>
         <th>支付平台</th>
         <th>支付状态</th>
         <th>是否需要合同</th>
@@ -17,6 +22,11 @@
             <td>{!! $houseJoin->number !!}</td>
             <td>{!! optional($houseJoin->house)->name !!}</td>
             <td>{!! optional($houseJoin->user)->name !!}</td>
+
+            <td>{!! $houseJoin->gear !!}</td>
+            <td>{!! $houseJoin->gear_num !!}</td>
+            <td>{!! $houseJoin->body !!}</td>
+
             <td>{!! $houseJoin->price !!}</td>
             <td>{!! $houseJoin->pay_platform !!}</td>
             <td>{!! $houseJoin->pay_status !!}</td>

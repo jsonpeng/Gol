@@ -76,14 +76,10 @@ class HouseRepository extends BaseRepository
      * @param  [type] $price    [description]
      * @return [type]           [description]
      */
-    public function joinHouse($user_id,$house_id,$platform,$price)
+    public function joinHouse($user_id,$input)
     {
-        $house_join = HouseJoin::create([
-            'house_id' => $house_id,
-            'user_id' => $user_id,
-            'price' => $price,
-            'pay_platform'=> $platform
-        ]);
+        $input['user_id'] = $user_id;
+        $house_join = HouseJoin::create($input);
         $house_join->update([
             'number'=>time().'_'.$house_join->id
         ]);

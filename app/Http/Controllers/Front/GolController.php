@@ -139,7 +139,8 @@ class GolController extends Controller
     public function authCenter(Request $request)
     {
         $user = auth('web')->user();
-        return view('front.auth.usercenter',compact('user'));
+        $joins = app('common')->houseJoinRepo()->userHouseJoins($user->id,'已支付');
+        return view('front.auth.usercenter',compact('user','joins'));
     }
 
     //个人中心 -> 项目中心
@@ -203,7 +204,9 @@ class GolController extends Controller
     //个人中心 -> 我的交易单
     public function authOrder(Request $request)
     {
-        return view('front.auth.order');
+        $user = auth('web')->user();
+        $orders = app('common')->houseJoinRepo()->userHouseJoins($user->id);
+        return view('front.auth.order',compact('orders'));
     }
 
 

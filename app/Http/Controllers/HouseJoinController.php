@@ -30,7 +30,7 @@ class HouseJoinController extends AppBaseController
     public function index(Request $request)
     {
         $this->houseJoinRepository->pushCriteria(new RequestCriteria($request));
-        $houseJoins = $this->houseJoinRepository->all();
+        $houseJoins = descAndPaginateToShow($this->houseJoinRepository);
 
         return view('house_joins.index')
             ->with('houseJoins', $houseJoins);
