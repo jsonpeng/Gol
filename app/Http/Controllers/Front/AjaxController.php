@@ -305,16 +305,12 @@ class AjaxController extends Controller
     public function certsPublish(Request $request){
         $input = $request->all();
         #验证字段
-        $varify = varifyInputParam($input,'name,id_card,mobile,code,face_image,back_image,hand_image,current_image_src');
+        $varify = varifyInputParam($input,'name,id_card,face_image,back_image,hand_image,current_image_src');
         if($varify){
             return zcjy_callback_data($varify,1);
         }
         #当前用户
         $user = auth('web')->user();
-        #检查验证码
-        if(session('mobile_code_reg'.$input['mobile']) != $input['code'] ){
-            return zcjy_callback_data('验证码输入错误',1,'web');
-        }
         #处理数据类型
         if(!is_array($input['current_image_src'])){
             $input['current_image_src'] = explode(',',$input['current_image_src']);

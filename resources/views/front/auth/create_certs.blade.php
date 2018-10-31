@@ -42,17 +42,6 @@
                                   {!! Form::label('id_card', '身份证号码:') !!}
                                   {!! Form::text('id_card', null, ['class' => 'form-control','placeholder'=>'请输入身份证号码']) !!}
                 </div>
-
-                <div class="form-group col-sm-9 phoneNum">
-                                  {!! Form::label('mobile', '手机号:') !!}
-                                  {!! Form::text('mobile', null, ['class' => 'form-control','placeholder'=>'请输入手机号']) !!}
-                                  <div class="weui-cell__ft getCode" data-abled="1">获取验证码</div>
-                </div>
-                
-                <div class="verificationCode form-group col-sm-9">
-                                  {!! Form::label('code', '验证码:') !!}
-                                  {!! Form::text('code', null, ['class' => 'form-control','placeholder'=>'请输入验证码']) !!}
-                </div>
            
           
                 <div class="form-group col-sm-12 postImg ">
