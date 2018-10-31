@@ -9,6 +9,7 @@ use App\Repositories\PostRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\MessageRepository;
 use App\Repositories\CertsRepository;
+use App\Repositories\HouseJoinRepository;
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
@@ -34,6 +35,7 @@ class CommonRepository
      private $categoryRepository;
      private $messageRepository;
      private $certsRepository;
+     private $houseJoinRepository;
      public function __construct(
         HouseRepository $houseRepo,
         GolRepository $golRepo,
@@ -41,7 +43,8 @@ class CommonRepository
         PostRepository $postRepo,
         CategoryRepository $categoryRepo,
         MessageRepository $messageRepo,
-        CertsRepository $certsRepo
+        CertsRepository $certsRepo,
+        HouseJoinRepository $houseJoinRepo
     ){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
@@ -50,6 +53,11 @@ class CommonRepository
         $this->categoryRepository = $categoryRepo;
         $this->messageRepository = $messageRepo;
         $this->certsRepository = $certsRepo;
+        $this->houseJoinRepository = $houseJoinRepo;
+     }
+
+     public function houseJoinRepo(){
+        return $this->houseJoinRepository;
      }
 
      public function certsRepo(){
@@ -207,7 +215,7 @@ class CommonRepository
         $status = false;
         $cert = $this->authCert($user);
         if(empty($cert)){
-            return zcjy_callback_data($attach_word.'未认证',1,$api_type);
+            return zcjy_callback_data($attach_word.'未认证,请在个人中心完成身份认证后使用',1,$api_type);
         }
 
         if($cert->status == '审核中' || $cert->status =='未通过'){

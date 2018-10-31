@@ -19,7 +19,12 @@ class WebAuthMiddleware
     public function handle($request, Closure $next)
     {
         if(!auth('web')->check()){
-            return zcjy_callback_data('请登录后使用',1);
+            if($request->ajax()){
+                 return zcjy_callback_data('请登录后使用',1);
+            }
+            else{
+                  return redirect('/user/login');
+            }
         }
         return $next($request);
     }

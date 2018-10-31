@@ -273,19 +273,25 @@ class AjaxController extends Controller
         return zcjy_callback_data('发布成功');
     }
 
-
-    //参与小屋
-    public function joinHousePay(Request $request,$house_id)
+    //存储参与小屋提交选择参数
+    public function saveHouseJoinParam(Request $request,$type="join")
     {
         $input = $request->all();
         #验证字段
-        $varify = varifyInputParam($input,'price,platform');
+        $varify = varifyInputParam($input,'price,gear,gear_num,house_id,body');
         if($varify){
             return zcjy_callback_data($varify,1);
         }
         $user = auth('web')->user();
+        $input['user_id'] = $user->id;
+        $request->session()->flash('gol_house_'.$type.'_'.$user->id,$input);
+        //session(['gol_house_join_'.$user->id=>$input]);
+        return zcjy_callback_data('存储参数成功');
+    }
 
-        $join_house = app('common')->houseRepo()->joinHouse($user_id,$house_id,$input['platform'],$input['price']);
+    //参与小屋支付
+    public function joinHousePay(Request $request,$house_id)
+    {
 
 
     }

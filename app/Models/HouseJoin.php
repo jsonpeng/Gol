@@ -36,7 +36,10 @@ class HouseJoin extends Model
         'hetong',
         'receive_man',
         'receive_mobile',
-        'receive_address'
+        'receive_address',
+        'body',
+        'gear_num',
+        'gear'
     ];
 
     /**
@@ -63,6 +66,11 @@ class HouseJoin extends Model
 
     public function house(){
         return $this->belongsTo('App\Models\House');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     

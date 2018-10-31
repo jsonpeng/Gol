@@ -39,6 +39,8 @@
         a:hover { color: #FF5511; text-decoration: underline; }
         .border_b{border-bottom: 1px solid #bbb;}
         .gol_hidden{display: none;}
+        .h150{height: 150px;}
+        .h120{height: 120px;}
         .h60{height:60px;}
         .h45{height: 45px;}
         .mr20{margin-right:20px;}
@@ -60,6 +62,8 @@
         .pb15{padding-bottom: 15px;}
         .pr15{padding-right: 15px;}
         .pl15{padding-left: 15px;}
+        .pl30{padding-left: 30px;}
+        .pr30{padding-right: 30px;}
         .pl50{padding-left: 50px;}
         .pl80{padding-left: 80px;}
         .pl120{padding-left: 120px;}
@@ -221,6 +225,10 @@
                 titleAsText: true
             });
         });
+        /**
+         * swipe滚动
+         * @type {[type]}
+         */
         $('.carousel').carousel({
             interval: 1500
         });
@@ -240,11 +248,20 @@
                 }
             },{},'POST');
         });
+        //全站搜索
+        $('.site_search_all').click(function(){
+            if($.empty($('input[name=search_all]').val())){
+                $.alert('请输入搜索关键字');
+                return ;
+            }
+            location.href="/search?word="+$('input[name=search_all]').val();
+        });
+
         </script>
 
         @yield('js')
         
-        <!-- JS统计代码 -->
+       
         
 
 

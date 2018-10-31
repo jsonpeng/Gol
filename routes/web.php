@@ -18,7 +18,7 @@ Auth::routes();
 Route::group(['prefix' => 'alipay','namespace'=>'Front'], function () {
 	Route::any('notify','PayController@notify');
 	Route::any('return','PayController@return');
-	Route::get('pay/{id}','PayController@index');
+	Route::get('pay','PayController@index');
 });
 
 //微信支付
@@ -70,8 +70,17 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 		##用户给用户发私信
 		Route::post('send_sixin/{user_id}','AjaxController@sendOneUserNoticeSiXin');
 
-		##发起关注
+		##发起小屋关注
 		Route::post('attention_house/{house_id}','AjaxController@attentionHouses');
+
+		/**
+		 * 需要用户完成实名认证后可操作
+		 */
+		Route::group(['middleware'=>['webCert']],function(){
+				##存储小屋提交参数
+				Route::post('save_house_join/{type?}','AjaxController@saveHouseJoinParam');
+		});
+
 	});
 	
 });
@@ -88,6 +97,12 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 	Route::get('/series/{type?}','GolController@series');
 	//gol详情
 	Route::get('/golDetail/{id}','GolController@golDetail');
+
+	Route::group(['middleware'=>['auth.user','webCert']],function(){
+		//小屋结算参与
+		Route::get('/manySettle','GolController@manySettle');
+	});
+
 	/**
 	 *需要用户登录后才可以操作
 	 */

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use Yansongda\Pay\Pay;
 use Log;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\SubmitLog;
 use EasyWeChat\Factory;
 
@@ -40,18 +41,26 @@ class PayController extends Controller
         //'mode' => 'dev', // optional, dev/hk;当为 `hk` 时，为香港 gateway。
     ];
 
-    public function index($id)
+    public function index(Request $request)
     {
-        $order = [
-            'out_trade_no' => $id.'_'.time(),
-            'total_amount' => empty(getSettingValueByKey('name_price')) ? 1 :getSettingValueByKey('name_price'),
-            'subject' => '购买英文名字',
-        ];
-        $config = $this->alipay_config;
-        $config['notify_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
-        $config['return_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['return_url'];
-        $alipay = Pay::alipay($config)->web($order);
-        return ($alipay);// laravel 框架中请直接 `return $alipay`
+        $user = auth('web')->user();
+        $input = session('gol_house_pay_'.$user->id);
+        if(!empty($input)){
+            $join_house = app('common')->houseRepo()->joinHouse($user->id,$input['house_id'],$input['pay_platform'],$input['price']);;
+            $order = [
+                'out_trade_no' => $join_house->number,
+                'total_amount' => $input['price'],
+                'subject' => '购买小屋权益',
+            ];
+            $config = $this->alipay_config;
+            $config['notify_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
+            $config['return_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['return_url'];
+            $alipay = Pay::alipay($config)->web($order);
+            return ($alipay);
+        }
+        else{
+            return redirect('/');
+        }
     }
 
     public function return(Request $request)
@@ -61,15 +70,15 @@ class PayController extends Controller
         $config['return_url'] = 'http://'.$_SERVER["HTTP_HOST"].$config['return_url'];
         $data = Pay::alipay($config)->verify(); // 是的，验签就这么简单！
         $input = $request->all();
-        $log_id = explode('_', $input['out_trade_no'])[0];
+        $log_id = explode('_', $input['out_trade_no'])[1];
 
-        $SubmitLog = SubmitLog::find($log_id);
+        $SubmitLog = app('common')->houseJoinRepo()->findWithoutFail($log_id);
 
         if(!empty($SubmitLog)){
             $SubmitLog->update(['pay_status'=>'已支付','pay_platform'=>'支付宝']);
         }
 
-        return redirect('/?success=ok');
+        return redirect('/user/center/order');
         // 订单号：$data->out_trade_no
         // 支付宝交易号：$data->trade_no
         // 订单总金额：$data->total_amount

@@ -48,6 +48,8 @@ class HouseRepository extends BaseRepository
     public function indexShowHouses($take=12)
     {
         return House::where('index_show','>',0)
+                ->where('status','<>','审核中')
+                ->where('status','<>','已下架')
                 ->orderBy('index_show','desc')
                 ->take($take)
                 ->get();
@@ -77,9 +79,9 @@ class HouseRepository extends BaseRepository
     public function joinHouse($user_id,$house_id,$platform,$price)
     {
         $house_join = HouseJoin::create([
-            'house_id' => 'integer',
-            'user_id' => 'integer',
-            'price' => 'float',
+            'house_id' => $house_id,
+            'user_id' => $user_id,
+            'price' => $price,
             'pay_platform'=> $platform
         ]);
         $house_join->update([
@@ -95,7 +97,8 @@ class HouseRepository extends BaseRepository
      */
     public function queryHourses($word,$paginate=true)
     {
-         $houses = House::where('status','已发布')
+         $houses = House::where('status','<>','审核中')
+                ->where('status','<>','已下架')
                 ->where('name','like','%'.$word.'%')
                 ->orWhere('content','like','%'.$word.'%')
                 ->orWhere('address','like','%'.$word.'%')
@@ -231,8 +234,11 @@ class HouseRepository extends BaseRepository
 
         if(isset($hourse['join']) && count($hourse['join'])){
             foreach ($hourse['join'] as $key => $val) {
-                ++$support_people;
-                $price += $val->price;
+                #支付成功的才算记录
+                if($val->pay_status == '已支付'){
+                    ++$support_people;
+                    $price += $val->price;
+                }
             }
         }
 

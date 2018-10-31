@@ -41,7 +41,7 @@ $.extend({
     },
     //弹出
     alert:function(word,type="success"){
-        type == "success" ? 1 : 5;
+        type = type == "success" ? 1 : 5;
         layer.msg(word, {icon: type});
     },
     //检测数据是否为空
@@ -123,7 +123,7 @@ $.extend({
      * @param  {Function} callback [description]
      * @return {[type]}            [description]
      */
-    zcjyFrameOpen:function(url,title,area=['60%', '680px'],callback=null){
+    zcjyFrameOpen:function(url,title='操作信息框',area=['60%', '680px'],callback=null){
         var type =2;
         if(url.length > 50){
             type = 1;

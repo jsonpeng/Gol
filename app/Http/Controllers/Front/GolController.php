@@ -88,6 +88,20 @@ class GolController extends Controller
         return view('front.gol.many_detail',compact('error','id','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num','user','attention_status'));
     }
 
+    //发起支持结算详情页
+    public function manySettle(Request $request)
+    {
+        $user = auth('web')->user();
+        $join_param = session('gol_house_join_'.$user->id);
+        if(empty($join_param)){
+            return redirect('/');
+        }
+        else{
+            $hourse = app('common')->houseRepo()->getHouseDetail($join_param['house_id'])->hourse;
+            return view('front.gol.many_settle',compact('hourse','join_param'));
+        }
+    }
+
     //gol系列
     public function series(Request $request,$type='青旅')
     {
@@ -209,9 +223,6 @@ class GolController extends Controller
         $notices = app('notice')->authNotices($user,true);
         return view('front.auth.notice',compact('notices'));
     }
-
-
-
 
     //平台协议
     public function protocol(Request $request)

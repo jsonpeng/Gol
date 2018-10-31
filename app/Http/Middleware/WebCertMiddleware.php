@@ -20,7 +20,13 @@ class WebCertMiddleware
     {
         $cert_varify = app('common')->varifyCert(auth('web')->user());
         if($cert_varify){
-            return $cert_varify;
+            if($request->ajax()){
+                return $cert_varify;
+            }
+            else{
+                return redirect('/');
+            }
+            
         }
         return $next($request);
     }

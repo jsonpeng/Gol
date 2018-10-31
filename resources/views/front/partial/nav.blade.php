@@ -164,7 +164,7 @@
 
 <!-- gol系列导航 -->
 @if(Request::is('series*'))
-<div class="container">
+<div class="container pt30">
 	<a class="gol_many_top_a @if($type=='青旅') active @endif" href="/series/青旅">GOL.青旅</a>
 	<a class="gol_many_top_a @if($type=='客栈') active @endif" href="/series/客栈">GOL.客栈</a>
 	<a class="gol_many_top_a @if($type=='民宿') active @endif" href="/series/民宿">GOL.民宿</a>
@@ -174,7 +174,7 @@
 
 
 <!--滚动banner-->
-@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol'))
+@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol') && !Request::is('manySettle*'))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
 	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 		<?php $num = 0;?>

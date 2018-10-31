@@ -17,7 +17,7 @@
 						<span class="news-date ml25">{!! time_parse($page->created_at)->format('Y/m/d') !!}</span>
 					</p>
 				</div>
-				<div class="detail-content reveal2">
+				<div class="detail-content">
 					<p>{!! $page->content !!}</p>
 				</div>
 			</div>
