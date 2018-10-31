@@ -1,5 +1,5 @@
 <!--底部菜单-->
-<div class="gol_footer  pb15">
+<div class="gol_footer mt50 pb15">
 	@if(count($footer_menus))
 		<div class="pt15">
 			<div class="gol_footer_menus">
