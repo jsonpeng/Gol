@@ -15,7 +15,7 @@
 @section('content')
 
 
-<div class="container ">
+<div class="container reveal1">
 	<div class="mt30">
 		<div class="pull-left" style="font-size: 24px;font-weight: 600;">北京</div>
 		<div class="pull-right">
@@ -31,197 +31,33 @@
 <div class="container">
 	<div class="pt30 pb50">
 		<div class="row">
-			<!-- 单个结构 -->
-			<a class="col-sm-3 gol_many_post_item" href="/golDetail/1">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
+
+			@if(count($gols))
+				@foreach($gols as $gol)
+					<!-- 单个结构 -->
+					<a class="col-sm-3 gol_many_post_item reveal2" href="/golDetail/{!! $gol->id !!}">
+						<img src="/images/gol/many_post.jpg" class="img_auto" />
+						<h4>{!! $gol->name !!}</h4>
+						<p>{!! $gol->brief !!}</p>
 					
-				</div>
-			</a>
+						<div class="row">
+							<div class="col-sm-6">
+								<p class="pull-left">{!! $gol->address !!}</p>
+								
+		 					</div>
+							<div class="col-sm-6">
+								<p class="pull-right">租金&nbsp;￥{!! $gol->price !!}</p>
+								
+							</div>
+							
+						</div>
+					</a>
+				@endforeach
 
-			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+			@else
+				<h1 class="text-center">这里空空如也</h1>
+			@endif
 			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-
-			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-
-			<!-- 单个结构 -->
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-				<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-
-
-				<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-
-				<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-
-				<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-				<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-			<div class="col-sm-3 gol_many_post_item">
-				<img src="/images/gol/many_post.jpg" class="img_auto" />
-				<h4>小屋名称</h4>
-				<p>内容简介xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-			
-				<div class="row">
-					<div class="col-sm-6">
-						<p class="pull-left">古北水镇</p>
-						
- 					</div>
-					<div class="col-sm-6">
-						<p class="pull-right">租金&nbsp;￥7000</p>
-						
-					</div>
-					
-				</div>
-			</div>
-
-		
 
 		</div>
 	</div>

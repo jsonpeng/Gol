@@ -54,7 +54,8 @@ class Gol extends Model
         'city',
         'district',
         'lat',
-        'lon'
+        'lon',
+        'hourse_type'
     ];
 
     /**

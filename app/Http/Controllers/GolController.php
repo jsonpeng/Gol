@@ -30,7 +30,7 @@ class GolController extends AppBaseController
     public function index(Request $request)
     {
         $this->golRepository->pushCriteria(new RequestCriteria($request));
-        $gols = $this->golRepository->all();
+        $gols = descAndPaginateToShow($this->golRepository);
 
         return view('gols.index')
             ->with('gols', $gols);

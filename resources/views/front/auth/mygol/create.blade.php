@@ -50,6 +50,15 @@
                                   </select>
                         </div>
 
+                        <div class="form-group col-sm-9">
+                                  {!! Form::label('hourse_type', 'gol房屋类型:') !!}
+                                  <select class="form-control"  name="hourse_type">
+                                    <option value="出租">我要出租</option>
+                                    <option value="转让">我要转让</option>
+                                    <option value="出售">我要出售</option>
+                                  </select>
+                        </div>
+
 
                         <div class="form-group col-sm-9">
                            {!! Form::label('type', '设置地区:') !!}
