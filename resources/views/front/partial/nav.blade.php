@@ -128,9 +128,9 @@
 					<li> </li>
 					<li> </li>
 					<li class="pull-right"><span>已有账号?<a href="/user/login" style="color: #E51C23;">请登录></a></span></li>
-					@elseif(Request::is('protocol'))
+					@elseif(Request::is('page/protocol'))
 					<li><a href="/">首页</a></li>
-					<li><a href="">在线客服</a></li>
+					<li><a href="tencent://message/?Menu=yes&uin=<?php echo getSettingValueByKeyCache('qq1'); ?>&Site=80fans&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a545b1714f9d45" target="_blank"">在线客服</a></li>
 					@else
 					@if(count($menus))
 						@foreach($menus as $menu)
@@ -181,11 +181,11 @@
 		@foreach ($banners as $banner)
 		<?php $num++; ?>
 			@if($num==1)
-			<a class="item active ">
+			<a class="item active " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}">
 				<img src="{{ $banner->image }}" alt="">
 			</a>
 			@else
-			<a class="item ">
+			<a class="item " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}">
 				<img src="{{ $banner->image }}" alt="">
 			</a>
 			@endif

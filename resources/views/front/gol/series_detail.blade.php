@@ -45,7 +45,7 @@
 			<h1 class="text-center mt30">{!! $error !!}</h1>
 		@else
 		<!-- 标题 -->
-		<div class="row ml0 mb10">
+		<div class="row ml0 mt30">
 			<div class="col-sm-4 gol_series_title">{!! $gol->name !!}+{!! $gol->type !!}</div>
 		</div>
 
@@ -93,17 +93,17 @@
 				</div>
 
 				<p>租期/证件</p>
-				<p>整租{!! $gol->zuqi !!}年可续约 | 无许可证/有许可证</p>
+				<p>整租{!! $gol->zuqi !!}年可续约 | @if($gol->xukezheng)  @else 无许可证 @endif</p>
 				<p>安全许可</p>
 
 				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
 					
 				</div>
 
-				<p>小屋描述</p>
-				<p>建筑面积:290平方米</p>
-				<p>房屋状态:闲置状态</p>
-				<p>改造程度:中等/轻微</p> 
+				<p>{!! $gol->brief !!}</p>
+				<p>建筑面积:{!! $gol->area !!}平方米</p>
+				<p>房屋状态:{!! $gol->hourse_status !!}</p>
+				<p>改造程度:{!! $gol->gaizao_status !!}</p> 
 
 				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
 					
@@ -117,7 +117,12 @@
 			<div class="pt30 col-sm-7">
 				<div class="row">
 					<div class="col-sm-3 f16">留给小屋新主的话</div>
-					<div class="col-sm-6 f12 gol_series_give_discourse">想知道是不是TA寻找的有缘人,看看什么时间见面吧</div>
+
+					<div class="col-sm-6 f12 gol_series_give_discourse">
+						@if(empty($gol->give_word))
+					想知道是不是TA寻找的有缘人,看看什么时间见面吧 
+					@else {!! $gol->give_word !!} @endif</div>
+
 					<div class="col-sm-3 f16" style="color: red;">查看相关费用</div>
 				</div>
 			</div>
@@ -128,8 +133,18 @@
 		</div>
 
 		<!--地理周边-->
+		<div class="container mt30">
+			 
+                  <div id="allmap" style="height: 600px;"></div>
+          
+		</div>
+	
+		<div class="container mt30">
+			<p>房东描述详情:{!! $gol->content !!}</p>
+		</div>
 
 		<!--很多人喜欢-->
+
 		@endif
 		
 	</div>
@@ -138,7 +153,74 @@
 
 
 @section('js')
-	<script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
+<!--根据地址索引地图标点-->
+<script type="text/javascript">
+	 controlMap('{!! $gol->address !!}');
 
-	</script>
+    
+    function showInfo(e){
+        myGeo.getLocation(e.point, function (rs) {
+            var addComp = rs.addressComponents;
+            var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;  
+            if (confirm("确定选择地址是" + address + "?")) {
+                 call_back_by_map(address,e.point.lng,e.point.lat);
+            }
+        });
+        addMarker(e.point);
+    }
+
+    //地图上标注  
+    function addMarker(point) {  
+        var marker = new BMap.Marker(point);  
+        markersArray.push(marker);  
+        clearOverlays();  
+        map.addOverlay(marker);  
+    } 
+
+    //清除标识  
+    function clearOverlays() {  
+        if (markersArray) {  
+            for (i in markersArray) {  
+                map.removeOverlay(markersArray[i])  
+            }  
+        }  
+    }
+    var myGeo;
+    var map;
+    // 百度地图API功能
+    var markersArray = [];  
+    function controlMap(address){ 
+        map = new BMap.Map("allmap");
+        map.setMapStyle({style:'normal'});
+        //var point = new BMap.Point(114.329303,30.475501);
+        //map.centerAndZoom(point,12);
+        // 创建地址解析器实例
+        myGeo = new BMap.Geocoder();
+        // 将地址解析结果显示在地图上,并调整地图视野
+        myGeo.getPoint(address, function(point){
+            if (point) {
+                $('.map').show(500);
+                map.centerAndZoom(point, 16);
+                clearOverlays();
+                map.addOverlay(new BMap.Marker(point));
+                //map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+                //map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+               // map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+                map.enableScrollWheelZoom();  
+                myGeo.getLocation(point, function (rs) {  
+                var addComp = rs.addressComponents;  
+                var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;  
+               
+                javascript:window.parent.call_back_by_map(null,point.lng,point.lat);
+                 
+            });                            //启用滚轮放大缩小
+            }else{
+                $('.map').hide(500);
+                //alert("您选择地址没有解析到结果!");
+            }
+        });
+        //map.addEventListener("click", showInfo); 
+    }   
+</script>
 @endsection

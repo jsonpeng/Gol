@@ -21,7 +21,7 @@
     <tbody>
              @foreach($gols as $gol)
                                 <tr>
-                                    <td>{!! $gol->name !!}</td>
+                                    <td>{!! $gol->name !!}[{!! $gol->type !!}]</td>
                                     <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
                                     <td>{!! $gol->hourse_type !!}</td>
                                     <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>

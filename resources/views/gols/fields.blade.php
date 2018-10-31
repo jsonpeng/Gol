@@ -19,7 +19,7 @@
 <!-- Content Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('content', '详情:') !!}
-    {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('content', null, ['class' => 'form-control intro']) !!}
 </div>
 
 <!-- Xukezheng Field -->
@@ -61,8 +61,14 @@
 <!-- Publish Status Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('publish_status', '发布状态:') !!}
-    {!! Form::text('publish_status', null, ['class' => 'form-control']) !!}
+        <select name="publish_status" class="form-control">
+        <option value="0" @if(isset($gol) && $gol->publish_status == '0') selected="selected" @endif>审核中</option>
+        <option value="1" @if(isset($gol) && $gol->publish_status == '1') selected="selected" @endif>已发布</option>
+        <option value="2" @if(isset($gol) && $gol->publish_status == '2') selected="selected" @endif>已下架</option>
+    </select>
 </div>
+
+
 
 <!-- Price Field -->
 <div class="form-group col-sm-8">
@@ -73,7 +79,7 @@
 <!-- Give Word Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('give_word', '给小屋新主留下来的话:') !!}
-    {!! Form::text('give_word', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('give_word', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

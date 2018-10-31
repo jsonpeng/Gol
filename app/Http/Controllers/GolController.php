@@ -115,16 +115,27 @@ class GolController extends AppBaseController
     public function update($id, UpdateGolRequest $request)
     {
         $gol = $this->golRepository->findWithoutFail($id);
-
+        $input = $request->all();
         if (empty($gol)) {
             Flash::error('Gol not found');
 
             return redirect(route('gols.index'));
         }
 
-        $gol = $this->golRepository->update($request->all(), $id);
+        $this->golRepository->update($input, $id);
 
         Flash::success('更新成功.');
+
+        if($input['publish_status'] == '0'){
+            $input['publish_status'] = '审核中';
+        }
+        elseif($input['publish_status'] == '1'){
+              $input['publish_status'] = '已发布';
+        }
+        else{
+             $input['publish_status'] = '已下架';
+        }
+        app('notice')->sendNoticeToUser($gol->user_id,'gol管理员已将您的gol小屋'.tag($input['name'],'orange').'状态更新为'.tag($input['publish_status']));
 
         return redirect(route('gols.index'));
     }

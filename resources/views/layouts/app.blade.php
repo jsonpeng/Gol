@@ -72,7 +72,9 @@
             </a>
 
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar navbar-static-top" role="navigation" style="position: relative;">
+                    <?php   $statics = app('common')->staticsHouse();?>
+                    <p style="margin-left: 30px;position: absolute;left: 10%; top:15px;">小屋数据:累计支持金额{!! tag($statics->all_price) !!},单项最高支持金额{!! tag($statics->one_max_price) !!},累计支持人数{!! tag($statics->all_support_num) !!},单项最高支持人数{!! tag($statics->one_max_num)  !!}</p>
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>

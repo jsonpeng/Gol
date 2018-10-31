@@ -55,6 +55,14 @@ class HouseRepository extends BaseRepository
                 ->get();
     }
 
+    public  function allHouses(){
+
+        $houses =  House::where('status','<>','审核中')
+                ->with('join')
+                ->get();
+        $houses = $this->dealHoursesPrice($houses); 
+        return $houses;
+    }
 
     /**
      * 关注人数

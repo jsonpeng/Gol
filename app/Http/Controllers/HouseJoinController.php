@@ -31,7 +31,6 @@ class HouseJoinController extends AppBaseController
     {
         $this->houseJoinRepository->pushCriteria(new RequestCriteria($request));
         $houseJoins = descAndPaginateToShow($this->houseJoinRepository);
-
         return view('house_joins.index')
             ->with('houseJoins', $houseJoins);
     }
@@ -124,7 +123,7 @@ class HouseJoinController extends AppBaseController
 
         $houseJoin = $this->houseJoinRepository->update($request->all(), $id);
 
-        Flash::success('House Join updated successfully.');
+        Flash::success('更新成功.');
 
         return redirect(route('houseJoins.index'));
     }

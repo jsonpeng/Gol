@@ -15,6 +15,7 @@ use Log;
 use Overtrue\EasySms\EasySms;
 
 use App\Models\AttentionHouse;
+use App\Models\HouseJoin;
 
 /**
  * Class ClientRepository
@@ -88,6 +89,27 @@ class CommonRepository
         return $this->cityRepository;
      }
 
+
+     //统计
+     public function staticsHouse(){
+        $all_joins = HouseJoin::where('pay_status','已支付')->orderBy('created_at','desc');
+        $all_houses = $this->houseRepo()->allHouses();
+        #累计支持金额
+        $all_price = $all_joins->sum('price');
+        #单项最高支持金额
+        $one_max_price = optional($all_houses->sortByDesc('all_price')->first())->all_price;
+        #累计支持人数
+        $all_support_num = $all_joins->count();
+        #单项最高支持人数
+        $one_max_num = optional($all_houses->sortByDesc('support_people')->first())->support_people;
+        return (object)[
+            'all_price'=>$all_price,
+            'one_max_price'=>$one_max_price,
+            'all_support_num'=>$all_support_num, 
+            'one_max_num'=>$one_max_num,
+
+        ];
+     }
 
      /**
       * [用户关注的小屋]

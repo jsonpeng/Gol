@@ -36,7 +36,7 @@
 				@foreach($gols as $gol)
 					<!-- 单个结构 -->
 					<a class="col-sm-3 gol_many_post_item reveal2" href="/golDetail/{!! $gol->id !!}">
-						<img src="/images/gol/many_post.jpg" class="img_auto" />
+						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $gol->image !!}" class="img_auto" />
 						<h4>{!! $gol->name !!}</h4>
 						<p>{!! $gol->brief !!}</p>
 					
