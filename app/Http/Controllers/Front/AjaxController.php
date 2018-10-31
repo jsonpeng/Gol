@@ -284,6 +284,7 @@ class AjaxController extends Controller
         }
         $user = auth('web')->user();
         $input['user_id'] = $user->id;
+        $input['price'] = round($input['price'],2);
         $request->session()->flash('gol_house_'.$type.'_'.$user->id,$input);
         //session(['gol_house_join_'.$user->id=>$input]);
         return zcjy_callback_data('存储参数成功');
