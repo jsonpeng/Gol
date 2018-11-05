@@ -63,9 +63,9 @@
                     <div class="col-sm-3">
                       <a href="javascript:;" style="color: black;">忘记密码</a>
                     </div>
-                    <div class="col-sm-3">
+                {{--     <div class="col-sm-3">
                       <a href="javascript:;" style="color: black;">其他登录</a>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-3">
                       <a style="color: #E51C23;" href="/user/reg/mobile">立即注册</a>
                     </div>

@@ -10,6 +10,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\MessageRepository;
 use App\Repositories\CertsRepository;
 use App\Repositories\HouseJoinRepository;
+use App\Repositories\BannerRepository;
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
@@ -37,6 +38,7 @@ class CommonRepository
      private $messageRepository;
      private $certsRepository;
      private $houseJoinRepository;
+     private $bannerRepository;
      public function __construct(
         HouseRepository $houseRepo,
         GolRepository $golRepo,
@@ -45,7 +47,8 @@ class CommonRepository
         CategoryRepository $categoryRepo,
         MessageRepository $messageRepo,
         CertsRepository $certsRepo,
-        HouseJoinRepository $houseJoinRepo
+        HouseJoinRepository $houseJoinRepo,
+        BannerRepository $bannerRepo
     ){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
@@ -55,6 +58,11 @@ class CommonRepository
         $this->messageRepository = $messageRepo;
         $this->certsRepository = $certsRepo;
         $this->houseJoinRepository = $houseJoinRepo;
+        $this->bannerRepository = $bannerRepo;
+     }
+
+     public function bannerRepo(){
+        return $this->bannerRepository;
      }
 
      public function houseJoinRepo(){

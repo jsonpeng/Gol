@@ -41,12 +41,19 @@ class HouseJoinRepository extends BaseRepository
      * @param  [type] $pay_status [description]
      * @return [type]             [description]
      */
-    public function userHouseJoins($user_id,$pay_status = null){
+    public function userHouseJoins($user_id,$pay_status = null,$use_unique=false){
         $joins =  HouseJoin::where('user_id',$user_id);
         if(!empty($pay_status)){
              $joins =  $joins->where('pay_status',$pay_status);
         }
+
+        if($use_unique){
+            $joins = $joins->select('house_id');
+        }
+
         return $joins
+            // ->select('house_id','price','body','gear_num','gear','pay_status','pay_platform','hetong')
+            ->distinct()
             ->orderBy('created_at','desc')
             ->paginate(10);
     }

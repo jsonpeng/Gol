@@ -172,7 +172,7 @@
 </div>
 @endif
 
-
+<?php if(Request::is('manyMan*')){$banners = app('common')->bannerRepo()->getCacheBanner('xiaowujia');}?>
 <!--滚动banner-->
 @if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol') && !Request::is('manySettle*'))
 <div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
@@ -181,11 +181,11 @@
 		@foreach ($banners as $banner)
 		<?php $num++; ?>
 			@if($num==1)
-			<a class="item active " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}">
+			<a class="item active " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
 				<img src="{{ $banner->image }}" alt="">
 			</a>
 			@else
-			<a class="item " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}">
+			<a class="item " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
 				<img src="{{ $banner->image }}" alt="">
 			</a>
 			@endif

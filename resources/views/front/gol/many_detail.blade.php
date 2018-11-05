@@ -124,7 +124,7 @@
 				<div class="row pt30">
 						<a class="col-sm-2"></a>
 						<a class="col-sm-3 gol_m_detail_button gol_attention" data-id="{!! !empty($user) ? $user->id : '' !!}" data-houseid="{!! $id !!}">@if($attention_status)已@endif关注({!! $hourse_attention_num !!})</a>
-						<a class="col-sm-3 gol_m_detail_button gol_join_many" data-id="{!! !empty($user) ? $user->id : '' !!}">加入很多人</a>
+						<a class="col-sm-3 gol_m_detail_button gol_join_many" data-id="{!! !empty($user) ? $user->id : '' !!}">加入小屋家</a>
 						<a class="col-sm-2"></a>
 				</div>
 
@@ -188,7 +188,7 @@
 
 					<div class="row pt15">
 						<a class="col-sm-2"></a>
-						<a class="col-sm-3 gol_m_detail_button gol_sixin" data-id="{!! !empty($user) ? $user->id : '' !!}" data-name="{!! !empty($user) ? $user->name : '' !!}">私信</a>
+					{{-- 	<a class="col-sm-3 gol_m_detail_button gol_sixin" data-id="{!! !empty($user) ? $user->id : '' !!}" data-name="{!! !empty($user) ? $user->name : '' !!}">私信</a> --}}
 						<a class="col-sm-3 gol_m_detail_button">咨询</a>
 						<a class="col-sm-2"></a>
 					</div>

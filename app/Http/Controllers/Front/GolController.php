@@ -54,6 +54,7 @@ class GolController extends Controller
             $hourses_for_sale =  app('common')->houseRepo()->forSaleHouses(); 
         }
 
+
         return view('front.gol.many',compact('input','type','hourses','hourses_count','hourses_now_join','hourses_near_end','hourses_for_sale'));
     }
 
@@ -141,7 +142,7 @@ class GolController extends Controller
     public function authCenter(Request $request)
     {
         $user = auth('web')->user();
-        $joins = app('common')->houseJoinRepo()->userHouseJoins($user->id,'已支付');
+        $joins = app('common')->houseJoinRepo()->userHouseJoins($user->id,'已支付',true);
         return view('front.auth.usercenter',compact('user','joins'));
     }
 

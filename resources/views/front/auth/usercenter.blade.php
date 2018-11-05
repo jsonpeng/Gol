@@ -2,9 +2,9 @@
 
 @section('css')
 <style type="text/css">
-  tr>td{
+/*  tr>td{
     text-align: center;
-  }
+  }*/
 </style>
 @endsection
 
@@ -34,14 +34,14 @@
                 <div class="col-sm-4">
                 </div>
 
-                <div class="col-sm-3">
+                {{-- <div class="col-sm-3">
                   <h4 class="text-center">我的负债</h4>
                   <h4 class="text-center">{!! $user->fuzhai !!}</h4>
-                </div>
+                </div> --}}
 
             </div>
 
-            <div class="row mt120 pt30" style="border-top: 1px solid #ccc;">
+   {{--          <div class="row mt120 pt30" style="border-top: 1px solid #ccc;">
 
                 <div class="col-sm-3">
                   <h4 class="text-center">今日预计收益</h4>
@@ -56,7 +56,7 @@
                   <h4 class="text-center">---</h4>
                 </div>
 
-            </div>
+            </div> --}}
 
             <div class="row mt15 pt30" style="border-top: 1px solid #ccc;">
 
@@ -77,9 +77,9 @@
                 <table class="table table-responsive" id="user-table">
                   <thead>
                       <tr style="background-color: rgb(244, 242, 242);">    
-                          <th>预计收益率</th>
-                          <th>期限/锁定期</th>
-                          <th colspan="3">项目名称</th>
+                        {{--   <th>预计收益率</th>
+                          <th>期限/锁定期</th> --}}
+                          <th >项目名称</th>
                           <th>操作</th>
                       </tr>
                   </thead>
@@ -88,8 +88,8 @@
                          @foreach($joins as $join)
                            <?php $house =optional($join->house); ?>
                             <tr>
-                                <td>--</td>
-                                <td>--</td>
+                            {{--     <td>--</td>
+                                <td>--</td> --}}
                                 <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
                                 <td>{!! a_link('查看','/manyDetail/'.$house->id) !!}</td>
                             </tr>
