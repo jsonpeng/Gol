@@ -98,7 +98,7 @@
 <!-- 网站菜单 -->
 <div class="gol_header pt15 @if(!Request::is('/')) border_b @endif">
 	<nav class="navbar " id="header-nav">
-		<div class="container">
+		<div class="container mt15">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -111,7 +111,7 @@
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse pt15 " id="bs-example-navbar-collapse-1">
+			<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="position:relative;">
 				<ul class="nav navbar-nav ">
 					@if(Request::is('user/login'))
 					<li><a href="javascript:;">欢迎登陆</a></li>
@@ -137,7 +137,7 @@
 							<li><a href="{!! $menu->link !!}">{!! $menu->name !!}</a></li>
 						@endforeach
 					@endif
-					<li class="pl80"><form class="form-inline">
+					<li class="pl80" style="padding:8px 0;margin:0 15px;position:absolute;right:0; top:0;"><form class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
 						      <input type="text" class="form-control" name="search_all" placeholder="">

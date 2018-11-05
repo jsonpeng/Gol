@@ -22,7 +22,7 @@
 
           @media screen and (max-width: 1400px) { 
             body{ 
-            width: 1400px; 
+                width: 1400px; 
             } 
          }
 
@@ -98,9 +98,12 @@
          * [菜单导航]
          * @type {Number}
          */
+         .navbar-brand{
+            padding:0 15px;
+         }
         .gol_logo{
-            width: 100px;
-            height: auto;
+            width: auto;
+            height: 50px;
         }
         .gol_footer{
             background: #ddd;
