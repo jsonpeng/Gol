@@ -165,20 +165,7 @@
 	</div>
 </div>
 
-{{-- <div class="response">
-                <a href="">
-                    <img src="http://model010.yunlike.cn/uploads/d2.jpg" alt="" class="img-responsive" style="width:100%;">
-                </a>
-                <div class="cover hidden-sm hidden-xs" style="height: 100%;"></div>
-                <div class="address hidden-sm hidden-xs" style="opacity: 0;">
-                    <h4>重庆分店</h4>
-                    <div>   服务：致力于为富有远见，追求卓越的客户。提供行之有效的互联网一站式建设与运营</div>
-                </div>
-                <div class="address visible-sm visible-xs" style="opacity: 0;">
-                    <h4>重庆分店</h4>
-                    <div>   服务：致力于为富有远见，追求卓越的客户。提供行之有效的互联网一站式建设与运营</div>
-                </div>
-</div> --}}
+
 
 @if(count($travels))
 <!-- 小屋故事  -->
