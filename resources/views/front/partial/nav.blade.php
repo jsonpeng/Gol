@@ -192,10 +192,6 @@
 		@endforeach
   	</div>
 </div>
-@endif
-</header>
-
-
 <!-- 搜索框 -->
 <div class="">
 	<div class="container" style="margin-top: -150px;
@@ -204,3 +200,7 @@
 
 	</div>
 </div>
+@endif
+</header>
+
+
