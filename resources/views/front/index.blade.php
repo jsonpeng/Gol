@@ -49,7 +49,7 @@
 		    position: absolute;
 		    bottom: 0;
 		    width: 100%;
-		    background: rgba(53, 47, 40, .7);
+		    /*background: rgba(53, 47, 40, .7);*/
 		}
 		.gol_corver_text{
 			position: absolute;
@@ -206,7 +206,7 @@
 
 
 <!-- 小屋新主成交记录 最新消息 公告 -->
-<div class="pt50 pb50 container reveal3">
+{{-- <div class="pt50 pb50 container reveal3">
 	<div class="row">
 
 		<div class="col-sm-6">
@@ -284,7 +284,7 @@
 
 	</div>
 
-</div>
+</div> --}}
 
 
 
