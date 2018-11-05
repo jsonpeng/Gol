@@ -2,7 +2,6 @@
 
 @section('css')
 <style type="text/css">
-
 .gol_many_des{
 	padding: 45px;
 	position: relative;
@@ -19,7 +18,6 @@
 	font-weight: 300;
 	color: black;
 }
-
 .gol_many_xiexian{
 	position: absolute;
     right: 0;
@@ -31,16 +29,12 @@
     -moz-transform: rotate(45deg);
 	filter: progid:DXImageTransform.Microsoft.BasicImage(Rotation=0.45);
 }
-
 .bb_none{
 	border-bottom: none;
 }
-
 .gol_many_post_item > img{
 	height: 200px;
 }
-
-
 </style>
 @endsection
 
@@ -107,12 +101,55 @@
 		@else
 		<h4 class="text-center mt30 pb120">暂时没有其他的小屋</h4>
 		@endif
+
+	@elseif(array_key_exists('type',$input) && !empty($input['type']))
+		<!--查看更多-->
+		<div class="mt30 text-center reveal2"><span class="f24">———&nbsp;&nbsp;{!! $input['type'] !!}&nbsp;&nbsp;———</span></div>
+		<div class="pt30 pb50">
+			<div class="row">
+				@foreach ($hourses as $item)
+					<?php $item=optional($item);$house = hourse($item['id']);?>
+					<!-- 单个结构 -->
+					<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item['id'] !!}">
+						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item['image'] !!}" class="img_auto" />
+						<h4>{!! $item['name'] !!}</h4>
+						<h5>{!! $item['type'] !!}+{!! $house->Address !!}</h5>
+						<p>{!! des($item['content'],30)!!}</p>
+						<div class="progress">
+							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item['progress'] !!}%;">
+							</div>
+						</div>
+						<div class="row">
+							@if($input['type'] == '即将结束')
+								<div class="col-sm-4">
+									<p class="text-center">{!! $item['s_time'] !!}</p>
+									<p class="text-center">剩余时间</p>
+			 					</div>
+							@else
+								<div class="col-sm-4">
+									<p class="text-center">￥{!! $item['min_gears'] !!}起</p>
+									<p class="text-center">最低档位</p>
+			 					</div>
+		 					@endif
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item['target'] !!}万</p>
+								<p class="text-center">目标</p>
+							</div>
+							<div class="col-sm-4">
+								<p class="text-center">￥{!! $item['all_price'] !!}</p>
+								<p class="text-center">已筹</p>
+							</div>
+						</div>
+					</a>
+				@endforeach
+			</div>
+			<div class="text-center">{!! $hourses->appends($input)->links() !!}</div>
+		</div>
 	@else
 
 	@if(count($hourses_now_join))
 		<!-- 正在参与 -->
-		<div class="mt30 text-center f24 reveal2">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
-
+		<div class="mt30 text-center reveal2"><span class="f24">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</span><a class="f16 pull-right" href="?type=正在参与" style="color: #797878;">READ MORE>></a></div>
 		<div class="pt30 pb50">
 			<div class="row">
 				@foreach ($hourses_now_join as $item)
@@ -151,7 +188,7 @@
 
 	@if(count($hourses_near_end))
 		<!-- 即将结束 -->
-		<div class="text-center f24 reveal3">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</div>
+		<div class="text-center reveal3"><span class="f24">———&nbsp;&nbsp;即将结束&nbsp;&nbsp;———</span><a class="f16 pull-right" href="?type=即将结束" style="color: #797878;">READ MORE>></a></div>
 
 		<div class="pt30 pb50">
 			<div class="row">
@@ -169,8 +206,8 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<p class="text-center">￥{!! $item->min_gears !!}</p>
-								<p class="text-center">档位</p>
+								<p class="text-center">{!! $item->s_time !!}</p>
+								<p class="text-center">剩余时间</p>
 		 					</div>
 							<div class="col-sm-4">
 								<p class="text-center">￥{!! $item->target !!}万</p>
@@ -189,7 +226,7 @@
 
 	@if(count($hourses_for_sale))
 		<!-- 即将上架 -->
-		<div class="text-center f24 reveal4">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</div>
+		<div class="text-center f24 reveal4"><span class="f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</span><a class="f16 pull-right"  href="?type=即将上架" style="color: #797878;">READ MORE>></a></div>
 		
 		<div class="pt30 pb50">
 			<div class="row">

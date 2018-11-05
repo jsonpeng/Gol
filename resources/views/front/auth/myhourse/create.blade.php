@@ -144,7 +144,7 @@
                               <!-- Submit Field -->
                               <div class="form-group col-sm-12">
                                   {!! Form::button('保存', ['class' => 'btn btn-primary gol_house_save_btn']) !!}
-                                  <a href="/user/center/project/hourse_index" class="btn btn-default">返回</a>
+                                  <a href="/user/center/project" class="btn btn-default">返回</a>
                               </div>
                             </form>
                     </div>

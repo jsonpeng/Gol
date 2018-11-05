@@ -1,6 +1,9 @@
 <?php $user=auth('web')->user();?>
 <div class="col-sm-2 gol_usercenter_leftnav">
           <img @if(empty($user->head_image)) src="/images/add.png @else src="{!! $user->head_image !!}" @endif" class="img_auto gol_usercenter_headimg" style="" />
+          @if(Request::is('user/center/index'))
+            <div class="gol_usercenter_headimg_edit mt15">编辑</div>
+          @endif
           <ul>
             <li class="gol_usercenter_li @if(Request::is('user/center/index')) active @endif"><a href="/user/center/index">资产总览</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>
             <li class="gol_usercenter_li @if(Request::is('user/center/project*')) active @endif"><a href="/user/center/project">项目中心</a>&nbsp;&nbsp;&nbsp;&nbsp;></li>

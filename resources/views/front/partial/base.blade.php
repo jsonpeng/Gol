@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,6 +144,23 @@
             background-color: transparent;
             color:#FF5511; 
         }
+        /**
+         * 搜索框
+         */
+        .gol_search_button{
+            position: absolute;
+            right: 20px;
+            padding: 8px;
+            top: 27px;
+            color: white;
+            background: rgb(242, 18, 18);
+        }
+        .gol_search_img{
+            position: absolute;
+            top: 36px;
+            left: 15px;
+        }
+
         /**
          *个人中心
          */

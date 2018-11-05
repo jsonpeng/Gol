@@ -8,8 +8,52 @@ use Carbon\Carbon;
 
 use App\Models\Category;
 use App\Models\Cities;
+use App\Models\House;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+
+
+
+function hourse($id)
+{
+  try {
+      $hourse = House::find($id);
+      return $hourse;
+  } catch (Exception $e) {
+      return $e;
+  }
+
+}
+
+
+/**
+ * [手动分页]
+ * @param  [type]  $data    [description]
+ * @param  [type]  $request [description]
+ * @param  integer $perPage [description]
+ * @return [type]           [description]
+ */
+function operatPaginate($data,$request,$perPage = 3){
+    if(!is_array($data)){
+        $data = $data->toArray();
+    }
+    if ($request->has('page')) {
+        $current_page = $request->input('page');
+        $current_page = $current_page <= 0 ? 1 :$current_page;
+    } 
+    else {
+        $current_page = 1;
+    }
+    $item = array_slice($data, ($current_page-1)*$perPage, $perPage);//$data为要分页的数组
+    $totals = count($data);
+    $paginator =new LengthAwarePaginator($item, $totals, $perPage, $current_page, [
+        'path' => Paginator::resolveCurrentPath(),
+        'pageName' => 'page',
+    ]);
+    return $paginator;
+}
 
 
 //加密

@@ -43,6 +43,18 @@ class GolController extends Controller
             $hourses = app('common')->houseRepo()->queryHourses($input['word']);
             $hourses_count = count(app('common')->houseRepo()->queryHourses($input['word'],false));
         }
+        elseif(array_key_exists('type',$input) && !empty($input['type']))
+        {
+            if($input['type'] == '正在参与'){
+                $hourses = app('common')->houseRepo()->nowJoinHouses(1);
+            }
+            elseif($input['type'] == '即将结束'){
+                $hourses = app('common')->houseRepo()->isEndHouses(1,$request);
+            }
+            elseif($input['type'] == '即将上架'){
+                $hourses =  app('common')->houseRepo()->forSaleHouses(1); 
+            }
+        }
         else{
             //正在参与
             $hourses_now_join =  app('common')->houseRepo()->nowJoinHouses();
@@ -149,7 +161,10 @@ class GolController extends Controller
     //个人中心 -> 项目中心
     public function authProject(Request $request)
     {
-        return view('front.auth.project');
+        $user = auth('web')->user();
+        $houses = app('common')->houseRepo()->myHourses($user->id);
+        $gols = app('common')->golRepo()->myGols($user->id);
+        return view('front.auth.project',compact('houses','gols'));
     }
 
     //我的小屋 主页

@@ -6,6 +6,7 @@ use App\Models\House;
 use InfyOm\Generator\Common\BaseRepository;
 use App\Models\HouseJoin;
 use App\Models\AttentionHouse;
+use Carbon\Carbon;
 
 /**
  * Class HouseRepository
@@ -157,15 +158,22 @@ class HouseRepository extends BaseRepository
      * @param  integer $take [description]
      * @return [type]        [description]
      */
-    public function nowJoinHouses($skip=0,$take=20)
+    public function nowJoinHouses($paginate=0,$take=4)
     {
         $hourses = House::where('status','已发布')
                ->with('join')
-               ->orderBy('created_at','desc')
-               ->skip($skip)
-               ->take($take)
-               ->get();
+               ->orderBy('created_at','desc');
+
+        if($paginate){
+             $hourses = $hourses->paginate(12);
+        }
+        else{
+           $hourses = $hourses->take($take)
+                    ->get();
+        }
+               
         $hourses = $this->dealHoursesPrice($hourses);
+
         return $hourses;
     }
 
@@ -175,15 +183,39 @@ class HouseRepository extends BaseRepository
      * @param  integer $take [description]
      * @return boolean       [description]
      */
-    public function isEndHouses($skip=0,$take=20)
+    public function isEndHouses($paginate=0,$request=null,$take=4)
     {
+
         $hourses = House::where('status','已发布')
                ->with('join')
-               ->orderBy('created_at','asc')
-               ->skip($skip)
-               ->take($take)
-               ->get();
+               ->orderBy('created_at','asc');
+
+        if($paginate){
+             $hourses = $hourses->get();
+        }
+        else{
+           $hourses = $hourses->take($take)
+                    ->get();
+        }
+     
+        $now = Carbon::now();
+
+        $day = (int)getSettingValueByKey('house_end_time');
+
+        $hourses = $hourses->filter(function($item) use($now,$day) {
+            return $now->diffInDays($item->endtime) <= $day;
+        });
+
+        foreach ($hourses as $key => $val) {
+            $val['s_time'] = time_parse($val->endtime)->diffForHumans($now);
+        }
+
         $hourses = $this->dealHoursesPrice($hourses);
+
+        if(!empty($paginate) && !empty($request)){
+            $hourses = operatPaginate($hourses,$request,12);
+        }
+
         return $hourses;
     }
 
@@ -193,15 +225,21 @@ class HouseRepository extends BaseRepository
      * @param  integer $take [description]
      * @return [type]        [description]
      */
-    public function forSaleHouses($skip=0,$take=20)
+    public function forSaleHouses($paginate=0,$take=4)
     {
         $hourses = House::where('status','已完成')
                ->whereNotNull('put_time')
                ->with('join')
-               ->orderBy('created_at','asc')
-               ->skip($skip)
-               ->take($take)
-               ->get();
+               ->orderBy('created_at','asc');
+
+        if($paginate){
+             $hourses = $hourses->paginate(12);
+        }
+        else{
+           $hourses = $hourses->take($take)
+                    ->get();
+        }
+ 
         $hourses = $this->dealHoursesPrice($hourses);
         return $hourses;
     }

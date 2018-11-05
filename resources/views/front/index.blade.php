@@ -6,19 +6,6 @@
 		 * [首页]
 		 * @type {[type]}
 		 */
-		.gol_search_button{
-			position: absolute;
-		    right: 20px;
-		    padding: 8px;
-		    top: 27px;
-		    color: white;
-		    background: rgb(242, 18, 18);
-		}
-		.gol_search_img{
-			position: absolute;
-		    top: 36px;
-		    left: 15px;
-		}
 		.gol_four_img{
 			float: left;
 			width: 500px;
@@ -72,15 +59,6 @@
 @endsection
 
 @section('content')
-
-<!-- 搜索框 -->
-<div class="">
-	<div class="container" style="margin-top: -150px;
-    margin-bottom: 150px;">
-		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_hourse" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
-
-	</div>
-</div>
 
 @if(count($houses))
 	<!-- 小屋家 -->

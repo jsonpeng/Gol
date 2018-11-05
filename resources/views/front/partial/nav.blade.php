@@ -196,3 +196,11 @@
 </header>
 
 
+<!-- 搜索框 -->
+<div class="">
+	<div class="container" style="margin-top: -150px;
+    margin-bottom: 150px;">
+		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_hourse" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
+
+	</div>
+</div>

@@ -1,7 +1,16 @@
 @extends('front.partial.base')
 
 @section('css')
-
+<style type="text/css">
+    #myTab>li>a {
+      padding: 15px;
+  }
+  .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: white;
+    background: #FF5511;
+    border: 1px solid #FF5511;
+  }
+</style>
 @endsection
 
 @section('seo')
@@ -29,7 +38,97 @@
           		</div>
 
                 <div class="content pb220">
-              
+
+                  <ul id="myTab" class="nav nav-tabs mb25">
+                    <li class="active">
+                      <a href="#hourse" data-toggle="tab">
+                         我要开小屋
+                      </a>
+                    </li>
+                    <li><a href="#gol" data-toggle="tab">我是商户</a></li>
+                  </ul>
+
+                  <div id="myTabContent" class="tab-content ">
+
+                    <div class="tab-pane fade in active" id="hourse">
+                                 <a class="btn btn-primary pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/hourse_create">添加小屋</a>
+
+                                    <table class="table table-responsive" id="houses-table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>小屋名称</th>
+                                                    <th>小屋地址</th>
+                                                    <th>浏览量</th>
+                                                    <th>档位</th>
+                                                    <th>小屋类型</th>
+                                                    <th>目标(万)</th>
+                                                    <th>状态</th>
+                                                    <th>截止时间</th>
+                                                    <th>发布时间</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($houses as $house)
+                                                    <tr>
+                                                        <td>{!! $house->name !!}</td>
+                                                        <td>{!! $house->address !!}</td>
+                                                        <td>{!! $house->view !!}</td>
+                                                        <td>{!! $house->gear !!}</td>
+                                                        <td>{!! $house->type !!}</td>
+                                                        <td>{!! $house->target !!}</td>
+                                                        <td>{!! $house->status !!}</td>
+                                                        <td>{!! $house->endtime !!}</td>
+                                                        <td>{!! $house->created_at !!}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                      </table>
+                    </div>
+
+                     <div class="tab-pane fade " id="gol">
+                                  <a class="btn btn-primary pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/gol_create">添加Gol</a>
+
+                                  <table class="table table-responsive" id="gols-table">
+                                        <thead>
+                                            <tr>
+                                            <th>名称</th>
+                                            <th>主图</th>
+                                      <!--       <th>Brief</th>
+                                            <th>Content</th> -->
+                                            <th>有无许可证</th>
+                                            <th>租期</th>
+                                            <th>面积</th>
+                                            <th>地址</th>
+                                            <th>小屋状态</th>
+                                            <th>改造状态</th>
+                                            <th>发布状态</th>
+                                            <th>价格</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($gols as $gol)
+                                                <tr>
+                                                    <td>{!! $gol->name !!}</td>
+                                                    <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
+                                                    <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>
+                                                    <td>{!! $gol->zuqi !!}</td>
+                                                    <td>{!! $gol->area !!}</td>
+                                                    <td>{!! $gol->address !!}</td>
+                                                    <td>{!! $gol->hourse_status !!}</td>
+                                                    <td>{!! $gol->gaizao_status !!}</td>
+                                                    <td>{!! $gol->fabuStatus !!}</td>
+                                                    <td>{!! $gol->price !!}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                </div>
+
+                    </div>
+
+                  </div>
+
                 </div>
                   
                
@@ -60,6 +159,6 @@
 @section('js')
  @include('front.auth.usercenter_js')
 <script type="text/javascript">
-  $.zcjyFrameOpen($('.gol_choose_role').html(),'请选择',['60%', '380px']);
+  //$.zcjyFrameOpen($('.gol_choose_role').html(),'请选择',['60%', '380px']);
 </script>
 @endsection

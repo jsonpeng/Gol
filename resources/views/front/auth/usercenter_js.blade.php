@@ -2,7 +2,7 @@
 <script src="{{ asset('vendor/dropzone/dropzone.js') }}"></script>
 <script type="text/javascript">
     //上传头像
-    $('.gol_usercenter_headimg').click(function(){
+    $('.gol_usercenter_headimg_edit').click(function(){
         layer.open({
             type: 1,
             closeBtn: false,
@@ -10,6 +10,10 @@
             shadeClose: true,
             title:'修改个人信息',
             content: $('#import_user_image_box').html()
+        });
+        $(document).on('click','.type_files',function(){
+            click_dom = $(this);
+            $('input[type=file]').trigger('click');
         });
     });
     var head_image;
