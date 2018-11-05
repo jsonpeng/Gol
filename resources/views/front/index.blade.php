@@ -188,7 +188,8 @@
 		<?php $i=0; ?>
 		@foreach($travels as $post)
 		<?php $i++;?>
-			<a class="gol_four_img p_relative mb25 reveal2" href="/post/{!! $post->id !!}" style="color: black;">
+
+			<a class="gol_four_img p_relative mb25 reveal2" href="/post/{!! $post->id !!}" style="color: black;@if($i==(count($travels)) && $i % 2 ==1 ) display: none; @endif">
 				<div class="w50 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif" style="min-height: 255px;">
 					<h4 class="pt30">{!! $post->name !!}</h4>
 					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
@@ -206,7 +207,8 @@
 
 
 <!-- 小屋新主成交记录 最新消息 公告 -->
-{{-- <div class="pt50 pb50 container reveal3">
+@if(false)
+ <div class="pt50 pb50 container reveal3">
 	<div class="row">
 
 		<div class="col-sm-6">
@@ -263,7 +265,7 @@
 					@endif
 				@endif
 
-				<!--系统公告-->
+			
 				@if(count($notifies))
 					<div class="col-sm-6 txtMarquee-top">
 							<div class="bd">
@@ -284,8 +286,8 @@
 
 	</div>
 
-</div> --}}
-
+</div>
+@endif
 
 
 
