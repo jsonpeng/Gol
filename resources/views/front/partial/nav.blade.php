@@ -83,8 +83,8 @@
 			<a class="gol_top_text" href="/user/center/index">我的个人中心</a>
 			<a class="gol_top_text gol_logout" href="javascript:;">安全退出</a>
 			@endif
-			<a class="gol_top_text">设计</a>
-			<a class="gol_top_text">案例</a>
+		{{-- 	<a class="gol_top_text">设计</a>
+			<a class="gol_top_text">案例</a> --}}
 			@if(!empty($user))
 			<?php 
 			$unreads = count(app('notice')->authNotices($user));
@@ -140,7 +140,7 @@
 					<li class="pl80"><form class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
-						      <input type="text" class="form-control" name="search_all" placeholder="全站搜索">
+						      <input type="text" class="form-control" name="search_all" placeholder="">
 						      <div class="input-group-addon site_search_all"><img src="/images/gol/search_gray.png" /></div>
 						    </div>
 						  </div>
