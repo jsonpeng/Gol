@@ -118,8 +118,18 @@ class GolController extends Controller
     //gol系列
     public function series(Request $request,$type='青旅')
     {
+        $input = $request->all();
+
         $gols = app('common')->golRepo()->getTypeGols($type);
-        return view('front.gol.series',compact('type','gols'));
+
+        $gol_cities = app('common')->golRepo()->getGolsCities();
+
+        if(array_key_exists('city',$input) && !empty($input['city'])){
+            $gols = $gols->filter(function($item) use ($input){
+                return $item->city == $input['city'];
+            });
+        }
+        return view('front.gol.series',compact('input','type','gols','gol_cities'));
     }
 
     //gol详情

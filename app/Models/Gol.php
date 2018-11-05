@@ -102,4 +102,10 @@ class Gol extends Model
         }
     }
 
+
+    public function cityobj()
+    {
+        return $this->belongsTo('App\Models\Cities','city','id');
+    }
+
 }

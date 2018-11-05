@@ -32,6 +32,9 @@
 <li class="{{ Request::is('zcjy/certs*') ? 'active' : '' }}">
     <a href="{!! route('certs.index') !!}"><i class="fa fa-edit"></i><span>账户实名认证管理</span></a>
 </li>
+<li class="{{ Request::is('zcjy/shanghuCerts*') ? 'active' : '' }}">
+    <a href="{!! route('shanghuCerts.index') !!}"><i class="fa fa-edit"></i><span>商户认证管理</span></a>
+</li>
 <li class="header">GOL小屋管理</li>
 <li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
     <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>
@@ -98,3 +101,5 @@
     <a href="{!! route('attentionGols.index') !!}"><i class="fa fa-edit"></i><span>Attention Gols</span></a>
 </li>
  --}}
+
+

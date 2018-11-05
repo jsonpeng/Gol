@@ -263,32 +263,9 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
     //实名认证管理
 	Route::resource('certs', 'CertsController');
+
+	//商户认证管理
+	Route::resource('shanghuCerts', 'ShanghuCertsController');
 });
 
 
-
-
-
-
-
-
-
-// Route::resource('postComments', 'PostCommentController');
-
-// Route::resource('attachPostComments', 'AttachPostCommentController');
-
-// Route::resource('notices', 'NoticesController');
-
-
-
-// Route::resource('attachMessageBoards', 'AttachMessageBoardController');
-
-// Route::resource('attachHouses', 'AttachHouseController');
-
-
-
-
-
-// Route::resource('attentionHouses', 'AttentionHouseController');
-
-// Route::resource('attentionGols', 'AttentionGolController');

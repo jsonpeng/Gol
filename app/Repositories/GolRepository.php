@@ -57,6 +57,20 @@ class GolRepository extends BaseRepository
                 ->get();
     }
 
+
+    /**
+     * [获取城市唯一的gol]
+     * @return [type] [description]
+     */
+    public function getGolsCities()
+    {
+      return  Gol::where('publish_status',1)
+            ->select('city')
+            ->distinct()
+            ->get();
+    }
+
+
     /**
      * [获取不同类型的gols]
      * @param  [type] $type [description]
