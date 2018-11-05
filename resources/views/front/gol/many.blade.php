@@ -54,12 +54,12 @@
 
 @if(!array_key_exists('word',$input))
 	<!-- 数据显示 -->
-	<div class="text-center reveal1">
+{{-- 	<div class="text-center reveal1">
 		<div class="gol_many_des"><p>1000<span>万</span></p><p style="color: red;">￥<span>累计支持金额</span></p><div class="gol_many_xiexian"> </div></div>
 		<div class="gol_many_des"><p>200<span>万</span></p><p style="color: red;">￥<span>单项最高支持金额</span></p><div class="gol_many_xiexian"> </div></div>
 		<div class="gol_many_des"><p>30<span>万</span></p><p style="color: red;">￥<span>累计支持人数</span></p><div class="gol_many_xiexian"> </div></div>
 		<div class="gol_many_des"><p>0.4<span>万</span></p><p style="color: red;">￥<span>单项最高支持人数</span></p></div>
-	</div>
+	</div> --}}
 @endif
 
 
@@ -111,7 +111,7 @@
 
 	@if(count($hourses_now_join))
 		<!-- 正在参与 -->
-		<div class="text-center f24 reveal2">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
+		<div class="mt30 text-center f24 reveal2">———&nbsp;&nbsp;正在参与&nbsp;&nbsp;———</div>
 
 		<div class="pt30 pb50">
 			<div class="row">
@@ -121,7 +121,7 @@
 					<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
-						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<h5>{!! $item->type !!}+{!! $item->Address !!}</h5>
 						<p>{!! des($item->content,30)!!}</p>
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">

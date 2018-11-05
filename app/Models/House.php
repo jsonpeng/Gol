@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Cities;
+
 /**
  * Class House
  * @package App\Models
@@ -90,6 +92,10 @@ class House extends Model
         return $this->belongsTo('App\User');
     }
 
+
+    public function getAddressAttribute(){
+        return getCitiesNameById($this->province).getCitiesNameById($this->city);
+    }
 
     
 }
