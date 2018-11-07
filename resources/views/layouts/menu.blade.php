@@ -102,4 +102,12 @@
 </li>
  --}}
 
+{{-- 
+<li class="{{ Request::is('houseBoards*') ? 'active' : '' }}">
+    <a href="{!! route('houseBoards.index') !!}"><i class="fa fa-edit"></i><span>House Boards</span></a>
+</li> --}}
+
+{{-- <li class="{{ Request::is('attachHouseBoards*') ? 'active' : '' }}">
+    <a href="{!! route('attachHouseBoards.index') !!}"><i class="fa fa-edit"></i><span>Attach House Boards</span></a>
+</li> --}}
 

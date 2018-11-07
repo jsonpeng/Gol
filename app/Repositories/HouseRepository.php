@@ -7,6 +7,7 @@ use InfyOm\Generator\Common\BaseRepository;
 use App\Models\HouseJoin;
 use App\Models\AttentionHouse;
 use Carbon\Carbon;
+use App\Models\HouseBoard;
 
 /**
  * Class HouseRepository
@@ -41,6 +42,8 @@ class HouseRepository extends BaseRepository
     {
         return House::class;
     }
+
+
 
     /**
      * [首页展示小屋]
@@ -255,7 +258,7 @@ class HouseRepository extends BaseRepository
         if(count($hourses))
         {
             foreach ($hourses as $key => $val) {
-                $val = $this->dealJoins($val);
+                $val = $this->dealJoinOne($val);
             }
         }
         return $hourses;
@@ -266,7 +269,7 @@ class HouseRepository extends BaseRepository
      * @param  [type] $hourse [description]
      * @return [type]         [description]
      */
-    private function dealJoins($hourse)
+    private function dealJoinOne($hourse)
     {
         #总金额
         $price = 0;
@@ -332,7 +335,7 @@ class HouseRepository extends BaseRepository
             return '该小屋'.$hourse->status;
         }
 
-        $hourse = $this->dealJoins($hourse);
+        $hourse = $this->dealJoinOne($hourse);
         return (object)['hourse'=>$hourse];
     }
 

@@ -269,3 +269,8 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 });
 
 
+
+
+// Route::resource('houseBoards', 'HouseBoardController');
+
+// Route::resource('attachHouseBoards', 'AttachHouseBoardController');
