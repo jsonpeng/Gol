@@ -34,7 +34,7 @@ class CreateHousesTable extends Migration
             $table->string('gear')->nullable()->comment('档位金额 多个用空格换行');
             $table->string('type')->comment('类型 青旅|客栈|民宿|空间');
             $table->float('target')->comment('目标金额');
-            $table->string('status')->nullable()->default('审核中')->comment('发布状态 审核中|已发布|已完成|已下架');
+            $table->string('status')->nullable()->default('审核中')->comment('发布状态 审核中|已发布|已完成|已下架|已过期');
             $table->string('endtime')->comment('截止时间');
 
             $table->integer('user_id')->unsigned();

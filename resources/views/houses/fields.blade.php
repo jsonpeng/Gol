@@ -73,6 +73,7 @@
         <option value="已发布" @if(isset($house) && $house->status == '已发布') selected="selected" @endif>已发布</option>
         <option value="已完成" @if(isset($house) && $house->status == '已完成') selected="selected" @endif>已完成</option>
         <option value="已下架" @if(isset($house) && $house->status == '已下架') selected="selected" @endif>已下架</option>
+        <option value="已过期" @if(isset($house) && $house->status == '已过期') selected="selected" @endif>已过期</option>
     </select>
  
 </div>

@@ -272,12 +272,19 @@
         //全站搜索
         $('.site_search_all').click(function(){
             if($.empty($('input[name=search_all]').val())){
-                $.alert('请输入搜索关键字');
+                $.alert('请输入搜索关键字','error');
                 return ;
             }
             location.href="/search?word="+$('input[name=search_all]').val();
         });
-
+        //搜索小屋
+        $('.gol_search_button').click(function(){
+            if($.empty($('input[name=search_hourse]').val())){
+                $.alert('请输入搜索关键字','error');
+                return ;
+            }
+            location.href="/manyMan?word="+$('input[name=search_hourse]').val();
+        });
         </script>
 
         @yield('js')

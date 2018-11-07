@@ -73,6 +73,9 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 		##发起小屋关注
 		Route::post('attention_house/{house_id}','AjaxController@attentionHouses');
 
+		##发起小屋评论
+		Route::post('publish_house_comment','AjaxController@publishHouseComment');
+
 		/**
 		 * 需要用户完成实名认证后可操作
 		 */
@@ -267,10 +270,3 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 	//商户认证管理
 	Route::resource('shanghuCerts', 'ShanghuCertsController');
 });
-
-
-
-
-// Route::resource('houseBoards', 'HouseBoardController');
-
-// Route::resource('attachHouseBoards', 'AttachHouseBoardController');

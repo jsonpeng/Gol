@@ -197,68 +197,70 @@
 				</div>
 			</div>
 		</div>
+
+		<!--加入很多人-->
+		<div class="container joinMany" style="display: none;">
+			<div class="row pt15" >
+				<div class="pl30 pr30 h120" style="border-bottom: 1px solid #ccc;">
+					<div class="col-sm-2">
+						<img src="{!! $hourse->image !!}" class="img_auto" />
+					</div>
+					<div class="col-sm-6">
+						<h4>{!! $hourse->name !!}+{!! $hourse->type !!}</h4>
+						<p>感谢您的支持!您将获得【{!! $hourse->name !!}】权益</p>
+					</div>
+
+					<div class="col-sm-3">
+						{!! $hourse->address !!}
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt30">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-1">
+					档位
+				</div>
+				@if(count($hourse->all_gears))
+					<?php $g=0;?>
+					@foreach($hourse->all_gears as $item)
+						<a class="col-sm-2 gol_many_gears @if($g==0) active @endif" data-gear="{!! $item !!}">￥{!! $item !!}</a>
+						<?php $g++;?>
+					@endforeach
+				@endif
+			</div>
+
+			<div class="row mt30">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-1">
+					数量
+				</div>
+				<div class="form-inline col-sm-6 p_relative">
+					<span class="gol_many_action" onclick="golAction(this,'del')">-</span><input class="form-control golNum" style="max-width: 120px;text-align: center"  value="1" /><span class="gol_many_action" onclick="golAction(this,'add')">+</span>
+				</div>
+			</div>
+
+			<div class="row mt30">
+				<div class="col-sm-4">
+				</div>
+				<div class="col-sm-4">
+					<a class="gol_many_zhichi">去支持</a>
+				</div>
+				<div class="col-sm-4">
+				</div>
+			</div>
+
+		</div>
+
 		@endif
 	</div>
 
-	<!--加入很多人-->
-	<div class="container joinMany" style="display: none;">
-		<div class="row pt15" >
-			<div class="pl30 pr30 h120" style="border-bottom: 1px solid #ccc;">
-				<div class="col-sm-2">
-					<img src="{!! $hourse->image !!}" class="img_auto" />
-				</div>
-				<div class="col-sm-6">
-					<h4>{!! $hourse->name !!}+{!! $hourse->type !!}</h4>
-					<p>感谢您的支持!您将获得【{!! $hourse->name !!}】权益</p>
-				</div>
-
-				<div class="col-sm-3">
-					{!! $hourse->address !!}
-				</div>
-			</div>
-		</div>
-
-		<div class="row mt30">
-			<div class="col-sm-1">
-			</div>
-			<div class="col-sm-1">
-				档位
-			</div>
-			@if(count($hourse->all_gears))
-				<?php $g=0;?>
-				@foreach($hourse->all_gears as $item)
-					<a class="col-sm-2 gol_many_gears @if($g==0) active @endif" data-gear="{!! $item !!}">￥{!! $item !!}</a>
-					<?php $g++;?>
-				@endforeach
-			@endif
-		</div>
-
-		<div class="row mt30">
-			<div class="col-sm-1">
-			</div>
-			<div class="col-sm-1">
-				数量
-			</div>
-			<div class="form-inline col-sm-6 p_relative">
-				<span class="gol_many_action" onclick="golAction(this,'del')">-</span><input class="form-control golNum" style="max-width: 120px;text-align: center"  value="1" /><span class="gol_many_action" onclick="golAction(this,'add')">+</span>
-			</div>
-		</div>
-
-		<div class="row mt30">
-			<div class="col-sm-4">
-			</div>
-			<div class="col-sm-4">
-				<a class="gol_many_zhichi">去支持</a>
-			</div>
-			<div class="col-sm-4">
-			</div>
-		</div>
-
-	</div>
 
 @endsection
 
-
+@if(!$error)
 @section('js')
 	<script>
 	var request_data = {price:'{!! $hourse->min_gears !!}',gear:'{!! $hourse->min_gears !!}',gear_num:1,house_id:'{!! $hourse->id !!}'};
@@ -410,3 +412,4 @@
 
 	</script>
 @endsection
+@endif

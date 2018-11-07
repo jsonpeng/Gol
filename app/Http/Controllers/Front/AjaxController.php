@@ -8,6 +8,9 @@ use Hash;
 use Mail;
 use Illuminate\Support\Facades\Input;
 
+use App\Models\HouseBoard;
+use App\Models\AttachHouseBoard;
+
 class AjaxController extends Controller
 {
 
@@ -353,6 +356,43 @@ class AjaxController extends Controller
 
         return app('common')->attentionHouses($user->id,$house_id);
 
+    }
+
+    //发布小屋评论
+    public function publishHouseComment(Request $request)
+    {
+         $input = $request->all();
+         $user = auth('web')->user();
+         if(empty($user)){
+            return zcjy_callback_data('请登陆后使用',1);
+         }
+         if(!array_key_exists('content',$input) || array_key_exists('content',$input) && empty($input['content'])){
+            return zcjy_callback_data('请输入留言内容',1);
+         }
+         $input['user_id'] = $user->id;
+         #普通留言 没有回复人
+         if(!array_key_exists('reply_user_id',$input)){
+               HouseBoard::create([
+                    'user_id'=>$input['user_id'],
+                    'content'=>$input['content'],
+                    'house_id'=>$input['house_id'],
+                    'type'=>$input['type']
+               ]);
+             
+         }
+         #待回复的留言 回复已经发过的留言
+         else{
+                $comment = AttachHouseBoard::create([
+                        'content' => $input['content'],
+                        'message_id' => $input['message_id'],
+                        'user_id' => $input['user_id'],
+                        'reply_user_id' => $input['reply_user_id']
+                ]);
+                #给回复人通知
+                app('notice')->sendUserNotice($input['reply_user_id'],$input['user_id'],'board','回复',['type'=>1,'comment_id'=>$comment->id]);
+        }
+
+        return zcjy_callback_data('发起留言成功');
     }
 
 

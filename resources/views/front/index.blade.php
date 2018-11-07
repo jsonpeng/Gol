@@ -282,14 +282,7 @@
 				location.href="/user/center/notice";
 			});
 
-			//搜索小屋
-			$('.gol_search_button').click(function(){
-				if($.empty($('input[name=search_hourse]').val())){
-					$.alert('请输入搜索关键字');
-					return ;
-				}
-				location.href="/manyMan?word="+$('input[name=search_hourse]').val();
-			});
+		
 			
 		});	
 	</script>

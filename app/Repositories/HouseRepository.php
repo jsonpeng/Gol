@@ -45,6 +45,21 @@ class HouseRepository extends BaseRepository
 
 
 
+    //处理已经过期的房子
+    public function dealTimeOutHouses()
+    {
+        $houses = $this->isEndHouses(1);
+        if(count($houses)){
+            foreach ($houses as $key => $val) {
+                if(strpos($val->s_time,'前') !== false){
+                    House::where('id',$val->id)->update([
+                        'status'=>'已过期'
+                    ]);
+                }
+            }
+        }
+    }
+
     /**
      * [首页展示小屋]
      * @return [type] [description]
@@ -105,9 +120,10 @@ class HouseRepository extends BaseRepository
      */
     public function queryHourses($word,$paginate=true)
     {
-         $houses = House::where('status','<>','审核中')
+         $houses = House::where('name','like','%'.$word.'%')
+                ->where('status','<>','审核中')
                 ->where('status','<>','已下架')
-                ->where('name','like','%'.$word.'%')
+                ->where('status','<>','已过期')
                 ->orWhere('content','like','%'.$word.'%')
                 ->orWhere('address','like','%'.$word.'%')
                 ->orWhere('gear','like','%'.$word.'%')
@@ -186,14 +202,14 @@ class HouseRepository extends BaseRepository
      * @param  integer $take [description]
      * @return boolean       [description]
      */
-    public function isEndHouses($paginate=0,$request=null,$take=4)
+    public function isEndHouses($paginate_all=0,$request=null,$take=4)
     {
 
         $hourses = House::where('status','已发布')
                ->with('join')
                ->orderBy('created_at','asc');
 
-        if($paginate){
+        if($paginate_all){
              $hourses = $hourses->get();
         }
         else{
@@ -215,7 +231,7 @@ class HouseRepository extends BaseRepository
 
         $hourses = $this->dealHoursesPrice($hourses);
 
-        if(!empty($paginate) && !empty($request)){
+        if(!empty($paginate_all) && !empty($request)){
             $hourses = operatPaginate($hourses,$request,12);
         }
 
