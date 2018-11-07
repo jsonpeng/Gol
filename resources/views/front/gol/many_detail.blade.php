@@ -158,7 +158,8 @@
 
 					<div class="tab-pane fade" id="plan">
 							<!--小屋计划-->
-							<a href="{!! $hourse->plan_address !!}" target="_blank" >小屋计划书附件下载查看</a>
+							{{-- <a href="{!! $hourse->plan_address !!}" target="_blank" >小屋计划书附件下载查看</a> --}}
+							<iframe src="https://view.officeapps.live.com/op/view.aspx?src={!! $hourse->plan_address !!}" style="width: 100%;min-height: 1000px;"></iframe>
 					</div>
 
 					<div class="tab-pane fade" id="topic">
