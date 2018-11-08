@@ -79,6 +79,7 @@
 		    font-style: normal;
 		    opacity: 1;
 	}
+	/*tab*/
 	#myTab>li>a {
     	padding: 15px;
 	}
@@ -87,6 +88,346 @@
 		background: #FF5511;
 		border: 1px solid #FF5511;
 	}
+	/*评论*/
+	.reply-box{
+			margin-top: 30px;
+		}
+		.reply-box .more{
+	        padding-top:30px;
+	       
+	    }
+        .reply-box .more a{
+          color:#fff;
+          background-color: #FF5511;
+          padding:8px 34px;
+          border-radius: 15px;
+          border: 1px solid #FF5511;
+        }
+        .reply-box .more a:first-child{
+        	background-color: transparent;
+        	color:black;
+        	margin-right: 20px;
+        }
+        @keyframes mypraise{
+			0% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+			25% {
+			    top: -22.5px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			50% {
+			    top: -25px;
+			    opacity: 1;
+			    filter: Alpha(opacity=100);
+			    -moz-opacity: 1;
+			}
+			75% {
+			    top: -27.5px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			100% {
+			    top: -30px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+		}
+		@-webkit-keyframes mypraise{
+			0% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+			25% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			50% {
+			    top: -30px;
+			    opacity: 1;
+			    filter: Alpha(opacity=100);
+			    -moz-opacity: 1;
+			}
+			75% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			100% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+		}
+		@-moz-keyframes mypraise{
+			0% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+			25% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			50% {
+			    top: -30px;
+			    opacity: 1;
+			    filter: Alpha(opacity=100);
+			    -moz-opacity: 1;
+			}
+			75% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			100% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+		}
+		@-o-keyframes mypraise{
+			0% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+			25% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			50% {
+			    top: -30px;
+			    opacity: 1;
+			    filter: Alpha(opacity=100);
+			    -moz-opacity: 1;
+			}
+			75% {
+			    top: -25px;
+			    opacity: 0.5;
+			    filter: Alpha(opacity=50);
+			    -moz-opacity: 0.5;
+			}
+			100% {
+			    top: -20px;
+			    opacity: 0;
+			    filter: Alpha(opacity=0);
+			    -moz-opacity: 0;
+			}
+		}
+		@keyframes myfirst{
+			0% {
+			    background-size: 15px 15px;
+			}
+			50% {
+			    background-size: 20px 20px;
+			}
+			100% {
+			    background-size: 15px 15px;
+			}
+		}
+		@-webkit-keyframes myfirst{
+			0% {
+			    background-size: 15px 15px;
+			}
+			50% {
+			    background-size: 20px 20px;
+			}
+			100% {
+			    background-size: 15px 15px;
+			}
+		}
+		@-moz-keyframes myfirst{
+			0% {
+			    background-size: 15px 15px;
+			}
+			50% {
+			    background-size: 20px 20px;
+			}
+			100% {
+			    background-size: 15px 15px;
+			}
+		}
+		@-o-keyframes myfirst{
+			0% {
+			    background-size: 15px 15px;
+			}
+			50% {
+			    background-size: 20px 20px;
+			}
+			100% {
+			    background-size: 15px 15px;
+			}
+		}
+		.animation{
+			animation: myfirst 0.5s;
+			-webkit-animation: myfirst 0.5s;
+			-moz-animation: myfirst 0.5s;
+			-o-animation: myfirst 0.5s;
+		}
+		.add-animation{
+		    animation: mypraise 0.5s ;
+		    -moz-animation: mypraise 0.5s ;	/* Firefox */
+		    -webkit-animation: mypraise 0.5s ;	/* Safari 和 Chrome */
+		    -o-animation: mypraise 0.5s ;	/* Opera */
+		}
+		 .commits {
+		  /*border-top: 1px dotted #dcdcdc;*/
+		}
+		 .commits .commit-myself .comm-content {
+		  padding-top: 24px;
+		}
+		 .commits .commit-myself .comm-content .user-head {
+		  padding-right: 20px;
+		}
+		 .commits .commit-myself .more {
+		  padding-top: 30px;
+		  padding-bottom: 40px;
+		}
+		 .commits .commit-myself .more a {
+		  color: #fff;
+		  background-color: #FF5511;
+		  padding: 8px 35px;
+		  border-radius: 15px;
+		}
+		 .commits .commit-myself .more span {
+		  display: inline-block;
+		  width: 190px;
+		  margin-left: 30px;
+		  position: relative;
+		}
+		 .commits .commit-myself .more span .form-control {
+		  border-radius: 17px;
+		}
+		 .commits .commit-myself .more span canvas {
+		  position: absolute;
+		  right: 0;
+		  top: 0;
+		}
+		 .commits .new-commit .title {
+		  margin-bottom: 25px;
+		}
+		 .commits .new-commit .comm-item {
+		  position: relative;
+		  padding-bottom: 60px;
+		  border-bottom: 1px dashed #dcdcdc;
+		  overflow: visible;
+		}
+		 .commits .new-commit .comm-item .media-left {
+		  padding-right: 20px;
+		}
+		 .commits .new-commit .comm-item .media-body h5 {
+		  padding: 5px 0;
+		}
+		 .commits .new-commit .comm-item .media-body .pub-date {
+		  padding-bottom: 15px;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-text {
+		  line-height: 30px;
+		}
+		 .commits .new-commit .comm-item .media-body .reply-num {
+		  margin-top: 20px;
+		  display: inline-block;
+		  padding: 12px 25px;
+		  background-color: #efefef;
+		  color: #333;
+		}
+		 .commits .new-commit .comm-item .media-body .reply-num span {
+		  color: #004796;
+		}
+		 .commits .new-commit .comm-item .media-body .reply-num .open-comm {
+		  margin-left: 5px;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-reply .comm-item {
+		  padding-top: 20px;
+		  padding-bottom: 0;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-reply .comm-item .operate {
+		  top: 20px;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-reply .comm-item .reply-box {
+		  padding-bottom: 10px;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-reply .shou {
+		  text-align: center;
+		  color: #004796;
+		  margin-top: 30px;
+		}
+		 .commits .new-commit .comm-item .media-body .comm-reply .shou span {
+		  padding-left: 16px;
+		  background: url('/images/arrow-top.png') no-repeat left center;
+		}
+		 .commits .new-commit .comm-item .operate {
+		  position: absolute;
+		  right: 0;
+		  top: 15px;
+		}
+		 .commits .new-commit .comm-item .operate .praise {
+		  display: inline-block;
+		  position: relative;
+		}
+		 .commits .new-commit .comm-item .operate .praise span.dianzan {
+		  display: inline-block;
+		  padding-left: 22px;
+		  line-height: 20px;
+		  height: 16px;
+		  background: url('/images/zan.png') no-repeat left center;
+		}
+		 .commits .new-commit .comm-item .operate .praise span.dianzans {
+		  background: url('/images/zan_light.png') no-repeat left center;
+		}
+		 .commits .new-commit .comm-item .operate .praise .add-num {
+		  position: absolute;
+		  top: -20px;
+		  left: 0;
+		  opacity: 0;
+		  filter: alpha(opacity=0);
+		  -moz-opacity: 0;
+		  color: #000;
+		}
+		 .commits .new-commit .comm-item .operate .praise .add-num.hover {
+		  color: #008837;
+		}
+		 .commits .new-commit .comm-item .operate a {
+		  margin-left: 35px;
+		  color: #333;
+		}
+		 .commits .new-commit .same-item {
+		  padding: 60px 0;
+		}
+		 .commits .new-commit .same-item .operate {
+		  top: 60px;
+		}
+		 .commits .more-comm {
+		  margin-top: 60px;
+		  text-align: center;
+		}
+		 .commits .more-comm span {
+		  display: inline-block;
+		  padding-bottom: 25px;
+		  background: url('/images/arrow-bottom.png') no-repeat bottom center;
+		}
 </style>
 @endsection
 
@@ -140,7 +481,7 @@
 					<a href="" class="gol_top_text f16">小屋话题</a>
 				</div> --}}
 				<ul id="myTab" class="nav nav-tabs mb25">
-					<li class="active">
+					<li @if(!array_key_exists('page', $input)) class="active" @endif>
 						<a href="#home" data-toggle="tab">
 							 小屋介绍
 						</a>
@@ -151,7 +492,7 @@
 
 			<div id="myTabContent" class="tab-content ">
 
-					<div class="tab-pane fade in active " id="home">
+					<div class="tab-pane fade @if(!array_key_exists('page', $input)) in active @endif" id="home">
 							<!--详情内容-->
 							{!! $hourse->content !!}
 					</div>
@@ -162,9 +503,92 @@
 							<iframe src="https://view.officeapps.live.com/op/view.aspx?src={!! $hourse->plan_address !!}" style="width: 100%;min-height: 1000px;"></iframe>
 					</div>
 
-					<div class="tab-pane fade" id="topic">
-							<!--小屋话题-->
-							小屋话题
+					<div class="tab-pane fade @if(array_key_exists('page', $input)) in active @endif" id="topic">
+
+						<div class="commits">
+								<div class="commit-myself">
+									<div class="comm-limits">
+										<p>合计<span style="color:#008837;">{!! $count !!}</span>条话题  想和大家交流什么? </p>
+										@if(!auth('web')->check())
+											<a href="javacript:void(0);" class="toLogin" style="margin-left: 12px;">登录</a>
+											<span>/</span>
+											<a href="javacript:void(0);" class="toRegist">注册</a>
+										@endif
+									</div>
+									<div class="comm-content">
+										<div class="media">
+											<div class="media-left user-head">
+												<img src="{{ isset($user->head_image) ? $user->head_image : '/images/head.png' }}" width="51" height="51" alt="">
+											</div>
+											<div class="media-body">
+												<textarea class="form-control my-content" maxlength="150" placeholder="输入你想了解的内容" rows="4"></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="more">
+										<a href="javacript:void(0);" class="fabu hidden-xs">立即发布</a>
+										<span>
+											<input type="text" class="form-control input-code" placeholder="输入验证码">
+											<canvas id="canvas" width="100" height="34">您的浏览器不支持canvas，请换个浏览器试试~</canvas>
+										</span>	
+										<div class="visible-xs" style="padding:15px 0;">
+											<a href="javacript:void(0);" class="fabu ">立即发布</a>
+										</div>	
+									</div>
+								</div>
+								@if(count($messages))
+									<div class="new-commit">
+										<p class="title">最新话题</p>
+										@foreach ($messages as $message)
+											<div class="media comm-item items" @if(isset($message['active'])) id="scroll_item" @endif> 
+												<div class="media-left">
+													<img src="{{  $message['user']->head_image }}" onerror="javascript:this.src='/images/head.png';" alt="" width="51" height="51">
+												</div> 
+												<div class="media-body">
+													<h5>{!! $message['user']->name !!} @if($hourse_user->id == $message['user']->id) {!! tag('[小屋发布者]') !!} @endif</h5>
+													<p class="pub-date">{!! $message->created_at !!}</p>
+													<p class="comm-text">{!! $message->content !!}</p>
+													@if(count($message['attach']) > 0)
+														<a class="reply-num" href="javascript:void(0);">
+															<span>{!! $message['user_names_arr'] !!}</span>等人 <span class="open-comm">共{!! count($message['attach']) !!}条回复></span>
+														</a>
+													@endif
+													<div class="comm-reply" style="display: none">
+														@if(count($message['attach']) >0)
+															@foreach($message['attach'] as $item)
+																<div class="media comm-item" @if(isset($item['active'])) id="scroll_item" @endif>
+																	<div class="media-left">
+																		<img  src="{!! $item['user']->head_image !!}" onerror="this.src='/images/head.png';" alt="" width="51" height="51">
+																	</div>
+																	<div class="media-body">
+																		<h5>{!! $item['user']->name !!}@if($hourse_user->id == $item['user']->id) {!! tag('[小屋发布者]') !!} @endif</h5>
+																		<p class="pub-date">{!! $item->created_at !!}</p>
+																		<p class="comm-text">回复<span style="color:#004796;">@ {!! $item['replyuser']->name !!}</span> ： {!! $item->content !!}</p>
+																	</div>
+																	<div class="operate">
+																		<span class="praise" data-id="{!! $item->id !!}" data-more="has">
+																		</span>
+																		<a href="javascript:void(0);" data-reply="{{ $item['user']->id }}" data-id="{{ $message->id }}" class="toReply">回复</a>
+																	</div>
+																</div>
+															@endforeach
+														@endif
+														<p class="shou"><span>收起</span></p>
+													</div>
+												</div>
+												<div class="operate">
+													<span class="praise" data-id="{!! $message->id !!}" data-more="nothas">
+														<span class="add-num"><em>+1</em></span>
+													</span>
+													<a href="javascript:void(0);" data-reply="{{ $message['user']->id }}" data-id="{{ $message->id }}" class="toReply">回复</a>
+												</div>
+											</div>
+									  @endforeach
+									</div>
+							
+								@endif
+						</div>
+						
 					</div>
 
 			
@@ -263,7 +687,7 @@
 @if(!$error)
 @section('js')
 	<script>
-	var request_data = {price:'{!! $hourse->min_gears !!}',gear:'{!! $hourse->min_gears !!}',gear_num:1,house_id:'{!! $hourse->id !!}'};
+	var request_data_zhichi = {price:'{!! $hourse->min_gears !!}',gear:'{!! $hourse->min_gears !!}',gear_num:1,house_id:'{!! $hourse->id !!}'};
 	var gear = '{!! $hourse->min_gears !!}';
 	var gear_num = 1;
 
@@ -272,7 +696,7 @@
 		if($.empty(gears)){
 			gears = '{!! tag('$hourse->min_gears') !!}';
 		}
-		return '购买小屋'+'{!! tag($hourse->name) !!}'+'{!! tag($hourse->type) !!}'+'档位'+gears+'数量'+gear_nums+',合计'+request_data['price'];
+		return '购买小屋'+'{!! tag($hourse->name) !!}'+'{!! tag($hourse->type) !!}'+'档位'+gears+'数量'+gear_nums+',合计'+request_data_zhichi['price'];
 	}
 
 	/**
@@ -398,18 +822,185 @@
 
      //去支持
       $(document).on('click','.gol_many_zhichi',function(){
-     	request_data['gear'] = gear;
-     	request_data['gear_num'] = gear_num;
-     	request_data['price'] = parseFloat(gear)*parseInt(gear_num);
-     	request_data['body'] = houseBody(gear,gear_num);
+     	request_data_zhichi['gear'] = gear;
+     	request_data_zhichi['gear_num'] = gear_num;
+     	request_data_zhichi['price'] = parseFloat(gear)*parseInt(gear_num);
+     	request_data_zhichi['body'] = houseBody(gear,gear_num);
      	$.zcjyRequest('/ajax/save_house_join',function(res){
      		if(res){
      			location.href='/manySettle';
      		}
-     	},request_data,'POST');
+     	},request_data_zhichi,'POST');
      });
 
 
 	</script>
+
+	<script type="text/javascript">
+		var request_data={user_id:'{!! isset($user->id) ? $user->id : '' !!}',house_id:'{!! $id !!}',type:'全部'};
+		var pub_num=0;
+		var request_zan_data = {};
+		function publish(data,callback=null,reply='',message=''){
+			if(!$.empty(reply)){
+				data['reply_user_id'] = reply;
+			}
+			if(!$.empty(message)){
+				data['message_id'] = message;
+			}
+			$.zcjyRequest('/ajax/publish_house_comment',function(res){	
+				if(res){
+					if(typeof callback === 'function'){
+						callback(res);
+					}
+				}
+			},data,'POST');
+		}
+	    $(function(){
+	        var show_num = [];
+	        draw(show_num);
+
+	        $("#canvas").on('click',function(){
+	            draw(show_num);
+	        });
+
+	        setTimeout(function(){
+	        	$('#canvas').width('100').height('34').click();
+	        },1500);
+	        
+	        var user_image=$('.user-head img')[0].src;
+	        var user_name='';
+	        var now='';
+	        var content='';
+	        //发布话题
+	        $(".fabu").on('click',function(){
+	        	if($.empty($('.my-content').val())){
+	        		$.alert('请输入评论内容','error');
+	        		return;
+	        	}else if($(".input-code").length==0){
+	        		console.log(1);
+	        		request_data['content'] = $('.my-content').val();
+		        	var that=this;
+		        	publish(request_data,function(res){
+		        		$.alert('发布成功！');
+		        		$(that).next().remove();
+		                $(".my-content").val('');
+		        	});
+	        	}else{
+	        		var val = $(".input-code").val().toLowerCase();
+		            var num = show_num.join("");
+		            if(val==''){
+		                $.alert('请输入验证码！','error');
+		            }else if(val == num){
+			        	request_data['content'] = $('.my-content').val();
+			        	var that=this;
+			        	publish(request_data,function(res){
+			        		location.href='?page=1';
+			        	});
+		            }else{
+		                $.alert('验证码错误！请重新输入！','error');
+		                $(".input-val").val('');
+		                draw(show_num);
+		            }
+	        	}
+	        })
+	        //回复留言
+	        $(document).on('click','.toReply',function(){
+	        	var that = this;
+	        	$('.reply-box').remove();
+	    		if($(this).parent().siblings('.reply-box').length==0){
+	    			$(this).parent().after('<div class="reply-box"><textarea class="form-control" rows="4"></textarea><div class="more"><a href="javacript:void(0);" class="shut">关闭</a><a href="javacript:void(0);" class="immediately-reply" data-reply="'+$(that).data('reply')+'" data-id="'+$(that).data('id')+'">立即回复</a></div></div>')
+	    		}
+	    	})
+	    	$(document).on('click','.shut',function(){
+	    		$(this).parent().parent().remove();
+	    	})
+	       	$(document).on('click','.immediately-reply',function(){
+	       		request_data['content']=$(this).parent().prev().val();
+	       		console.log(request_data);
+	       		console.log($(this).data('reply'));
+	       		publish(request_data,function(res){
+	       			location.href='?page=1';
+	       		},$(this).data('reply'),$(this).data('id'));
+	       	});
+
+		});
+	    function draw(show_num) {
+	        var canvas_width=$('#canvas').width();
+	        var canvas_height=$('#canvas').height();
+	        var canvas = document.getElementById("canvas");//获取到canvas的对象，演员
+	        var context = canvas.getContext("2d");//获取到canvas画图的环境，演员表演的舞台
+	        canvas.width = canvas_width;
+	        canvas.height = canvas_height;
+	        var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+	        var aCode = sCode.split(",");
+	        var aLength = aCode.length;//获取到数组的长度
+	        
+	        for (var i = 0; i <= 3; i++) {
+	            var j = Math.floor(Math.random() * aLength);//获取到随机的索引值
+	            var deg = Math.random() * 30 * Math.PI / 180;//产生0~30之间的随机弧度
+	            var txt = aCode[j];//得到随机的一个内容
+	            show_num[i] = txt.toLowerCase();
+	            var x = 10 + i * 20;//文字在canvas上的x坐标
+	            var y = 20 + Math.random() * 8;//文字在canvas上的y坐标
+	            context.font = "bold 23px 微软雅黑";
+
+	            context.translate(x, y);
+	            context.rotate(deg);
+
+	            context.fillStyle = randomColor();
+	            context.fillText(txt, 0, 0);
+
+	            context.rotate(-deg);
+	            context.translate(-x, -y);
+	        }
+	        for (var i = 0; i <= 5; i++) { //验证码上显示线条
+	            context.strokeStyle = randomColor();
+	            context.beginPath();
+	            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+	            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+	            context.stroke();
+	        }
+	        for (var i = 0; i <= 30; i++) { //验证码上显示小点
+	            context.strokeStyle = randomColor();
+	            context.beginPath();
+	            var x = Math.random() * canvas_width;
+	            var y = Math.random() * canvas_height;
+	            context.moveTo(x, y);
+	            context.lineTo(x + 1, y + 1);
+	            context.stroke();
+	        }
+	        console.log(show_num);
+	    }
+	    function randomColor() {//得到随机的颜色值
+	        var r = Math.floor(Math.random() * 256);
+	        var g = Math.floor(Math.random() * 256);
+	        var b = Math.floor(Math.random() * 256);
+	        return "rgb(" + r + "," + g + "," + b + ")";
+	    }
+    	$(document).on('click','.reply-num',function(){
+			$(this).hide();
+			$(this).next().fadeToggle();
+		});
+		$(document).on('click','.shou',function(){
+			$(this).parent().hide();
+			$(this).parent().prev().show();
+		});
+	</script>
+	<script type="text/javascript">
+		$('.download-now').click(function(){
+			  var url = $(this).data('url');
+              var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+             //地址
+              save_link.href = url;
+              save_link.download = name;
+              var ev = document.createEvent("MouseEvents");
+              ev.initMouseEvent(
+                  "click", true, false, window, 0, 0, 0, 0, 0
+                  , false, false, false, false, 0, null
+             );
+             save_link.dispatchEvent(ev);
+   		});
+	</script>
+
 @endsection
 @endif

@@ -363,9 +363,6 @@ class AjaxController extends Controller
     {
          $input = $request->all();
          $user = auth('web')->user();
-         if(empty($user)){
-            return zcjy_callback_data('请登陆后使用',1);
-         }
          if(!array_key_exists('content',$input) || array_key_exists('content',$input) && empty($input['content'])){
             return zcjy_callback_data('请输入留言内容',1);
          }

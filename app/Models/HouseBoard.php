@@ -53,6 +53,10 @@ class HouseBoard extends Model
         
     ];
 
+    public function user(){
+        return $this->belongsTo('App\User','user_id','id');
+    }
+
     public function attach(){
         return $this->hasMany('App\Models\AttachHouseBoard','message_id','id');
     }

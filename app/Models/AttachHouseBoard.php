@@ -53,5 +53,14 @@ class AttachHouseBoard extends Model
         
     ];
 
+
+    public function user(){
+        return $this->belongsTo('App\User','user_id','id');
+    }
+
+    public function replyuser(){
+        return $this->belongsTo('App\User','reply_user_id','id');
+    }
+
     
 }

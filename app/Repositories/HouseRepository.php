@@ -43,6 +43,51 @@ class HouseRepository extends BaseRepository
         return House::class;
     }
 
+    /**
+     * [小屋家的话题评论]
+     * @param  [type] $house_id [description]
+     * @param  [type] $type     [description]
+     * @param  [type] $count    [description]
+     * @return [type]           [description]
+     */
+    public function houseComments($house_id,$type=null,$count=null)
+    {
+        $comments = HouseBoard::where('house_id',$house_id)
+                     ->with('user')
+                     ->with('attach')
+                     ->with(['attach.user','attach.replyuser']);
+
+        if(!empty($type)){
+            $comments = $comments->where('type',$type);
+        }
+
+        if($count){
+            $comments =  $comments->count();
+        }
+        else{
+            $comments = $comments->orderBy('created_at','desc')->paginate(15);
+            #带上等人信息
+            foreach ($comments as $key => $val) {
+                  
+                       if($val['attach']){
+                            $index = 0;
+                            $user_names_arr = [];
+                            foreach ($val['attach'] as $key => $val2) {
+       
+                                if($index < 3){
+                                    $user_names_arr[] = $val2['user']->name;
+                                }
+                                
+                                $index++;
+
+                            }
+                            $val['user_names_arr'] = implode(',',array_unique($user_names_arr));
+                    }
+            }
+        }
+         
+        return $comments;            
+    }
 
 
     //处理已经过期的房子

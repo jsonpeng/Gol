@@ -79,6 +79,7 @@ class GolController extends Controller
             $error = $hourse;
              return view('front.gol.many_detail',compact('error'));
         }
+        $input = $request->all();
         #取出小屋
         $hourse = $hourse->hourse;
         #关注人数
@@ -97,8 +98,17 @@ class GolController extends Controller
         if(!empty($user)){
               $attention_status = app('common')->varifyHouseAttentionStatus($user->id,$id);
         }
+
+        #小屋全部评论数量
+        $count = app('common')->houseRepo()->houseComments($id,null,true);
+        
+        #小屋全部评论
+        $messages = app('common')->houseRepo()->houseComments($id);
+
+        #小屋答疑
+        $messages_answer = app('common')->houseRepo()->houseComments($id,'小屋答疑');
       
-        return view('front.gol.many_detail',compact('error','id','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num','user','attention_status'));
+        return view('front.gol.many_detail',compact('error','id','input','hourse','hourse_attention_num','hourse_user','hourse_user_has_num','hourse_user_support_num','user','attention_status','count','messages','messages_answer'));
     }
 
     //发起支持结算详情页
