@@ -86,7 +86,42 @@
                       </div>
 
                       <div class="tab-pane fade" id="gol">
-                          
+                          <table class="table table-responsive" id="gols-table">
+                                <thead>
+                                    <tr>
+                                    <th>名称</th>
+                                    <th>主图</th>
+                                    <th>gol房屋类型</th>
+                              <!--       <th>Brief</th>
+                                    <th>Content</th> -->
+                                    <th>有无许可证</th>
+                                    <th>租期(年)</th>
+                                    <th>面积(m2)</th>
+                                    <th>地址</th>
+                                    <th>小屋状态</th>
+                                    <th>改造状态</th>
+                                    <th>发布状态</th>
+                                    <th>价格</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                         @foreach($gols as $gol)
+                                                            <tr>
+                                                                <td>{!! a_link($gol->name,'/golDetail/'.$gol->id) !!}[{!! $gol->type !!}]</td>
+                                                                <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
+                                                                <td>{!! $gol->hourse_type !!}</td>
+                                                                <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>
+                                                                <td>{!! $gol->zuqi !!}</td>
+                                                                <td>{!! $gol->area !!}</td>
+                                                                <td>{!! $gol->address !!}</td>
+                                                                <td>{!! $gol->hourse_status !!}</td>
+                                                                <td>{!! $gol->gaizao_status !!}</td>
+                                                                <td>{!! $gol->fabuStatus !!}</td>
+                                                                <td>{!! $gol->price !!}</td>
+                                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
                       </div>
 
                     

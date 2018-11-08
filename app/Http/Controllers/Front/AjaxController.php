@@ -272,6 +272,10 @@ class AjaxController extends Controller
         $user = auth('web')->user();
         $input = $request->all();
         $input['user_id'] = $user->id;
+        if(array_key_exists('services',$input)){
+          #处理空格和换行符
+          $input['services'] = preg_replace("/\r\n|\s+/",'',$input['services']);
+        }
         app('common')->golRepo()->model()::create($input);  
         return zcjy_callback_data('发布成功');
     }
@@ -349,13 +353,18 @@ class AjaxController extends Controller
         return zcjy_callback_data('我们已收到您的实名认证记录,请等待审核通过',0,'web');
     }
 
-    // 发起关注/取消关注
+    // 发起小屋 关注/取消关注
     public function attentionHouses(Request $request,$house_id)
     {
         $user = auth('web')->user();
-
         return app('common')->attentionHouses($user->id,$house_id);
+    }
 
+    //发起gol 关注/取消关注
+    public function attentionGol(Request $request,$gol_id)
+    {
+        $user = auth('web')->user();
+        return app('common')->attentionGol($user->id,$gol_id);
     }
 
     //发布小屋评论

@@ -42,6 +42,9 @@
 <li class="{{ Request::is('zcjy/houseJoins*') ? 'active' : '' }}">
     <a href="{!! route('houseJoins.index') !!}"><i class="fa fa-edit"></i><span>小屋支持记录</span></a>
 </li>
+<li class="{{ Request::is('zcjy/golServices*') ? 'active' : '' }}">
+    <a href="{!! route('golServices.index') !!}"><i class="fa fa-edit"></i><span>Gol服务设施管理</span></a>
+</li>
 <li class="{{ Request::is('zcjy/gols*') ? 'active' : '' }}">
     <a href="{!! route('gols.index') !!}"><i class="fa fa-edit"></i><span>GOL系列</span></a>
 </li>
@@ -95,19 +98,4 @@
 <li class="">
     <a href="javascript:;" id="refresh"><i class="fa fa-refresh"></i><span>刷新缓存</span></a>
 </li>
-
-{{-- 
-<li class="{{ Request::is('attentionGols*') ? 'active' : '' }}">
-    <a href="{!! route('attentionGols.index') !!}"><i class="fa fa-edit"></i><span>Attention Gols</span></a>
-</li>
- --}}
-
-{{-- 
-<li class="{{ Request::is('houseBoards*') ? 'active' : '' }}">
-    <a href="{!! route('houseBoards.index') !!}"><i class="fa fa-edit"></i><span>House Boards</span></a>
-</li> --}}
-
-{{-- <li class="{{ Request::is('attachHouseBoards*') ? 'active' : '' }}">
-    <a href="{!! route('attachHouseBoards.index') !!}"><i class="fa fa-edit"></i><span>Attach House Boards</span></a>
-</li> --}}
 

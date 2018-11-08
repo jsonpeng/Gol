@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Gol;
+use App\Models\AttentionGol;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -42,6 +43,18 @@ class GolRepository extends BaseRepository
     {
         return Gol::class;
     }
+
+
+    /**
+     * 关注人数
+     * @param  [type] $gol_id [description]
+     * @return [type]           [description]
+     */
+    public function attentionGolPeopleNum($gol_id)
+    {
+        return AttentionGol::where('gol_id',$gol_id)->count();
+    }
+
 
     /**
      * [搜索gol]

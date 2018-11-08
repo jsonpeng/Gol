@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class AttentionGolRepository
  * @package App\Repositories
- * @version October 30, 2018, 1:47 pm CST
+ * @version November 8, 2018, 4:03 pm CST
  *
  * @method AttentionGol findWithoutFail($id, $columns = ['*'])
  * @method AttentionGol find($id, $columns = ['*'])

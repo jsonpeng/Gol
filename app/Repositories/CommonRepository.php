@@ -11,12 +11,15 @@ use App\Repositories\MessageRepository;
 use App\Repositories\CertsRepository;
 use App\Repositories\HouseJoinRepository;
 use App\Repositories\BannerRepository;
+use App\Repositories\GolServicesRepository;
+
 use Config;
 use Log;
 use Overtrue\EasySms\EasySms;
 
 use App\Models\AttentionHouse;
 use App\Models\HouseJoin;
+use App\Models\AttentionGol;
 
 /**
  * Class ClientRepository
@@ -39,6 +42,7 @@ class CommonRepository
      private $certsRepository;
      private $houseJoinRepository;
      private $bannerRepository;
+     private $golServicesRepository;
      public function __construct(
         HouseRepository $houseRepo,
         GolRepository $golRepo,
@@ -48,7 +52,8 @@ class CommonRepository
         MessageRepository $messageRepo,
         CertsRepository $certsRepo,
         HouseJoinRepository $houseJoinRepo,
-        BannerRepository $bannerRepo
+        BannerRepository $bannerRepo,
+        GolServicesRepository $golServicesRepo
     ){
         $this->houseRepository = $houseRepo;
         $this->golRepository = $golRepo;
@@ -59,6 +64,11 @@ class CommonRepository
         $this->certsRepository = $certsRepo;
         $this->houseJoinRepository = $houseJoinRepo;
         $this->bannerRepository = $bannerRepo;
+        $this->golServicesRepository = $golServicesRepo;
+     }
+
+     public function golServicesRepo(){
+        return $this->golServicesRepository;
      }
 
      public function bannerRepo(){
@@ -140,6 +150,27 @@ class CommonRepository
      }
 
      /**
+      * [用户关注的gol]
+      * @param  [type] $user_id [description]
+      * @return [type]          [description]
+      */
+     public function userAttentionGols($user_id)
+     {
+        $user_houses = AttentionGol::where('user_id',$user_id)->orderBy('created_at','desc')->get();
+        $house_arr = []; 
+        if(count($user_houses)){
+            foreach ($user_houses as $key => $val) {
+               $house_arr[] = $val->gol_id;
+            }
+        }
+        return $this->golRepo()->model()::whereIn('id',$house_arr)
+        ->where('publish_status','<>',0)
+        ->orderBy('created_at','desc')
+        ->paginate(15);
+     }
+
+
+     /**
       * [检查一下用户对小屋的关注状态]
       * @param  [type] $user_id  [description]
       * @param  [type] $house_id [description]
@@ -147,8 +178,48 @@ class CommonRepository
       */
      public function varifyHouseAttentionStatus($user_id,$house_id)
      {
-        $user_house = AttentionHouse::where('user_id',$user_id)->where('house_id',$house_id)->first();
-        return $user_house ? $user_house : false;
+         return AttentionHouse::where('user_id',$user_id)->where('house_id',$house_id)->first();
+     }
+
+
+     /**
+      * [检查一下用户对小屋的关注状态]
+      * @param  [type] $user_id  [description]
+      * @param  [type] $house_id [description]
+      * @return [type]           [description]
+      */
+     public function varifyGolAttentionStatus($user_id,$gol_id)
+     {
+         return AttentionGol::where('user_id',$user_id)->where('gol_id',$gol_id)->first();
+     }
+
+
+     /**
+      * 关注/取消关注 gol
+      * @param  [type] $user_id [description]
+      * @param  [type] $gol_id  [description]
+      * @return [type]          [description]
+      */
+     public function attentionGol($user_id,$gol_id)
+     {
+        if(empty($this->golRepo()->findWithoutFail($gol_id))){
+              return zcjy_callback_data('该gol已删除或不存在',1);
+        }
+
+        $user_gol  = $this->varifyGolAttentionStatus($user_id,$gol_id);
+
+        if($user_gol){
+            $user_gol->delete();
+            return zcjy_callback_data('取消关注成功');
+        }
+        else{
+            AttentionGol::create([
+                'user_id'=>$user_id,
+                'gol_id'=>$gol_id
+            ]);
+            return zcjy_callback_data('关注gol成功');
+        }
+
      }
 
      /**

@@ -10,6 +10,15 @@
     {!! Form::text('image', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-sm-9">
+                          {!! Form::label('hourse_type', 'gol房屋类型:') !!}
+                          <select class="form-control"  name="hourse_type">
+                            <option value="出租" @if(isset($gol) && $gol->hourse_type == '出租') selected="selected" @endif>出租</option>
+                            <option value="转让" @if(isset($gol) && $gol->hourse_type == '转让') selected="selected" @endif>转让</option>
+                            <option value="出售" @if(isset($gol) && $gol->hourse_type == '出售') selected="selected" @endif>出售</option>
+                          </select>
+</div>
+
 <!-- Brief Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('brief', '简介:') !!}
@@ -21,6 +30,22 @@
     {!! Form::label('content', '详情:') !!}
     {!! Form::textarea('content', null, ['class' => 'form-control intro']) !!}
 </div>
+
+
+<div class="form-group col-sm-12">
+    {!! Form::label('services', '请选择服务设施添加:') !!}
+    <div class="row">
+      @if(count($services))
+        @foreach ($services as $item)
+          <button type="button" class="col-sm-3 btn
+            btn-default gol_services @if(in_array($item->name,$gol->ServicesArr)) active @endif">{!! $item->name !!}</button>
+        @endforeach
+      @endif
+      <input name="services" type="hidden" value="" />
+    </div>
+</div>
+
+
 
 <!-- Xukezheng Field -->
 <div class="form-group col-sm-8">

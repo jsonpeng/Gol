@@ -6,26 +6,28 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class AttentionGol
+ * Class GolServices
  * @package App\Models
- * @version November 8, 2018, 4:03 pm CST
+ * @version November 8, 2018, 11:38 am CST
  *
- * @property integer gol_id
- * @property integer user_id
+ * @property string name
+ * @property string group
+ * @property string image
  */
-class AttentionGol extends Model
+class GolServices extends Model
 {
     use SoftDeletes;
 
-    public $table = 'attention_gols';
+    public $table = 'gol_services';
     
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'gol_id',
-        'user_id'
+        'name',
+        'group',
+        'image'
     ];
 
     /**
@@ -34,8 +36,9 @@ class AttentionGol extends Model
      * @var array
      */
     protected $casts = [
-        'gol_id' => 'integer',
-        'user_id' => 'integer'
+        'name' => 'string',
+        'group' => 'string',
+        'image' => 'string'
     ];
 
     /**
@@ -44,7 +47,7 @@ class AttentionGol extends Model
      * @var array
      */
     public static $rules = [
-        
+       'name' => 'required',
     ];
 
     

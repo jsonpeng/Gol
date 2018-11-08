@@ -14,8 +14,14 @@ class UpdateGolsTable extends Migration
     public function up()
     {
         Schema::table('gols', function (Blueprint $table) {
-      
-            $table->string('hourse_type')->nullable()->default('出租')->comment('房屋类型 出租|转让|出售');
+
+            if (!Schema::hasColumn('gols', 'hourse_type')) {
+                $table->string('hourse_type')->nullable()->default('出租')->comment('房屋类型 出租|转让|出售');
+            }
+
+            if (!Schema::hasColumn('gols', 'services')) {
+                $table->string('services')->nullable()->comment('服务设施 多个用,隔开');
+            }
 
         });
     }

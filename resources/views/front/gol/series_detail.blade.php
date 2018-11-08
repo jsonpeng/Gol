@@ -57,36 +57,19 @@
 			<div class="col-sm-5">
 				<p class="pb15">服务/设施</p>
 
-				<div class="row"> 
-					<div class="col-sm-8">
-						<div class="row">
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
+				@if(count($gol->ServicesArr))
+					<div class="row"> 
+						<div class="col-sm-12">
+							<div class="row">
+								@foreach($gol->ServicesArr as $item)
+									<div class="col-sm-4 mb10">
+										<i class="fa fa-edit f16"></i>{!! $item !!}
+									</div>
+								@endforeach
 							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-edit f16"></i>
-							</div>
-						</div>
-				 	</div>
-				</div>
+					 	</div>
+					</div>
+				@endif
 
 				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
 					
@@ -127,7 +110,7 @@
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<a class="gol_m_detail_button detail_color">加入计划</a>
+				<a class="gol_m_detail_button detail_color gol_attention" data-id="{!! !empty($user) ? $user->id : '' !!}" data-golid='{!! $gol->id !!}'>@if($attention_status) 已 @endif 加入计划 ({!! $attention_num !!})</a>
 				<a class="gol_m_detail_button detail_color">立即预定</a>
 			</div>
 		</div>
@@ -156,6 +139,40 @@
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
 <!--根据地址索引地图标点-->
 <script type="text/javascript">
+
+	/**
+      * [检查登录状态]
+      * @param  {[type]} obj [description]
+      * @return {[type]}     [description]
+      */
+     function varifyAuthLogin(obj)
+     {
+     	   if($.empty($(obj).data('id'))){
+		       	$.alert('请先登录后使用','error');
+		       	return true;
+	       }
+	       else{
+	       	return false;
+	       }
+     }
+
+	 //点击关注
+     $('.gol_attention').click(function(){
+	       if(varifyAuthLogin(this)){
+	       		return ;
+	       }
+	       var that = this;
+     	   $.zcjyRequest('/ajax/attention_gol/'+$(this).data('golid'),function(res){
+     	   	  $.alert(res);
+              if(res == '关注gol成功'){
+                $(that).text('已加入计划');
+              }
+              else{
+              	$(that).text('加入计划');
+              }
+          },{},'POST');
+     });
+
 	 controlMap('{!! $gol->address !!}');
 
     
@@ -212,7 +229,7 @@
                 var addComp = rs.addressComponents;  
                 var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;  
                
-                javascript:window.parent.call_back_by_map(null,point.lng,point.lat);
+                // javascript:window.parent.call_back_by_map(null,point.lng,point.lat);
                  
             });                            //启用滚轮放大缩小
             }else{

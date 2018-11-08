@@ -1,7 +1,12 @@
 @extends('front.partial.base')
 
 @section('css')
-
+<style type="text/css">
+  .active{
+    background: #FF5511 !important;
+    color: white !important;
+  }
+</style>
 @endsection
 
 @section('seo')
@@ -123,6 +128,21 @@
                             {!! Form::textarea('content', null, ['class' => 'form-control intro']) !!}
                         </div>
 
+                        <div class="form-group col-sm-9">
+                            {!! Form::label('services', '请选择服务设施添加:') !!}
+                            <div class="row">
+                              @if(count($services))
+                                @foreach ($services as $item)
+                                  <button type="button" class="col-sm-3 btn
+                                    btn-default gol_services">
+                                    {!! $item->name !!}
+                                </button>
+                                @endforeach
+                              @endif
+                              <input name="services" type="hidden" value="" />
+                            </div>
+                        </div>
+
                         <!-- Xukezheng Field -->
                         <div class="form-group col-sm-8">
                             {!! Form::label('xukezheng', '有无许可证（没有的话不填）:') !!}
@@ -142,7 +162,7 @@
 
                         <!-- Area Field -->
                         <div class="form-group col-sm-8">
-                            {!! Form::label('area', '房屋面积:') !!}
+                            {!! Form::label('area', '房屋面积:(m2)') !!}
                             {!! Form::text('area', null, ['class' => 'form-control']) !!}
                         </div>
 
@@ -164,7 +184,7 @@
 
                         <!-- Price Field -->
                         <div class="form-group col-sm-8">
-                            {!! Form::label('price', '价格:') !!}
+                            {!! Form::label('price', '价格:(元)') !!}
                             {!! Form::text('price', null, ['class' => 'form-control']) !!}
                         </div>
 
@@ -203,6 +223,7 @@
       if($.varifyInput('name,address,zuqi,area,price')){
           return ;
       }
+      dealWithActiveServices();
       $.zcjyRequest('/ajax/auth_gol_publish',function(res){
             if(res){
                 $.alert(res);
@@ -210,5 +231,18 @@
             }
       },$('form').serialize(),'POST');
   });
+  $('.gol_services').click(function(){
+    $(this).toggleClass('active');
+  });
+  //处理选中的设施
+  function dealWithActiveServices(){
+    var services = [];
+    $('.gol_services').each(function(){
+       if($(this).hasClass('active')){
+        services.push($(this).text());
+      }
+    });
+    $('input[name=services]').val(services);
+  }
 </script>
 @endsection

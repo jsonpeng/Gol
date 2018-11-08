@@ -152,7 +152,14 @@ class GolController extends Controller
              return view('front.gol.series_detail',compact('error'));
         }
         $gol = $gol->detail;
-        return view('front.gol.series_detail',compact('gol','error'));
+        $attention_num = app('common')->golRepo()->attentionGolPeopleNum($id);
+        $user = auth('web')->user();
+        #关注状态
+        $attention_status = false;
+        if(!empty($user)){
+              $attention_status = app('common')->varifyGolAttentionStatus($user->id,$id);
+        }
+        return view('front.gol.series_detail',compact('gol','error','attention_num','user','attention_status'));
     }
 
     /**
@@ -221,7 +228,8 @@ class GolController extends Controller
         $cities_level1 = app('common')->cityRepo()->getLevelNumCities(1);
         $cities_level2 = [];
         $cities_level3 = [];
-        return view('front.auth.mygol.create',compact('cities_level1','cities_level2','cities_level3'));
+        $services = app('common')->golServicesRepo()->all();
+        return view('front.auth.mygol.create',compact('cities_level1','cities_level2','cities_level3','services'));
     }
 
     //实名认证管理
@@ -254,7 +262,9 @@ class GolController extends Controller
         $user = auth('web')->user();
         #关注的小屋
         $houses = app('common')->userAttentionHouses($user->id);
-        return view('front.auth.attention',compact('houses'));
+        #关注的gol
+        $gols = app('common')->userAttentionGols($user->id);
+        return view('front.auth.attention',compact('houses','gols'));
     }
 
     //通知中心

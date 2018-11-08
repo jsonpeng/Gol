@@ -76,6 +76,10 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 		##发起小屋评论
 		Route::post('publish_house_comment','AjaxController@publishHouseComment');
 
+
+		##发起gol关注
+		Route::post('attention_gol/{gol_id}','AjaxController@attentionGol');
+
 		/**
 		 * 需要用户完成实名认证后可操作
 		 */
@@ -269,4 +273,8 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 	//商户认证管理
 	Route::resource('shanghuCerts', 'ShanghuCertsController');
+
+	//gol服务设施管理
+	Route::resource('golServices', 'GolServicesController');
+	
 });

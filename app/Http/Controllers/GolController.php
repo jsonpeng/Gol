@@ -100,8 +100,10 @@ class GolController extends AppBaseController
 
             return redirect(route('gols.index'));
         }
-
-        return view('gols.edit')->with('gol', $gol);
+        $services = app('common')->golServicesRepo()->all();
+        return view('gols.edit')
+        ->with('gol', $gol)
+        ->with('services',$services);
     }
 
     /**
@@ -120,6 +122,11 @@ class GolController extends AppBaseController
             Flash::error('Gol not found');
 
             return redirect(route('gols.index'));
+        }
+
+        if(array_key_exists('services',$input)){
+          #处理空格和换行符
+          $input['services'] = preg_replace("/\r\n|\s+/",'',$input['services']);
         }
 
         $this->golRepository->update($input, $id);

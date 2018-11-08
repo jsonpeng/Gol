@@ -55,7 +55,8 @@ class Gol extends Model
         'district',
         'lat',
         'lon',
-        'hourse_type'
+        'hourse_type',
+        'services'
     ];
 
     /**
@@ -102,6 +103,11 @@ class Gol extends Model
         }
     }
 
+    //把服务设施处理为数组
+    public function getServicesArrAttribute()
+    {
+        return explode(',',$this->services);
+    }
 
     public function cityobj()
     {
