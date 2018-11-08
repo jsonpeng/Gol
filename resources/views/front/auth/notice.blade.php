@@ -64,7 +64,7 @@
                       @foreach($notices as $notice)
                       <li @if(!$notice->read) class="gol_notice_unread" @endif data-id="{!! $notice->id !!}">
                         <div class="col-sm-9 info-name @if(!$notice->read) notice-msg @endif">	
-                          {!! $notice->content !!} @if($notice->link) <a href="{!! $notice->link !!}">点击查看</a> @endif
+                          {!! $notice->content !!} @if($notice->link) <a href="javascript:;">点击查看</a> @endif
                         </div>
                         <div class="col-sm-3 info-date">{!! $notice->created_at !!}</div>
                         <div class="clearfix"></div>

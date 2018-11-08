@@ -970,7 +970,6 @@
 	            context.lineTo(x + 1, y + 1);
 	            context.stroke();
 	        }
-	        console.log(show_num);
 	    }
 	    function randomColor() {//得到随机的颜色值
 	        var r = Math.floor(Math.random() * 256);
