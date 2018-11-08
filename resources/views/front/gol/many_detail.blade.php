@@ -510,9 +510,9 @@
 									<div class="comm-limits">
 										<p>合计<span style="color:#008837;">{!! $count !!}</span>条话题  想和大家交流什么? </p>
 										@if(!auth('web')->check())
-											<a href="javacript:void(0);" class="toLogin" style="margin-left: 12px;">登录</a>
+											<a href="/user/login" class="toLogin" style="margin-left: 12px;">登录</a>
 											<span>/</span>
-											<a href="javacript:void(0);" class="toRegist">注册</a>
+											<a href="/user/reg/mobile" class="toRegist">注册</a>
 										@endif
 									</div>
 									<div class="comm-content">
@@ -583,7 +583,8 @@
 													<a href="javascript:void(0);" data-reply="{{ $message['user']->id }}" data-id="{{ $message->id }}" class="toReply">回复</a>
 												</div>
 											</div>
-									  @endforeach
+									   @endforeach
+									   {!! $messages->appends('')->links() !!}
 									</div>
 							
 								@endif
