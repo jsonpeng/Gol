@@ -56,7 +56,14 @@ class Gol extends Model
         'lat',
         'lon',
         'hourse_type',
-        'services'
+        'services',
+        'water_price',
+        'electric_price',
+        'mei_price',
+        'ranqi_price',
+        'service_price',
+        'other_price',
+        'zuqi_type'
     ];
 
     /**

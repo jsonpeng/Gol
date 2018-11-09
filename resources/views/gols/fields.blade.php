@@ -7,7 +7,11 @@
 <!-- Image Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('image', '图片:') !!}
-    {!! Form::text('image', null, ['class' => 'form-control']) !!}
+    <div class="input-append">
+        {!! Form::text('image', null, ['class' => 'form-control', 'id' => 'image']) !!}
+        <a data-toggle="modal" href="javascript:;" data-target="#myModal" class="btn" type="button" onclick="changeImageId('image')">选择图片</a>
+        <img src="@if($gol) {{$gol->image}} @endif" style="max-width: 100%; max-height: 150px; display: block;">
+    </div>
 </div>
 
 <div class="form-group col-sm-9">
@@ -50,13 +54,47 @@
 <!-- Xukezheng Field -->
 <div class="form-group col-sm-8">
     {!! Form::label('xukezheng', '有无许可证:') !!}
-    {!! Form::text('xukezheng', null, ['class' => 'form-control']) !!}
+      <div class="input-append">
+        {!! Form::text('xukezheng', null, ['class' => 'form-control', 'id' => 'xukezheng']) !!}
+        <a data-toggle="modal" href="javascript:;" data-target="#myModal" class="btn" type="button" onclick="changeImageId('xukezheng')">选择替换</a>
+        <img src="@if($gol) {{$gol->xukezheng}} @endif" style="max-width: 100%; max-height: 150px; display: block;">
+    </div>
+</div>
+
+<div class="form-group col-sm-6">
+  {!! Form::label('zuqi_type', '租期类型') !!}
+  {!! Form::select('zuqi_type',['月'=>'月','季度'=>'季度','半年'=>'半年','整年'=>'整年'],null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Zuqi Field -->
-<div class="form-group col-sm-8">
-    {!! Form::label('zuqi', '租期:') !!}
-    {!! Form::text('zuqi', null, ['class' => 'form-control']) !!}
+<div class="form-group col-sm-6">
+  {!! Form::label('zuqi', '租期') !!}
+  {!! Form::number('zuqi', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+  {!! Form::label('water_price', '水费:(元)') !!}
+  {!! Form::text('water_price', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+  {!! Form::label('electric_price', '电费:(元)') !!}
+  {!! Form::text('electric_price', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+  {!! Form::label('mei_price', '煤费:(元)') !!}
+  {!! Form::text('mei_price', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+  {!! Form::label('ranqi_price', '燃气费:(元)') !!}
+  {!! Form::text('ranqi_price', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-sm-4">
+  {!! Form::label('mei_price', '其他费用:(元)') !!}
+  {!! Form::text('mei_price', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Area Field -->

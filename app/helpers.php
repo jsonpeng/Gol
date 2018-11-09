@@ -352,7 +352,7 @@ function uploadFiles($file , $api_type = 'web' , $user = null,$insert_shuiyin=fa
                 $file_type = 'word';
               }
 
-          }
+        }
 
         #文件夹
         $destinationPath = empty($user) ? "uploads/admin/" : "uploads/user/".$user->id.'/';

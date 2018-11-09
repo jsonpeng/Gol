@@ -23,6 +23,22 @@ class UpdateGolsTable extends Migration
                 $table->string('services')->nullable()->comment('服务设施 多个用,隔开');
             }
 
+            if (!Schema::hasColumn('gols', 'water_price')) {
+                $table->float('water_price')->nullable()->default(0)->comment('水费');
+
+                $table->float('electric_price')->nullable()->default(0)->comment('电费');
+
+                $table->float('mei_price')->nullable()->default(0)->comment('煤费');
+
+                $table->float('ranqi_price')->nullable()->default(0)->comment('燃气费');
+
+                $table->float('service_price')->nullable()->default(0)->comment('服务费');
+
+                $table->float('other_price')->nullable()->default(0)->comment('其他费用');
+            }
+
+            $table->string('zuqi_type')->nullable()->default('月')->comment('租期类型 月|季度|半年|整年');
+
         });
     }
 

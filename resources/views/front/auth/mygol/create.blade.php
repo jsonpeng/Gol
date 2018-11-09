@@ -56,16 +56,6 @@
                         </div>
 
                         <div class="form-group col-sm-9">
-                                  {!! Form::label('hourse_type', 'gol房屋类型:') !!}
-                                  <select class="form-control"  name="hourse_type">
-                                    <option value="出租">我要出租</option>
-                                    <option value="转让">我要转让</option>
-                                    <option value="出售">我要出售</option>
-                                  </select>
-                        </div>
-
-
-                        <div class="form-group col-sm-9">
                            {!! Form::label('type', '设置地区:') !!}
                         </div>
 
@@ -154,10 +144,13 @@
                             <!-- {!! Form::text('xukezheng', null, ['class' => 'form-control']) !!} -->
                         </div>
 
-                        <!-- Zuqi Field -->
                         <div class="form-group col-sm-8">
-                            {!! Form::label('zuqi', '租期:(年)') !!}
-                            {!! Form::number('zuqi', null, ['class' => 'form-control']) !!}
+                                  {!! Form::label('gaizao_status', '房屋状态:') !!}
+                                  <select class="form-control" id="gaizao_status" name="gaizao_status">
+                                    <option value="轻微">轻微</option>
+                                    <option value="中等">中等</option>
+                                    <option value="精装">精装</option>
+                                  </select>
                         </div>
 
                         <!-- Area Field -->
@@ -167,29 +160,73 @@
                         </div>
 
 
-                        <!-- Hourse Status Field -->
-                     <!--    <div class="form-group col-sm-8">
-                            {!! Form::label('hourse_status', '房屋状态:') !!}
-                            {!! Form::text('hourse_status', null, ['class' => 'form-control']) !!}
-                        </div> -->
-
-                        <div class="form-group col-sm-8">
-                                  {!! Form::label('gaizao_status', '房屋状态:') !!}
-                                  <select class="form-control" id="gaizao_status" name="gaizao_status">
-                                    <option value="轻微">轻微</option>
-                                    <option value="中等">中等</option>
+                        <div class="form-group col-sm-9">
+                                  {!! Form::label('hourse_type', 'gol房屋类型:') !!}
+                                  <select class="form-control"  name="hourse_type">
+                                    <option value="">请选择房屋类型</option>
+                                    <option value="出租">我要出租</option>
+                                    <option value="转让">我要转让</option>
+                                    <option value="出售">我要出售</option>
                                   </select>
                         </div>
 
+                        <div id="gol_zu" style="display: none;"> 
+
+                          <div class="form-group col-sm-6">
+                              {!! Form::label('zuqi_type', '租期类型') !!}
+                              {!! Form::select('zuqi_type',['月','季度','半年','整年'],null, ['class' => 'form-control']) !!}
+                          </div>
+
+                          <!-- Zuqi Field -->
+                          <div class="form-group col-sm-6">
+                              {!! Form::label('zuqi', '租期') !!}
+                              {!! Form::number('zuqi', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                              {!! Form::label('water_price', '水费:(元)') !!}
+                              {!! Form::text('water_price', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                              {!! Form::label('electric_price', '电费:(元)') !!}
+                              {!! Form::text('electric_price', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                           <div class="form-group col-sm-4">
+                              {!! Form::label('mei_price', '煤费:(元)') !!}
+                              {!! Form::text('mei_price', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                              {!! Form::label('ranqi_price', '燃气费:(元)') !!}
+                              {!! Form::text('ranqi_price', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                          <div class="form-group col-sm-4">
+                              {!! Form::label('mei_price', '其他费用:(元)') !!}
+                              {!! Form::text('mei_price', null, ['class' => 'form-control']) !!}
+                          </div>
+
+                      </div>
+
 
                         <!-- Price Field -->
-                        <div class="form-group col-sm-8">
-                            {!! Form::label('price', '价格:(元)') !!}
+                        <div class="form-group col-sm-12">
+                            {!! Form::label('price', '租/出售/价格:(元)') !!}
                             {!! Form::text('price', null, ['class' => 'form-control']) !!}
                         </div>
 
+
+                        <div class="form-group col-sm-12">
+                            {!! Form::label('service_price', '服务费:(元)') !!}
+                            {!! Form::text('service_price', null, ['class' => 'form-control']) !!}
+                        </div>
+
+
+
                         <!-- Give Word Field -->
-                        <div class="form-group col-sm-8">
+                        <div class="form-group col-sm-12">
                             {!! Form::label('give_word', '给小屋新主留下来的话:') !!}
                             {!! Form::textarea('give_word', null, ['class' => 'form-control']) !!}
                         </div>
@@ -218,10 +255,22 @@
   @include('front.auth.usercenter_js')
   @include('front.auth.tinymce_js')
 <script type="text/javascript">
+  $('select[name=hourse_type]').change(function(){
+      if($(this).val() == '出租'){
+        $('#gol_zu').show(500);
+      }
+      else{
+        $('#gol_zu').hide(500);
+      }
+  });
   $('.gol_publish_btn').click(function(){
       tinyMCE.triggerSave();
       if($.varifyInput('name,address,zuqi,area,price')){
           return ;
+      }
+      if($.empty($('select[name=hourse_type]').val())){
+        $.alert('请选择gol房屋类型','error');
+        return;
       }
       dealWithActiveServices();
       $.zcjyRequest('/ajax/auth_gol_publish',function(res){
