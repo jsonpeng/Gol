@@ -75,6 +75,7 @@
         .f12{font-size: 12px;}
         .f14{font-size: 14px;}
         .f16{font-size: 16px !important;}
+        .f20{font-size:20px !important;}
         .f24{font-size:24px;}
         .fw700{font-weight: 700;}
         .h163{height:163px;}

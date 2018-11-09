@@ -121,4 +121,14 @@ class Gol extends Model
         return $this->belongsTo('App\Models\Cities','city','id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','attention_gols','gol_id','user_id');
+    }
+
 }

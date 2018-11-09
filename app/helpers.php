@@ -534,3 +534,16 @@ function spaceList($attr)
   return explode('_',$list);;
 }
 
+//从html中获取图片
+function get_content_img($text){
+    preg_match_all('/(src)=("[^"]*")/i', $text, $matches);   
+    $images_arr = $matches[0];
+    $match_arr = [];
+    if(count($images_arr)){
+        foreach ($images_arr as $key => $value) {
+            array_push($match_arr,substr($value,5));
+        }   
+    }
+    return $match_arr;
+}
+

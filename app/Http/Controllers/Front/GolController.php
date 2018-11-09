@@ -159,7 +159,11 @@ class GolController extends Controller
         if(!empty($user)){
               $attention_status = app('common')->varifyGolAttentionStatus($user->id,$id);
         }
-        return view('front.gol.series_detail',compact('gol','error','attention_num','user','attention_status'));
+        #发布gol的人
+        $gol_user = optional($gol->user);
+        #很多人喜欢
+        $manyman_likes = app('common')->golRepo()->manyManslike();
+        return view('front.gol.series_detail',compact('gol','error','attention_num','user','attention_status','gol_user','manyman_likes'));
     }
 
     /**

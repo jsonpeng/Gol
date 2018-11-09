@@ -45,6 +45,22 @@ class GolRepository extends BaseRepository
     }
 
 
+    //很多人喜欢
+    public function manyManslike(){
+
+        $gols = Gol::where('publish_status',1)
+                ->with('users')
+                ->get();
+
+        foreach ($gols as $key => $val) {
+            $val['user_num'] = count($val['users']);
+        }
+
+        $gols = $gols->sortByDesc('user_num');
+
+        return $gols;
+    }
+
     /**
      * 关注人数
      * @param  [type] $gol_id [description]
@@ -69,6 +85,7 @@ class GolRepository extends BaseRepository
                 ->orWhere('price','like','%'.$word.'%')
                 ->get();
     }
+
 
 
     /**

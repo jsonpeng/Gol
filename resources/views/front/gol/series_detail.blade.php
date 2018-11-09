@@ -18,10 +18,11 @@
 	}
 	.gol_series_title{
 		padding: 15px 65px;
-		color: black;
-		background: #ddd;
+		color: white;
+		background: #FF5511;
 		text-align: center;
 		font-size: 24px;
+		border-radius: 10px;
 	}
 	.gol_series_give_discourse{
 		border:1px dashed rgba(187,187,187,1);
@@ -32,6 +33,21 @@
 	    background: #FF5511 !important;
 	    color: white !important;
     }
+    .gol_goto_commit{
+    	background: #939393;color: white;font-size: 16px;text-align: center;padding:15px 20px;
+    	display: inline-block;
+    	margin-top: 35px;
+    }
+    /*滚动轮播*/
+	.picFocus{ margin:0 auto;  padding:5px;  position:relative;  overflow:hidden;  zoom:1;}
+	.picFocus .hd{ width:100%;padding-top:5px;  overflow:hidden;position: relative;}
+	.picFocus .hd ul{ margin-right:-5px;  overflow:hidden; zoom:1;}
+	.picFocus .hd ul li{ padding-top:5px; float:left;  text-align:center; list-style: none; }
+	.picFocus .hd ul li img{ width:109px; height:65px; border:2px solid #ddd; cursor:pointer; margin-right:5px;   }
+	.picFocus .hd ul li.on{ background:url("images/icoUp.gif") no-repeat center 0; }
+	.picFocus .hd ul li.on img{ border-color:#f60;  }
+	.picFocus .bd li{ vertical-align:middle; }
+	.picFocus .bd img{ width:467px; height:230px; display:block;  }
 </style>
 @endsection
 
@@ -56,7 +72,37 @@
 		<!--多张图-->
 		<div class="row pt15">
 			<div class="col-sm-7">
-				<img src="{!! $gol->iamge !!}" onerror="javascript:this.src='/images/gol/xiaowu_main.png';" class="img_auto" />
+				<!--首个图-->
+				{{-- <img src="{!! $gol->image !!}" onerror="javascript:this.src='/images/gol/xiaowu_main.png';" class="img_auto" /> --}}
+				<?php $images = get_content_img($gol->content); ?>
+				<!--其他图-->
+			<div class="picFocus">
+				<div class="bd">
+					<ul>
+						<li><a target="_blank" href="javascript:;"><img src="{!! $gol->image !!}" class="img_auto" /></a></li>
+						@if(count($images))
+							@foreach($images as $image)
+								<li><a target="_blank" href="javascript:;"><img src="{!! $image !!}" class="img_auto" /></a></li>
+							@endforeach
+						@endif
+					</ul>
+				</div>
+
+				<div class="hd">
+					<ul>
+						<li><img src="{!! $gol->image !!}" class="img_auto" /></li>
+						@if(count($images))
+							@foreach($images as $image)
+								<li><img src="{!! $image !!}" class="img_auto" /></li>
+							@endforeach
+						@endif
+					</ul>
+					{{-- <a class="prev" href="javascript:void(0)"></a>
+					<a class="next" href="javascript:void(0)"></a> --}}
+				</div>
+
+			</div>
+
 			</div>
 			<div class="col-sm-5">
 				<p class="pb15">服务/设施</p>
@@ -80,14 +126,15 @@
 				</div>
 
 				<p>租期/证件</p>
-				<p>整租{!! $gol->zuqi !!}年可续约 | @if($gol->xukezheng)  @else 无许可证 @endif</p>
-				<p>安全许可</p>
+				<p>整租{!! $gol->zuqi !!}年可续约 | @if($gol->xukezheng) 有许可证  @else 无许可证 @endif</p>
+
+				@if($gol->xukezheng)<div class="row"> <div class="col-sm-8"></div> <a class="gol_m_detail_button detail_color col-sm-3 gol-show-xuke" style="display: block;" data-url="{!! $gol->xukezheng !!}">查看</a></div>@endif
 
 				<div class="pt15" style="border-bottom: 1px dashed #ddd;">
 					
 				</div>
 
-				<p>{!! $gol->brief !!}</p>
+				<p>简介:{!! $gol->brief !!}</p>
 				<p>建筑面积:{!! $gol->area !!}平方米</p>
 				<p>房屋状态:{!! $gol->hourse_status !!}</p>
 				<p>改造程度:{!! $gol->gaizao_status !!}</p> 
@@ -110,13 +157,47 @@
 					想知道是不是TA寻找的有缘人,看看什么时间见面吧 
 					@else {!! $gol->give_word !!} @endif</div>
 
-					<div class="col-sm-3 f16" style="color: red;">查看相关费用</div>
+					<div class="col-sm-3 f16 gol-yuding" style="color: red;">查看相关费用</div>
 				</div>
 			</div>
-			<div class="col-sm-5">
+			<div class="col-sm-5 mt15">
 				<a class="gol_m_detail_button detail_color gol_attention" data-id="{!! !empty($user) ? $user->id : '' !!}" data-golid='{!! $gol->id !!}'>@if($attention_status) 已 @endif 加入计划 ({!! $attention_num !!})</a>
-				<a class="gol_m_detail_button detail_color">立即预定</a>
+				<a class="gol_m_detail_button detail_color gol-yuding">立即预定</a>
 			</div>
+		</div>
+
+		<div class="gol_yuding_dom" style="display: none;">
+			<div class="container mt30">
+				<div class="row">
+					<div class="col-sm-8 text-center">
+						<span class="f20">{!! $gol->hourse_type !!}</span>&nbsp;&nbsp;<span class="f20" style="color: red;">￥{!! $gol->price !!}</span> 
+						@if($gol->hourse_type == '出租')
+						<span class="f16">/{!! $gol->zuqi_type !!}</span>
+						<p class="mt15">水费<span class="f20" style="color: red;">￥{!! $gol->water_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						   电费<span class="f20" style="color: red;">￥{!! $gol->electric_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						   煤费<span class="f20" style="color: red;">￥{!! $gol->mei_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						   燃气费<span class="f20" style="color: red;">￥{!! $gol->ranqi_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						   服务费<span class="f20" style="color: red;">￥{!! $gol->service_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						   其他费用<span class="f20" style="color: red;">￥{!! $gol->other_price!!}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+						</p>
+						@endif
+						<a class="gol_goto_commit">去联系</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gol_goto_dom" style="display: none;">
+				<div class="row mt30 text-center">
+				
+					<div class="col-sm-3">
+						<a class="f20" href="tel:{!! $gol_user->mobile !!}" style="color: black;">手机号:{!! $gol_user->mobile !!}</a>
+					</div>
+					<div class="col-sm-3">
+						<a class="f20" href="mailto:{!! $gol_user->email !!}" style="color: black;">邮箱:{!! $gol_user->email !!}</a>
+					</div>
+					
+				</div>
 		</div>
 
 		<div class="row mt30 gol_map_near ml25">
@@ -155,7 +236,23 @@
 		</div>
 
 		<!--很多人喜欢-->
-
+		<div class="container mt30 pt15" style="border-top:2px solid #bbbbbb;">
+			<h4>很多人喜欢</h4>
+			@if(count($manyman_likes))
+			<div class="row">
+				<?php $i=0;?>
+				@foreach($manyman_likes as $item)
+					@if($i<4)
+					<a class="col-sm-3 " style="display: inline-block;" target="_blank" href="/golDetail/{!! $item->id !!}">
+						<img class="img_auto" src="{!! $item->image !!}"  onerror="javascript:this.src='/images/gol/many_post.jpg';" />
+					</a>
+					@endif
+					<?php $i++;?>
+				@endforeach
+			</div>
+		</div>
+			@endif
+		</div>
 		@endif
 		
 	</div>
@@ -164,6 +261,8 @@
 
 
 @section('js')
+<script type="text/javascript" src=" {{ asset('js/jquery.SuperSlide.2.1.3.js') }}"></script>
+<script type="text/javascript">jQuery(".picFocus").slide({ mainCell:".bd ul",effect:"left",pnLoop:true});</script>
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
 <!--根据地址索引地图标点-->
 <script type="text/javascript">
@@ -183,6 +282,21 @@
 	       	return false;
 	       }
      }
+
+     //查看许可证
+     $('.gol-show-xuke').click(function(){
+     	$.zcjyFrameOpen('<img src="'+$(this).data('url')+'" class="text-center img_auto" />','查看许可证',['80%', '980px']);
+     });
+
+     //立即预定
+     $('.gol-yuding').click(function(){
+     	$.zcjyFrameOpen($('.gol_yuding_dom').html(),'预定查看',['60%', '280px']);
+     });
+
+     //去联系
+     $(document).on('click','.gol_goto_commit',function(){
+     	$(this).parent().parent().parent().html($('.gol_goto_dom').html());
+     });
 
 	 //点击关注
      $('.gol_attention').click(function(){
