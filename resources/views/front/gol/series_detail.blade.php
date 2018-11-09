@@ -28,6 +28,10 @@
 		border-radius: 10px;
 		text-align: center;
 	}
+	.active{
+	    background: #FF5511 !important;
+	    color: white !important;
+    }
 </style>
 @endsection
 
@@ -63,7 +67,7 @@
 							<div class="row">
 								@foreach($gol->ServicesArr as $item)
 									<div class="col-sm-4 mb10">
-										<i class="fa fa-edit f16"></i>{!! $item !!}
+										{{-- <i class="fa fa-edit f16"></i> --}}{!! $item !!}
 									</div>
 								@endforeach
 							</div>
@@ -115,12 +119,36 @@
 			</div>
 		</div>
 
-		<!--地理周边-->
-		<div class="container mt30">
-			 
-                  <div id="allmap" style="height: 600px;"></div>
-          
+		<div class="row mt30 gol_map_near ml25">
+			<button class="btn btn-default active col-sm-2" data-data="公交">交通</button>
+			<button class="btn btn-default  col-sm-2" data-data="购物">购物</button>
+			<button class="btn btn-default  col-sm-2" data-data="餐饮">餐饮</button>
+			<button class="btn btn-default  col-sm-2" data-data="景点">景点</button>
+			<button class="btn btn-default  col-sm-2" data-data="娱乐">娱乐</button>
 		</div>
+
+		<!--地理周边-->
+		<div class="container mt30 p_relative">
+                    <div id="allmap" style="height: 600px;"></div>
+       {{--    			<div class="map-around-list" style="position: absolute;right: 100px;top: 0;">
+						  <ul class="gol-types">
+						    <li data-index="0" class="active">交通</li>
+						    <li data-index="1" class="">餐饮</li>
+						    <li data-index="2" class="">景点</li>
+						    <li data-index="3" class="">购物</li>
+						    <li data-index="4" class="">娱乐</li>
+						  </ul>
+						  <div id="map-result-container" >
+							   <div class="search-result" style="display: block;">
+									  
+									    <div class="place-list">
+									   
+
+									   </div>
+						 		</div>
+						 </div>
+					</div> --}}
+	    </div>
 	
 		<div class="container mt30">
 			<p>房东描述详情:{!! $gol->content !!}</p>
@@ -207,7 +235,10 @@
     var map;
     // 百度地图API功能
     var markersArray = [];  
-    function controlMap(address){ 
+    var ResultArray = [];  
+    var local1;
+    var point1;
+    function controlMap(address,nearby='公交'){ 
         map = new BMap.Map("allmap");
         map.setMapStyle({style:'normal'});
         //var point = new BMap.Point(114.329303,30.475501);
@@ -221,14 +252,33 @@
                 map.centerAndZoom(point, 16);
                 clearOverlays();
                 map.addOverlay(new BMap.Marker(point));
-                //map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
-                //map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
-               // map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+                map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+                map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+                map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
                 map.enableScrollWheelZoom();  
                 myGeo.getLocation(point, function (rs) {  
                 var addComp = rs.addressComponents;  
-                var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;  
-               
+                var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+
+        		point1 = point;
+                 local1 = new BMap.LocalSearch(
+            map,
+            {
+                renderOptions : {
+                    map : map,
+                    // panel : "content"
+                },onMarkersSet:function (array) {
+                    console.log(array);
+                },
+                onInfoHtmlSet:function (LocalResultPoi) {
+                    console.log(LocalResultPoi);
+                },
+                onResultsHtmlSet:function (element) {
+                    console.log(element);
+                },
+                    pageCapacity : 50
+                    });
+            		local1.searchNearby(nearby,point,1000);
                 // javascript:window.parent.call_back_by_map(null,point.lng,point.lat);
                  
             });                            //启用滚轮放大缩小
@@ -237,7 +287,16 @@
                 //alert("您选择地址没有解析到结果!");
             }
         });
+
+
+// var local = new BMap.LocalSearch(map, {renderOptions: {map: map,panel:"results"}});        
+// local.searchInBounds("银行", map.getBounds());
         //map.addEventListener("click", showInfo); 
-    }   
+    }
+    $('.gol_map_near > button').click(function(){
+    	$('.gol_map_near > button').removeClass('active');
+    	$(this).addClass('active');
+    	local1.searchNearby($(this).data('data'),point1,1000);
+    }); 
 </script>
 @endsection

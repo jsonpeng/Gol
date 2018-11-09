@@ -36,6 +36,17 @@ class HouseJoinRepository extends BaseRepository
     }
 
     /**
+     * [用户的所有花费]
+     * @param  [type] $user_id [description]
+     * @return [type]          [description]
+     */
+    public function useAllConsume($user_id)
+    {
+        return HouseJoin::where('user_id',$user_id)->where('pay_status','已支付')->sum('price');
+    }
+
+
+    /**
      * [用户参与支持的小屋记录]
      * @param  [type] $user_id    [description]
      * @param  [type] $pay_status [description]

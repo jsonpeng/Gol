@@ -28,7 +28,7 @@
 
                 <div class="col-sm-3">
                   <h4 class="text-center">我的资产</h4>
-                  <h4 class="text-center">{!! $user->zichan !!}</h4>
+                  <h4 class="text-center">{!! $all_consume !!}</h4>
                 </div>
 
                 <div class="col-sm-4">
