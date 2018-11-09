@@ -68,6 +68,72 @@ class AjaxController extends Controller
         return zcjy_callback_data($code);
     }
 
+    //忘记密码找回手机号或者密码 发送验证码
+    public function forgetSendCode(Request $request)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,'type,value');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        if($input['type'] == 'mobile'){
+             if(!User::where('mobile',$input['value'])->count())
+            {
+                return zcjy_callback_data('该手机号未注册过',1);
+            }
+            $code = app('common')->sendVerifyCode($input['value']);
+        }
+        else{
+            if(!User::where('email',$input['value'])->count())
+            {
+                return zcjy_callback_data('该邮箱未被注册过',1);
+            }
+          $email = $input['value']; 
+          $code=rand(1000,9999);
+          $name = empty(getSettingValueByKeyCache('company_name')) ? 'gol公司' : getSettingValueByKeyCache('company_name');
+          Mail::send('emails.index',['name'=>$name,'code'=>$code],function($message) use ($email,$name){ 
+            $to = $email;
+            $message ->to($to)->subject('【'.$name.'】找回密码邮箱验证码');
+          });
+        session()->put('email_code_find_'.$email,$code);
+        }
+        return zcjy_callback_data($code);
+    }
+
+    //忘记密码找回手机号或者密码操作
+    public function forgetPwdFindAction(Request $request)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,'type,value,code,newpassword');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        $user = null;
+        #手机号
+        if($input['type'] == 'mobile'){
+            if(session('mobile_code_reg'.$input['value']) != $input['code']){
+                return zcjy_callback_data('手机验证码错误',1);
+            }
+            $user = User::where('mobile',$input['value'])->first();
+        }#邮箱
+        else{
+          if(session('email_code_find_'.$input['value']) != $input['code']){
+               return zcjy_callback_data('邮箱验证码错误',1);
+          }
+           $user = User::where('email',$input['value'])->first();
+        }
+
+        if(empty($user)){
+             return zcjy_callback_data('未知错误',1);
+        }
+        #修改密码
+        $user->update(['password'=>Hash::make($input['newpassword'])]);
+        #登陆
+        auth('web')->login($user);
+
+        return zcjy_callback_data('修改密码成功');
+    }
+
     //手机号注册
     public function regMobile(Request $request)
     {

@@ -50,6 +50,10 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	Route::post('send_group_notice','AjaxController@sendAllUserNotice');
 	#设置单条通知消息为已读
 	Route::get('set_notice_readed/{id}','AjaxController@setNoticeReaded');
+	#忘记密码发送手机验证码/邮箱验证码
+	Route::post('forgetpwd_send_code','AjaxController@forgetSendCode');
+	#忘记密码找回
+	Route::post('forgetpwd_action_submit','AjaxController@forgetPwdFindAction');
 
 	/**
 	 *需要用户登录后才可以操作
@@ -75,7 +79,6 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 
 		##发起小屋评论
 		Route::post('publish_house_comment','AjaxController@publishHouseComment');
-
 
 		##发起gol关注
 		Route::post('attention_gol/{gol_id}','AjaxController@attentionGol');
@@ -118,6 +121,7 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 		Route::get('login','GolController@authLogin');
 		//用户注册
 		Route::get('reg/mobile','GolController@authMobileReg');
+		Route::get('find_pwd','GolController@authForgetPwd');
 		/**
  		 * 个人中心
  		 */

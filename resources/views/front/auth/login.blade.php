@@ -61,7 +61,7 @@
                     <div class="col-sm-3">
                     </div>
                     <div class="col-sm-3">
-                      <a href="javascript:;" style="color: black;">忘记密码</a>
+                      <a href="/user/find_pwd" style="color: black;">忘记密码</a>
                     </div>
                 {{--     <div class="col-sm-3">
                       <a href="javascript:;" style="color: black;">其他登录</a>

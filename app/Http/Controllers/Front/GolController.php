@@ -177,6 +177,12 @@ class GolController extends Controller
         return view('front.auth.mobile_reg');
     }
 
+    //忘记密码
+    public function authForgetPwd(Request $request)
+    {
+         return view('front.auth.forget_pwd');
+    }
+
     //个人中心
     public function authCenter(Request $request)
     {
