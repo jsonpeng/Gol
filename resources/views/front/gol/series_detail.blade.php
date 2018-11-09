@@ -39,14 +39,14 @@
     	margin-top: 35px;
     }
     /*滚动轮播*/
-	.picFocus{ margin:0 auto;  padding:5px;  position:relative;  overflow:hidden;  zoom:1;}
+	.picFocus{ margin:0 auto;  padding:5px;  position:relative;  overflow:hidden;  zoom:1;padding-top:12px;border:1px solid #FF5511;}
 	.picFocus .hd{ width:100%;padding-top:5px;  overflow:hidden;position: relative;}
 	.picFocus .hd ul{ margin-right:-5px;  overflow:hidden; zoom:1;}
 	.picFocus .hd ul li{ padding-top:5px; float:left;  text-align:center; list-style: none; }
 	.picFocus .hd ul li img{ width:109px; height:65px; border:2px solid #ddd; cursor:pointer; margin-right:5px;   }
-	.picFocus .hd ul li.on{ background:url("images/icoUp.gif") no-repeat center 0; }
+	.picFocus .hd ul li.on{ /*background:url("images/icoUp.gif") no-repeat center 0; */}
 	.picFocus .hd ul li.on img{ border-color:#f60;  }
-	.picFocus .bd li{ vertical-align:middle; }
+	.picFocus .bd li{ vertical-align:middle; list-style: none;padding-left: 2.2%;}
 	.picFocus .bd img{ width:467px; height:230px; display:block;  }
 </style>
 @endsection
