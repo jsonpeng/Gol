@@ -128,7 +128,6 @@ class GolController extends AppBaseController
           #处理空格和换行符
           $input['services'] = preg_replace("/\r\n|\s+/",'',$input['services']);
         }
-
         $this->golRepository->update($input, $id);
 
         Flash::success('更新成功.');
