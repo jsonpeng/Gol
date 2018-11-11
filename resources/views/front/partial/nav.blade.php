@@ -107,7 +107,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand mr20 " href="/"><img  class="gol_logo" src="/images/gol/logo.jpeg"></a>
+				<a class="navbar-brand mr20 " href="/"><img  class="gol_logo" onerror="javascript:this.src='/images/gol/logo.jpeg';" src="{!!  getSettingValueByKeyCache('logo')  !!}"></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -192,6 +192,7 @@
 		@endforeach
   	</div>
 </div>
+@if(!Request::is('post*') && !Request::is('cat*'))
 <!-- 搜索框 -->
 <div class="">
 	<div class="container" style="margin-top: -150px;
@@ -200,6 +201,7 @@
 
 	</div>
 </div>
+@endif
 @endif
 </header>
 

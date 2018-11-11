@@ -35,7 +35,7 @@
          }
          .in-block{display: inline-block;}
         .p_relative{position: relative;}
-        a:hover { color: #FF5511; text-decoration: underline; }
+        a:hover { color: #FF5511; text-decoration:none; }
         .border_b{border-bottom: 1px solid #bbb;}
         .gol_hidden{display: none;}
         .h150{height: 150px;}
@@ -286,6 +286,22 @@
             }
             location.href="/manyMan?word="+$('input[name=search_hourse]').val();
         });
+
+        //  enter键执行搜索
+        $('input[name=search_hourse]').on('keypress', function(event) {
+            if (event.charCode === 13) {
+              $('.gol_search_button').trigger('click');
+            }
+        });
+
+        //
+        $('input[name=search_all]').on('keypress',function(event){
+            if (event.charCode === 13) {
+              $('.site_search_all').trigger('click');
+          }
+        });
+
+
         </script>
 
         @yield('js')

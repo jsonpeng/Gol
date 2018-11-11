@@ -99,46 +99,46 @@
 	<div class="container">
 		<div class="text-center f24">———&nbsp;&nbsp;GOL+&nbsp;&nbsp;———</div>
 		<div class="pt30">
-			<div class="gol_four_img p_relative gol_xilie reveal1">
+			<a class="gol_four_img p_relative gol_xilie reveal1" href="/series/青旅">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.青旅</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/青旅">READ MORE</a>
+				 	<span>READ MORE</span>
 				 </div>
 				<img src="/images/gol/青旅.jpeg" />
-			</div>
-			<div class="gol_four_img p_relative gol_xilie reveal1">
+			</a>
+			<a class="gol_four_img p_relative gol_xilie reveal1" href="/series/客栈">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.客栈</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/客栈">READ MORE</a>
+				 	<span>READ MORE</span>
 				 </div>
 				<img src="/images/gol/客栈.jpeg" />
-			</div>
-			<div class="gol_four_img p_relative gol_xilie reveal1">
+			</a>
+			<a class="gol_four_img p_relative gol_xilie reveal1" href="/series/民宿">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.民宿</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/民宿">READ MORE</a>
+				 	<span>READ MORE</span>
 				 </div>
 				<img src="/images/gol/民宿.jpeg" />
-			</div>
-			<div class="gol_four_img p_relative gol_xilie reveal1">
+			</a>
+			<a class="gol_four_img p_relative gol_xilie reveal1" href="/series/空间">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
 				 	<p>GOL.空间</p>
 				 	<p>自由 青春 活力</p>
 				 	<p>旅游爱好者的圣地</p>
-				 	<a href="/series/空间">READ MORE</a>
+				 	<span>READ MORE</span>
 				 </div>
 				<img src="/images/gol/空间.jpeg" />
-			</div>
+			</a>
 		</div>
 	</div>
 </div>
