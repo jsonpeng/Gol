@@ -22,7 +22,7 @@
             <td>{!! $house->gear !!}</td>
             <td>{!! $house->type !!}</td>
             <td>{!! $house->target !!}</td>
-            <td>{!! $house->status !!}</td>
+            <td>{!! $house->status == '审核中' ? tag($house->status) : $house->status !!}</td>
             <td>{!! $house->endtime !!}</td>
             <td>{!! $house->created_at !!}</td>
             <td>

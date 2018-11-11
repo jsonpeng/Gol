@@ -30,7 +30,7 @@
                     <td>{!! $gol->address !!}</td>
                     <td>{!! $gol->hourse_status !!}</td>
                     <td>{!! $gol->gaizao_status !!}</td>
-                    <td>{!! $gol->fabuStatus !!}</td>
+                    <td>{!! $gol->fabuStatus == '审核中' ? tag($gol->fabuStatus) : $gol->fabuStatus !!}</td>
                     <td>{!! $gol->price !!}@if($gol->hourse_type == '出租') /{!! $gol->zuqi !!}个{!! $gol->zuqi_type !!} @endif</td>
                         <td>
                             {!! Form::open(['route' => ['gols.destroy', $gol->id], 'method' => 'delete']) !!}

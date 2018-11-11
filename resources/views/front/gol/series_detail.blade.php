@@ -157,18 +157,19 @@
 					想知道是不是TA寻找的有缘人,看看什么时间见面吧 
 					@else {!! $gol->give_word !!} @endif</div>
 
-					<div class="col-sm-3 f16 gol-yuding" style="color: red;">查看相关费用</div>
+					<div class="col-sm-3 f16 gol-yuding" style="color: red;"  data-id="{!! !empty($user) ? $user->id : '' !!}">查看相关费用</div>
 				</div>
 			</div>
 			<div class="col-sm-5 mt15">
 				<a class="gol_m_detail_button detail_color gol_attention" data-id="{!! !empty($user) ? $user->id : '' !!}" data-golid='{!! $gol->id !!}'>@if($attention_status) 已 @endif 加入计划 ({!! $attention_num !!})</a>
-				<a class="gol_m_detail_button detail_color gol-yuding">立即预定</a>
+				<a class="gol_m_detail_button detail_color gol-yuding"  data-id="{!! !empty($user) ? $user->id : '' !!}">立即预定</a>
 			</div>
 		</div>
 
 		<div class="gol_yuding_dom" style="display: none;">
 			<div class="container mt30">
 				<div class="row">
+					<div class="col-sm-2"></div>
 					<div class="col-sm-8 text-center">
 						<span class="f20">{!! $gol->hourse_type !!}</span>&nbsp;&nbsp;<span class="f20" style="color: red;">￥{!! $gol->price !!}</span> 
 						@if($gol->hourse_type == '出租')
@@ -189,7 +190,7 @@
 
 		<div class="gol_goto_dom" style="display: none;">
 				<div class="row mt30 text-center">
-				
+					<div class="col-sm-2"></div>
 					<div class="col-sm-3">
 						<a class="f20" href="tel:{!! $gol_user->mobile !!}" style="color: black;">手机号:{!! $gol_user->mobile !!}</a>
 					</div>
@@ -290,6 +291,9 @@
 
      //立即预定
      $('.gol-yuding').click(function(){
+     	 if(varifyAuthLogin(this)){
+	       		return ;
+	     }
      	$.zcjyFrameOpen($('.gol_yuding_dom').html(),'预定查看',['60%', '280px']);
      });
 

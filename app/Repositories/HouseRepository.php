@@ -392,7 +392,7 @@ class HouseRepository extends BaseRepository
             return '没有找到该小屋';
         }
 
-        if($hourse->status != '已发布' && $hourse->status != '已完成'){
+        if($hourse->status != '已发布' && $hourse->status != '已完成' && $hourse->status != '已过期'){
             return '该小屋'.$hourse->status;
         }
 
