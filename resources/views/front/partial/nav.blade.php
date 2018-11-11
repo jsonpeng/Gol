@@ -101,18 +101,19 @@
 		<div class="container mt15">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		<!-- 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand mr20 " href="/"><img  class="gol_logo" onerror="javascript:this.src='/images/gol/logo.jpeg';" src="{!!  getSettingValueByKeyCache('logo')  !!}"></a>
+				</button> -->
+				<!-- <a class="navbar-brand mr20 " href="/"><img  class="gol_logo" onerror="javascript:this.src='/images/gol/logo.jpeg';" src="{!!  getSettingValueByKeyCache('logo')  !!}"></a> -->
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1" style="position:relative;">
+			<div class="collapse navbar-collapse "  style="position:relative;">
 				<ul class="nav navbar-nav ">
+					<li><a class="mr20 " href="/" style="margin-top: -15px;"><img  class="gol_logo" onerror="javascript:this.src='/images/gol/logo.jpeg';" src="{!!  getSettingValueByKeyCache('logo')  !!}"></a></li>
 					@if(Request::is('user/login'))
 					<li><a href="javascript:;">欢迎登陆</a></li>
 					@elseif(Request::is('user/reg*'))

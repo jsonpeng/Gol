@@ -261,6 +261,9 @@
             swipeLeft: function() { $(this).carousel('next'); },
             swipeRight: function() { $(this).carousel('prev'); },
         });
+        $('.navbar-header').click(function(){
+            location.href="/";
+        });
         //退出登录
         $('.gol_logout').click(function(){
             $.zcjyRequest('/ajax/logout_user',function(res){
