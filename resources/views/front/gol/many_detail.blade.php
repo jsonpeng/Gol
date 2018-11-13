@@ -465,7 +465,9 @@
 				<div class="row pt30">
 						<a class="col-sm-2"></a>
 						<a class="col-sm-3 gol_m_detail_button gol_attention" data-id="{!! !empty($user) ? $user->id : '' !!}" data-houseid="{!! $id !!}">@if($attention_status)已@endif关注({!! $hourse_attention_num !!})</a>
+						@if(count($hourse->all_gears) > 0 && !empty(optional($hourse->all_gears)[0]))
 						<a class="col-sm-3 gol_m_detail_button gol_join_many" data-id="{!! !empty($user) ? $user->id : '' !!}" data-status="{!! $hourse->status !!}">加入小屋家</a>
+						@endif
 						<a class="col-sm-2"></a>
 				</div>
 
@@ -615,12 +617,26 @@
 					<div class="row pt15">
 						<a class="col-sm-2"></a>
 					{{-- 	<a class="col-sm-3 gol_m_detail_button gol_sixin" data-id="{!! !empty($user) ? $user->id : '' !!}" data-name="{!! !empty($user) ? $user->name : '' !!}">私信</a> --}}
-						<a class="col-sm-3 gol_m_detail_button">咨询</a>
+						<a class="col-sm-3 gol_m_detail_button gol_zixun" data-id="{!! !empty($user) ? $user->id : '' !!}">咨询</a>
 						<a class="col-sm-2"></a>
 					</div>
 
 				</div>
 			</div>
+		</div>
+
+
+		<div class="gol_zixun_dom" style="display: none;">
+				<div class="row mt30 text-center">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-3">
+						<a class="f20" href="tel:{!! $hourse_user->mobile !!}" style="color: black;">手机号:{!! $hourse_user->mobile !!}</a>
+					</div>
+					<div class="col-sm-3">
+						<a class="f20" href="mailto:{!! $hourse_user->email !!}" style="color: black;">邮箱:{!! $hourse_user->email !!}</a>
+					</div>
+					
+				</div>
 		</div>
 
 		<!--加入很多人-->
@@ -741,6 +757,14 @@
       layer.closeAll();
      }
 
+     //咨询
+     $('.gol_zixun').click(function(){
+ 	    if(varifyAuthLogin(this)){
+		    return;
+        }
+     	$.zcjyFrameOpen($('.gol_zixun_dom').html(),'立即咨询',['60%', '280px']);
+     });
+
      //输入框监听事件
      function messageInput(obj){
       var value = $(obj).val();
@@ -786,8 +810,8 @@
 	    if(varifyAuthLogin(this)){
 	       		return ;
         }
-        if($(this).data('status') == '已过期'){
-        	$.alert('该小屋'+$(this).data('status'));
+        if($(this).data('status') == '已过期' || $(this).data('status') == '已完成'){
+        	$.alert('该小屋'+$(this).data('status'),'error');
         	return;
         }
      	$.zcjyFrameOpen($('.joinMany').html(),'请选择档位',['60%', '480px']);

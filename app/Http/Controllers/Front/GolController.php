@@ -54,6 +54,9 @@ class GolController extends Controller
             elseif($input['type'] == '即将上架'){
                 $hourses =  app('common')->houseRepo()->forSaleHouses(1); 
             }
+            elseif($input['type'] == '已完成'){
+                  $hourses =  app('common')->houseRepo()->forSaleHouses(1); 
+            }
         }
         else{
             //正在参与

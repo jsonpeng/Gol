@@ -226,7 +226,7 @@
 
 	@if(count($hourses_for_sale))
 		<!-- 即将上架 -->
-		<div class="text-center f24 reveal4"><span class="f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</span><a class="f16 pull-right"  href="?type=即将上架" style="color: #797878;">READ MORE>></a></div>
+		<div class="text-center f24 reveal4"><span class="f24">———&nbsp;&nbsp;已完成&nbsp;&nbsp;———</span><a class="f16 pull-right"  href="?type=已完成" style="color: #797878;">READ MORE>></a></div>
 		
 		<div class="pt30 pb50">
 			<div class="row">

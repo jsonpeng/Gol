@@ -267,7 +267,7 @@ class HouseRepository extends BaseRepository
         $day = (int)getSettingValueByKey('house_end_time');
 
         $hourses = $hourses->filter(function($item) use($now,$day) {
-            return $now->diffInDays($item->endtime) <= $day;
+            return $now->diffInDays($item->endtime) >= $day;
         });
 
         foreach ($hourses as $key => $val) {
@@ -292,7 +292,6 @@ class HouseRepository extends BaseRepository
     public function forSaleHouses($paginate=0,$take=4)
     {
         $hourses = House::where('status','已完成')
-               ->whereNotNull('put_time')
                ->with('join')
                ->orderBy('created_at','asc');
 

@@ -260,7 +260,7 @@
 
 @endsection
 
-
+@if(!$error)
 @section('js')
 <script type="text/javascript" src=" {{ asset('js/jquery.SuperSlide.2.1.3.js') }}"></script>
 <script type="text/javascript">jQuery(".picFocus").slide({ mainCell:".bd ul",effect:"left",pnLoop:true});</script>
@@ -286,7 +286,16 @@
 
      //查看许可证
      $('.gol-show-xuke').click(function(){
-     	$.zcjyFrameOpen('<img src="'+$(this).data('url')+'" class="text-center img_auto" />','查看许可证',['80%', '980px']);
+     	layer.open({
+		  type: 1,
+		  title: false,
+		  closeBtn: 0,
+		  area: '516px',
+		  skin: 'layui-layer-nobg', //没有背景色
+		  shadeClose: true,
+		  content: '<img src="'+$(this).data('url')+'" class="text-center img_auto" />',
+		});
+     	//$.zcjyFrameOpen('<img src="'+$(this).data('url')+'" class="text-center img_auto" />','查看许可证',['50%', '500px']);
      });
 
      //立即预定
@@ -358,7 +367,7 @@
     var point1;
     function controlMap(address,nearby='公交'){ 
         map = new BMap.Map("allmap");
-        map.setMapStyle({style:'normal'});
+        map.setMapStyle({style:'dark'});
         //var point = new BMap.Point(114.329303,30.475501);
         //map.centerAndZoom(point,12);
         // 创建地址解析器实例
@@ -418,3 +427,4 @@
     }); 
 </script>
 @endsection
+@endif
