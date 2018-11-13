@@ -141,7 +141,7 @@ class GolController extends AppBaseController
         else{
              $input['publish_status'] = '已下架';
         }
-        app('notice')->sendNoticeToUser($gol->user_id,'gol管理员已将您的gol小屋'.tag($input['name'],'orange').'状态更新为'.tag($input['publish_status']));
+        app('notice')->sendNoticeToUser($gol->user_id,'您的gol小屋'.tag($input['name'],'orange').'状态已更新为'.tag($input['publish_status']));
 
         return redirect(route('gols.index'));
     }

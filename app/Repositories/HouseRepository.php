@@ -98,7 +98,7 @@ class HouseRepository extends BaseRepository
             foreach ($houses as $key => $val) {
                 if(strpos($val->s_time,'前') !== false){
                     House::where('id',$val->id)->update([
-                        'status'=>'已过期'
+                        'status'=>'已完成'
                     ]);
                 }
             }

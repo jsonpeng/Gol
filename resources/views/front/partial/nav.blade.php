@@ -173,36 +173,42 @@
 </div>
 @endif
 
-<?php if(Request::is('manyMan*')){$banners = app('common')->bannerRepo()->getCacheBanner('xiaowujia');}?>
+<?php 
+if(Request::is('manyMan*')){
+	$banners = app('common')->bannerRepo()->getCacheBanner('cabin');
+}elseif(Request::is('series*')){
+	$banners = app('common')->bannerRepo()->getCacheBanner('series');
+}
+?>
 <!--滚动banner-->
-@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol') && !Request::is('manySettle*'))
-<div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
-	<div class="carousel-inner" role="listbox" style="max-height: 540px;">
-		<?php $num = 0;?>
-		@foreach ($banners as $banner)
-		<?php $num++; ?>
-			@if($num==1)
-			<a class="item active " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
-				<img src="{{ $banner->image }}" alt="">
-			</a>
-			@else
-			<a class="item " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
-				<img src="{{ $banner->image }}" alt="">
-			</a>
-			@endif
-		@endforeach
-  	</div>
-</div>
-@if(!Request::is('post*') && !Request::is('cat*'))
-<!-- 搜索框 -->
-<div class="">
-	<div class="container" style="margin-top: -150px;
-    margin-bottom: 150px;">
-		<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_hourse" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
-
+@if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol') && !Request::is('manySettle*') && !Request::is('post*'))
+	<div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
+		<div class="carousel-inner" role="listbox" style="max-height: 540px;">
+			<?php $num = 0;?>
+			@foreach ($banners as $banner)
+			<?php $num++; ?>
+				@if($num==1)
+				<a class="item active " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
+					<img src="{{ $banner->image }}" alt="">
+				</a>
+				@else
+				<a class="item " href="{!! !empty($banner->link) ? $banner->link : 'javascript:;' !!}" target="_blank">
+					<img src="{{ $banner->image }}" alt="">
+				</a>
+				@endif
+			@endforeach
+	  	</div>
 	</div>
-</div>
-@endif
+	@if(!Request::is('post*') && !Request::is('cat*'))
+	<!-- 搜索框 -->
+	<div class="">
+		<div class="container" style="margin-top: -150px;
+	    margin-bottom: 150px;">
+			<div class="pt15 p_relative reveal1" ><img class="gol_search_img" src="/images/gol/search_black.png" /><input class="form-control h60 pl50" name="search_hourse" placeholder="目的地、开放日、城市、地址" /><span class="gol_search_button">搜索</span></div>
+
+		</div>
+	</div>
+	@endif
 @endif
 </header>
 

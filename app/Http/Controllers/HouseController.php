@@ -127,7 +127,7 @@ class HouseController extends AppBaseController
 
         Flash::success('更新小屋成功.');
 
-        app('notice')->sendNoticeToUser($house->user_id,'gol管理员已将您的小屋'.tag($input['name'],'orange').'状态更新为'.tag($input['status']));
+        app('notice')->sendNoticeToUser($house->user_id,'您的小屋'.tag($input['name'],'orange').'状态已更新为'.tag($input['status']));
 
         return redirect(route('houses.index'));
     }

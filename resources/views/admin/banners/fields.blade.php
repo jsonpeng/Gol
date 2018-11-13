@@ -11,7 +11,7 @@
 <!-- Sort Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('slug', '别名:') !!}
-    {!! Form::text('slug', null, ['class' => 'form-control']) !!}
+    {!! Form::text('slug', null, ['class' => 'form-control','disabled'=>isset($banner) ? true : false]) !!}
 </div>
 @endif
 
