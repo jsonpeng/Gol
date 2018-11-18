@@ -49,6 +49,7 @@
 	.picFocus .bd li{ vertical-align:middle; list-style: none;padding-left: 2.2%;}
 	.picFocus .bd img{ width:467px; height:230px; display:block;  }
 </style>
+ <link rel="stylesheet" href="{{ asset('dist/css/swiper.min.css') }}">
 @endsection
 
 @section('seo')
@@ -240,16 +241,24 @@
 		<div class="container mt30 pt15" style="border-top:2px solid #bbbbbb;">
 			<h4>很多人喜欢</h4>
 			@if(count($manyman_likes))
-			<div class="row">
-				<?php $i=0;?>
-				@foreach($manyman_likes as $item)
-					@if($i<4)
-					<a class="col-sm-3 " style="display: inline-block;" target="_blank" href="/golDetail/{!! $item->id !!}">
-						<img class="img_auto" src="{!! $item->image !!}"  onerror="javascript:this.src='/images/gol/many_post.jpg';" />
-					</a>
-					@endif
-					<?php $i++;?>
-				@endforeach
+			<div class="row swiper-container">
+				<div class="swiper-wrapper">
+					<?php $i=0;?>
+					@foreach($manyman_likes as $item)
+		
+						<a class="col-sm-3 swiper-slide" style="display: inline-block;" target="_blank" href="/golDetail/{!! $item->id !!}">
+							<img class="img_auto" src="{!! $item->image !!}"  onerror="javascript:this.src='/images/gol/many_post.jpg';" style="min-height: 230px;" />
+						</a>
+					
+						<?php $i++;?>
+					@endforeach
+
+					    <!-- Add Pagination -->
+					    <div class="swiper-pagination"></div>
+					    <!-- 左右按钮 -->
+					    <div class="swiper-button-prev"></div>
+					    <div class="swiper-button-next"></div>
+				</div>
 			</div>
 		</div>
 			@endif
@@ -265,6 +274,7 @@
 <script type="text/javascript" src=" {{ asset('js/jquery.SuperSlide.2.1.3.js') }}"></script>
 <script type="text/javascript">jQuery(".picFocus").slide({ mainCell:".bd ul",effect:"left",pnLoop:true});</script>
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=usHzWa4rzd22DLO58GmUHUGTwgFrKyW5&s=1"></script>
+<script src="{{ asset('dist/js/swiper.min.js') }}"></script>
 <!--根据地址索引地图标点-->
 <script type="text/javascript">
 
@@ -425,6 +435,21 @@
     	$(this).addClass('active');
     	local1.searchNearby($(this).data('data'),point1,1000);
     }); 
+
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 4,
+      spaceBetween: 25,
+      loop : true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+ 
 </script>
 @endsection
 @endif

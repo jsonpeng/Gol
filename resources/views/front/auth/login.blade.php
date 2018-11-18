@@ -91,5 +91,11 @@
           }
       },$('form').serialize(),'POST');
   });
+
+  $('input[name=name],input[name=password]').on('keypress',function(event){
+            if (event.charCode === 13) {
+              $('.gol_login_btn').trigger('click');
+          }
+  });
 </script>
 @endsection

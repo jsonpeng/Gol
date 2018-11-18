@@ -2,7 +2,9 @@
 
 @section('css')
 <style type="text/css">
-
+.img_auto{
+	min-height: 262px;
+}
 </style>
 @endsection
 
@@ -49,7 +51,7 @@
 								
 		 					</div>
 							<div class="col-sm-6">
-								<p class="pull-right">租金&nbsp;￥{!! $gol->price !!}</p>
+								<p class="pull-right">{!! $gol->hourse_type !!}&nbsp;￥{!! $gol->price !!}</p>
 								
 							</div>
 							

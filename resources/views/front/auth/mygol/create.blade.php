@@ -265,7 +265,7 @@
   });
   $('.gol_publish_btn').click(function(){
       tinyMCE.triggerSave();
-      if($.varifyInput('name,address,zuqi,area,price')){
+      if($.varifyInput('name,address,area,price')){
           return ;
       }
       if($.empty($('select[name=hourse_type]').val())){
