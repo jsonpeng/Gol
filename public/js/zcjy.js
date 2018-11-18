@@ -241,3 +241,4 @@ $.fn.extend({
         });
     },  
 });
+$('input[name=price]').numberInputLimit(6);
