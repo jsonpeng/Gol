@@ -48,6 +48,8 @@
 	.picFocus .hd ul li.on img{ border-color:#f60;  }
 	.picFocus .bd li{ vertical-align:middle; list-style: none;padding-left: 2.2%;}
 	.picFocus .bd img{ width:467px; height:230px; display:block;  }
+
+	.gol-series-detail p img{width: 100%;}
 </style>
  <link rel="stylesheet" href="{{ asset('dist/css/swiper.min.css') }}">
 @endsection
@@ -233,7 +235,7 @@
 					</div> --}}
 	    </div>
 	
-		<div class="container mt30">
+		<div class="container mt30 gol-series-detail">
 			<p>房东描述详情:{!! $gol->content !!}</p>
 		</div>
 
