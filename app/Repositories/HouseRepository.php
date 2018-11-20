@@ -111,12 +111,23 @@ class HouseRepository extends BaseRepository
      */
     public function indexShowHouses($take=12)
     {
-        return House::where('index_show','>',0)
+        $houses =  House::where('index_show','>',0)
                 ->where('status','<>','审核中')
                 ->where('status','<>','已下架')
                 ->orderBy('index_show','desc')
                 ->take($take)
                 ->get();
+
+        foreach ($houses as $key => $val) {
+             $images = get_content_img($val->content);
+             $i=0;
+             foreach ($images as $key => $val2) {
+                  ++$i;
+                  $val['image'.$i] = $val2;
+             }
+        }
+
+        return $houses;
     }
 
     public  function allHouses(){
