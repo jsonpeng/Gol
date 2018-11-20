@@ -428,6 +428,9 @@
 		  padding-bottom: 25px;
 		  background: url('/images/arrow-bottom.png') no-repeat bottom center;
 		}
+		#home img{
+			width: 100%;
+		}
 </style>
 @endsection
 
