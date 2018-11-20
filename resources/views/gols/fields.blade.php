@@ -145,6 +145,12 @@
     {!! Form::textarea('give_word', null, ['class' => 'form-control']) !!}
 </div>
 
+
+<div class="form-group col-sm-8">
+    {!! Form::label('tui', '给发布者推送更新消息') !!}
+    <input type="checkbox" name="tui" />
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('保存', ['class' => 'btn btn-primary']) !!}

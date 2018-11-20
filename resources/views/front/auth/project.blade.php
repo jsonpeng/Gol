@@ -65,6 +65,7 @@
                                                     <th>状态</th>
                                                     <th>截止时间</th>
                                                     <th>发布时间</th>
+                                                    <th>操作</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -79,6 +80,14 @@
                                                         <td>{!! $house->status !!}</td>
                                                         <td>{!! $house->endtime !!}</td>
                                                         <td>{!! $house->created_at !!}</td>
+                                                        <td>@if($house->status == '已发布')
+                                                               <a href="javascript:;"  target="_blank" data-id="{!! $house->id !!}" data-action="update_house" class='btn btn-danger btn-xs gol-project-action'>下架小屋</a>
+                                                            @elseif($house->status == '已完成')
+
+                                                            @else
+                                                              <a href="javascript:;"  target="_blank" data-id="{!! $house->id !!}" data-action="update_house" class='btn btn-success btn-xs gol-project-action'>发布小屋</a>
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
@@ -103,6 +112,7 @@
                                             <th>改造状态</th>
                                             <th>发布状态</th>
                                             <th>价格</th>
+                                            <th>操作</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -110,7 +120,7 @@
                                                 <tr>
                                                     <td>{!! $gol->name !!}</td>
                                                     <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
-                                                    <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>
+                                                    <td>{!! $gol->xukezheng ? '<img style="max-width: 100px;height: auto;" src='. $gol->xukezheng .' />': '无' !!}</td>
                                                     <td>{!! $gol->zuqi !!}</td>
                                                     <td>{!! $gol->area !!}</td>
                                                     <td>{!! $gol->address !!}</td>
@@ -118,6 +128,12 @@
                                                     <td>{!! $gol->gaizao_status !!}</td>
                                                     <td>{!! $gol->fabuStatus !!}</td>
                                                     <td>{!! $gol->price !!}</td>
+                                                    <td>@if($gol->publish_status == '1')
+                                                               <a href="javascript:;"  target="_blank" data-id="{!! $gol->id !!}" data-action="update_gol" class='btn btn-danger btn-xs gol-project-action'>下架小屋</a>
+                                                            @else
+                                                              <a href="javascript:;"  target="_blank" data-id="{!! $gol->id !!}" data-action="update_gol" class='btn btn-success btn-xs gol-project-action'>发布小屋</a>
+                                                            @endif
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -159,6 +175,15 @@
 @section('js')
  @include('front.auth.usercenter_js')
 <script type="text/javascript">
-  //$.zcjyFrameOpen($('.gol_choose_role').html(),'请选择',['60%', '380px']);
+  $('.gol-project-action').click(function(){
+      var action = $(this).data('action');
+      var id = $(this).data('id');
+      $.zcjyRequest('/ajax/'+action+'/'+id,function(res){
+            if(res){
+              $.alert(res);
+              location.reload();
+            }
+      },{},'POST');
+    });
 </script>
 @endsection

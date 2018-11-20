@@ -467,6 +467,50 @@ class AjaxController extends Controller
         return zcjy_callback_data('发起留言成功');
     }
 
+    //更新小屋的状态
+    public function updateHouseStatus(Request $request,$id)
+    {
+        $input = $request->all();
 
+        $house = app('common')->houseRepo()->findWithoutFail($id);
+
+        if(empty($house)){
+            return zcjy_callback_data('没有找到该小屋',1);
+        }
+        $status = '已发布';
+        if($house->status == '已发布'){
+            $status = '已下架';
+        }
+
+        $house->update([
+            'status'=>$status
+        ]);
+
+        return zcjy_callback_data('操作成功');
+    }
+
+
+    //更新GOL的发布状态
+    public function updateGolStatus(Request $request,$id)
+    {
+        $input = $request->all();
+
+        $gol = app('common')->golRepo()->findWithoutFail($id);
+
+        if(empty($gol)){
+            return zcjy_callback_data('没有找到该小屋',1);
+        }
+
+        $publish_status = '1';
+        if($gol->publish_status == '1'){
+            $publish_status = '2';
+        }
+
+        $gol->update([
+            'publish_status'=>$publish_status
+        ]);
+
+        return zcjy_callback_data('操作成功');
+    }
 
 }

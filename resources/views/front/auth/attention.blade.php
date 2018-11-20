@@ -108,7 +108,7 @@
                                                 <td>{!! a_link($gol->name,'/golDetail/'.$gol->id) !!}[{!! $gol->type !!}]</td>
                                                 <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
                                                 <td>{!! $gol->hourse_type !!}</td>
-                                                <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>
+                                                <td>{!! $gol->xukezheng ? '<img style="max-width: 100px;height: auto;" src='. $gol->xukezheng .' />': '无' !!}</td>
                                                 <td>{!! $gol->zuqi !!}</td>
                                                 <td>{!! $gol->area !!}</td>
                                                 <td>{!! $gol->address !!}</td>

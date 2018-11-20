@@ -83,6 +83,12 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 		##发起gol关注
 		Route::post('attention_gol/{gol_id}','AjaxController@attentionGol');
 
+		##小屋状态更新
+		Route::post('update_house/{id}','AjaxController@updateHouseStatus');
+
+		##gol状态更新
+		Route::post('update_gol/{id}','AjaxController@updateGolStatus');
+
 		/**
 		 * 需要用户完成实名认证后可操作
 		 */
