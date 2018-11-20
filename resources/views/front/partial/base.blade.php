@@ -251,16 +251,16 @@
          * swipe滚动
          * @type {[type]}
          */
-        $('.carousel').carousel({
-            interval: 1500
-        });
+        // $('.carousel').carousel({
+        //     interval: 1500
+        // });
         $('.carousel-hourse').carousel({
             interval: 2000
         });
-        $("#carousel-example-generic,#carousel-example-generic-hourse").swipe({
-            swipeLeft: function() { $(this).carousel('next'); },
-            swipeRight: function() { $(this).carousel('prev'); },
-        });
+        // $("#carousel-example-generic,#carousel-example-generic-hourse").swipe({
+        //     swipeLeft: function() { $(this).carousel('next'); },
+        //     swipeRight: function() { $(this).carousel('prev'); },
+        // });
         $('.navbar-header').click(function(){
             location.href="/";
         });

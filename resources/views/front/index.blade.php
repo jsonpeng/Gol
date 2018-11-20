@@ -65,30 +65,43 @@
 	<div class="pt30">
 		<div class="container">
 			<div class="text-center  f24">———&nbsp;&nbsp;小屋家&nbsp;&nbsp;———</div>
-					<div class="gol_house_show mt30">
-						<div id="carousel-example-generic-hourse" class="carousel-hourse slide banner-slide" data-ride="carousel">
-							<div class="carousel-inner" role="listbox" style="max-height: 540px;">
-								<?php $num = 0;?>
-								@foreach ($houses as $house)
-								<?php $num++; ?>
-									@if($num==1)
-									<a class="item in-block active " href="/manyDetail/{!! $house->id !!}">
-										<img src="{{ $house->image }}" alt="">
-									</a>
-									@else
-									<a class="item in-block " href="/manyDetail/{!! $house->id !!}">
-										<img src="{{ $house->image }}" alt="">
-									</a>
-									@endif
-								@endforeach
-						  	</div>
-						</div>
-					<!-- 	@foreach ($houses as $house)
-							<div class="item text-center mt30 bd" href="/manyDetail/{!! $house->id !!}">
-								<img src="{{ $house->image }}" class="" style="width: 880px;height: auto;" alt="">
-							</div>
-						@endforeach -->
-					</div>
+			<div class="gol_house_show mt30">
+				<div id="carousel-example-generic-hourse" class="carousel-hourse slide banner-slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox" >
+						<?php $num = 0;?>
+						@foreach ($houses as $house)
+						<?php $num++; ?>
+							@if($num==1)
+							<a class="item active " href="/manyDetail/{!! $house->id !!}" style="width:200%;height:356px;">
+								<div style="float:left; width:50%;height:100%;">
+									<img src="{{ $house->image }}" alt="" style="width:100%;height:100%;">
+								</div>
+								<div style="float:right;width:50%;height:100%;">
+									<img src="{{ $house->image }}" alt="" style="display:block;width:100%;height:50%;">
+									<div style="height:50%;">
+										<img src="{{ $house->image }}" alt="" style="display:block;width:50%;height:100%;float:left;">
+										<img src="{{ $house->image }}" alt="" style="display:block;width:50%;height:100%;float:right;">
+									</div>
+								</div>
+							</a>
+							@else
+							<a class="item" href="/manyDetail/{!! $house->id !!}" style="width:100%;height:356px;">
+								<div style="float:left; width:50%;height:100%;">
+									<img src="{{ $house->image }}" alt="" style="width:100%;height:100%;">
+								</div>
+								<div style="float:right;width:50%;height:100%;">
+									<img src="{{ $house->image }}" alt="" style="display:block;width:100%;height:50%;">
+									<div style="height:50%;">
+										<img src="{{ $house->image }}" alt="" style="display:block;width:50%;height:100%;float:left;">
+										<img src="{{ $house->image }}" alt="" style="display:block;width:50%;height:100%;float:right;">
+									</div>
+								</div>
+							</a>
+							@endif
+						@endforeach
+				  	</div>
+				</div>
+			</div>
 		</div>
 	</div>
 @endif
