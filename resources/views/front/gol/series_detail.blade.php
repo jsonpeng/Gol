@@ -257,10 +257,11 @@
 
 					    <!-- Add Pagination -->
 					    <div class="swiper-pagination"></div>
-					    <!-- 左右按钮 -->
-					    <div class="swiper-button-prev"></div>
-					    <div class="swiper-button-next"></div>
+					 
 				</div>
+			   <!-- 左右按钮 -->
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-button-next"></div>
 			</div>
 		</div>
 			@endif

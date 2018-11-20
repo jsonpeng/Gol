@@ -74,7 +74,7 @@ class HouseRepository extends BaseRepository
                             $user_names_arr = [];
                             foreach ($val['attach'] as $key => $val2) {
        
-                                if($index < 3){
+                                if($index < 10){
                                     $user_names_arr[] = $val2['user']->name;
                                 }
                                 
