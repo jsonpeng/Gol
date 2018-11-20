@@ -73,7 +73,7 @@
 
 						<?php $num++;$house=optional($house); ?>
 							@if($num==1)
-							<a class="item active " href="/manyDetail/{!! $house->id !!}" style="width:200%;height:356px;">
+							<a class="item active " href="/manyDetail/{!! $house->id !!}" style="width:100%;height:356px;">
 								<div style="float:left; width:50%;height:100%;">
 									<img src="{{ $house->image }}"  alt="" style="width:100%;height:100%;">
 								</div>
