@@ -35,9 +35,13 @@ class UpdateGolsTable extends Migration
                 $table->float('service_price')->nullable()->default(0)->comment('服务费');
 
                 $table->float('other_price')->nullable()->default(0)->comment('其他费用');
+
+                $table->string('zuqi_type')->nullable()->default('月')->comment('租期类型 月|季度|半年|整年');
             }
 
-            $table->string('zuqi_type')->nullable()->default('月')->comment('租期类型 月|季度|半年|整年');
+            $table->integer('view')->nullable()->default(0)->comment('浏览量');
+
+        
 
         });
     }

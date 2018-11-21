@@ -63,7 +63,8 @@ class Gol extends Model
         'ranqi_price',
         'service_price',
         'other_price',
-        'zuqi_type'
+        'zuqi_type',
+        'view'
     ];
 
     /**

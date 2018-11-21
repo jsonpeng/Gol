@@ -85,6 +85,10 @@ class GolController extends Controller
         $input = $request->all();
         #取出小屋
         $hourse = $hourse->hourse;
+
+        ##更新浏览次数
+        $hourse->update(['view'=>$hourse->view+1]);
+
         #关注人数
         $hourse_attention_num = app('common')->houseRepo()->attentionPeopleNum($hourse->id);
         #小屋新主
@@ -155,6 +159,10 @@ class GolController extends Controller
              return view('front.gol.series_detail',compact('error'));
         }
         $gol = $gol->detail;
+
+        ##更新浏览次数
+        $gol->update(['view'=>$gol->view+1]);
+
         $attention_num = app('common')->golRepo()->attentionGolPeopleNum($id);
         $user = auth('web')->user();
         #关注状态

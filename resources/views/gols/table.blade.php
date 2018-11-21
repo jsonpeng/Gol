@@ -6,7 +6,7 @@
         <th>gol房屋类型</th>
   <!--       <th>Brief</th>
         <th>Content</th> -->
-        <th>有无许可证</th>
+        <th>浏览量</th>
         <th>租期(年)</th>
         <th>面积(m2)</th>
         <th>地址</th>
@@ -24,7 +24,7 @@
                     <td>{!! $gol->name !!}[{!! $gol->type !!}]</td>
                     <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
                     <td>{!! $gol->hourse_type !!}</td>
-                    <td>{!! $gol->xukezheng ? $gol->xukezheng : '无' !!}</td>
+                    <td>{!! $gol->view !!}</td>
                     <td>{!! $gol->zuqi !!}</td>
                     <td>{!! $gol->area !!}</td>
                     <td>{!! $gol->address !!}</td>
