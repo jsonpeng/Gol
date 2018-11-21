@@ -32,9 +32,9 @@
 
                 <div class="content pb220">
 
-                    <table class="table table-responsive" id="houseJoins-table">
+                    <table class="table table-responsive table-bordered table-hover" id="houseJoins-table">
                         <thead>
-                            <tr>
+                            <tr  class="gol_table_thead">
                      
                             <th>支持小屋</th>
                       
@@ -50,8 +50,8 @@
                         </thead>
                         <tbody>
                         @foreach($orders as $houseJoin)
-                          <?php $house =optional($houseJoin->house); ?>
-                            <tr>
+                          <?php $house =optional($houseJoin->house);?>
+                            <tr class="{!! $houseJoin->TrClass !!}">
                   
                                 <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
                       

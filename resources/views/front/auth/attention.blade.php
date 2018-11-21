@@ -56,9 +56,9 @@
                   <div id="myTabContent" class="tab-content ">
 
                       <div class="tab-pane fade in active " id="home">
-                              <table class="table table-responsive" id="houses-table">
+                              <table class="table table-responsive table-bordered table-hover" id="houses-table">
                                   <thead>
-                                      <tr>
+                                      <tr  class="gol_table_thead">
                                       <th>小屋主图</th>
                                       <th>小屋名称</th>
                                       <th>小屋地址</th>
@@ -86,9 +86,9 @@
                       </div>
 
                       <div class="tab-pane fade" id="gol">
-                          <table class="table table-responsive" id="gols-table">
+                          <table class="table table-responsive table-bordered table-hover" id="gols-table">
                                 <thead>
-                                    <tr>
+                                    <tr  class="gol_table_thead">
                                     <th>名称</th>
                                     <th>主图</th>
                                     <th>gol房屋类型</th>

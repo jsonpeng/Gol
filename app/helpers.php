@@ -16,6 +16,16 @@ use Illuminate\Pagination\Paginator;
 
 
 
+function trclass($key=null){
+  $arr = ['success','danger','warning','info','error'];
+  if(!empty($key) || $key == 0){
+    return optional($arr)[$key];
+  }
+  else{
+    return $arr;
+  }
+}
+
 function hourse($id)
 {
   try {

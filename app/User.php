@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Certs','user_id','id');
     }
 
+    //商户认证信息
+    public function shanghucert(){
+        return $this->hasOne('App\Models\ShanghuCerts','user_id','id');
+    }
+
     //收货地址列表
     public function addresses()
     {

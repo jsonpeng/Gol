@@ -29,6 +29,7 @@ class ShanghuCerts extends Model
         'name',
         'work_image',
         'shop_image',
+        'status',
         'user_id'
     ];
 

@@ -187,6 +187,11 @@
           .gol_usercenter_li.active > a{
             color: #FF5511;
           }
+          /*gol table color*/
+          .gol_table_thead{    
+            background-color: #ccc;
+            color: black;
+           }
       /*    #user-table > thead > tr > th{
             text-align: center;
           }*/

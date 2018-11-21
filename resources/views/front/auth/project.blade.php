@@ -51,11 +51,11 @@
                   <div id="myTabContent" class="tab-content ">
 
                     <div class="tab-pane fade in active" id="hourse">
-                                 <a class="btn btn-primary pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/hourse_create">添加小屋</a>
+                                 <a class="btn btn-warning pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/hourse_create">添加小屋</a>
 
-                                    <table class="table table-responsive" id="houses-table">
+                                    <table class="table table-responsive table-bordered table-hover" id="houses-table">
                                                 <thead>
-                                                    <tr>
+                                                    <tr  class="gol_table_thead">
                                                     <th>小屋名称</th>
                                                     <th>小屋地址</th>
                                                     <th>浏览量</th>
@@ -95,11 +95,11 @@
                     </div>
 
                      <div class="tab-pane fade " id="gol">
-                                  <a class="btn btn-primary pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/gol_create">添加Gol</a>
+                                  <a class="btn btn-warning pull-left" style="margin-top: -10px;margin-bottom: 15px" href="/user/center/project/gol_create">添加Gol</a>
 
-                                  <table class="table table-responsive" id="gols-table">
+                                  <table class="table table-responsive table-bordered table-hover" id="gols-table">
                                         <thead>
-                                            <tr>
+                                            <tr  class="gol_table_thead">
                                             <th>名称</th>
                                             <th>主图</th>
                                       <!--       <th>Brief</th>

@@ -73,5 +73,19 @@ class HouseJoin extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function getTrClassAttribute(){
+        $trclass= trclass();
+        $status = 0;
+        if($this->pay_status == '未支付'){
+            $status = 2;
+        }
+        elseif($this->pay_status == '已支付'){
+            $status = 0;
+        }
+        else{
+            $status = 10;
+        }
+        return trclass($status);
+    }
     
 }

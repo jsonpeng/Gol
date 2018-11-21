@@ -74,9 +74,9 @@
             </div>
 
             <div class=" mt30">
-                <table class="table table-responsive" id="user-table">
+                <table class="table table-responsive table-bordered table-hover" id="user-table">
                   <thead>
-                      <tr style="background-color: rgb(244, 242, 242);">    
+                      <tr class="gol_table_thead">    
                         {{--   <th>预计收益率</th>
                           <th>期限/锁定期</th> --}}
                           <th >项目名称</th>
@@ -86,8 +86,8 @@
                   <tbody>
                       @if(count($joins))
                          @foreach($joins as $join)
-                           <?php $house =optional($join->house); ?>
-                            <tr>
+                           <?php $house =optional($join->house);?>
+                            <tr class="">
                             {{--     <td>--</td>
                                 <td>--</td> --}}
                                 <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>

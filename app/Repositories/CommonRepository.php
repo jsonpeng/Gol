@@ -320,8 +320,43 @@ class CommonRepository
         }
 
         if($cert->status == '审核中' || $cert->status =='未通过'){
-            return zcjy_callback_data($attach_word.'认证审核中或未通过审核',1,$api_type);
+            return zcjy_callback_data($attach_word.'认证正在审核中或未通过审核',1,$api_type);
         }
+        return $status;
+    }
+
+
+    /**
+     * [检查商户认证状态]
+     * @param  [type] $user        [description]
+     * @param  string $attach_word [description]
+     * @param  string $api_type    [description]
+     * @return [type]              [description]
+     */
+    public function vairyfyShanghuCert($user,$attach_word='您当前',$api_type="web"){
+        if(empty($user)){
+            return zcjy_callback_data('未知错误',1,$api_type);
+        }
+
+        #先检查普通身份认证状态
+        $authcert = $this->varifyCert($user);
+
+        if($authcert){
+            return $authcert;
+        }   
+
+        #接着检查商户认证状态
+        $status = false;
+        $cert = $user->shanghucert;
+
+        if(empty($cert)){
+            return zcjy_callback_data($attach_word.'未认证,请在个人中心完成商户认证后使用',1,$api_type);
+        }
+
+        if($cert->status == '审核中' || $cert->status =='未通过'){
+            return zcjy_callback_data($attach_word.'商户认证正在审核中或未通过审核',1,$api_type);
+        }
+
         return $status;
     }
 
