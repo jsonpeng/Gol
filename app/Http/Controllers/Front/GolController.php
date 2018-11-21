@@ -76,7 +76,7 @@ class GolController extends Controller
     //很多人详情
     public function manyManDetail(Request $request,$id)
     {
-        $hourse = app('common')->houseRepo()->getHouseDetail($id);
+        $hourse = app('common')->houseRepo()->getHouseDetail($id,true);
         $error = null;
         if(!isset($hourse->hourse)){
             $error = $hourse;
@@ -85,9 +85,6 @@ class GolController extends Controller
         $input = $request->all();
         #取出小屋
         $hourse = $hourse->hourse;
-
-        ##更新浏览次数
-        $hourse->update(['view'=>$hourse->view+1]);
 
         #关注人数
         $hourse_attention_num = app('common')->houseRepo()->attentionPeopleNum($hourse->id);

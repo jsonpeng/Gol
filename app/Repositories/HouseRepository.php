@@ -394,7 +394,7 @@ class HouseRepository extends BaseRepository
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function getHouseDetail($id)
+    public function getHouseDetail($id,$update_view=false)
     {
         $hourse = $this->findWithoutFail($id);
 
@@ -404,6 +404,11 @@ class HouseRepository extends BaseRepository
 
         if($hourse->status != '已发布' && $hourse->status != '已完成' && $hourse->status != '已过期'){
             return '该小屋'.$hourse->status;
+        }
+
+        if($update_view){
+             ##更新浏览次数
+             $hourse->update(['view'=>$hourse->view+1]);
         }
 
         $hourse = $this->dealJoinOne($hourse);
