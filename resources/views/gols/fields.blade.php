@@ -35,6 +35,12 @@
     {!! Form::textarea('content', null, ['class' => 'form-control intro']) !!}
 </div>
 
+<!-- View Field -->
+<div class="form-group col-sm-8">
+    {!! Form::label('view', '浏览量:') !!}
+    {!! Form::text('view', null, ['class' => 'form-control']) !!}
+</div>
+
 
 <div class="form-group col-sm-12">
     {!! Form::label('services', '请选择服务设施添加:') !!}
