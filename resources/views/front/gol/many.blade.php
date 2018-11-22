@@ -71,7 +71,7 @@
 							<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 							<h4>{!! $item->name !!}</h4>
 							<h5>{!! $item->address !!}</h5>
-							<p>{!! des($item->content,30)!!}</p>
+							<!-- <p>{!! des($item->content,30)!!}</p> -->
 							<div class="progress">
 								<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
 								</div>
@@ -159,7 +159,7 @@
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->Address !!}</h5>
-						<p>{!! des($item->content,30)!!}</p>
+						<!-- <p>{!! des($item->content,30)!!}</p> -->
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
 							</div>
@@ -199,7 +199,7 @@
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->address !!}</h5>
-						<p>{!! des($item->content,30)!!}</p>
+						<!-- <p>{!! des($item->content,30)!!}</p> -->
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
 							</div>
@@ -237,7 +237,7 @@
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
 						<h5>{!! $item->address !!}</h5>
-						<p>{!! des($item->content,30)!!}</p>
+						<!-- <p>{!! des($item->content,30)!!}</p> -->
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
 							</div>
