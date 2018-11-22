@@ -382,7 +382,7 @@ function uploadFiles($file , $api_type = 'web' , $user = null,$insert_shuiyin=fa
           $image_path=public_path().'/'.$destinationPath.$fileName;
           $img = Image::make($image_path);
          // 插入水印, 水印位置在原图片的右下角, 距离下边距 10 像素, 距离右边距 15 像素
-          $img->insert(public_path().'/images/gol/water1.png', 'bottom-right', 15, 15);
+          // $img->insert(public_path().'/images/gol/water1.png', 'bottom-right', 15, 15);
           $img->resize(640, 640);
           $img->save($image_path,70);
 
