@@ -12,7 +12,7 @@
   list-style: none;
 }
 .notice .content .notice-list li .info-name {
-  font-size: 18px;
+  font-size: 14px;
   padding-left: 24px;
 }
 .notice .content .notice-list li .info-name a {
