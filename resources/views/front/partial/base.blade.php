@@ -29,6 +29,11 @@
          * [全局]
          * @type {[type]}
          */
+         .gol_banner_except_index{
+            max-width: 1170px;
+            margin-top: 20px;
+            margin:0 auto;
+         }
          p{
             word-wrap:break-word;
             font-size: 16px;

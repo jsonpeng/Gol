@@ -96,7 +96,7 @@
 </div>
 
 <!-- 网站菜单 -->
-<div class="gol_header pt15 @if(!Request::is('/')) border_b @endif">
+<div class="gol_header pt15 @if(!Request::is('/')) border_bc @endif">
 	<nav class="navbar " id="header-nav">
 		<div class="container mt15">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -182,7 +182,7 @@ if(Request::is('manyMan*')){
 ?>
 <!--滚动banner-->
 @if(count($banners) && !Request::is('manyDetail*') && !Request::is('golDetail*') && !Request::is('user*') && !Request::is('protocol') && !Request::is('manySettle*') && !Request::is('post*'))
-	<div id="carousel-example-generic" class="carousel slide banner-slide" data-ride="carousel">
+	<div id="carousel-example-generic" class="carousel slide banner-slide @if(!Request::is('/') gol_banner_except_index @endif)" data-ride="carousel">
 		<div class="carousel-inner" role="listbox" style="max-height: 540px;">
 			<?php $num = 0;?>
 			@foreach ($banners as $banner)
