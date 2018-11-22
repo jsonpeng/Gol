@@ -163,7 +163,7 @@
 <!-- 小屋故事  -->
 <div class="pt30 container pb120">
 	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
-	<div class="pt30 ">
+	<div class="pt30 " style="margin-left: 6%;">
 		<?php $i=0; ?>
 		@foreach($travels as $post)
 		<?php $i++;?>
