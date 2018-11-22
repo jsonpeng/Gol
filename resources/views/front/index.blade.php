@@ -112,7 +112,7 @@
 <div class="pt30">
 	<div class="container">
 		<div class="text-center f24">———&nbsp;&nbsp;GOL+&nbsp;&nbsp;———</div>
-		<div class="pt30">
+		<div class="pt30" style="margin-left: 6%;">
 			<a class="gol_four_img p_relative gol_xilie reveal1" href="/series/青旅">
 				 <div class="gol_corver hidden-sm hidden-xs" style="height: 100%;"></div>
 				 <div class="gol_corver_text">
@@ -163,7 +163,7 @@
 <!-- 小屋故事  -->
 <div class="pt30 container pb120">
 	<div class="text-center f24">———&nbsp;&nbsp;爱旅行&nbsp;&nbsp;———</div>
-	<div class="pt30 " style="margin-left: 6%;">
+	<div class="pt30 " >
 		<?php $i=0; ?>
 		@foreach($travels as $post)
 		<?php $i++;?>
