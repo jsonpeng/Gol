@@ -1031,7 +1031,10 @@
              );
              save_link.dispatchEvent(ev);
    		});
-   		console.log($('#gol_detail_iframe').contents().find("#AppHeaderPanel").hide())
+   		$('#gol_detail_iframe').load(function () {
+   			console.log($('#gol_detail_iframe').contents().find("#AppHeaderPanel").hide())
+		});
+   		
 	</script>
 
 @endsection
