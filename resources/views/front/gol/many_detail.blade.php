@@ -1031,7 +1031,7 @@
              );
              save_link.dispatchEvent(ev);
    		});
-   		console.log($('#gol_detail_iframe').contents().find("#AppHeaderPanel"))
+   		console.log($('#gol_detail_iframe').contents().find("#AppHeaderPanel").hide())
 	</script>
 
 @endsection
