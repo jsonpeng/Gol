@@ -51,7 +51,7 @@
                         <tbody>
                         @foreach($orders as $houseJoin)
                           <?php $house =optional($houseJoin->house);?>
-                            <tr class="{!! $houseJoin->TrClass !!}">
+                            <tr >
                   
                                 <td><!-- <img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br /> -->{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
                       
