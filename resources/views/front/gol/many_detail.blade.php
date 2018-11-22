@@ -619,8 +619,8 @@
 
 					<div class="row pt15">
 						<a class="col-sm-2"></a>
-					{{-- 	<a class="col-sm-3 gol_m_detail_button gol_sixin" data-id="{!! !empty($user) ? $user->id : '' !!}" data-name="{!! !empty($user) ? $user->name : '' !!}">私信</a> --}}
-						<a class="col-sm-3 gol_m_detail_button gol_zixun" data-id="{!! !empty($user) ? $user->id : '' !!}">咨询</a>
+					{{-- 	<a class="col-sm-3 gol_m_detail_button gol_sixin" data-id="{!! !empty($user) ? $user->id : '' !!}" data-name="{!! !empty($user) ? $user->name : '' !!}">私信</a> <a class="col-sm-3 gol_m_detail_button gol_zixun" data-id="{!! !empty($user) ? $user->id : '' !!}">咨询</a> --}}
+						
 						<a class="col-sm-2"></a>
 					</div>
 
