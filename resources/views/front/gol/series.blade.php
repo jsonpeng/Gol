@@ -51,7 +51,7 @@
 								
 		 					</div>
 							<div class="col-sm-6">
-								<p class="pull-right">{!! $gol->hourse_type !!}&nbsp;￥{!! $gol->price !!}</p>
+								<p class="pull-right">{!! $gol->hourse_type !!}&nbsp;<span class="fw700">￥{!! $gol->price !!}</span></p>
 								
 							</div>
 							

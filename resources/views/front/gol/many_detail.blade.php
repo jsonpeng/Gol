@@ -452,7 +452,7 @@
 				<img onerror="javascript:this.src='/images/gol/xiaowu_main.png';" src="{!! $hourse->image !!}"  class="img_auto" style="max-height: 300px;" />
 			</div>
 			<div class="col-sm-5">
-				<p class="pb15">{!! $hourse->name !!}+{!! $hourse->type !!}</p>
+				<p class="pb15">{!! $hourse->name !!}</p>
 				<p class="pb15">{!! des($hourse->content,20) !!}</p>
 				<p class="f24 fw700">￥{!! $hourse->target !!}万</p>
 
@@ -530,7 +530,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="more">
+									<div class="more pull-right">
 										<a href="javacript:void(0);" class="fabu hidden-xs">立即发布</a>
 										<span>
 											<input type="text" class="form-control input-code" placeholder="输入验证码">
@@ -542,7 +542,7 @@
 									</div>
 								</div>
 								@if(count($messages))
-									<div class="new-commit">
+									<div class="new-commit mt50">
 										<p class="title">最新话题</p>
 										@foreach ($messages as $message)
 											<div class="media comm-item items" @if(isset($message['active'])) id="scroll_item" @endif> 
@@ -602,7 +602,7 @@
 			</div>
 
 			<div class="col-sm-5 reveal2">
-				<div class="gol_m_detail_user_box">
+				<div class="gol_m_detail_user_box" style="margin:0 auto;">
 					<p class="f24 " > 小屋新主 </p>
 					<div style="border-bottom: 1px solid rgba(187,187,187,1);" class="pt15"></div>
 

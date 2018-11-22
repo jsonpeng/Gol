@@ -69,7 +69,7 @@
 		@else
 		<!-- 标题 -->
 		<div class="row ml0 mt30">
-			<div class="col-sm-4 gol_series_title">{!! $gol->name !!}+{!! $gol->type !!}</div>
+			<div class="col-sm-4 gol_series_title">{!! $gol->name !!}</div>
 		</div>
 
 		<!--多张图-->

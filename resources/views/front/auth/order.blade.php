@@ -53,7 +53,7 @@
                           <?php $house =optional($houseJoin->house);?>
                             <tr class="{!! $houseJoin->TrClass !!}">
                   
-                                <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
+                                <td><!-- <img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br /> -->{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
                       
 
                                 <td>{!! $houseJoin->gear !!}</td>

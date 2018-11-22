@@ -85,7 +85,7 @@
                                                             @elseif($house->status == '已完成')
 
                                                             @else
-                                                              <a href="javascript:;"  target="_blank" data-id="{!! $house->id !!}" data-action="update_house" class='btn btn-success btn-xs gol-project-action'>发布小屋</a>
+                                                       <!--        <a href="javascript:;"  target="_blank" data-id="{!! $house->id !!}" data-action="update_house" class='btn btn-success btn-xs gol-project-action'>发布小屋</a> -->
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -136,7 +136,7 @@
                                                     <td>@if($gol->publish_status == '1')
                                                                <a href="javascript:;"  target="_blank" data-id="{!! $gol->id !!}" data-action="update_gol" class='btn btn-danger btn-xs gol-project-action'>下架小屋</a>
                                                             @else
-                                                              <a href="javascript:;"  target="_blank" data-id="{!! $gol->id !!}" data-action="update_gol" class='btn btn-success btn-xs gol-project-action'>发布小屋</a>
+                                                        <!--       <a href="javascript:;"  target="_blank" data-id="{!! $gol->id !!}" data-action="update_gol" class='btn btn-success btn-xs gol-project-action'>发布小屋</a> -->
                                                             @endif
                                                     </td>
                                                 </tr>

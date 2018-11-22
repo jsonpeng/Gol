@@ -170,8 +170,8 @@
 
 			<a class="gol_four_img p_relative mb25 reveal2" href="/post/{!! $post->id !!}" style="color: black;@if($i==(count($travels)) && $i % 2 ==1 ) display: none; @endif">
 				<div class="w50 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif" style="min-height: 255px;">
-					<h4 class="pt30">{!! $post->name !!}</h4>
-					<span>{!! $post->created_at->format('Y-m-d') !!}</span>
+					<h4 class="pt30 fw700">{!! $post->name !!}</h4>
+				<!-- 	<span>{!! $post->created_at->format('Y-m-d') !!}</span> -->
 					<p class="mt15">{!! des($post->brief,35) !!}</p>
 					<span class="pt15 pb50">READ MORE</span>
 				</div>

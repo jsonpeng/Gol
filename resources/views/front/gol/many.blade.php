@@ -70,7 +70,7 @@
 						<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item->id !!}">
 							<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 							<h4>{!! $item->name !!}</h4>
-							<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+							<h5>{!! $item->address !!}</h5>
 							<p>{!! des($item->content,30)!!}</p>
 							<div class="progress">
 								<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
@@ -78,8 +78,8 @@
 							</div>
 							<div class="row">
 								<div class="col-sm-4">
-									<p class="text-center">￥{!! $item->min_gears !!}起</p>
-									<p class="text-center">最低档位</p>
+									<p class="text-center">￥{!! $item->min_gears !!}</p>
+									<p class="text-center">档位</p>
 			 					</div>
 								<div class="col-sm-4">
 									<p class="text-center">￥{!! $item->target !!}万</p>
@@ -127,8 +127,8 @@
 			 					</div>
 							@else
 								<div class="col-sm-4">
-									<p class="text-center">￥{!! $item['min_gears'] !!}起</p>
-									<p class="text-center">最低档位</p>
+									<p class="text-center">￥{!! $item['min_gears'] !!}</p>
+									<p class="text-center">档位</p>
 			 					</div>
 		 					@endif
 							<div class="col-sm-4">
@@ -158,7 +158,7 @@
 					<a class="col-sm-3 gol_many_post_item reveal2" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
-						<h5>{!! $item->type !!}+{!! $item->Address !!}</h5>
+						<h5>{!! $item->Address !!}</h5>
 						<p>{!! des($item->content,30)!!}</p>
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
@@ -166,8 +166,8 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-4">
-								<p class="text-center">￥{!! $item->min_gears !!}起</p>
-								<p class="text-center">最低档位</p>
+								<p class="text-center">￥{!! $item->min_gears !!}</p>
+								<p class="text-center">档位</p>
 		 					</div>
 							<div class="col-sm-4">
 								<p class="text-center">￥{!! $item->target !!}万</p>
@@ -198,7 +198,7 @@
 					<a class="col-sm-3 gol_many_post_item reveal3" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
-						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<h5>{!! $item->address !!}</h5>
 						<p>{!! des($item->content,30)!!}</p>
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">
@@ -226,7 +226,7 @@
 
 	@if(count($hourses_for_sale))
 		<!-- 即将上架 -->
-		<div class="text-center f24 reveal4"><span class="f24">———&nbsp;&nbsp;已完成&nbsp;&nbsp;———</span><a class="f16 pull-right"  href="?type=已完成" style="color: #797878;">READ MORE>></a></div>
+		<div class="text-center f24 reveal4"><span class="f24">———&nbsp;&nbsp;即将上架&nbsp;&nbsp;———</span><a class="f16 pull-right"  href="?type=已完成" style="color: #797878;">READ MORE>></a></div>
 		
 		<div class="pt30 pb50">
 			<div class="row">
@@ -236,7 +236,7 @@
 					<a class="col-sm-3 gol_many_post_item reveal4" href="/manyDetail/{!! $item->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $item->image !!}" class="img_auto" />
 						<h4>{!! $item->name !!}</h4>
-						<h5>{!! $item->type !!}+{!! $item->address !!}</h5>
+						<h5>{!! $item->address !!}</h5>
 						<p>{!! des($item->content,30)!!}</p>
 						<div class="progress">
 							<div class="progress-bar backgroud_red" role="progressbar"  style="width: {!! $item->progress !!}%;">

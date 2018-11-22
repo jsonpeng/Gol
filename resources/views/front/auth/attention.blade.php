@@ -59,7 +59,7 @@
                               <table class="table table-responsive table-bordered table-hover" id="houses-table">
                                   <thead>
                                       <tr  class="gol_table_thead">
-                                      <th>小屋主图</th>
+                                 <!--      <th>小屋主图</th> -->
                                       <th>小屋名称</th>
                                       <th>小屋地址</th>
                                       <th>浏览量</th>
@@ -71,7 +71,7 @@
                                   <tbody>
                                   @foreach($houses as $house)
                                       <tr>
-                                          <td><img src="{!! $house->image !!}" style="max-width: 120px;height: auto;"></td>
+                                    <!--       <td><img src="{!! $house->image !!}" style="max-width: 120px;height: auto;"></td> -->
                                           <td>{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
                                           <td>{!! $house->address !!}</td>
                                           <td>{!! $house->view !!}</td>

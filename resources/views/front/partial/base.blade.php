@@ -249,7 +249,8 @@
                 trigger: 100,
                 bottomOffset: 150,
                 locationOffset: 100,
-                titleAsText: true
+                titleAsText: true,
+                background:'orange',
             });
         });
         /**
