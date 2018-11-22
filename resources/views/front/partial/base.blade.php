@@ -45,6 +45,7 @@
         .mr20{margin-right:20px;}
         .mt120{margin-top: 120px;}
         .mt50{margin-top: 50px;}
+        .mt45{margin-top: 45px;}
         .mt30{margin-top: 30px !important;}
         .mt15{margin-top:15px;}
         .ml0{margin-left: 0px;}

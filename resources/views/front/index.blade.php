@@ -172,7 +172,7 @@
 				<div class="w50 @if($i%2==0) gol_post_bg2 @else gol_post_bg1 @endif" style="min-height: 255px;">
 					<h4 class="pt30 fw700">{!! $post->name !!}</h4>
 				<!-- 	<span>{!! $post->created_at->format('Y-m-d') !!}</span> -->
-					<p class="mt15">{!! des($post->brief,35) !!}</p>
+					<p class="mt45">{!! des($post->brief,35) !!}</p>
 					<span class="pt15 pb50">READ MORE</span>
 				</div>
 				<div class="w50 gol_post_img">
