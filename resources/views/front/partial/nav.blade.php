@@ -138,14 +138,14 @@
 							<li><a href="{!! $menu->link !!}">{!! $menu->name !!}</a></li>
 						@endforeach
 					@endif
-					<li class="pl80" style="padding:8px 0;margin:0 15px;position:absolute;right:0; top:0;"><form class="form-inline">
+					<li class="pl80" style="padding:8px 0;margin:0 15px;position:absolute;right:0; top:0;"><div class="form-inline">
 						  <div class="form-group">
 						    <div class="input-group">
 						      <input type="text" class="form-control" name="search_all" placeholder="">
 						      <div class="input-group-addon site_search_all"><img src="/images/gol/search_gray.png" /></div>
 						    </div>
 						  </div>
-						</form>
+						</div>
 					</li>
 					@endif
 
