@@ -199,7 +199,7 @@ if(Request::is('manyMan*')){
 			@endforeach
 	  	</div>
 	</div>
-	@if(!Request::is('post*') && !Request::is('cat*') && !Request::is('manyMan*'))
+	@if(Request::is('/') )
 	<!-- 搜索框 -->
 	<div class="">
 		<div class="container" style="margin-top: -150px;
