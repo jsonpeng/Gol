@@ -76,27 +76,163 @@
                 <div class="tab-content">
 
                   <div class="active tab-pane" id="order_list">
-                    <table class="table table-responsive" id="refundLogs-table">
+
+                     <table class="table table-responsive table-bordered table-hover" id="houseJoins-table">
                         <thead>
-                            <tr>
-                                <th>订单编号</th>
-                                <th>订单金额</th>
-                                <th>订单状态</th>
-                                <th>支付状态</th>
-                                <th>下单时间</th>
+                            <tr  class="gol_table_thead">
+                     
+                            <th>支持小屋</th>
+                      
+                            <th>购买档位</th>
+                            <th>购买数量</th>
+                            <th>订单描述</th>
+
+                            <th>合计支持金额</th>
+                            <th>支付平台</th>
+                            <th>支付状态</th>
+                            <th>是否需要合同</th>
                             </tr>
                         </thead>
                         <tbody>
-              
+                        @foreach($orders as $houseJoin)
+                          <?php $house =optional($houseJoin->house);?>
+                            <tr class="">
+                  
+                                <td><img src="{!! $house->image !!}"  style="max-width: 120px;height: auto;" /><br />{!! a_link($house->name,'/manyDetail/'.$house->id) !!}</td>
+                      
+
+                                <td>{!! $houseJoin->gear !!}</td>
+                                <td>{!! $houseJoin->gear_num !!}</td>
+                                <td>{!! $houseJoin->body !!}</td>
+
+                                <td>{!! $houseJoin->price !!}</td>
+                                <td>{!! $houseJoin->pay_platform !!}</td>
+                                <td>{!! $houseJoin->pay_status !!}</td>
+                                <td>{!! $houseJoin->hetong !!}</td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
+
                     <div class="text-center">
-                       
+                      {!! $orders->appends('')->links() !!}
                     </div>
+
                   </div>
 
                
+                      <div class="tab-pane" id="hourse_list">
+                                  <table class="table table-responsive table-bordered table-hover" id="houses-table">
+                                                <thead>
+                                                    <tr  class="gol_table_thead">
+                                                    <th>小屋名称</th>
+                                                    <th>小屋地址</th>
+                                                    <th>浏览量</th>
+                                                    <th>档位</th>
+                                                    <th>小屋类型</th>
+                                                    <th>目标(万)</th>
+                                                    <th>状态</th>
+                                                    <th>截止时间</th>
+                                                    <th>发布时间</th>
+                                                  
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($houses as $house)
+                                                    <tr>
+                                                        <td>{!! $house->name !!}</td>
+                                                        <td>{!! $house->address !!}</td>
+                                                        <td>{!! $house->view !!}</td>
+                                                        <td>{!! $house->gear !!}</td>
+                                                        <td>{!! $house->type !!}</td>
+                                                        <td>{!! $house->target !!}</td>
+                                                        <td>{!! $house->status !!}</td>
+                                                        <td>{!! $house->endtime !!}</td>
+                                                        <td>{!! $house->created_at !!}</td>
+                                                
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                      </table>
 
+                                       <div class="text-center">
+                                          {!! $houses->appends('')->links() !!}
+                                        </div>
+
+                      </div>
+
+
+                      <div class="tab-pane" id="gol_list">
+                              <table class="table table-responsive table-bordered table-hover" id="gols-table">
+                                        <thead>
+                                            <tr  class="gol_table_thead">
+                                            <th>名称</th>
+                                            <th>主图</th>
+                                      <!--       <th>Brief</th>
+                                            <th>Content</th> -->
+                                            <th>有无许可证</th>
+                                            <th>租期</th>
+                                            <th>面积</th>
+                                            <th>地址</th>
+                                            <th>小屋状态</th>
+                                            <th>改造状态</th>
+                                            <th>发布状态</th>
+                                            <th>价格</th>
+                                          
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($gols as $gol)
+                                                <tr>
+                                                    <td>{!! $gol->name !!}</td>
+                                                    <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
+                                                    <td>{!! $gol->xukezheng ? '<img style="max-width: 100px;height: auto;" src='. $gol->xukezheng .' />': '无' !!}</td>
+                                                    <td>{!! $gol->zuqi !!}</td>
+                                                    <td>{!! $gol->area !!}</td>
+                                                    <td>{!! $gol->address !!}</td>
+                                                    <td>{!! $gol->hourse_status !!}</td>
+                                                    <td>{!! $gol->gaizao_status !!}</td>
+                                                    <td>{!! $gol->fabuStatus !!}</td>
+                                                    <td>{!! $gol->price !!}</td>
+                                            
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <div class="text-center">
+                                          {!! $gols->appends('')->links() !!}
+                                    </div>
+
+                      </div>
+
+
+                      <div class="tab-pane" id="notice_list">
+                            <table class="table table-responsive table-bordered table-hover" id="gols-table">
+                                        <thead>
+                                            <tr  class="gol_table_thead">
+                                            <th>消息内容</th>
+                                            <th>阅读状态</th>
+                                            <th>消息创建时间</th>
+                                    
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                  @foreach($notices as $notice)
+                                                    <tr> 
+                                                      <td>{!! $notice->content!!}</td>
+                                                      <td>@if($notice->read) <span class="btn btn-success">已读</span> @else   <span class="btn btn-danger">未读</span> @endif</td>
+                                                      <td>{!! $notice->created_at !!}</td>
+                                                    </tr>
+                                                  @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <div class="text-center">
+                                          {!! $notices->appends('')->links() !!}
+                                    </div>
+
+                      </div>
    
                   <!-- /.tab-pane -->
 

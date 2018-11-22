@@ -47,20 +47,23 @@ class UserController extends Controller
 
     /**
      * 显示用户详情
-     * @Author   yangyujiazi
-     * @DateTime 2018-03-15
      * @param    [type]      $id [description]
      * @return   [type]          [description]
      */
     public function show($id)
     {
         $user = User::where('id', $id)->first();
+        
         if (empty($user)) {
             return redirect('/zcjy/users');
         }
-       
 
-        return view('admin.user.show', compact('user'));
+        $orders = app('common')->houseJoinRepo()->userHouseJoins($user->id);
+        $houses = app('common')->houseRepo()->myHourses($user->id);
+        $gols = app('common')->golRepo()->myGols($user->id);
+        $notices = app('notice')->authNotices($user,true);
+
+        return view('admin.user.show', compact('user','orders','houses','gols','notices'));
     }
 
 

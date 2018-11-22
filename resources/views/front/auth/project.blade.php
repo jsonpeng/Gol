@@ -92,6 +92,11 @@
                                                 @endforeach
                                                 </tbody>
                                       </table>
+
+                                       <div class="text-center">
+                                          {!! $houses->appends('')->links() !!}
+                                        </div>
+
                     </div>
 
                      <div class="tab-pane fade " id="gol">
@@ -138,6 +143,12 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    <div class="text-center">
+                                          {!! $gols->appends('')->links() !!}
+                                    </div>
+
+
 
                 </div>
 
