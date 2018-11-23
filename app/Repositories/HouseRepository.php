@@ -43,6 +43,15 @@ class HouseRepository extends BaseRepository
         return House::class;
     }
 
+
+    /**
+     * [新发布的待处理的小屋]
+     * @return [type] [description]
+     */
+    public function adminNewHouses(){
+        return House::where('status','审核中')->count();
+    }
+
     /**
      * [小屋家的话题评论]
      * @param  [type] $house_id [description]

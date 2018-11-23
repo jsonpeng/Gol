@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="houseJoins-table">
     <thead>
         <tr>
-        <th>订单号</th>
+        {{-- <th>订单号</th> --}}
         <th>支持小屋</th>
         <th>支持人</th>
 
@@ -13,13 +13,14 @@
         <th>支付平台</th>
         <th>支付状态</th>
         <th>是否需要合同</th>
+        <th>支持时间</th>
             <th colspan="3">操作</th>
         </tr>
     </thead>
     <tbody>
     @foreach($houseJoins as $houseJoin)
         <tr>
-            <td>{!! $houseJoin->number !!}</td>
+            {{-- <td>{!! $houseJoin->number !!}</td> --}}
             <td>{!! optional($houseJoin->house)->name !!}</td>
             <td>{!! optional($houseJoin->user)->name !!}</td>
 
@@ -31,6 +32,7 @@
             <td>{!! $houseJoin->pay_platform !!}</td>
             <td>{!! $houseJoin->pay_status !!}</td>
             <td>{!! $houseJoin->hetong !!}</td>
+            <td>{!! $houseJoin->created_at !!}</td>
             <td>
                 {!! Form::open(['route' => ['houseJoins.destroy', $houseJoin->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

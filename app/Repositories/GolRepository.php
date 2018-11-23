@@ -45,6 +45,14 @@ class GolRepository extends BaseRepository
     }
 
 
+    /**
+     * [待处理的gol数量]
+     * @return [type] [description]
+     */
+    public function adminNewGols(){
+        return Gol::where('publish_status',0)->count();
+    }
+
     //很多人喜欢
     public function manyManslike(){
 

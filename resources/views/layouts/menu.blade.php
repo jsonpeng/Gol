@@ -35,9 +35,21 @@
 <li class="{{ Request::is('zcjy/shanghuCerts*') ? 'active' : '' }}">
     <a href="{!! route('shanghuCerts.index') !!}"><i class="fa fa-edit"></i><span>商户认证管理</span></a>
 </li>
+
+<?php
+ $new_house = app('common')->houseRepo()->adminNewHouses();
+ $new_gol = app('common')->golRepo()->adminNewGols();
+?>
+
 <li class="header">GOL小屋管理</li>
 <li class="{{ Request::is('zcjy/houses*') ? 'active' : '' }}">
-    <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span></a>
+    <a href="{!! route('houses.index') !!}"><i class="fa fa-edit"></i><span>小屋管理</span>
+        @if($new_house) 
+            <span class="pull-right-container">
+              <small class="label pull-right bg-red">{!! $new_house !!}</small>
+            </span> 
+        @endif
+    </a>
 </li>
 <li class="{{ Request::is('zcjy/houseJoins*') ? 'active' : '' }}">
     <a href="{!! route('houseJoins.index') !!}"><i class="fa fa-edit"></i><span>小屋支持记录</span></a>
@@ -46,7 +58,14 @@
     <a href="{!! route('golServices.index') !!}"><i class="fa fa-edit"></i><span>Gol服务设施管理</span></a>
 </li>
 <li class="{{ Request::is('zcjy/gols*') ? 'active' : '' }}">
-    <a href="{!! route('gols.index') !!}"><i class="fa fa-edit"></i><span>GOL系列</span></a>
+    <a href="{!! route('gols.index') !!}">
+        <i class="fa fa-edit"></i><span>GOL系列</span>
+         @if($new_gol) 
+            <span class="pull-right-container">
+              <small class="label pull-right bg-red">{!! $new_gol !!}</small>
+            </span> 
+        @endif
+    </a>
 </li>
 
 <li class="header">内容管理</li>
