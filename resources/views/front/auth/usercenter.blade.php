@@ -28,10 +28,20 @@
 
                 <div class="col-sm-3">
                   <h4 class="text-center">我的资产</h4>
-                  <h4 class="text-center">{!! $user->zichan !!}</h4>
+                  <h4 class="text-center gol_color">{!! $user->zichan !!}</h4>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-1">
+                  <span class="btn btn-default">转入</span>
+                </div>
+
+                <div class="col-sm-1">
+                  <span class="btn btn-default">转出</span>
+                </div>
+
+                <div class="col-sm-2">
+                  <a  class="btn btn-default" style="border: none;
+    color: #FF5511;">账单明细>>></a>
                 </div>
 
                 {{-- <div class="col-sm-3">

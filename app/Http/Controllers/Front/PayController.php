@@ -53,8 +53,8 @@ class PayController extends Controller
                 'subject' => '购买小屋权益',
             ];
             $config = $this->alipay_config;
-            $config['notify_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
-            $config['return_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['return_url'];
+            $config['notify_url'] = $request->root().$config['notify_url'];
+            $config['return_url'] = $request->root().$config['return_url'];
             $alipay = Pay::alipay($config)->web($order);
             return ($alipay);
         }
@@ -66,8 +66,8 @@ class PayController extends Controller
     public function return(Request $request)
     {
         $config = $this->alipay_config;
-        $config['notify_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
-        $config['return_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['return_url'];
+        $config['notify_url'] = $request->root().$config['notify_url'];
+        $config['return_url'] = $request->root().$config['return_url'];
         $data = Pay::alipay($config)->verify(); // 是的，验签就这么简单！
         $input = $request->all();
         $log_id = explode('_', $input['out_trade_no'])[1];
@@ -86,11 +86,11 @@ class PayController extends Controller
 
 
     //支付宝通知
-    public function notify()
+    public function notify(Request $request)
     {
         $config = $this->alipay_config;
-        $config['notify_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['notify_url'];
-        $config['return_url'] = 'https://'.$_SERVER["HTTP_HOST"].$config['return_url'];
+        $config['notify_url'] = $request->root().$config['notify_url'];
+        $config['return_url'] = $request->root().$config['return_url'];
         $alipay = Pay::alipay($config);
     
         try{
