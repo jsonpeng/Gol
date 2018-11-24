@@ -20,7 +20,8 @@ use Overtrue\EasySms\EasySms;
 use App\Models\AttentionHouse;
 use App\Models\HouseJoin;
 use App\Models\AttentionGol;
-
+use App\Models\UserZichangLog;
+ 
 /**
  * Class ClientRepository
  * @package App\Repositories

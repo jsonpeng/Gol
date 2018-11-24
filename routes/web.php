@@ -15,10 +15,14 @@
 Auth::routes();
 
 //支付宝支付
-Route::group(['prefix' => 'alipay','namespace'=>'Front'], function () {
+Route::group(['prefix' => 'alipay','middleware'=>['webAuth'],'namespace'=>'Front'], function () {
 	Route::any('notify','PayController@notify');
+	#回调
 	Route::any('return','PayController@return');
+	#支付小屋
 	Route::get('pay','PayController@index');
+	#支付余额充值
+	Route::get('pay_user_topup','PayController@payUserZichang');
 });
 
 //微信支付
@@ -286,5 +290,10 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 
 	//gol服务设施管理
 	Route::resource('golServices', 'GolServicesController');
+
+	//用户转入转出记录
+	Route::resource('userZichangLogs', 'UserZichangLogController');
 	
 });
+
+

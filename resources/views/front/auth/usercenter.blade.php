@@ -32,11 +32,11 @@
                 </div>
 
                 <div class="col-sm-1">
-                  <span class="btn btn-default">转入</span>
+                  <span class="btn btn-default gol_user_topup">转入</span>
                 </div>
 
                 <div class="col-sm-1">
-                  <span class="btn btn-default">转出</span>
+                  <span class="btn btn-default gol_user_rollout">转出</span>
                 </div>
 
                 <div class="col-sm-2">
@@ -114,8 +114,70 @@
         </div>
      </div>
   </div>
+
+    <div class="gol_topup_box" style="display: none;">
+      <div class="container" >
+          <div class="row mt30">
+            <div class="col-sm-1"></div>
+             <div class="col-sm-2">请输入充值金额</div>
+             <input type="text" name="topup_price" class="col-sm-2 form-inline" />
+          </div>
+
+
+          <div class="row mt30">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">请选择支付方式</div>
+            <div class="col-sm-2">
+              <div class="img-box gol_topup_pay" data-type="支付宝">
+                <img src="/images/zhifubao.png" alt="">
+              </div>
+              <!-- <img src="http://www.yingwenquming.com/images/gou.png" alt="" class="gou"> -->
+            </div>
+            <div class="col-sm-2">
+              <div class="img-box gol_topup_pay" data-type="微信">
+                <img src="/images/weixin.png" alt="">
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
 @endsection
 
 @section('js')
   @include('front.auth.usercenter_js')
+  <script type="text/javascript">
+    //最大可转出余额
+    var max_count =parseFloat('{!! $user->zichan !!}'); 
+    //账户转入
+    $('.gol_user_topup').click(function(){
+          $.zcjyFrameOpen($('.gol_topup_box').html(),'转入到资产余额',['60%', '280px']);
+    });
+    $(document).on('click','.gol_topup_pay',function(){
+            var price = $('input[name=topup_price]:eq(1)').val();
+            if($.empty(price)){
+              $.alert('请输入充值金额','error');
+              return;
+            }
+            var type = $(this).data('type');
+            if(type == '支付宝'){
+              //$.alert('请勿关闭原网页');
+              //setTimeout(function(){
+                window.open("/alipay/pay_user_topup?price="+price);
+              //},1000);
+              // $.zcjyRequest('/alipay/pay_user_topup',function(res){
+              //     if(res){
+              //       console.log(res);
+              //     }
+              // },{price:price});
+            }
+            else{
+              $.alert('微信支付暂未开通','error');
+            }
+    });
+    //账户转出
+    $('.gol_user_rollout').click(function(){
+
+    });
+  </script>
 @endsection

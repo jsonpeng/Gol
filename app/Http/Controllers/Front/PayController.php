@@ -61,6 +61,27 @@ class PayController extends Controller
         else{
             return redirect('/');
         }
+    }   
+
+    //发起资产充值
+    public function payUserZichang(Request $request)
+    {
+        $input = $request->all();
+        $user = auth('web')->user();
+        if(!isset($input['price']) || empty($input['price'])){
+            return zcjy_callback_data('请输入充值金额',1);
+        }
+        $order = [
+            'out_trade_no' => $user->id,
+            'total_amount' => $input['price'],
+            'subject' => '充值'.$input['price'].'元到账户资产',
+        ];
+        $config = $this->alipay_config;
+        $config['notify_url'] = $request->root().$config['notify_url'];
+        $config['return_url'] = $request->root().$config['return_url'];
+        $alipay = Pay::alipay($config)->web($order);
+        session(['gol_user_topup_id'=>$user->id]);
+        return $alipay;
     }
 
     public function return(Request $request)
@@ -70,15 +91,22 @@ class PayController extends Controller
         $config['return_url'] = $request->root().$config['return_url'];
         $data = Pay::alipay($config)->verify(); // 是的，验签就这么简单！
         $input = $request->all();
-        $log_id = explode('_', $input['out_trade_no'])[1];
 
-        $SubmitLog = app('common')->houseJoinRepo()->findWithoutFail($log_id);
-
-        if(!empty($SubmitLog)){
-            $SubmitLog->update(['pay_status'=>'已支付','pay_platform'=>'支付宝']);
+        if(session('gol_user_topup_id')){
+            session()->forget('gol_user_topup_id');
         }
+        else{
+                $log_id = explode('_', $input['out_trade_no'])[1];
 
-        return redirect('/user/center/order');
+                $SubmitLog = app('common')->houseJoinRepo()->findWithoutFail($log_id);
+
+                if(!empty($SubmitLog)){
+                    $SubmitLog->update(['pay_status'=>'已支付','pay_platform'=>'支付宝']);
+                }
+
+                return redirect('/user/center/order');
+        }
+    }
         // 订单号：$data->out_trade_no
         // 支付宝交易号：$data->trade_no
         // 订单总金额：$data->total_amount
