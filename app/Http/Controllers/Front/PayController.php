@@ -71,8 +71,9 @@ class PayController extends Controller
         if(!isset($input['price']) || empty($input['price'])){
             return zcjy_callback_data('请输入充值金额',1);
         }
+        $out_trade_no = app('common')->generateZichanLog('转入',$input['price'],$user->id)->number;
         $order = [
-            'out_trade_no' => $user->id,
+            'out_trade_no' => $out_trade_no,
             'total_amount' => $input['price'],
             'subject' => '充值'.$input['price'].'元到账户资产',
         ];
@@ -80,7 +81,7 @@ class PayController extends Controller
         $config['notify_url'] = $request->root().$config['notify_url'];
         $config['return_url'] = $request->root().$config['return_url'];
         $alipay = Pay::alipay($config)->web($order);
-        session(['gol_user_topup_id'=>$user->id]);
+        session(['gol_user_topup_id'=>$out_trade_no]);
         return $alipay;
     }
 
@@ -92,8 +93,13 @@ class PayController extends Controller
         $data = Pay::alipay($config)->verify(); // 是的，验签就这么简单！
         $input = $request->all();
 
-        if(session('gol_user_topup_id')){
-            session()->forget('gol_user_topup_id');
+        $s_log_id = session('gol_user_topup_id');
+
+        if($s_log_id){
+            if(app('common')->endPayZichan($s_log_id)){
+                session()->forget('gol_user_topup_id');
+                return redirect('/user/center/index');
+            }
         }
         else{
                 $log_id = explode('_', $input['out_trade_no'])[1];
@@ -106,11 +112,12 @@ class PayController extends Controller
 
                 return redirect('/user/center/order');
         }
-    }
         // 订单号：$data->out_trade_no
         // 支付宝交易号：$data->trade_no
         // 订单总金额：$data->total_amount
     }
+       
+    
 
 
     //支付宝通知

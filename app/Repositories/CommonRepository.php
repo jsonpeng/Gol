@@ -108,6 +108,41 @@ class CommonRepository
         return $this->cityRepository;
      }
 
+     //支付结束资产转入后
+     public function endPayZichan($out_trade_no)
+     {
+        $log = UserZichangLog::where('number',$out_trade_no)->first();
+        if(!empty($log)){
+            $user = $log->user;
+            if(!empty($user)){
+                #更新用户资产
+                $user->update(['zichan'=>round($user->zichan+$log->change,2)]);
+                #处理订单记录
+                $log->update(['status'=>'处理完成']);
+                return true;
+            }
+        }
+        return false;
+     }
+
+     //生成资产日志
+     public function generateZichanLog($type='转入',$price,$user_id)
+     {
+        $detail = $type.$price.'元';
+        $log = UserZichangLog::create(
+            [
+                'type'=>$type,
+                'change'=>$price,
+                'user_id'=>$user_id,
+                'detail'=>$detail,
+                'status'=>$type=='转入'?'未支付':'处理中'
+        ]
+        );
+        $log->update([
+            'number' => time().'_'.$log->id
+        ]);
+        return $log;
+     }
 
      //统计
      public function staticsHouse(){
