@@ -30,10 +30,38 @@ class UserZichangLogController extends AppBaseController
     public function index(Request $request)
     {
         $this->userZichangLogRepository->pushCriteria(new RequestCriteria($request));
-        $userZichangLogs = descAndPaginateToShow($this->userZichangLogRepository);
+
+        $userZichangLogs = defaultSearchState($this->userZichangLogRepository);
+
+        $input = $request->all();
+
+        if(array_key_exists('type',$input)&& !empty($input['type']) ){
+            $userZichangLogs = $userZichangLogs->where('type',$input['type']);
+        }
+
+        if(array_key_exists('status',$input)&& !empty($input['status']) ){
+            $userZichangLogs = $userZichangLogs->where('status',$input['status']);
+        }
+
+        $page_list = 0;
+
+        if(array_key_exists('page_list',$input)&& !empty($input['page_list']) ){
+            $page_list = $input['page_list'];
+        }
+
+        $userZichangLogs = $userZichangLogs->orderBy('created_at','desc');
+        if($page_list){
+            $userZichangLogs = $userZichangLogs->paginate($page_list);
+        }
+        else{
+            $userZichangLogs=$userZichangLogs->paginate(15);
+        }
+      
 
         return view('user_zichang_logs.index')
-            ->with('userZichangLogs', $userZichangLogs);
+            ->with('userZichangLogs', $userZichangLogs)
+            ->with('input',$input)
+            ->with('tools',1);
     }
 
     /**

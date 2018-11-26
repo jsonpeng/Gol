@@ -72,7 +72,7 @@ button[disabled] {
                                 <div class="form-group col-lg-2 col-md-3 col-sm-12 col-xs-12">
                                     <label for="order_delivery">每页显示</label>
                                     <select class="form-control" name="page_list">
-                                        <option value="" @if (!array_key_exists('page_list', $input)) selected="selected" @endif>全部</option>
+                                        <option value="" @if (!array_key_exists('page_list', $input)) selected="selected" @endif>默认(15)</option>
                                         <option value="5" @if (array_key_exists('page_list', $input) && $input['page_list']=='5') selected="selected" @endif>5</option >
                                         <option value="15" @if (array_key_exists('page_list', $input) && $input['page_list']=='15') selected="selected" @endif>15</option >
                                       <option value="25" @if (array_key_exists('page_list', $input) && $input['page_list']=='25') selected="selected" @endif>25</option >

@@ -77,7 +77,7 @@
 			<div class="col-sm-7">
 				<!--首个图-->
 				{{-- <img src="{!! $gol->image !!}" onerror="javascript:this.src='/images/gol/xiaowu_main.png';" class="img_auto" /> --}}
-				<?php $images = get_content_img($gol->content); ?>
+				<?php $images = get_content_img($gol->content);$i=0; ?>
 				<!--其他图-->
 			<div class="picFocus">
 				<div class="bd">
@@ -85,8 +85,12 @@
 						<li><a target="_blank" href="javascript:;"><img src="{!! $gol->image !!}" class="img_auto" /></a></li>
 						@if(count($images))
 							@foreach($images as $image)
+								<?php $i++;?>
+								@if($i<=4)
 								<li><a target="_blank" href="javascript:;"><img src="{!! $image !!}" class="img_auto" /></a></li>
+								@endif
 							@endforeach
+							<?php $i=0;?>
 						@endif
 					</ul>
 				</div>
@@ -96,7 +100,10 @@
 						<li><img src="{!! $gol->image !!}" class="img_auto" /></li>
 						@if(count($images))
 							@foreach($images as $image)
+								<?php $i++;?>
+								@if($i<=4)
 								<li><img src="{!! $image !!}" class="img_auto" /></li>
+								@endif
 							@endforeach
 						@endif
 					</ul>
@@ -214,7 +221,11 @@
 
 		<!--地理周边-->
 		<div class="container mt30 p_relative">
-                    <div id="allmap" style="height: 600px;"></div>
+			<div class="row">
+				<div class="col-sm-5  gol-series-detail">
+						<p>房东描述详情:{!! $gol->content !!}</p>
+				</div>
+                    <div id="allmap" class="col-sm-7" style="height: 400px;"></div>
        {{--    			<div class="map-around-list" style="position: absolute;right: 100px;top: 0;">
 						  <ul class="gol-types">
 						    <li data-index="0" class="active">交通</li>
@@ -233,11 +244,12 @@
 						 		</div>
 						 </div>
 					</div> --}}
+			</div>
 	    </div>
 	
-		<div class="container mt30 gol-series-detail">
+	<!-- 	<div class="container mt30 gol-series-detail">
 			<p>房东描述详情:{!! $gol->content !!}</p>
-		</div>
+		</div> -->
 
 		<!--很多人喜欢-->
 		<div class="container mt30 pt15" style="border-top:2px solid #bbbbbb;">
@@ -260,8 +272,8 @@
 					 
 				</div>
 			   <!-- 左右按钮 -->
-			    <div class="swiper-button-prev"></div>
-			    <div class="swiper-button-next"></div>
+			 <!--    <div class="swiper-button-prev"></div>
+			    <div class="swiper-button-next"></div> -->
 			</div>
 		</div>
 			@endif

@@ -30,10 +30,46 @@ class HouseController extends AppBaseController
     public function index(Request $request)
     {
         $this->houseRepository->pushCriteria(new RequestCriteria($request));
-        $houses = descAndPaginateToShow($this->houseRepository);
 
+        $houses = defaultSearchState($this->houseRepository);
+
+        $input = $request->all();
+
+        if(array_key_exists('name',$input) && !empty($input['name']) ){
+            $houses = $houses->where('name','like','%'.$input['name'].'%');
+        }
+
+        if(array_key_exists('address',$input) && !empty($input['address']) ){
+            $houses = $houses->where('address','like','%'.$input['address'].'%');
+        }
+
+        if(array_key_exists('type',$input) && !empty($input['type']) ){
+            $houses = $houses->where('type',$input['type']);
+        }
+
+        if(array_key_exists('status',$input) && !empty($input['status']) ){
+            $houses = $houses->where('status',$input['status']);
+        }
+
+        $page_list = 0;
+
+        if(array_key_exists('page_list',$input) && !empty($input['page_list']) ){
+            $page_list = $input['page_list'];
+        }
+
+        $houses = $houses->orderBy('created_at','desc');
+
+        if($page_list){
+            $houses = $houses->paginate($page_list);
+        }
+        else{
+            $houses=$houses->paginate(15);
+        }
+      
         return view('houses.index')
-            ->with('houses', $houses);
+            ->with('houses', $houses)
+            ->with('input',$input)
+            ->with('tools',1);
     }
 
     /**
