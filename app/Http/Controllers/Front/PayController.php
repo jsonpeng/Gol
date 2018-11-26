@@ -85,6 +85,33 @@ class PayController extends Controller
         return $alipay;
     }
 
+    //发起资产提现
+    public function withdrawUserZichang(Request $request)
+    {
+        $input = $request->all();
+        $user = auth('web')->user();
+        if(!isset($input['price']) || empty($input['price'])){
+            return zcjy_callback_data('请输入转出金额',1);
+        }
+        if(!isset($input['name']) || empty($input['name'])){
+            return zcjy_callback_data('请输入姓名',1);
+        }
+        if(!isset($input['account']) || empty($input['account'])){
+            return zcjy_callback_data('请输入账号',1);
+        }
+        if($user->zichan < $input['price']){
+            return zcjy_callback_data('您的资产余额不足以提现',1);
+        }
+        
+        #处理金额
+        $user->update(['zichan'=>round($user->zichan-$input['price'],2)]);
+
+        #生成记录
+        app('common')->generateZichanLog('转出',$input['price'],$user->id,$input['name'],$input['account']);
+
+        return zcjy_callback_data('发起转出成功,当前状态处理中,处理成功后会消息通知,请留意个人中心');
+    }
+
     public function return(Request $request)
     {
         $config = $this->alipay_config;

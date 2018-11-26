@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+            {!! $userZichangLogs->appends('')->links() !!}
         </div>
     </div>
 @endsection

@@ -32,7 +32,10 @@ class UserZichangLog extends Model
         'status',
         'number',
         'type',
-        'detail'
+        'detail',
+        'name',
+        'pay_type',
+        'account'
     ];
 
     /**

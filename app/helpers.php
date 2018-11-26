@@ -185,6 +185,22 @@ function varifyMenusName($name,$menus){
 }
 
 
+/**
+ * [初始化查询索引状态]
+ * @param  [Repository / Model] $obj [description]
+ * @return [type]                    [description]
+ */
+function defaultSearchState($obj){
+         if(!empty($obj)){
+            return !empty(optional($obj)->model())
+                ?($obj->model())::where('id','>',0)
+                :$obj::where('id','>',0);
+         }else{
+            return [];
+         }
+}
+
+
 //时间倒序带分页
 function descAndPaginateToShow($obj,$attr='created_at',$desc='desc'){
        if(!empty($obj)){

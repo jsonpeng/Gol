@@ -513,4 +513,11 @@ class AjaxController extends Controller
         return zcjy_callback_data('操作成功');
     }
 
+    //账户充值
+    public function userTopup(Request $request)
+    {
+        $user = auth('web')->user();
+        session();
+    }
+
 }

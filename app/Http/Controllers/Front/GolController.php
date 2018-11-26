@@ -201,7 +201,8 @@ class GolController extends Controller
         $user = auth('web')->user();
         $joins = app('common')->houseJoinRepo()->userHouseJoins($user->id,'已支付',true);
         $all_consume = app('common')->houseJoinRepo()->useAllConsume($user->id);
-        return view('front.auth.usercenter',compact('user','joins','all_consume'));
+        $logs = app('common')->userZichanLogs($user->id);
+        return view('front.auth.usercenter',compact('user','joins','all_consume','logs'));
     }
 
     //个人中心 -> 项目中心

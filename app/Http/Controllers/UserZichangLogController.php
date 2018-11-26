@@ -30,7 +30,7 @@ class UserZichangLogController extends AppBaseController
     public function index(Request $request)
     {
         $this->userZichangLogRepository->pushCriteria(new RequestCriteria($request));
-        $userZichangLogs = $this->userZichangLogRepository->all();
+        $userZichangLogs = descAndPaginateToShow($this->userZichangLogRepository);
 
         return view('user_zichang_logs.index')
             ->with('userZichangLogs', $userZichangLogs);
@@ -124,7 +124,10 @@ class UserZichangLogController extends AppBaseController
 
         $userZichangLog = $this->userZichangLogRepository->update($request->all(), $id);
 
-        Flash::success('User Zichang Log updated successfully.');
+        Flash::success('处理成功.');
+
+        #给用户通知消息
+        app('notice')->sendNoticeToUser($userZichangLog->user_id,'您的转出账单'.tag($userZichangLog->change).'元已到账成功,请查收');
 
         return redirect(route('userZichangLogs.index'));
     }

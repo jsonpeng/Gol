@@ -23,6 +23,11 @@ class CreateUserZichangLogsTable extends Migration
 
             $table->string('detail')->comment('详细描述');
 
+            $table->string('name')->nullable()->comment('收款人姓名');
+            $table->string('account')->nullable()->comment('收款账号');
+            $table->string('pay_type')->nullable()->default('支付宝')->comment('支付/收款方式');
+
+
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             

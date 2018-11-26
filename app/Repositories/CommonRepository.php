@@ -108,6 +108,19 @@ class CommonRepository
         return $this->cityRepository;
      }
 
+     /**
+      * [用户的资产记录]
+      * @param  [type] $user_id [description]
+      * @return [type]          [description]
+      */
+     public function userZichanLogs($user_id)
+     {
+        $logs = UserZichangLog::where('user_id',$user_id)
+                ->orderBy('created_at','desc')
+                ->paginate(15);
+        return $logs;
+     }
+
      //支付结束资产转入后
      public function endPayZichan($out_trade_no)
      {
@@ -126,7 +139,7 @@ class CommonRepository
      }
 
      //生成资产日志
-     public function generateZichanLog($type='转入',$price,$user_id)
+     public function generateZichanLog($type='转入',$price,$user_id,$name=null,$account=null)
      {
         $detail = $type.$price.'元';
         $log = UserZichangLog::create(
@@ -135,7 +148,9 @@ class CommonRepository
                 'change'=>$price,
                 'user_id'=>$user_id,
                 'detail'=>$detail,
-                'status'=>$type=='转入'?'未支付':'处理中'
+                'status'=>$type=='转入'?'未支付':'处理中',
+                'name'=>$name,
+                'account'=>$account
         ]
         );
         $log->update([

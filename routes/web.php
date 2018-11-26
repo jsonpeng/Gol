@@ -23,6 +23,8 @@ Route::group(['prefix' => 'alipay','middleware'=>['webAuth'],'namespace'=>'Front
 	Route::get('pay','PayController@index');
 	#支付余额充值
 	Route::get('pay_user_topup','PayController@payUserZichang');
+	#余额提现
+	Route::get('withdraw_user','PayController@withdrawUserZichang');
 });
 
 //微信支付
