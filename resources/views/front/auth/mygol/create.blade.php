@@ -2,7 +2,7 @@
 
 @section('css')
 <style type="text/css">
-  .active{
+  .actives{
     background: #FF5511 !important;
     color: white !important;
   }
@@ -281,13 +281,13 @@
       },$('form').serialize(),'POST');
   });
   $('.gol_services').click(function(){
-    $(this).toggleClass('active');
+    $(this).toggleClass('actives');
   });
   //处理选中的设施
   function dealWithActiveServices(){
     var services = [];
     $('.gol_services').each(function(){
-       if($(this).hasClass('active')){
+       if($(this).hasClass('actives')){
         services.push($(this).text());
       }
     });
