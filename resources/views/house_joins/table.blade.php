@@ -19,10 +19,11 @@
     </thead>
     <tbody>
     @foreach($houseJoins as $houseJoin)
+    <?php $user = optional($houseJoin->user); ?>
         <tr>
             {{-- <td>{!! $houseJoin->number !!}</td> --}}
             <td>{!! optional($houseJoin->house)->name !!}</td>
-            <td>{!! optional($houseJoin->user)->name !!}</td>
+            <td>{!! a_link($user->name, route('users.show', [$user->id]),'orange',false) !!}</td>
 
             <td>{!! $houseJoin->gear !!}</td>
             <td>{!! $houseJoin->gear_num !!}</td>

@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="text-center">
-            {!! $userZichangLogs->appends('')->links() !!}
+            {!! $userZichangLogs->appends($input)->links() !!}
         </div>
     </div>
 @endsection

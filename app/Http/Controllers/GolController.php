@@ -30,10 +30,51 @@ class GolController extends AppBaseController
     public function index(Request $request)
     {
         $this->golRepository->pushCriteria(new RequestCriteria($request));
-        $gols = descAndPaginateToShow($this->golRepository);
+       
+        $gols = defaultSearchState($this->golRepository);
+
+        $input = $request->all();
+
+        if(array_key_exists('name',$input) && !empty($input['name']) ){
+            $gols = $gols->where('name','like','%'.$input['name'].'%');
+        }
+
+        if(array_key_exists('type',$input) && !empty($input['type']) ){
+            $gols = $gols->where('type',$input['type']);
+        }
+
+        if(array_key_exists('hourse_type',$input) && !empty($input['hourse_type'])){
+            $gols = $gols->where('hourse_type',$input['hourse_type']);
+        }
+
+       if(array_key_exists('address',$input) && !empty($input['address'])){
+            $gols = $gols->where('address','like','%'.$input['address'].'%');
+        }
+
+        if(array_key_exists('publish_status',$input) && !empty($input['publish_status']) || array_key_exists('publish_status',$input) && $input['publish_status'] == '0'){
+            $gols = $gols->where('publish_status',$input['publish_status']);
+        }
+
+
+        $page_list = 0;
+
+        if(array_key_exists('page_list',$input) && !empty($input['page_list']) ){
+            $page_list = $input['page_list'];
+        }
+
+        $gols = $gols->orderBy('created_at','desc');
+
+        if($page_list){
+            $gols = $gols->paginate($page_list);
+        }
+        else{
+            $gols=$gols->paginate(15);
+        }
 
         return view('gols.index')
-            ->with('gols', $gols);
+            ->with('gols', $gols)
+            ->with('input',$input)
+            ->with('tools',1);
     }
 
     /**

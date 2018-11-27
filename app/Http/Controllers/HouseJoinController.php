@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\House;
 
 class HouseJoinController extends AppBaseController
 {
@@ -30,9 +31,47 @@ class HouseJoinController extends AppBaseController
     public function index(Request $request)
     {
         $this->houseJoinRepository->pushCriteria(new RequestCriteria($request));
-        $houseJoins = descAndPaginateToShow($this->houseJoinRepository);
+   
+        $houseJoins = defaultSearchState($this->houseJoinRepository);
+
+        $input = $request->all();
+
+        if(array_key_exists('name',$input) && !empty($input['name']) ){
+            $houses = House::where('name','like','%'.$input['name'].'%')->get();
+            $houses_arr = [];
+            foreach ($houses as $key => $value) {
+                 $houses_arr[] = $value->id;
+             } 
+             $houseJoins = $houseJoins->whereIn('house_id',$houses_arr);
+        }
+
+    
+        if(array_key_exists('pay_status',$input) && !empty($input['pay_status']) ){
+            $houseJoins = $houseJoins->where('pay_status',$input['pay_status']);
+        }
+
+        if(array_key_exists('hetong',$input) && !empty($input['hetong']) ){
+            $houseJoins = $houseJoins->where('hetong',$input['hetong']);
+        }
+
+        $page_list = 0;
+
+        if(array_key_exists('page_list',$input) && !empty($input['page_list']) ){
+            $page_list = $input['page_list'];
+        }
+
+        $houseJoins = $houseJoins->orderBy('created_at','desc');
+
+        if($page_list){
+            $houseJoins = $houseJoins->paginate($page_list);
+        }
+        else{
+            $houseJoins=$houseJoins->paginate(15);
+        }
         return view('house_joins.index')
-            ->with('houseJoins', $houseJoins);
+            ->with('houseJoins', $houseJoins)
+            ->with('input',$input)
+            ->with('tools',1);
     }
 
     /**

@@ -2,6 +2,8 @@
     <thead>
         <tr>
         <th>小屋名称</th>
+        <th>进度</th>
+        <th>发布人</th>
         <th>小屋地址</th>
         <th>浏览量</th>
         <th>档位</th>
@@ -15,8 +17,11 @@
     </thead>
     <tbody>
     @foreach($houses as $house)
+         <?php $detail = optional(app('common')->houseRepo()->getHouseDetail($house->id))->hourse;$user=$house->user;?>
         <tr>
             <td>{!! $house->name !!}</td>
+            <td>@if($detail['support_people']) {!! '进度'.tag($detail['progress'].'%').'支持人数'.tag($detail['support_people']).'支持金额'.tag($detail['all_price']) !!} @endif</td>
+            <td>{!! a_link($user->name, route('users.show', [$user->id]),'orange',false) !!}</td>
             <td>{!! $house->address !!}</td>
             <td>{!! $house->view !!}</td>
             <td>{!! $house->gear !!}</td>

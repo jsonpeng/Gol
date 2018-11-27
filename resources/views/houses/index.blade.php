@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="text-center">
-            {!!  $houses->appends('')->links() !!}
+            {!!  $houses->appends($input)->links() !!}
         </div>
     </div>
 @endsection
