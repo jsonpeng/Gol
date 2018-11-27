@@ -2,6 +2,7 @@
     <thead>
         <tr>
         <th>名称</th>
+        <th>发布人</th>
         <th>主图</th>
         <th>gol房屋类型</th>
   <!--       <th>Brief</th>
@@ -20,8 +21,10 @@
     </thead>
     <tbody>
              @foreach($gols as $gol)
+             <?php $user = $gol->user;?>
                 <tr>
                     <td>{!! $gol->name !!}[{!! $gol->type !!}]</td>
+                    <td>{!! a_link($user->name, route('users.show', [$user->id]),'orange',false) !!}</td>
                     <td><img src="{!! $gol->image !!}" style="max-width: 80px;height: auto;" /></td>
                     <td>{!! $gol->hourse_type !!}</td>
                     <td>{!! $gol->view !!}</td>

@@ -39,7 +39,7 @@
                 <div class='btn-group'>
                  {{--    <a href="{!! route('houseJoins.show', [$houseJoin->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a> --}}
                     <a href="{!! route('houseJoins.edit', [$houseJoin->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('确定删除吗?')"]) !!}
+                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('确定删除吗?删除后对应投资者购买的订单及小屋新主的支持人数和支持金额都将影响')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>
