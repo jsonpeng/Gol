@@ -61,6 +61,7 @@
                       <tr class="gol_table_thead">    
                           <th>类型</th>
                           <th>变化</th>
+                          <th>转入/转出平台</th>
                           <th>状态</th>
                       </tr>
                   </thead>
@@ -70,6 +71,7 @@
                             <tr class="">
                                 <td>{!! $log->type !!}</td>
                                 <td>@if($log->type == '转入'){!! tag('+','black') !!}@else{!! tag('-','black') !!}@endif{!! $log->change !!}</td>
+                                <td>{!! $log->pay_type !!}</td>
                                 <td>{!! $log->status !!}</td>
                             </tr>
                           @endforeach
