@@ -132,4 +132,12 @@ class Gol extends Model
         return $this->belongsToMany('App\User','attention_gols','gol_id','user_id');
     }
 
+    public function getAddressShowAttribute(){
+        $address = $this->address;
+        if(strlen($address) > 6){
+            $address = mb_substr($address,0,5,'utf-8').'..';
+        }
+        return $address;
+    }
+
 }

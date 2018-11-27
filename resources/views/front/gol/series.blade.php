@@ -43,11 +43,11 @@
 					<a class="col-sm-3 gol_many_post_item reveal2" href="/golDetail/{!! $gol->id !!}">
 						<img onerror="javascript:this.src='/images/gol/many_post.jpg';" src="{!! $gol->image !!}" class="img_auto" />
 						<h4>{!! $gol->name !!}</h4>
-						<p>{!! $gol->brief !!}</p>
+						{{-- <p>{!! $gol->brief !!}</p> --}}
 					
 						<div class="row">
 							<div class="col-sm-6">
-								<p class="pull-left">{!! $gol->address !!}</p>
+								<p class="pull-left"><i class="fa fa-arrows"></i><span>{!! $gol->AddressShow !!}</span></p>
 								
 		 					</div>
 							<div class="col-sm-6">
