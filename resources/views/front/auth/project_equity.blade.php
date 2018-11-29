@@ -103,7 +103,7 @@
             <div class="row mt30">
                <div class="col-sm-2"></div>
                <div class="btn btn-success col-sm-1 equity_action" style="background-color:#FF5511;border: none;">添加</div>
-               <div class="btn btn-danger col-sm-1 equity_delete" style="margin-left: 15px;">删除</div>
+               <div class="btn btn-danger col-sm-1 equity_delete" style="margin-left: 15px;" data-id="">删除</div>
              </div>
 
         </form>
@@ -117,7 +117,6 @@
 <script src="{{ asset('fullcalendar/dist/fullcalendar.min.js') }}"></script>
 <script>
   $(function () {
-
     var date = new Date()
     var d    = date.getDate(),
         m    = date.getMonth(),
@@ -155,15 +154,15 @@
             console.log('类型:'+event.title);
             console.log('当前对象:');
             console.log(this);
-            openEditLayer(event.time,'edit',event.title);
+            openEditLayer(event.time,'edit',event.title,event.e_id);
           
       }
     });
     initEvents();
   })
 
-  var actions = 'create';
-
+  var actions;
+  var action_id;
   function openEditLayer(date,action='create',type=null,id=null){
     var title = '<i class="fa fa-plus"></i>&nbsp;添加日程';
     var action_text = '添加';
@@ -176,18 +175,21 @@
         title = '<i class="fa fa-edit"></i>&nbsp;编辑日程';
         action_text = '确定修改';
         $('#equity_form').find('select').find('option[value='+type+']').attr('checked','checked');
-        $('#equity_form').find('.equity_action').text(action_text).data('action',action);
+     
         $('#equity_form').find('.equity_action').data('id',id);
         $('#equity_form').find('.equity_delete').show();
         $('#equity_form').find('.equity_delete').data('id',id);
+        action_id = id;
         actions = 'edit';
     }
+    $('#equity_form').find('.equity_action').text(action_text).data('action',action);
     $('#equity_form').find('input[name=time]').attr('value',date).attr('readonly','readonly');
     $.zcjyFrameOpen($('#equity_form').html(),title,['60%', '320px']);
   } 
 
   //初始化事件
   function initEvents(){
+    layer.closeAll();
     var events =     [
 
     ];
@@ -227,7 +229,7 @@
      }
      else{
        //更新
-       $.zcjyRequest('/ajax/equity/update/'+$(that).data('id'),function(res){
+       $.zcjyRequest('/ajax/equity/update/'+action_id,function(res){
           if(res){
             $.alert(res);
             initEvents();
@@ -238,8 +240,7 @@
 
 
   $(document).on('click','.equity_delete',function(){
-    var id = $(this).data('id');
-     $.zcjyRequest('/ajax/equity/delete/'+id,function(res){
+     $.zcjyRequest('/ajax/equity/delete/'+action_id,function(res){
           if(res){
             $.alert(res);
             initEvents();
