@@ -148,14 +148,7 @@
         openEditLayer(theDate);
       },
       eventClick:function(event, jsEvent, view){//当点击日历中的某一日程（事件）时，触发此操作
-            console.log(event);
-            console.log('id:'+event.e_id);
-            console.log('时间:'+event.time);
-            console.log('类型:'+event.title);
-            console.log('当前对象:');
-            console.log(this);
             openEditLayer(event.time,'edit',event.title,event.e_id);
-          
       }
     });
     initEvents();
@@ -174,8 +167,7 @@
     else{
         title = '<i class="fa fa-edit"></i>&nbsp;编辑日程';
         action_text = '确定修改';
-        $('#equity_form').find('select').find('option[value='+type+']').attr('checked','checked');
-     
+        $('#equity_form').find('select').find('option[value='+type+']').attr('selected',true);
         $('#equity_form').find('.equity_action').data('id',id);
         $('#equity_form').find('.equity_delete').show();
         $('#equity_form').find('.equity_delete').data('id',id);
