@@ -16,6 +16,15 @@ use Illuminate\Pagination\Paginator;
 
 
 
+function equityTypeColor($key){
+  $equity = [
+    '权益日' => '#f56954',
+    '休息日' => '#ddd',
+    '特权日' => '#00c0ef',
+  ];
+  return isset($equity[$key]) ? $equity[$key] : 'black'; 
+}
+
 function trclass($key=null){
   $arr = ['success','danger','warning','info','error'];
   if(!empty($key) || $key == 0){
@@ -307,8 +316,17 @@ function getCitiesNameById($cities_id)
     }
 }
 
-function time_parse($time){
-  return Carbon::parse($time);
+
+
+function time_parse($time,$format=null){
+  $time =  Carbon::parse($time);
+  if(!empty($format)){
+    $time = $time->format($format);
+    // if($format == 'm'){
+    //   $time = (int)$time - 1  ? (int)$time - 1  : 1;
+    // }
+  }
+  return $time;
 }
 
 function parent_cat($category){

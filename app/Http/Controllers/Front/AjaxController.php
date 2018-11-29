@@ -520,4 +520,53 @@ class AjaxController extends Controller
         session();
     }
 
+    //添加权益事件
+    public function addEvent(Request $request)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,'type,time');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }
+        $user = auth('web')->user();
+        return zcjy_callback_data(app('common')->addUserEquity($user->id,$input['type'],$input['time']));
+
+    }
+
+    //编辑权益事件
+    public function updateEvent(Request $request,$id)
+    {
+        $input = $request->all();
+        $varify = varifyInputParam($input,'type');
+        if($varify){
+            return zcjy_callback_data($varify,1);
+        }  
+        $info = app('common')->updateUserEquity($id,$input['type']);
+
+        if($info){
+            return zcjy_callback_data($info,1);
+        }
+
+        return zcjy_callback_data('更新成功');
+    }
+
+    //删除权益事件
+    public function deleteEvent(Request $request,$id)
+    {
+        $info = app('common')->deleteUserEquity($id);
+
+        if($info){
+             return zcjy_callback_data($info,1);
+        }
+
+        return zcjy_callback_data('更删除成功');
+    }
+
+    //获取所有权益事件
+    public function getAllEvent(Request $request)
+    {
+        $user = auth('web')->user();
+        return zcjy_callback_data(app('common')->getUserAllEquity($user->id));
+    }
+
 }

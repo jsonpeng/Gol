@@ -32,7 +32,7 @@
 
           	<div class="notice">
           		<div class="common-title text-center">
-          			<div class="text-ch pt30">项目中心</div>
+          			<div class="text-ch pt30"><a class="f16" href="/user/center/project">项目中心</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class="f16" href="/user/center/project/equity">我的权益</a></div>
           			<h3 class="text-en">Project Center</h3>
           			<div class="short-line"></div>
           		</div>

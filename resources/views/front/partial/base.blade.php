@@ -67,6 +67,7 @@
         .pb50{padding-bottom: 50px;}
         .pb30{padding-bottom: 30px;}
         .pb15{padding-bottom: 15px;}
+        .pb10{padding-bottom: 10px;}
         .pr15{padding-right: 15px;}
         .pl15{padding-left: 15px;}
         .pl30{padding-left: 30px;}

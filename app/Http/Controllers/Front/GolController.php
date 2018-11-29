@@ -214,6 +214,12 @@ class GolController extends Controller
         return view('front.auth.project',compact('houses','gols'));
     }
 
+    public function authProjectEquity(Request $request)
+    {
+          $user = auth('web')->user();
+          return view('front.auth.project_equity');
+    }
+
     //我的小屋 主页
     public function authHouseIndex(Request $request)
     {

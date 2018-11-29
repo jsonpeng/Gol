@@ -95,6 +95,18 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 		##gol状态更新
 		Route::post('update_gol/{id}','AjaxController@updateGolStatus');
 
+		##操作权益
+		Route::group(['prefix'=>'equity'],function(){
+			##添加
+			Route::post('add','AjaxController@addEvent');
+			##更新
+			Route::post('update/{id}','AjaxController@updateEvent');
+			##删除
+			Route::post('delete/{id}','AjaxController@deleteEvent');
+			##获取所有
+			Route::post('all','AjaxController@getAllEvent');
+		});
+
 		/**
 		 * 需要用户完成实名认证后可操作
 		 */
@@ -142,6 +154,8 @@ Route::group(['middleware'=>['web'],'namespace'=>'Front'],function(){
 			Route::get('center/index','GolController@authCenter');
 			//项目中心
 			Route::get('center/project','GolController@authProject');
+			//我的权益 authProjectEquity
+			Route::get('center/project/equity','GolController@authProjectEquity');
 			//我的交易单
 			Route::get('center/order','GolController@authOrder');
 			//我的关注
@@ -299,3 +313,6 @@ Route::group(['middleware' => ['auth.admin:admin'], 'prefix' => 'zcjy'], functio
 });
 
 
+
+
+// Route::resource('userEquities', 'UserEquityController');

@@ -21,6 +21,8 @@ use App\Models\AttentionHouse;
 use App\Models\HouseJoin;
 use App\Models\AttentionGol;
 use App\Models\UserZichangLog;
+use App\Models\UserEquity;
+
  
 /**
  * Class ClientRepository
@@ -106,6 +108,67 @@ class CommonRepository
 
      public function cityRepo(){
         return $this->cityRepository;
+     }
+
+     /**
+      * [获取用户所有的事件记录]
+      * @param  [type] $user_id [description]
+      * @return [type]          [description]
+      */
+     public function getUserAllEquity($user_id){
+        $items =  UserEquity::where('user_id',$user_id)->get(); 
+        foreach ($items as $key => $value) {
+           $value['Y'] = time_parse($value->time,'Y');
+           $value['m'] = time_parse($value->time,'m')-1;
+           $value['d'] = time_parse($value->time,'d');
+           $value['color'] = equityTypeColor($value->type);
+        }
+        return $items;
+     }
+
+     /**
+      * [添加用户事件记录]
+      * @param [type] $user_id [description]
+      * @param [type] $type    [description]
+      * @param [type] $time    [description]
+      */
+     public function addUserEquity($user_id,$type,$time){
+         UserEquity::create([
+            'user_id'=>$user_id,
+            'type'=>$type,
+            'time'=>$time
+        ]);
+        return '添加成功';
+     }
+
+     /**
+      * [编辑用户事件记录]
+      * @param  [type] $id   [description]
+      * @param  [type] $type [description]
+      * @return [type]       [description]
+      */
+     public function updateUserEquity($id,$type){
+        $equiry = UserEquity::find($id);
+        if(empty($equiry)){
+            return '没有找到对应的事件记录';
+        }
+        $equiry->update(['type'=>$type]);
+        return false;
+     }
+
+     /**
+      * [删除用户事件记录]
+      * @param  [type] $id [description]
+      * @return [type]     [description]
+      */
+     public function deleteUserEquity($id)
+     {
+        $equiry = UserEquity::find($id);
+        if(empty($equiry)){
+            return '没有找到对应的事件记录';
+        }
+        $equiry->delete();
+        return false;
      }
 
      /**
