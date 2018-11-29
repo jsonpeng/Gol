@@ -122,8 +122,3 @@
 </li>
 
 
-
-<li class="{{ Request::is('userEquities*') ? 'active' : '' }}">
-    <a href="{!! route('userEquities.index') !!}"><i class="fa fa-edit"></i><span>User Equities</span></a>
-</li>
-

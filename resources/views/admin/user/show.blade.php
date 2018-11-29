@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('fullcalendar/dist/fullcalendar.min.css') }}">
+<style type="text/css">
+  .fc-day-grid-event .fc-content {
+      text-align: center;
+  }
+</style>
+@endsection
+
 @section('content')
     <div class="container-fluid" style="padding: 30px 15px;">
         <!-- Content Header (Page header) -->
@@ -71,7 +80,7 @@
                   <li ><a href="#hourse_list" data-toggle="tab">小屋</a></li>
                   <li ><a href="#gol_list" data-toggle="tab">GOL</a></li>
                   <li ><a href="#notice_list" data-toggle="tab">通知消息</a></li>
-                  
+                  <li ><a href="#equiry_list" data-toggle="tab">权益日安排</a></li>
                 </ul>
                 <div class="tab-content">
 
@@ -232,6 +241,11 @@
                                           {!! $notices->appends('')->links() !!}
                                     </div>
 
+                      </div>
+
+
+                      <div class="tab-pane" id="equiry_list">
+                          <div class="mt30" id="calendar"></div>
                       </div>
    
                   <!-- /.tab-pane -->

@@ -11,6 +11,9 @@
     background: #FF5511;
     border: 1px solid #FF5511;
   }
+  .fc-day-grid-event .fc-content {
+      text-align: center;
+  }
 </style>
 @endsection
 
@@ -113,7 +116,7 @@
 
 @section('js')
  @include('front.auth.usercenter_js')
- <script src="{{ asset('moment/moment.js') }}"></script>
+<script src="{{ asset('moment/moment.js') }}"></script>
 <script src="{{ asset('fullcalendar/dist/fullcalendar.min.js') }}"></script>
 <script>
   $(function () {

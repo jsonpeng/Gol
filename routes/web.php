@@ -105,6 +105,8 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 			Route::post('delete/{id}','AjaxController@deleteEvent');
 			##获取所有
 			Route::post('all','AjaxController@getAllEvent');
+			##获取指定用户
+			Route::post('all/{user_id}','AjaxController@getUserAllEvent');
 		});
 
 		/**

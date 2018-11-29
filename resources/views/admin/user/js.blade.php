@@ -77,4 +77,77 @@
           },{content:$('.message-textarea').val()},'POST');
      }
     </script>
+
+  @if(isset($user))
+    <script src="{{ asset('moment/moment.js') }}"></script>
+    <script src="{{ asset('fullcalendar/dist/fullcalendar.min.js') }}"></script>
+    <script>
+      $(function () {
+        var date = new Date()
+        var d    = date.getDate(),
+            m    = date.getMonth(),
+            y    = date.getFullYear()
+        $('#calendar').fullCalendar({
+          header    : {
+            left  : 'prev,next today',
+            center: 'title',
+            right:'下个月'
+            // right : 'month,agendaWeek,agendaDay'
+          },
+          buttonText: {
+            today: '返回今天',
+            month: '月',
+            week : '周',
+            day  : '日'
+          },
+          monthNames:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+          monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+          dayNamesShort:['周日','周一','周二','周三','周四','周五','周六'],
+          //Random default events
+          events    : [
+          ],
+          editable  : false,
+          droppable : false, // this allows things to be dropped onto the calendar !!!
+          dayClick: function(date, allDay, jsEvent, view) {//当单击日历中的某一天时，触发callback
+      
+          },
+          eventClick:function(event, jsEvent, view){//当点击日历中的某一日程（事件）时，触发此操作
+              
+          }
+        });
+        initEvents();
+      })
+
+      //初始化事件
+      function initEvents(){
+        layer.closeAll();
+        var events =     [
+
+        ];
+        $.zcjyRequest('/ajax/equity/all/{{ $user->id }}',function(res){
+          if(res){
+            if(res.length){
+              for (var i = res.length -1; i >= 0; i--) {
+                  events.push({
+                    e_id           : res[i]['id'],
+                    time           : res[i]['time'],
+                    title          : res[i]['type'],
+                    //月份要减去1
+                    start          : new Date(res[i]['Y'], res[i]['m'], res[i]['d']),
+                    allDay         : true,
+                    backgroundColor: res[i]['color'],
+                    borderColor    : res[i]['color']
+                  });
+              }
+            $('#calendar').fullCalendar('removeEvents');
+            $('#calendar').fullCalendar('addEventSource', events);
+            $('#calendar').fullCalendar('refetchEvents');
+            }
+          }
+        },{},'POST');
+      }
+
+    </script>
+  @endif
+  
 @endsection

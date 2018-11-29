@@ -569,4 +569,9 @@ class AjaxController extends Controller
         return zcjy_callback_data(app('common')->getUserAllEquity($user->id));
     }
 
+    public function getUserAllEvent(Request $request,$user_id)
+    {
+         return zcjy_callback_data(app('common')->getUserAllEquity($user_id));
+    }
+
 }
