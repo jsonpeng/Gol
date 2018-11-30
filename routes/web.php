@@ -60,7 +60,8 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 	Route::post('forgetpwd_send_code','AjaxController@forgetSendCode');
 	#忘记密码找回
 	Route::post('forgetpwd_action_submit','AjaxController@forgetPwdFindAction');
-
+	##获取指定用户
+	Route::post('equity/all/{user_id}','AjaxController@getUserAllEvent');
 	/**
 	 *需要用户登录后才可以操作
 	 */
@@ -105,8 +106,7 @@ Route::group(['prefix'=>'ajax','namespace'=>'Front'],function(){
 			Route::post('delete/{id}','AjaxController@deleteEvent');
 			##获取所有
 			Route::post('all','AjaxController@getAllEvent');
-			##获取指定用户
-			Route::post('all/{user_id}','AjaxController@getUserAllEvent');
+		
 		});
 
 		/**
