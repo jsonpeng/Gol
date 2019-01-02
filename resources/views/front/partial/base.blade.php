@@ -243,30 +243,20 @@
         <script src="{{asset('js/jq_goup.js')}}"></script>
         <script type="text/javascript">
 
-        var longitude='';  
-        var latitude='';  
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {  
-                    longitude = position.coords.longitude;  
-                    latitude = position.coords.latitude;  
-                    console.log(longitude)
-                    console.log(latitude)
-                    // getStores();
-                    },
-                    function (e) {
-                     var msg = e.code;
-                     var dd = e.message;
-                     console.log(msg)
-                     console.log(dd)
-                     if(msg){
-                        alert('您使用的浏览器不支持或者未开放手机定位权限,查看的商家地址将不准确');
-                        // getStores();
-                        //location.href="/";
-                     }   
-                }
-              ) 
+        var longitude = '';  
+        var latitude = ''; 
+
+        //判断是否支持 获取本地位置
+        if (navigator.geolocation) {
+           var n = navigator.geolocation.getCurrentPosition(function(res){
+               longitude = res.coords.longitude;
+               latitude = res.coords.latitude;
+               console.log(longitude+','+latitude); // 需要的坐标地址就在res中
+           });
+        } else {
+            alert('该浏览器不支持定位');
         }
+
 
         window.sr = ScrollReveal({ reset: true });
 
