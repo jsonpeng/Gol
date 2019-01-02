@@ -254,7 +254,7 @@
                console.log(longitude+','+latitude); // 需要的坐标地址就在res中
            });
         } else {
-            alert('该浏览器不支持定位');
+            // alert('该浏览器不支持定位');
         }
 
 
